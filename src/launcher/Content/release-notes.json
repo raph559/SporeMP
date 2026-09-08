@@ -1,5 +1,19 @@
 [
   {
+    "version": "0.1.2",
+    "date": "2026-09-08",
+    "title": "A new home for your universe",
+    "summary": "A clearer Play screen. More room for every update.",
+    "changes": [
+      { "category": "REDESIGNED", "text": "A new home screen with a spacious illustration, a prominent Play button and game readiness at a glance." },
+      { "category": "NEW", "text": "Permanent Home, What's new and Settings navigation keeps everything within easy reach." },
+      { "category": "NEW", "text": "Search release notes by version, date or words from any change. Pick a release to read its full details." },
+      { "category": "IMPROVED", "text": "Cleaner Settings for your game folder and installation choice, with troubleshooting tucked away until you need it." },
+      { "category": "IMPROVED", "text": "More readable text, clearer selected and keyboard focus states, and layouts that scroll on smaller displays." },
+      { "category": "NEW", "text": "Use Ctrl+1 for Home, Ctrl+2 for What's new, Ctrl+comma for Settings, and Ctrl+F to search updates." }
+    ]
+  },
+  {
     "version": "0.1.1",
     "date": "2026-09-08",
     "title": "Your updates, in one place",

@@ -1,157 +1,305 @@
-<Window x:Class="SporeMP.Launcher.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  Title="SporeMP" Width="1100" Height="720" MinWidth="940" MinHeight="640" WindowStartupLocation="CenterScreen" WindowStyle="None"
-  Background="#070F1D" FontFamily="Segoe UI" FontSize="14" Foreground="#F5F4F0" UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display" Loaded="OnLoaded" Closing="OnClosing" PreviewKeyDown="WindowKeyDown">
-  <WindowChrome.WindowChrome><WindowChrome CaptionHeight="52" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="12" UseAeroCaptionButtons="False" /></WindowChrome.WindowChrome>
-  <Border BorderBrush="#364258" BorderThickness="1" CornerRadius="12" ClipToBounds="True">
+<Window x:Class="SporeMP.Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="SporeMP" Width="1280" Height="820" MinWidth="1060" MinHeight="700"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Background="#080F1B" FontFamily="Segoe UI" FontSize="14" Foreground="{StaticResource Text}"
+        UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Display"
+        Loaded="OnLoaded" Closing="OnClosing" PreviewKeyDown="WindowKeyDown">
+  <WindowChrome.WindowChrome>
+    <WindowChrome CaptionHeight="44" ResizeBorderThickness="6" GlassFrameThickness="0"
+                  CornerRadius="12" UseAeroCaptionButtons="False" />
+  </WindowChrome.WindowChrome>
+  <Border BorderBrush="#2A384B" BorderThickness="1" CornerRadius="12" ClipToBounds="True">
     <Grid>
-      <Grid.RowDefinitions><RowDefinition Height="66" /><RowDefinition Height="*" /><RowDefinition Height="164" /></Grid.RowDefinitions>
-      <Image Grid.RowSpan="3" Source="Assets/universe.png" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality" IsHitTestVisible="False" />
-      <Border Grid.RowSpan="3" IsHitTestVisible="False"><Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#44050C19" Offset="0" /><GradientStop Color="#00050C19" Offset="0.6" /><GradientStop Color="#EB060D1A" Offset="0.82" /><GradientStop Color="#FF080F1D" Offset="1" /></LinearGradientBrush></Border.Background></Border>
-      <Grid Grid.Row="0" Margin="32,0,15,0">
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-          <TextBlock Text="S P O R E" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" />
-          <Border Background="#F0C88A" CornerRadius="4" Margin="12,0,0,0" Padding="7,3" VerticalAlignment="Center"><TextBlock Text="MP" FontSize="10" Foreground="#172030" FontWeight="ExtraBold" /></Border>
-          <Rectangle Width="1" Height="18" Fill="#496071" Margin="25,0" />
-          <Button Content="PLAY" FontSize="11" Style="{StaticResource QuietButton}" Click="PlayTabClick" WindowChrome.IsHitTestVisibleInChrome="True" />
-          <Button Content="WHAT'S NEW" FontSize="11" Style="{StaticResource QuietButton}" Click="UpdatesClick" Margin="10,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" />
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" WindowChrome.IsHitTestVisibleInChrome="True">
-          <TextBlock Text="DEVELOPMENT BUILD" FontSize="9" Foreground="#A9B6CF" VerticalAlignment="Center" Margin="0,0,19,0" />
-          <Button x:Name="SettingsButton" Content="&#xE713;" FontFamily="Segoe Fluent Icons" FontSize="16" Width="40" Height="38" Padding="0" Style="{StaticResource QuietButton}" Click="SettingsClick" ToolTip="Settings" AutomationProperties.Name="Settings" />
-          <Button Content="&#xE921;" FontFamily="Segoe Fluent Icons" FontSize="11" Width="38" Height="38" Padding="0" Style="{StaticResource QuietButton}" Click="MinimizeClick" ToolTip="Minimize" AutomationProperties.Name="Minimize" />
-          <Button Content="&#xE922;" FontFamily="Segoe Fluent Icons" FontSize="11" Width="38" Height="38" Padding="0" Style="{StaticResource QuietButton}" Click="MaximizeClick" ToolTip="Maximize or restore" AutomationProperties.Name="Maximize or restore" />
-          <Button Content="&#xE8BB;" FontFamily="Segoe Fluent Icons" FontSize="11" Width="38" Height="38" Padding="0" Style="{StaticResource QuietButton}" Click="CloseClick" ToolTip="Close" AutomationProperties.Name="Close" />
-        </StackPanel>
-      </Grid>
-      <Grid Grid.Row="1" Margin="50,0,0,0" IsHitTestVisible="False">
-        <StackPanel VerticalAlignment="Center" Margin="0,-12,0,0" Width="425" HorizontalAlignment="Left">
-          <TextBlock Text="A WHOLE NEW WAY TO" Foreground="#D6BE98" FontSize="11" FontWeight="SemiBold" Margin="4,0,0,16" />
-          <TextBlock Text="Evolve.&#10;Together." FontSize="70" FontFamily="Segoe UI Variable Display" FontWeight="Bold" LineHeight="73" />
-          <TextBlock Text="From your first cell to the stars." FontSize="16" Foreground="#B9C5D7" Margin="5,23,0,0" />
-        </StackPanel>
-      </Grid>
-      <Border Grid.Row="1" Width="310" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,38,28" Padding="20" Background="#E00D192A" BorderBrush="#546984" BorderThickness="1" CornerRadius="12">
-        <StackPanel>
-          <Grid>
-            <TextBlock Text="LATEST UPDATE" FontSize="10" FontWeight="SemiBold" Foreground="#F0C88A" />
-            <TextBlock Text="{Binding LatestUpdate.VersionLabel}" FontSize="11" Foreground="#AABAD0" HorizontalAlignment="Right" />
-          </Grid>
-          <TextBlock Text="{Binding LatestUpdate.Title}" FontSize="20" FontWeight="SemiBold" Margin="0,12,0,6" />
-          <TextBlock Text="{Binding LatestUpdate.Summary}" Style="{StaticResource Small}" />
-          <Grid Margin="0,12,0,0">
-            <TextBlock Text="{Binding LatestUpdate.DateLabel}" FontSize="11" Foreground="#93A5C0" VerticalAlignment="Center" />
-            <Button Content="Read update  ↗" HorizontalAlignment="Right" Padding="8,5" Style="{StaticResource QuietButton}" Foreground="#F0C88A" FontSize="12" Click="UpdatesClick" />
-          </Grid>
-        </StackPanel>
-      </Border>
-      <Grid Grid.Row="2" Margin="38,0,38,0">
-        <Grid.RowDefinitions><RowDefinition Height="1" /><RowDefinition Height="*" /><RowDefinition Height="35" /></Grid.RowDefinitions>
-        <Border Grid.Row="0" Background="#374151" Opacity="0.6" />
-        <Grid Grid.Row="1" Margin="0,19,0,7">
-          <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="270" /></Grid.ColumnDefinitions>
-          <StackPanel Margin="4,0,35,0" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal"><Ellipse Width="7" Height="7" Fill="{Binding StatusBrush}" Margin="0,0,10,0" VerticalAlignment="Center" /><TextBlock Text="{Binding StatusTitle}" FontSize="17" FontWeight="SemiBold" AutomationProperties.LiveSetting="Polite" /></StackPanel>
-            <TextBlock Text="{Binding StatusDetail}" Style="{StaticResource Small}" Margin="17,7,0,0" />
-            <ProgressBar Height="2" Margin="17,11,12,0" IsIndeterminate="True" Visibility="{Binding BusyVisibility}" Foreground="#EFC987" Background="#263648" />
+      <Grid.ColumnDefinitions><ColumnDefinition Width="212" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+      <Grid.RowDefinitions><RowDefinition Height="44" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+
+      <Border Grid.RowSpan="2" Background="#0D1725" BorderBrush="#233146" BorderThickness="0,0,1,0">
+        <Grid Margin="17,26,17,22">
+          <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+          <StackPanel Margin="13,0,0,39">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="S P O R E" FontSize="21" FontWeight="Bold" />
+              <Border Background="{StaticResource Accent}" CornerRadius="4" Padding="5,3" Margin="9,2,0,0" VerticalAlignment="Top">
+                <TextBlock Text="MP" FontSize="10" FontWeight="ExtraBold" Foreground="#142034" />
+              </Border>
+            </StackPanel>
+            <TextBlock Text="A universe worth sharing." FontSize="11" Foreground="{StaticResource Muted}" Margin="0,8,0,0" />
           </StackPanel>
-          <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <Button x:Name="PrimaryButton" Content="{Binding PrimaryLabel}" Padding="25,15" FontSize="17" IsEnabled="{Binding CanPrimary}" Click="PrimaryClick">
-              <Button.Style><Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                <Setter Property="Background" Value="#EBC58A" /><Setter Property="Foreground" Value="#202634" />
-                <Style.Triggers><Trigger Property="IsEnabled" Value="False"><Setter Property="Foreground" Value="#FFF3D8" /><Setter Property="Background" Value="#645A46" /></Trigger></Style.Triggers>
-              </Style></Button.Style>
+          <StackPanel Grid.Row="1">
+            <TextBlock Text="YOUR LAUNCHER" FontSize="9" FontWeight="SemiBold" Foreground="#7D90AA" Margin="15,0,0,14" />
+            <Button Style="{StaticResource NavButton}" Tag="{Binding IsHome}" Click="PlayTabClick" ToolTip="Home · Ctrl+1" AutomationProperties.Name="Home">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="31" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE80F;" FontFamily="Segoe Fluent Icons" FontSize="17" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Text="Home" />
+              </Grid>
             </Button>
-            <TextBlock Text="{Binding PrimaryHint}" FontSize="11" Foreground="#A5AFC0" HorizontalAlignment="Center" Margin="0,8,0,0" />
+            <Button Style="{StaticResource NavButton}" Tag="{Binding IsUpdates}" Click="UpdatesClick" ToolTip="What's new · Ctrl+2" AutomationProperties.Name="What's new">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="31" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE8A5;" FontFamily="Segoe Fluent Icons" FontSize="17" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Text="What's new" />
+              </Grid>
+            </Button>
+            <Button x:Name="SettingsButton" Style="{StaticResource NavButton}" Tag="{Binding IsSettings}" Click="SettingsClick" ToolTip="Settings · Ctrl+," AutomationProperties.Name="Settings">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="31" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE713;" FontFamily="Segoe Fluent Icons" FontSize="17" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Text="Settings" />
+              </Grid>
+            </Button>
+          </StackPanel>
+          <StackPanel Grid.Row="2" Margin="12,0,12,0">
+            <Border Height="1" Background="#29384C" Margin="0,0,0,20" />
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="17" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+              <Ellipse Width="6" Height="6" Fill="{Binding StatusBrush}" VerticalAlignment="Top" Margin="0,6,0,0" HorizontalAlignment="Left" />
+              <StackPanel Grid.Column="1">
+                <TextBlock Text="{Binding StatusTitle}" FontSize="12" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding GameName}" FontSize="11" Foreground="{StaticResource Muted}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Margin="0,6,0,0" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Text="{Binding VersionLabel, StringFormat='Development build · {0}'}" FontSize="10" Foreground="#8395AF" Margin="17,22,0,0" />
           </StackPanel>
         </Grid>
-        <Grid Grid.Row="2"><TextBlock Text="{Binding BuildLabel}" FontSize="9" Foreground="#65768F" VerticalAlignment="Center" /><Button Content="{Binding DetailsLabel}" HorizontalAlignment="Right" Style="{StaticResource QuietButton}" FontSize="11" Padding="5,5" Click="SettingsClick" /></Grid>
+      </Border>
+
+      <Grid Grid.Column="1" Margin="29,0,7,0">
+        <TextBlock Text="THE SPORE MULTIPLAYER PROJECT" FontSize="9" Foreground="#8597B0" VerticalAlignment="Center" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" WindowChrome.IsHitTestVisibleInChrome="True">
+          <Button Content="&#xE921;" FontFamily="Segoe Fluent Icons" FontSize="11" Width="40" Height="32" Padding="0" Style="{StaticResource QuietButton}" Click="MinimizeClick" ToolTip="Minimize" AutomationProperties.Name="Minimize" />
+          <Button Content="&#xE922;" FontFamily="Segoe Fluent Icons" FontSize="11" Width="40" Height="32" Padding="0" Style="{StaticResource QuietButton}" Click="MaximizeClick" ToolTip="Maximize or restore" AutomationProperties.Name="Maximize or restore" />
+          <Button Content="&#xE8BB;" FontFamily="Segoe Fluent Icons" FontSize="11" Width="40" Height="32" Padding="0" Style="{StaticResource QuietButton}" Click="CloseClick" ToolTip="Close" AutomationProperties.Name="Close" />
+        </StackPanel>
       </Grid>
-      <Grid x:Name="UpdatesOverlay" Grid.RowSpan="3" Visibility="{Binding UpdatesVisibility}" Panel.ZIndex="10">
-        <Border Background="#A0020A14" MouseLeftButtonDown="UpdatesOverlayClick" />
-        <Border Background="#0D192A" BorderBrush="#3B4D64" BorderThickness="1,0,0,0" Width="620" HorizontalAlignment="Right">
-          <Grid Margin="30,25,28,20">
-            <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-            <StackPanel Margin="0,0,44,24">
-              <TextBlock Text="What's new" FontSize="29" FontWeight="SemiBold" />
-              <TextBlock Text="The latest changes. Every update in one place." Style="{StaticResource Small}" Margin="0,7,0,0" />
-            </StackPanel>
-            <Button Content="&#xE8BB;" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="10" Style="{StaticResource QuietButton}" Click="UpdatesCloseClick" AutomationProperties.Name="Close release notes" WindowChrome.IsHitTestVisibleInChrome="True" />
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-              <ItemsControl ItemsSource="{Binding UpdateHistory}" Margin="0,0,12,0">
-                <ItemsControl.ItemTemplate>
-                  <DataTemplate>
-                    <Border Background="#142238" BorderBrush="#30435E" BorderThickness="1" CornerRadius="12" Padding="22" Margin="0,0,0,16">
-                      <StackPanel>
-                        <Grid>
-                          <Border Background="#293B50" CornerRadius="5" Padding="9,4" HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding VersionLabel}" FontSize="12" FontWeight="SemiBold" Foreground="#F0C88A" />
-                          </Border>
-                          <TextBlock Text="{Binding DateLabel}" FontSize="12" Foreground="#97AAC5" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                        </Grid>
-                        <TextBlock Text="{Binding Title}" FontSize="22" FontWeight="SemiBold" Margin="0,16,0,7" />
-                        <TextBlock Text="{Binding Summary}" Style="{StaticResource Small}" Margin="0,0,0,16" />
-                        <ItemsControl ItemsSource="{Binding Changes}">
-                          <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                              <Grid Margin="0,0,0,12">
-                                <Grid.ColumnDefinitions><ColumnDefinition Width="76" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Category}" FontSize="9" FontWeight="SemiBold" Foreground="#96D8C8" Margin="0,4,8,0" />
-                                <TextBlock Grid.Column="1" Text="{Binding Text}" Style="{StaticResource Small}" />
-                              </Grid>
-                            </DataTemplate>
-                          </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+
+      <Grid Grid.Row="1" Grid.Column="1">
+        <ScrollViewer x:Name="HomePage" Visibility="{Binding HomeVisibility}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+          <StackPanel Margin="30,19,30,24">
+            <Grid Margin="0,0,0,21">
+              <TextBlock Text="Make yourself at home." FontSize="28" FontWeight="SemiBold" />
+              <Border Background="#152336" BorderBrush="#2C4059" BorderThickness="1" CornerRadius="6" Padding="10,5" HorizontalAlignment="Right" VerticalAlignment="Center">
+                <TextBlock Text="ORIGINAL SPORE" FontSize="9" FontWeight="SemiBold" Foreground="#BCCCE0" />
+              </Border>
+            </Grid>
+            <Border CornerRadius="16" Height="356" BorderBrush="#3B4B62" BorderThickness="1">
+              <Border.Background><ImageBrush ImageSource="Assets/universe.png" Stretch="UniformToFill" AlignmentX="Right" RenderOptions.BitmapScalingMode="HighQuality" /></Border.Background>
+              <Border CornerRadius="15">
+                <Border.Background>
+                  <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                    <GradientStop Color="#F50A1525" Offset="0" />
+                    <GradientStop Color="#ED0A1525" Offset="0.27" />
+                    <GradientStop Color="#9C0A1525" Offset="0.53" />
+                    <GradientStop Color="#120A1525" Offset="1" />
+                  </LinearGradientBrush>
+                </Border.Background>
+                <Grid Margin="32,27,32,25">
+                  <Grid.RowDefinitions><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
+                  <StackPanel Width="388" HorizontalAlignment="Left">
+                    <TextBlock Text="FROM YOUR FIRST CELL TO THE STARS" Style="{StaticResource Eyebrow}" />
+                    <TextBlock Text="Your next&#10;great adventure." FontFamily="Segoe UI Variable Display" FontWeight="Bold" FontSize="46" LineHeight="51" Margin="0,14,0,11" />
+                    <TextBlock Text="A familiar world. A new beginning.&#10;Pick up where you left off." FontSize="14" Foreground="#C3D0E2" LineHeight="22" />
+                  </StackPanel>
+                  <StackPanel Grid.Row="1" HorizontalAlignment="Left">
+                    <Button x:Name="PrimaryButton" Width="264" Style="{StaticResource PrimaryButton}" IsEnabled="{Binding CanPrimary}" Click="PrimaryClick" AutomationProperties.Name="{Binding PrimaryLabel}">
+                      <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding PrimaryIcon}" FontFamily="Segoe Fluent Icons" FontSize="16" VerticalAlignment="Center" Margin="0,0,12,0" />
+                        <TextBlock Text="{Binding PrimaryLabel}" TextWrapping="NoWrap" />
                       </StackPanel>
-                    </Border>
-                  </DataTemplate>
-                </ItemsControl.ItemTemplate>
-              </ItemsControl>
-            </ScrollViewer>
-            <Grid Grid.Row="2" Margin="0,18,0,0">
-              <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="{Binding VersionLabel, StringFormat='Installed version: {0}'}" FontSize="11" Foreground="#9EAFC7" />
-                <TextBlock Text="Development build · multiplayer is still in development" FontSize="10" Foreground="#8190A6" Margin="0,4,0,0" />
-              </StackPanel>
-              <Button Content="Back to Play" HorizontalAlignment="Right" Click="UpdatesCloseClick" />
+                    </Button>
+                    <TextBlock Text="{Binding PrimaryHint}" FontSize="11" Foreground="#BBCAE0" Margin="1,9,0,0" />
+                  </StackPanel>
+                </Grid>
+              </Border>
+            </Border>
+            <Border Style="{StaticResource Card}" CornerRadius="11" Padding="18,13" Margin="0,14,0,17">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="20" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                <Ellipse Width="7" Height="7" Fill="{Binding StatusBrush}" VerticalAlignment="Top" Margin="0,6,0,0" HorizontalAlignment="Left" />
+                <StackPanel Grid.Column="1" Margin="0,0,18,0">
+                  <TextBlock Text="{Binding StatusTitle}" FontSize="14" FontWeight="SemiBold" AutomationProperties.LiveSetting="Polite" />
+                  <TextBlock Text="{Binding StatusDetail}" Style="{StaticResource Small}" FontSize="12" Margin="0,4,0,0" />
+                  <ProgressBar Height="2" Margin="0,9,0,1" IsIndeterminate="True" Visibility="{Binding BusyVisibility}" Foreground="{StaticResource Accent}" Background="#2C3B50" />
+                </StackPanel>
+                <Button Grid.Column="2" Content="{Binding DetailsLabel}" Style="{StaticResource QuietButton}" Click="SettingsClick" FontSize="12" VerticalAlignment="Center" />
+              </Grid>
+            </Border>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="1.25*" /><ColumnDefinition Width="18" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+              <Button Background="{StaticResource Surface}" BorderBrush="{StaticResource Stroke}" Padding="22,19" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top" Click="ReadLatestClick" AutomationProperties.Name="Read the latest update">
+                <StackPanel>
+                  <Grid>
+                    <TextBlock Text="LATEST UPDATE" Style="{StaticResource Eyebrow}" />
+                    <TextBlock Text="{Binding LatestUpdate.VersionLabel}" FontSize="11" Foreground="{StaticResource Muted}" HorizontalAlignment="Right" />
+                  </Grid>
+                  <TextBlock Text="{Binding LatestUpdate.Title}" FontSize="20" FontWeight="SemiBold" Margin="0,10,0,7" />
+                  <TextBlock Text="{Binding LatestUpdate.Summary}" Style="{StaticResource Small}" FontWeight="Normal" />
+                  <Grid Margin="0,15,0,0">
+                    <TextBlock Text="{Binding LatestUpdate.DateLabel}" FontSize="11" FontWeight="Normal" Foreground="{StaticResource Muted}" />
+                    <TextBlock Text="Read update  →" FontSize="12" Foreground="{StaticResource Accent}" HorizontalAlignment="Right" />
+                  </Grid>
+                </StackPanel>
+              </Button>
+              <Border Grid.Column="2" Style="{StaticResource Card}" Padding="22,19">
+                <StackPanel>
+                  <TextBlock Text="THE JOURNEY AHEAD" Style="{StaticResource Eyebrow}" Foreground="#96D8C8" />
+                  <TextBlock Text="A universe worth sharing." FontSize="20" FontWeight="SemiBold" Margin="0,10,0,7" />
+                  <TextBlock Text="Multiplayer is still in development. For now, jump into your installed SPORE and keep evolving." Style="{StaticResource Small}" />
+                  <TextBlock Text="Your game. Your existing saves." FontSize="11" Foreground="#96D8C8" Margin="0,15,0,0" />
+                </StackPanel>
+              </Border>
+            </Grid>
+          </StackPanel>
+        </ScrollViewer>
+
+        <Grid x:Name="UpdatesPage" Visibility="{Binding UpdatesVisibility}" Margin="30,19,30,24">
+          <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="*" /></Grid.RowDefinitions>
+          <Grid>
+            <StackPanel Margin="0,0,300,0">
+              <TextBlock Text="What's new" FontSize="28" FontWeight="SemiBold" />
+              <TextBlock Text="Every update. All in one place." Style="{StaticResource Small}" Margin="0,7,0,0" />
+            </StackPanel>
+            <Grid Width="272" HorizontalAlignment="Right" VerticalAlignment="Center">
+              <TextBox x:Name="ReleaseSearchBox" Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}"
+                       Padding="36,12,35,12" AutomationProperties.Name="Search release notes" ToolTip="Search versions and changes · Ctrl+F" />
+              <TextBlock Text="&#xE721;" FontFamily="Segoe Fluent Icons" FontSize="14" Foreground="{StaticResource Muted}" Margin="13,0,0,0" VerticalAlignment="Center" IsHitTestVisible="False" />
+              <TextBlock Text="Search updates…" FontSize="13" Foreground="{StaticResource Muted}" Margin="37,0,0,0" VerticalAlignment="Center" Visibility="{Binding SearchPlaceholderVisibility}" IsHitTestVisible="False" />
+              <Button Content="&#xE8BB;" FontFamily="Segoe Fluent Icons" FontSize="10" Width="30" Padding="0" Margin="0,4,5,4" HorizontalAlignment="Right" Style="{StaticResource QuietButton}" Click="ClearSearchClick" Visibility="{Binding ClearSearchVisibility}" ToolTip="Clear search" AutomationProperties.Name="Clear search" />
             </Grid>
           </Grid>
-        </Border>
-      </Grid>
-      <Grid x:Name="SettingsOverlay" Grid.RowSpan="3" Visibility="{Binding SettingsVisibility}" Panel.ZIndex="10">
-        <Border Background="#88020A14" MouseLeftButtonDown="OverlayClick" />
-        <Border Background="#0D192A" BorderBrush="#3B4D64" BorderThickness="1,0,0,0" Width="460" HorizontalAlignment="Right">
-          <Grid Margin="29,24,29,18">
-            <Grid.RowDefinitions><RowDefinition Height="50" /><RowDefinition Height="*" /><RowDefinition Height="Auto" /></Grid.RowDefinitions>
-            <TextBlock Text="Settings &amp; setup" FontSize="23" FontWeight="SemiBold" />
-            <Button Content="&#xE8BB;" FontFamily="Segoe Fluent Icons" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="10" Style="{StaticResource QuietButton}" Click="SettingsCloseClick" AutomationProperties.Name="Close settings" WindowChrome.IsHitTestVisibleInChrome="True" />
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-              <StackPanel Margin="0,6,7,0">
-                <TextBlock Text="GAME INSTALLATION" FontSize="10" Foreground="#D6BE98" FontWeight="SemiBold" />
-                <TextBlock Text="{Binding GameName}" FontSize="17" FontWeight="SemiBold" Margin="0,12,0,5" />
-                <TextBox Text="{Binding GameRoot, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" AutomationProperties.Name="Detected game path" />
-                <Button Content="Choose another folder" HorizontalAlignment="Left" Style="{StaticResource QuietButton}" Margin="-9,5,0,14" Click="BrowseClick" IsEnabled="{Binding CanRun}" />
-                <StackPanel Visibility="{Binding ChoicesVisibility}" Margin="0,0,0,17">
-                  <TextBlock Text="Multiple installations found" Style="{StaticResource Small}" Margin="0,0,0,8" />
-                  <ComboBox x:Name="InstallationChoices" ItemsSource="{Binding Installations}" DisplayMemberPath="Root" SelectedIndex="0" MinHeight="32" AutomationProperties.Name="SPORE installations" />
-                  <Button Content="Use this installation" Margin="0,8,0,0" HorizontalAlignment="Left" Click="ChooseClick" IsEnabled="{Binding CanRun}" />
-                </StackPanel>
-                <Border Height="1" Background="#2D3B50" Margin="0,0,0,20" />
-                <TextBlock Text="GAME" FontSize="10" Foreground="#D6BE98" FontWeight="SemiBold" />
-                <TextBlock Text="{Binding FilesDetail}" Margin="0,13,0,0" Style="{StaticResource Small}" />
-                <TextBlock Text="{Binding SavesDetail}" Margin="0,10,0,0" Style="{StaticResource Small}" />
-                <TextBlock Text="{Binding WorkspaceDetail}" Margin="0,10,0,0" Style="{StaticResource Small}" />
-                <TextBlock Text="{Binding BackupPath}" TextWrapping="Wrap" FontSize="10" Foreground="#8394AE" Margin="0,10,0,0" />
-                <Border Height="1" Background="#2D3B50" Margin="0,22,0,20" />
-                <TextBlock Text="THIS BUILD" FontSize="10" Foreground="#D6BE98" FontWeight="SemiBold" />
-                <TextBlock Text="Play SPORE opens your installed game with your existing saves. Multiplayer is still in development." Style="{StaticResource Small}" Margin="0,12,0,0" />
-                <TextBlock Text="{Binding TechnicalDetail}" Style="{StaticResource Small}" Margin="0,10,0,0" />
-                <WrapPanel Margin="0,18,0,0"><Button Content="Check again" Click="RetryClick" IsEnabled="{Binding CanRun}" Margin="0,0,8,8" /><Button Content="Export report" Click="ExportClick" IsEnabled="{Binding CanExport}" Margin="0,0,0,8" /></WrapPanel>
-                <TextBlock Text="{Binding ExportDetail}" FontSize="11" Foreground="#95DCC8" Margin="0,4,0,10" />
-              </StackPanel>
-            </ScrollViewer>
-            <TextBlock Grid.Row="2" Text="Original launcher illustration. Not a gameplay screenshot.&#10;Reports stay local and contain no saves or game assets." Foreground="#8190A6" FontSize="10" LineHeight="17" Margin="0,12,0,0" />
+          <Grid Grid.Row="1" Margin="0,27,0,14">
+            <TextBlock Text="{Binding UpdateCountLabel}" FontSize="10" FontWeight="SemiBold" Foreground="{StaticResource Muted}" />
+            <TextBlock Text="Included with this launcher · available offline" FontSize="11" Foreground="{StaticResource Muted}" HorizontalAlignment="Right" />
           </Grid>
-        </Border>
+          <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="224" /><ColumnDefinition Width="20" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+            <ListBox ItemsSource="{Binding VisibleUpdates}" SelectedItem="{Binding SelectedUpdate, Mode=TwoWay}" AutomationProperties.Name="Release history">
+              <ListBox.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <Grid>
+                      <TextBlock Text="{Binding VersionLabel}" FontSize="17" FontWeight="SemiBold" />
+                      <Border Background="#294137" CornerRadius="4" Padding="5,3" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="{Binding IsCurrentVersion, Converter={StaticResource BoolVisibility}}">
+                        <TextBlock Text="INSTALLED" FontSize="8" FontWeight="SemiBold" Foreground="#AFE4CC" />
+                      </Border>
+                    </Grid>
+                    <TextBlock Text="{Binding Title}" FontSize="13" Foreground="#C5D1E2" Margin="0,9,0,7" />
+                    <TextBlock Text="{Binding DateLabel}" FontSize="11" Foreground="{StaticResource Muted}" />
+                  </StackPanel>
+                </DataTemplate>
+              </ListBox.ItemTemplate>
+            </ListBox>
+            <Grid Grid.Column="2" Visibility="{Binding SelectedUpdateVisibility}">
+              <Border Style="{StaticResource Card}" Padding="0" DataContext="{Binding SelectedUpdate}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                  <StackPanel Margin="28">
+                    <Grid>
+                      <Border Background="#26394D" CornerRadius="5" Padding="9,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{Binding VersionLabel}" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource Accent}" />
+                      </Border>
+                      <TextBlock Text="{Binding DateLabel}" FontSize="12" Foreground="{StaticResource Muted}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+                    </Grid>
+                    <TextBlock Text="{Binding Title}" FontSize="29" FontWeight="SemiBold" Margin="0,22,0,11" />
+                    <TextBlock Text="{Binding Summary}" FontSize="15" Foreground="#BFCCDD" LineHeight="24" />
+                    <Border Height="1" Background="#2B3C52" Margin="0,26,0,26" />
+                    <TextBlock Text="IN THIS UPDATE" Style="{StaticResource Eyebrow}" Margin="0,0,0,23" />
+                    <ItemsControl ItemsSource="{Binding Changes}">
+                      <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                          <Grid Margin="0,0,0,24">
+                            <Grid.ColumnDefinitions><ColumnDefinition Width="4" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+                            <Border Background="#385A6D" CornerRadius="2" />
+                            <StackPanel Grid.Column="1" Margin="16,0,0,0">
+                              <TextBlock Text="{Binding Category}" FontSize="9" FontWeight="SemiBold" Foreground="#96D8C8" Margin="0,0,0,7" />
+                              <TextBlock Text="{Binding Text}" FontSize="14" Foreground="#D1DBE9" LineHeight="23" />
+                            </StackPanel>
+                          </Grid>
+                        </DataTemplate>
+                      </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  </StackPanel>
+                </ScrollViewer>
+              </Border>
+            </Grid>
+            <Border Grid.Column="2" Style="{StaticResource Card}" Visibility="{Binding EmptyUpdatesVisibility}">
+              <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="320">
+                <TextBlock Text="No updates found" FontSize="24" FontWeight="SemiBold" TextAlignment="Center" />
+                <TextBlock Text="Try a version number or a word like ‘play’ or ‘settings’." Style="{StaticResource Small}" TextAlignment="Center" Margin="0,12,0,20" />
+                <Button Content="Clear search" Click="ClearSearchClick" HorizontalAlignment="Center" />
+              </StackPanel>
+            </Border>
+          </Grid>
+        </Grid>
+
+        <ScrollViewer x:Name="SettingsPage" Visibility="{Binding SettingsVisibility}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+          <StackPanel Margin="30,19,30,24">
+            <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold" />
+            <TextBlock Text="Your game, just the way you left it." Style="{StaticResource Small}" Margin="0,7,0,25" />
+            <Border Style="{StaticResource Card}">
+              <StackPanel>
+                <TextBlock Text="GAME INSTALLATION" Style="{StaticResource Eyebrow}" />
+                <TextBlock Text="{Binding GameName}" FontSize="22" FontWeight="SemiBold" Margin="0,13,0,13" />
+                <TextBox Text="{Binding GameRoot, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" AutomationProperties.Name="Detected game path" />
+                <WrapPanel Margin="0,14,0,0">
+                  <Button Content="Choose game folder" Click="BrowseClick" IsEnabled="{Binding CanRun}" Margin="0,0,10,0" />
+                  <Button Content="Check again" Click="RetryClick" IsEnabled="{Binding CanRun}" Style="{StaticResource QuietButton}" />
+                </WrapPanel>
+                <StackPanel Visibility="{Binding ChoicesVisibility}" Margin="0,23,0,0">
+                  <TextBlock Text="Multiple installations found" FontSize="14" FontWeight="SemiBold" Margin="0,0,0,10" />
+                  <ListBox x:Name="InstallationChoices" ItemsSource="{Binding Installations}" SelectedIndex="0" MaxHeight="190" IsEnabled="{Binding CanRun}" AutomationProperties.Name="SPORE installations">
+                    <ListBox.ItemTemplate>
+                      <DataTemplate>
+                        <StackPanel>
+                          <TextBlock Text="{Binding Store}" FontWeight="SemiBold" FontSize="13" />
+                          <TextBlock Text="{Binding Root}" Style="{StaticResource Small}" FontSize="12" Margin="0,5,0,0" />
+                        </StackPanel>
+                      </DataTemplate>
+                    </ListBox.ItemTemplate>
+                  </ListBox>
+                  <Button Content="Use this installation" HorizontalAlignment="Left" Click="ChooseClick" IsEnabled="{Binding CanRun}" Margin="0,8,0,0" />
+                </StackPanel>
+              </StackPanel>
+            </Border>
+            <Grid Margin="0,18,0,18">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="18" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
+              <Border Style="{StaticResource Card}">
+                <StackPanel>
+                  <TextBlock Text="PICK UP WHERE YOU LEFT OFF" Style="{StaticResource Eyebrow}" Foreground="#96D8C8" />
+                  <TextBlock Text="Your existing saves" FontSize="20" FontWeight="SemiBold" Margin="0,13,0,9" />
+                  <TextBlock Text="Play opens your installed SPORE with your normal Windows account and existing saves." Style="{StaticResource Small}" />
+                </StackPanel>
+              </Border>
+              <Border Grid.Column="2" Style="{StaticResource Card}">
+                <StackPanel>
+                  <TextBlock Text="ABOUT SPOREMP" Style="{StaticResource Eyebrow}" />
+                  <TextBlock Text="{Binding VersionLabel, StringFormat='Development build {0}'}" FontSize="20" FontWeight="SemiBold" Margin="0,13,0,9" />
+                  <TextBlock Text="Multiplayer is still in development. Follow the changes as the project evolves." Style="{StaticResource Small}" />
+                  <Button Content="Read release notes  →" Style="{StaticResource QuietButton}" Foreground="{StaticResource Accent}" HorizontalAlignment="Left" Click="ReadLatestClick" Margin="-10,9,0,-5" FontSize="12" />
+                </StackPanel>
+              </Border>
+            </Grid>
+            <Border Style="{StaticResource Card}" Padding="23,18">
+              <Expander Foreground="{StaticResource Text}" ExpandDirection="Down" HorizontalContentAlignment="Stretch">
+                <Expander.Header>
+                  <StackPanel Margin="8,0,0,0">
+                    <TextBlock Text="Troubleshooting" FontSize="15" FontWeight="SemiBold" />
+                    <TextBlock Text="Installation details and local support reports" Style="{StaticResource Small}" FontSize="12" Margin="0,4,0,0" />
+                  </StackPanel>
+                </Expander.Header>
+                <StackPanel Margin="31,20,0,0">
+                  <TextBlock Text="{Binding FilesDetail}" Style="{StaticResource Small}" />
+                  <TextBlock Text="{Binding TechnicalDetail}" Style="{StaticResource Small}" Margin="0,12,0,0" />
+                  <Button Content="Export support report" Click="ExportClick" IsEnabled="{Binding CanExport}" HorizontalAlignment="Left" Margin="0,20,0,11" />
+                  <TextBlock Text="{Binding ExportDetail}" FontSize="12" Foreground="#96D8C8" />
+                  <TextBlock Text="Reports stay on this PC and contain no saves or game assets." FontSize="11" Foreground="{StaticResource Muted}" Margin="0,10,0,0" />
+                </StackPanel>
+              </Expander>
+            </Border>
+            <Grid Margin="0,20,0,0">
+              <TextBlock Text="Original launcher illustration. Not a gameplay screenshot." FontSize="10" Foreground="#8395AF" />
+              <TextBlock Text="Ctrl+1 Home   ·   Ctrl+2 What's new   ·   Ctrl+, Settings" FontSize="10" Foreground="#8395AF" HorizontalAlignment="Right" />
+            </Grid>
+          </StackPanel>
+        </ScrollViewer>
       </Grid>
     </Grid>
   </Border>

@@ -2,6 +2,18 @@
 
 These are development builds. Multiplayer gameplay is still in development.
 
+## 0.1.2 — 2026-09-08
+
+### A new home for your universe
+
+- Rebuilt the home screen around the original illustration, a prominent Play button and a separate readiness strip.
+- Added permanent Home, What's new and Settings navigation with visible selection and keyboard focus.
+- Replaced the release-notes overlay with a searchable version list and a full reading pane. Search includes versions, dates, titles, summaries and changes; unmatched searches have a clear reset action.
+- Simplified Settings into installation management, existing-save information and a collapsed troubleshooting section.
+- Refined typography, contrast, spacing, button states and scrolling for smaller windows. Button labels now correctly inherit their control's text color.
+- Added Ctrl+1 / Ctrl+2 / Ctrl+comma navigation, Ctrl+F search and Escape to return Home. Page transitions respect Windows animation preferences.
+- Kept the existing Play behavior and bundled offline notes. After the user requested background work only, the update was built in a separate folder without game launches or desktop control.
+
 ## 0.1.1 — 2026-09-08
 
 ### Your updates, in one place

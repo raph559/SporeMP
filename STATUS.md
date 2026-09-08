@@ -9,11 +9,11 @@ Updated: 2026-09-08. **Partial/experimental: no multiplayer gameplay implemented
 | M02–M19 | TODO | Required scope retained in MILESTONES.md. |
 | M20 | TODO | Optional native Galactic Adventures multiplayer. |
 
-M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No additional game launch or test run followed the confirmation.
+M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No further native game launch or repeated M01 test followed the confirmation.
 
 ## Current player flow
 
-Launcher 0.1.1 adds the latest-update card and a What's new panel with the complete bundled release history. Git now records the project history locally. This follow-up used one successful launcher build; it did not repeat the accepted M01 game tests. Evidence: evidence/2026-09-08-launcher-changelog/SESSION.md.
+Launcher 0.1.2 redesigns Home around Play and the artwork, adds permanent navigation, searchable release history and simpler Settings. A compiled build is staged at build/launcher/0.1.2/SporeMP.exe while the previous launcher is left running. The redesign is IMPLEMENTED_NOT_RUN: the Release build passes, but the new window has not been opened or visually checked because the user is playing and explicitly requested no desktop control. The accepted M01 game tests were not repeated. Evidence: evidence/2026-09-08-launcher-redesign/SESSION.md. Git records the project and launcher updates locally.
 
 Open build/launcher/Release/SporeMP.exe and select **Play SPORE**. The launcher detects the installed game, checks compatibility automatically and uses the player's normal Windows account and existing saves. Separate accounts, profile setup and backup checks are not player prerequisites. Details stay in Settings. Optional historical isolation/backup tools remain developer-only.
 

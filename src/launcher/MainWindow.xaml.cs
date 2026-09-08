@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
 using Microsoft.Win32;
 
 namespace SporeMP.Launcher;
@@ -13,35 +15,68 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 {
     private readonly LauncherClient client;
     private readonly CancellationTokenSource lifetime = new();
-    private bool busy = true, settingsOpen, updatesOpen;
+    private enum LauncherPage { Home, Updates, Settings }
+    private LauncherPage currentPage;
+    private bool busy = true;
     private bool nativeAvailable, nativeActive, closeAfterGame;
     private string state = "preparing";
     private string? lastReport;
+    private string searchQuery = "";
+    private ReleaseNote? selectedUpdate;
     public event PropertyChangedEventHandler? PropertyChanged;
     public ObservableCollection<InstallationChoice> Installations { get; } = [];
     public IReadOnlyList<ReleaseNote> UpdateHistory { get; } = ReleaseNotes.Load();
+    public ObservableCollection<ReleaseNote> VisibleUpdates { get; } = [];
     public ReleaseNote LatestUpdate => UpdateHistory[0];
-    public string BuildLabel => "SPORE MULTIPLAYER  /  " + ReleaseNotes.CurrentVersion;
     public string VersionLabel => "v" + ReleaseNotes.CurrentVersion;
+    public bool IsHome => currentPage == LauncherPage.Home;
+    public bool IsUpdates => currentPage == LauncherPage.Updates;
+    public bool IsSettings => currentPage == LauncherPage.Settings;
+    public string SearchQuery
+    {
+        get => searchQuery;
+        set
+        {
+            if (searchQuery == (value ?? "")) return;
+            searchQuery = value ?? "";
+            FilterUpdates();
+        }
+    }
+    public ReleaseNote? SelectedUpdate
+    {
+        get => selectedUpdate;
+        set
+        {
+            if (selectedUpdate == value) return;
+            selectedUpdate = value;
+            Refresh();
+        }
+    }
+    public string UpdateCountLabel => string.IsNullOrWhiteSpace(SearchQuery)
+        ? $"{VisibleUpdates.Count} RELEASES · NEWEST FIRST"
+        : $"{VisibleUpdates.Count} RESULT{(VisibleUpdates.Count == 1 ? "" : "S")}";
+    public Visibility SearchPlaceholderVisibility => SearchQuery.Length == 0 ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility ClearSearchVisibility => SearchQuery.Length > 0 ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility SelectedUpdateVisibility => SelectedUpdate is not null ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility EmptyUpdatesVisibility => VisibleUpdates.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
     public string GameRoot { get; private set; } = "Detecting automatically…";
     public string GameName { get; private set; } = "Looking for SPORE";
     public bool CanRun => !busy;
     public bool CanExport => !busy && lastReport is not null;
     public bool CanPrimary => !busy && (nativeAvailable && state == "development_build" || state is "game_not_found" or "choose_installation" or "error" or "game_running" or "unsupported_installation");
     public string PrimaryLabel => nativeActive ? "SPORE is running…" : busy && state == "preparing" ? "Getting ready…" : state switch { "game_not_found" => "Locate SPORE", "choose_installation" => "Choose installation", "game_running" => "Check again", "error" => "Try again", "unsupported_installation" => "Review installation", _ => nativeAvailable ? "Play SPORE" : "Unavailable" };
-    public string PrimaryHint => nativeActive ? "Enjoy your game" : busy && state == "preparing" ? "Setup runs automatically" : "Multiplayer is still in development";
-    public string DetailsLabel => state == "development_build" && !nativeAvailable ? "Why can’t I play?  ↗" : "Settings & setup  ↗";
+    public string PrimaryIcon => nativeActive ? "\uE917" : state is "game_not_found" or "choose_installation" or "unsupported_installation" ? "\uE8B7" : state is "error" or "game_running" ? "\uE72C" : "\uE768";
+    public string PrimaryHint => nativeActive ? "Enjoy your game" : busy && state == "preparing" ? "Getting everything ready for you" : state == "development_build" && nativeAvailable ? "Your installed game. Your existing saves." : "We’ll help you get ready to play.";
+    public string DetailsLabel => state == "development_build" && !nativeAvailable ? "View details  →" : "Manage game  →";
     public string StatusBrush => state == "development_build" ? "#96D8C8" : state == "error" || state == "unsupported_installation" ? "#EEB193" : "#F1CB8A";
     public Visibility BusyVisibility => busy && state == "preparing" ? Visibility.Visible : Visibility.Collapsed;
-    public Visibility SettingsVisibility => settingsOpen ? Visibility.Visible : Visibility.Collapsed;
-    public Visibility UpdatesVisibility => updatesOpen ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility HomeVisibility => IsHome ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility SettingsVisibility => IsSettings ? Visibility.Visible : Visibility.Collapsed;
+    public Visibility UpdatesVisibility => IsUpdates ? Visibility.Visible : Visibility.Collapsed;
     public Visibility ChoicesVisibility => Installations.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
     public string StatusTitle { get; private set; } = "Finding SPORE…";
     public string StatusDetail { get; private set; } = "We’ll take care of the setup.";
     public string FilesDetail { get; private set; } = "Game files · waiting for detection";
-    public string SavesDetail { get; private set; } = "Uses your existing SPORE saves";
-    public string WorkspaceDetail { get; private set; } = "Runs under your normal Windows account";
-    public string BackupPath { get; private set; } = "";
     public string TechnicalDetail { get; private set; } = "";
     public string ExportDetail { get; private set; } = "";
 
@@ -49,10 +84,34 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     {
         this.client = client;
         InitializeComponent();
+        // Keep the first opening within the available desktop at common display scales.
+        Width = Math.Min(Width, SystemParameters.WorkArea.Width);
+        Height = Math.Min(Height, SystemParameters.WorkArea.Height);
+        MinWidth = Math.Min(MinWidth, Width);
+        MinHeight = Math.Min(MinHeight, Height);
+        FilterUpdates();
         DataContext = this;
     }
 
     private void Refresh() => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+    private void FilterUpdates()
+    {
+        var previous = SelectedUpdate;
+        VisibleUpdates.Clear();
+        foreach (var note in UpdateHistory.Where(note => note.Matches(SearchQuery))) VisibleUpdates.Add(note);
+        SelectedUpdate = previous is not null && VisibleUpdates.Contains(previous) ? previous : VisibleUpdates.FirstOrDefault();
+        Refresh();
+    }
+
+    private void Navigate(LauncherPage page)
+    {
+        if (currentPage == page) return;
+        currentPage = page;
+        Refresh();
+        if (!SystemParameters.ClientAreaAnimation) return;
+        FrameworkElement view = page switch { LauncherPage.Home => HomePage, LauncherPage.Updates => UpdatesPage, _ => SettingsPage };
+        view.BeginAnimation(OpacityProperty, new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(140)) { FillBehavior = FillBehavior.Stop });
+    }
     private async void OnLoaded(object sender, RoutedEventArgs e) { busy = false; await Prepare(); }
 
     private async Task Prepare(string? selectedRoot = null)
@@ -64,9 +123,6 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         StatusDetail = "We’ll take care of the setup.";
         TechnicalDetail = "";
         FilesDetail = "Game files · checking";
-        SavesDetail = "Uses your existing SPORE saves";
-        WorkspaceDetail = "Runs under your normal Windows account";
-        BackupPath = "";
         Refresh();
         try
         {
@@ -106,7 +162,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 StatusTitle = "Ready to play.";
                 StatusDetail = GameName;
             }
-            if (state == "choose_installation") settingsOpen = true;
+            if (state == "choose_installation") Navigate(LauncherPage.Settings);
         }
         catch (OperationCanceledException) when (lifetime.IsCancellationRequested) { }
         catch (Exception error) when (error is IOException or JsonException or InvalidOperationException or KeyNotFoundException or Win32Exception)
@@ -121,9 +177,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private async void PrimaryClick(object sender, RoutedEventArgs e)
     {
+        if (!CanPrimary) return;
         if (state == "development_build" && nativeAvailable) await RunNative();
         else if (state == "game_not_found") BrowseClick(sender, e);
-        else if (state is "choose_installation" or "unsupported_installation") { settingsOpen = true; Refresh(); }
+        else if (state is "choose_installation" or "unsupported_installation") Navigate(LauncherPage.Settings);
         else if (state is "error" or "game_running") await Prepare();
     }
     private async Task RunNative()
@@ -153,24 +210,45 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     }
     private async void BrowseClick(object sender, RoutedEventArgs e)
     {
+        if (!CanRun) return;
         var dialog = new OpenFolderDialog { Title = "Locate your SPORE installation" };
         if (Directory.Exists(GameRoot)) dialog.InitialDirectory = GameRoot;
         if (dialog.ShowDialog(this) == true) await Prepare(dialog.FolderName);
     }
     private async void ChooseClick(object sender, RoutedEventArgs e) { if (InstallationChoices.SelectedItem is InstallationChoice selected) await Prepare(selected.Root); }
     private async void RetryClick(object sender, RoutedEventArgs e) => await Prepare();
-    private void SettingsClick(object sender, RoutedEventArgs e) { updatesOpen = false; settingsOpen = true; Refresh(); }
-    private void SettingsCloseClick(object sender, RoutedEventArgs e) { settingsOpen = false; Refresh(); }
-    private void OverlayClick(object sender, System.Windows.Input.MouseButtonEventArgs e) { settingsOpen = false; Refresh(); }
-    private void UpdatesClick(object sender, RoutedEventArgs e) { settingsOpen = false; updatesOpen = true; Refresh(); }
-    private void UpdatesCloseClick(object sender, RoutedEventArgs e) { updatesOpen = false; Refresh(); }
-    private void UpdatesOverlayClick(object sender, System.Windows.Input.MouseButtonEventArgs e) { updatesOpen = false; Refresh(); }
-    private void PlayTabClick(object sender, RoutedEventArgs e) { updatesOpen = false; settingsOpen = false; Refresh(); }
-    private void WindowKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+    private void SettingsClick(object sender, RoutedEventArgs e) => Navigate(LauncherPage.Settings);
+    private void UpdatesClick(object sender, RoutedEventArgs e) => Navigate(LauncherPage.Updates);
+    private void PlayTabClick(object sender, RoutedEventArgs e) => Navigate(LauncherPage.Home);
+    private void ReadLatestClick(object sender, RoutedEventArgs e)
     {
-        if (e.Key == System.Windows.Input.Key.Escape && (updatesOpen || settingsOpen))
+        SearchQuery = "";
+        SelectedUpdate = LatestUpdate;
+        Navigate(LauncherPage.Updates);
+    }
+    private void ClearSearchClick(object sender, RoutedEventArgs e) { SearchQuery = ""; ReleaseSearchBox.Focus(); }
+    private void WindowKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Escape && !IsHome)
         {
-            updatesOpen = false; settingsOpen = false; Refresh(); e.Handled = true;
+            Navigate(LauncherPage.Home);
+            e.Handled = true;
+        }
+        else if (Keyboard.Modifiers == ModifierKeys.Control)
+        {
+            switch (e.Key)
+            {
+                case Key.D1: Navigate(LauncherPage.Home); break;
+                case Key.D2: Navigate(LauncherPage.Updates); break;
+                case Key.OemComma: Navigate(LauncherPage.Settings); break;
+                case Key.F:
+                    Navigate(LauncherPage.Updates);
+                    ReleaseSearchBox.Focus();
+                    ReleaseSearchBox.SelectAll();
+                    break;
+                default: return;
+            }
+            e.Handled = true;
         }
     }
     private void CloseClick(object sender, RoutedEventArgs e) => Close();

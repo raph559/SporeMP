@@ -10,13 +10,22 @@ public sealed record ReleaseChange(string Category, string Text);
 public sealed record ReleaseNote(string Version, string Date, string Title, string Summary, ReleaseChange[] Changes)
 {
     public string VersionLabel => "v" + Version;
+    public bool IsCurrentVersion => Version == ReleaseNotes.CurrentVersion;
     public string DateLabel => DateTime.TryParseExact(Date, "yyyy-MM-dd", CultureInfo.InvariantCulture,
         DateTimeStyles.None, out var date) ? date.ToString("d MMM yyyy", CultureInfo.InvariantCulture) : Date;
+
+    public bool Matches(string query)
+    {
+        var terms = query.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+        var text = string.Join(" ", VersionLabel, Date, DateLabel, Title, Summary,
+            string.Join(" ", Changes.Select(change => change.Category + " " + change.Text)));
+        return terms.All(term => text.Contains(term, StringComparison.OrdinalIgnoreCase));
+    }
 }
 
 public static class ReleaseNotes
 {
-    public static string CurrentVersion => typeof(ReleaseNotes).Assembly.GetName().Version?.ToString(3) ?? "0.1.1";
+    public static string CurrentVersion => typeof(ReleaseNotes).Assembly.GetName().Version?.ToString(3) ?? "0.1.2";
 
     public static IReadOnlyList<ReleaseNote> Load()
     {

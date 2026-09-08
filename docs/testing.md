@@ -25,6 +25,16 @@ The build also produces `build/launcher/<configuration>/SporeMP.exe` using .NET 
 
 The player flow is open launcher → Play SPORE, using the normal Windows account and existing saves. It requires no backup/profile setup. Automatic discovery, prior native runs and final user confirmation already cover this M01 increment; no repeat run is pending. Details and report export remain in Settings. See launcher.md and the native session.
 
+For launcher-only edits while a player is using the existing build, compile to a separate directory without launching either application:
+
+```powershell
+dotnet build src/launcher/SporeMP.Launcher.csproj -c Release -o build/launcher/0.1.2 --nologo -m:1
+$launcherPython = & python -c 'import sys; print(sys.executable)'
+@{ repo_root = (Get-Location).Path; python_executable = $launcherPython } | ConvertTo-Json | Set-Content -LiteralPath build/launcher/0.1.2/launcher.runtime.json -Encoding utf8NoBOM
+```
+
+The 0.1.2 redesign was compiled this way. Its new navigation, search and layouts have not been exercised in a visible window; native tests were not repeated. The next focused UI review is Home / release selection and search / Settings at normal and minimum sizes, when desktop interaction is welcome. This is a launcher presentation check and does not reopen M01 native acceptance.
+
 ```powershell
 python tools/diagnostics/sporemp_diag.py inventory --game-root 'C:\Games\SPORE' --output local/new-candidate-review.json
 python tools/diagnostics/sporemp_diag.py validate --game-root 'C:\Games\SPORE'
