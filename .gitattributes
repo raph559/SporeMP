@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# Preserve the user-supplied brief byte-for-byte across Git exports/checkouts.
+docs/implementation-brief.md -text
+*.png -text
+*.dll -text
+*.exe -text
+*.zip -text

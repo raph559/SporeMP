@@ -1,0 +1,12 @@
+/external/
+/build/
+/artifacts/
+/local/
+__pycache__/
+*.pyc
+.vs/
+*.user
+*.suo
+**/obj/
+**/bin/
+# Evidence is intentionally tracked; never place game binaries or saves there.

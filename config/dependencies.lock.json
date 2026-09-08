@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "native_loader": {
+    "repository": "https://github.com/Spore-Community/ModAPI-Launcher-Kit.git",
+    "commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+    "component": "ModAPI.DLLInjector",
+    "note": "Build the pinned allocator-timed injector. SporeMP supplies its own guarded host and loads only the current SDK and project bridge; no legacy mods."
+  },
+  "launcher": {
+    "dotnet_sdk": "8.0.418",
+    "target_framework": "net8.0-windows",
+    "runtime_framework_version": "8.0.24",
+    "nuget_sources": [],
+    "note": "Installed .NET and WindowsDesktop targeting packs only; no third-party UI packages."
+  },
+  "modapi": {
+    "repository": "https://github.com/Spore-Community/Spore-ModAPI.git",
+    "commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+    "architecture": "Win32",
+    "toolset": "v143",
+    "msvc_tools_version": "14.44.35207",
+    "windows_sdk": "10.0.26100.0",
+    "runtime_release": "MultiThreadedDLL",
+    "runtime_debug": "MultiThreadedDebugDLL",
+    "executable_type": 2,
+    "sdk_build_ver": 0,
+    "build_ver_note": "Local development build 2.5.0, identified by commit; not a published SDK release number."
+  }
+}

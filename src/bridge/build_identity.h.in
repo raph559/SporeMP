@@ -1,0 +1,6 @@
+#pragma once
+namespace sporemp {
+inline constexpr char sdk_revision[] = "@SDK_REVISION@";
+inline constexpr char candidate_exe_sha256[] = "@GAME_SHA256@";
+inline constexpr char bridge_version[] = "@PROJECT_VERSION@";
+}

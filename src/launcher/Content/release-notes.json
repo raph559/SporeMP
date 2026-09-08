@@ -1,0 +1,25 @@
+[
+  {
+    "version": "0.1.1",
+    "date": "2026-09-08",
+    "title": "Your updates, in one place",
+    "summary": "See what changed before you jump back into SPORE.",
+    "changes": [
+      { "category": "NEW", "text": "Latest update highlights on the launcher's home screen." },
+      { "category": "NEW", "text": "A full release history with version numbers, dates and readable change lists." },
+      { "category": "IMPROVED", "text": "Release notes are included with the launcher and stay available offline." }
+    ]
+  },
+  {
+    "version": "0.1.0",
+    "date": "2026-09-08",
+    "title": "A simpler way to launch SPORE",
+    "summary": "Open the launcher, press Play SPORE, and use your existing game and saves.",
+    "changes": [
+      { "category": "NEW", "text": "Automatic detection of supported SPORE installations." },
+      { "category": "IMPROVED", "text": "Play with your normal Windows account and existing saves. No separate profile or backup setup required." },
+      { "category": "NEW", "text": "Automatic compatibility checks before starting the game." },
+      { "category": "NEW", "text": "A redesigned home screen, with installation options and local support reports in Settings." }
+    ]
+  }
+]

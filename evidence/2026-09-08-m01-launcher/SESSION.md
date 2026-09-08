@@ -1,0 +1,9 @@
+# First desktop launcher increment — interrupted
+
+This attempt followed the user's request to continue M01 and add a launcher. It added a .NET 8 WPF executable, a Python service for explicit check/backup/workspace/export operations, build integration and a dated launcher amendment to GOAL/MILESTONES. It was subsequently rejected by the user for its visual design and manual setup flow. The replacement is documented in `../2026-09-08-m01-launcher-redesign/SESSION.md`.
+
+Recorded commands: `pwsh -NoProfile -File tools/build/build-launcher.ps1 -Configuration Release` exited 0 (see `build-launcher-release.log` and `build-launcher-release-final.log`). The launcher and its host test executable compiled with zero warnings/errors. `python -m unittest discover -s tests/unit -p 'test_*.py' -v` exited 0 with 22 tests (see `tests-python.log`). The newly built launcher host executable had not been executed during that interrupted turn.
+
+Computer Use first misidentified the name SporeMP.Launcher as another installed launcher; the application was given an explicit AppUserModelID and renamed to SporeMP.exe. Before actual control verification, the tool reported that the user pressed physical Escape. Computer Use and work stopped. No UI acceptance or native SPORE execution is claimed for this attempt. No disposable Windows account was created.
+
+SDK commit and executable candidate remained `cbf9206b9a823f0911cd9be0217104a49d72380b` and SHA-256 `dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37`. The earlier M00/M01 environment record applies; no new native configuration was qualified. No immutable source/artifact snapshot was captured before the interruption, so the first UI's binary hashes are not reconstructed. The redesigned increment supplies the current source snapshot, hashes, actual UI evidence and remaining M01 gates.

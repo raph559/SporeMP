@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WindowsPerformanceRecorder Version="1.0" Author="SporeMP">
+  <Profiles>
+    <SystemCollector Id="SporeMPCollector" Name="SporeMP native file and registry trace">
+      <BufferSize Value="1024" />
+      <Buffers Value="256" />
+    </SystemCollector>
+    <SystemProvider Id="SporeMPProvider">
+      <Keywords>
+        <Keyword Value="ProcessThread" />
+        <Keyword Value="Loader" />
+        <Keyword Value="FileIO" />
+        <Keyword Value="FileIOInit" />
+        <Keyword Value="Registry" />
+      </Keywords>
+    </SystemProvider>
+    <Profile Id="SporeMP.Verbose.File" Name="SporeMP" Description="Native lifecycle file and registry evidence without sampled stacks" LoggingMode="File" DetailLevel="Verbose">
+      <Collectors>
+        <SystemCollectorId Value="SporeMPCollector">
+          <SystemProviderId Value="SporeMPProvider" />
+        </SystemCollectorId>
+      </Collectors>
+    </Profile>
+  </Profiles>
+</WindowsPerformanceRecorder>

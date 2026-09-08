@@ -1,0 +1,609 @@
+{
+  "schema_version": 1,
+  "profile_id": "gog-ga-3.1.0.29-observed",
+  "native_status": "NOT_RUN",
+  "content_provenance": "Local inventory; official clean-content equivalence NOT VERIFIED",
+  "executable_relative": "SporebinEP1/SporeApp.exe",
+  "executable": {
+    "size": 24895536,
+    "sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+    "machine": "0x014c",
+    "optional_magic": "0x010b",
+    "is_dll": false,
+    "coff_timestamp": 1727737552
+  },
+  "content": {
+    "Data": {
+      "exists": true,
+      "directories": [
+        "Config",
+        "Locale",
+        "Locale/cs-cz",
+        "Locale/da-dk",
+        "Locale/de-de",
+        "Locale/el-gr",
+        "Locale/en-gb",
+        "Locale/en-us",
+        "Locale/es-es",
+        "Locale/fi-fi",
+        "Locale/fr-fr",
+        "Locale/hu-hu",
+        "Locale/it-it",
+        "Locale/ja-jp",
+        "Locale/ko-kr",
+        "Locale/nl-nl",
+        "Locale/no-no",
+        "Locale/pl-pl",
+        "Locale/pt-br",
+        "Locale/pt-pt",
+        "Locale/ru-ru",
+        "Locale/sv-se",
+        "Locale/th-th",
+        "Locale/zh-cn",
+        "Locale/zh-tw"
+      ],
+      "files": [
+        {
+          "path": "Config/ConfigManager.txt",
+          "size": 23578,
+          "sha256": "4b7025b43d34e4a9521e22fc631be8a2859ecd781537e5b025ffcad440dc3f63"
+        },
+        {
+          "path": "Config/Properties.txt",
+          "size": 5420,
+          "sha256": "74a6061da7e9707b00a2d5785bba3b049697812cd6a39212b0d924b1278020ec"
+        },
+        {
+          "path": "Config/VideoCards.txt",
+          "size": 23130,
+          "sha256": "f6a9fe2ac0475d0e3004b96658348d42f66c49e3b4528478bc77e5ae9704f407"
+        },
+        {
+          "path": "Locale/cs-cz/NameGeneration.package",
+          "size": 39217,
+          "sha256": "b2afdd6c6bfcc45ff5ac62212d04e944b57fd70bbf34fc03c030819ed640aef6"
+        },
+        {
+          "path": "Locale/cs-cz/Text.package",
+          "size": 822350,
+          "sha256": "974d0e990958718edc4b2e0a352b3783a751f1cfd5f8270f0d49577df6dc5feb"
+        },
+        {
+          "path": "Locale/cs-cz/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/da-dk/NameGeneration.package",
+          "size": 147452,
+          "sha256": "6ade415904ca738b0dc09b571ad1a69d66406faca3e150a5e42a3210ab154fb9"
+        },
+        {
+          "path": "Locale/da-dk/Text.package",
+          "size": 735078,
+          "sha256": "34e7840a2edbee9ed95fff63ed3d67c7f770b43cb6b15deeda4a0fd647f2014f"
+        },
+        {
+          "path": "Locale/da-dk/UI.package",
+          "size": 2015,
+          "sha256": "bbbe9f0eeb05c8c7c3abbad2e3c589268c72ccf774421ab30fabbe88f64c72f4"
+        },
+        {
+          "path": "Locale/de-de/NameGeneration.package",
+          "size": 55088,
+          "sha256": "3539a76322b073a81154e0f1988a1a5f622a9a202806b57d4cb97867f6939a5c"
+        },
+        {
+          "path": "Locale/de-de/Text.package",
+          "size": 797866,
+          "sha256": "9f0c8a6c23550644ac5cf50a913111528fa50a4a90cab444c7372978eeb4a1bd"
+        },
+        {
+          "path": "Locale/de-de/UI.package",
+          "size": 2064,
+          "sha256": "eed63fd27a96f2f9417f6e0e30b753819e42ee22ae2685d7b85a77bc9d6cf7e8"
+        },
+        {
+          "path": "Locale/el-gr/NameGeneration.package",
+          "size": 289659,
+          "sha256": "39fef5fe3f5654ebd9dfc2ce0f417bbda585a2866221e26322c427dfc647cb62"
+        },
+        {
+          "path": "Locale/el-gr/Text.package",
+          "size": 939925,
+          "sha256": "531a59aaed7db125db5b6febe1bffd78a162df19c1ea124b3ed63d30452e2575"
+        },
+        {
+          "path": "Locale/el-gr/UI.package",
+          "size": 5155,
+          "sha256": "dec84178b9ec12685160cfe3275f5271170dd768de83bebcde2489b192736c1b"
+        },
+        {
+          "path": "Locale/en-gb/NameGeneration.package",
+          "size": 54588,
+          "sha256": "c998b380f9191e1ad8027033840a78bcebd44c2e6bf91cde3f94236140d343b6"
+        },
+        {
+          "path": "Locale/en-gb/Text.package",
+          "size": 717415,
+          "sha256": "f6f27f031c974ff697d5ec836980df387dd19260bd96cfebac0a80acf39b3873"
+        },
+        {
+          "path": "Locale/en-gb/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/en-us/NameGeneration.package",
+          "size": 54588,
+          "sha256": "c998b380f9191e1ad8027033840a78bcebd44c2e6bf91cde3f94236140d343b6"
+        },
+        {
+          "path": "Locale/en-us/Text.package",
+          "size": 724533,
+          "sha256": "67baac37f216eaaa364b1dd95add00fea41d05546d4e654457624b83c3163dbd"
+        },
+        {
+          "path": "Locale/en-us/UI.package",
+          "size": 425,
+          "sha256": "234572781cacaaa7a76099b905c9278f9351218042eb1ae44fbb93c12a153103"
+        },
+        {
+          "path": "Locale/es-es/NameGeneration.package",
+          "size": 482163,
+          "sha256": "023a3317ac6f8045d5f152a7fa3434b8b3f4973d8ddc532584d83c46f74c71f4"
+        },
+        {
+          "path": "Locale/es-es/Text.package",
+          "size": 772901,
+          "sha256": "1045a3bdf6780b1319a2c95bb567e3f8b1178736b1236b5f951e8009f1d81eae"
+        },
+        {
+          "path": "Locale/es-es/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/fi-fi/NameGeneration.package",
+          "size": 58024,
+          "sha256": "54d666f053ea2f76e3204da0b0f190a2ad2af2561cda02436980676bdbfdb956"
+        },
+        {
+          "path": "Locale/fi-fi/Text.package",
+          "size": 789809,
+          "sha256": "6171c64885a1b9ab248e38f32333c6ffed059761601c0e8497073ca11a7fd331"
+        },
+        {
+          "path": "Locale/fi-fi/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/fr-fr/NameGeneration.package",
+          "size": 119695,
+          "sha256": "d29082a25d32eb4741ae675687087034f51bf243e3a32183f6bad72d7eb3d303"
+        },
+        {
+          "path": "Locale/fr-fr/Text.package",
+          "size": 764193,
+          "sha256": "5c0f1053b597addf6b3fc2fb212b8ec12a4878900f3b98db488760b183be9495"
+        },
+        {
+          "path": "Locale/fr-fr/UI.package",
+          "size": 1993,
+          "sha256": "65089d50684a05699a0e7c69cc05e5a74dc40d2416970209cbd5d0ef1f63522e"
+        },
+        {
+          "path": "Locale/hu-hu/NameGeneration.package",
+          "size": 64692,
+          "sha256": "5ff61dbf3fb83532eac77e30d97f66e61303321129f72c33ea4d4770e7be1052"
+        },
+        {
+          "path": "Locale/hu-hu/Text.package",
+          "size": 816834,
+          "sha256": "7df3af26e0c267a7d84ad8727716d1e68ca518e2578b8a3c1d9361617dc632e0"
+        },
+        {
+          "path": "Locale/hu-hu/UI.package",
+          "size": 2045,
+          "sha256": "8e8cc83b05aa592b578377e3a1a8db0daf1294f6501bb6528c5dc2133b5568f9"
+        },
+        {
+          "path": "Locale/it-it/NameGeneration.package",
+          "size": 337589,
+          "sha256": "63ccf8c753dc9dc39c75437708b3f1b317326a87da3a04de9a56ff7796b11fe3"
+        },
+        {
+          "path": "Locale/it-it/Text.package",
+          "size": 758132,
+          "sha256": "c33cf9a54368e7e9ab98929fa04e7aca58c206131d51707740845c28fdaf7cd1"
+        },
+        {
+          "path": "Locale/it-it/UI.package",
+          "size": 1997,
+          "sha256": "c8fd415c45ed668693bc2b032d01bfc2a26589cfa65b648f1dafa8be5f711513"
+        },
+        {
+          "path": "Locale/ja-jp/NameGeneration.package",
+          "size": 29861,
+          "sha256": "6b8a0f1bf8dede3b53e7497de52f79604808f4c21e6d5e291bdfcf7f41b81a96"
+        },
+        {
+          "path": "Locale/ja-jp/Text.package",
+          "size": 803294,
+          "sha256": "3b5dc4d4d3489573cdbec7b7c7f9fa067b984817000598adf02ee14dd04c36fa"
+        },
+        {
+          "path": "Locale/ja-jp/UI.package",
+          "size": 2874132,
+          "sha256": "c2a91d3d0f9e7277d229545d572bb8e5efbdcb996535d9a2a5609bf6f5f292f7"
+        },
+        {
+          "path": "Locale/ko-kr/NameGeneration.package",
+          "size": 15776,
+          "sha256": "cec9a3822f1002ba49e98c26af052fe035b1813e27a5597d0458a89456afb4aa"
+        },
+        {
+          "path": "Locale/ko-kr/Text.package",
+          "size": 739932,
+          "sha256": "ddd35024fc1b2ea07cd4e2c7eb9b662c0367ec936e6ddb1b4d17f1b51ae6d897"
+        },
+        {
+          "path": "Locale/ko-kr/UI.package",
+          "size": 2049731,
+          "sha256": "bf5d7d29aeac90d0f47da1c508398e7fd61c7f8611454a9977dee47aecf80f87"
+        },
+        {
+          "path": "Locale/nl-nl/NameGeneration.package",
+          "size": 352697,
+          "sha256": "5be0b963ba14e87951ae4dc37915fded5e8ac650ee52d3368984f1c9f0d68033"
+        },
+        {
+          "path": "Locale/nl-nl/Text.package",
+          "size": 759043,
+          "sha256": "ab2b79275f3587a2e43e22b8d25dd6a0eb8b4c009ac5f7585aa90a284426f0e2"
+        },
+        {
+          "path": "Locale/nl-nl/UI.package",
+          "size": 2082,
+          "sha256": "2c9365720aa56313a0047d97e6ea955abb15557eef0520c3d9382315bc669afa"
+        },
+        {
+          "path": "Locale/no-no/NameGeneration.package",
+          "size": 47695,
+          "sha256": "271367464d9383d9978e03ba4daedf45d8a2d52f9895a7418c585fc7e756ecd0"
+        },
+        {
+          "path": "Locale/no-no/Text.package",
+          "size": 737492,
+          "sha256": "16769e062f2b4af80d069b3c174219898ece755ae579b8b2039075f725d2b7f6"
+        },
+        {
+          "path": "Locale/no-no/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/pl-pl/NameGeneration.package",
+          "size": 242361,
+          "sha256": "a4df6baa71ff51c0c656a15047fe569aca9cf66254b47d65693782535dfb2e05"
+        },
+        {
+          "path": "Locale/pl-pl/Text.package",
+          "size": 824541,
+          "sha256": "9f20b449f09190f5b76446812261b58f2e9e99f274e9ba77c190e406883483c3"
+        },
+        {
+          "path": "Locale/pl-pl/UI.package",
+          "size": 1955,
+          "sha256": "485d5d38672c709e31f6f1b375735cb12bc16a40d0942bd387b01eae8c0ad410"
+        },
+        {
+          "path": "Locale/pt-br/NameGeneration.package",
+          "size": 319555,
+          "sha256": "2e66f06a56c5433cd2b0ccdbcbdd56ca1e827d6936ee91ef83e43a55f8950ad8"
+        },
+        {
+          "path": "Locale/pt-br/Text.package",
+          "size": 758622,
+          "sha256": "4dd17f2aca4ca1c6b382d84a271a9844964f3913b0c1c9db04c8756cfe83b4c9"
+        },
+        {
+          "path": "Locale/pt-br/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/pt-pt/NameGeneration.package",
+          "size": 79612,
+          "sha256": "c824e5d53a0e804f287e2d34e1876a8cb82ec36e8b35ec3cfda03244976ee168"
+        },
+        {
+          "path": "Locale/pt-pt/Text.package",
+          "size": 758777,
+          "sha256": "374ed11473a9ea2e31078ec94e0c59325b01c276f87d4ce0f8f9cea336603a8a"
+        },
+        {
+          "path": "Locale/pt-pt/UI.package",
+          "size": 1791,
+          "sha256": "40fbee242327cff74c4a9502631a21fdce19bcd7f8f4ba9e97f613f32bd03e8e"
+        },
+        {
+          "path": "Locale/ru-ru/NameGeneration.package",
+          "size": 92715,
+          "sha256": "f8d2f8f8d77c5c7335addf931ae92411af59f082844ab601be8ed17415cfc12d"
+        },
+        {
+          "path": "Locale/ru-ru/Text.package",
+          "size": 847938,
+          "sha256": "3014a0bc31299456c3730dd699cb7ac4d5e5c4ec593763b26f1d974e56ac7465"
+        },
+        {
+          "path": "Locale/ru-ru/UI.package",
+          "size": 1957,
+          "sha256": "cdc6e37bfa87b5230637756d9bc1e240dcee88af468a66bdaae115e542cb8cfc"
+        },
+        {
+          "path": "Locale/sv-se/NameGeneration.package",
+          "size": 46101,
+          "sha256": "2614f2f305e8f5103c7dd904faedda2469cbe0b09fed0688e1fd5b7e88935bbb"
+        },
+        {
+          "path": "Locale/sv-se/Text.package",
+          "size": 736999,
+          "sha256": "267a6a9b9cda7d1c93bd5b7efbcf6fdd9c313e3a480910adce913de5bead1119"
+        },
+        {
+          "path": "Locale/sv-se/UI.package",
+          "size": 1866,
+          "sha256": "d657a48d3f2ff496c12bec1efa5496b60aa7ee25f8efec9d317da58e9489df3d"
+        },
+        {
+          "path": "Locale/th-th/NameGeneration.package",
+          "size": 18590,
+          "sha256": "f1ad8d52e0aa66ca8140c79a23dd3f09c8d544db7fe663368604f42238d711bf"
+        },
+        {
+          "path": "Locale/th-th/Text.package",
+          "size": 899584,
+          "sha256": "8c91a696237ba938b53f4ae34fe9ede644ceb9545237efa699c6a96ef13cd2b8"
+        },
+        {
+          "path": "Locale/th-th/UI.package",
+          "size": 51244,
+          "sha256": "741731801bc7a245a4056b0af55e5d73ae0b871dc0091d42d1586a5526ffb82b"
+        },
+        {
+          "path": "Locale/zh-cn/NameGeneration.package",
+          "size": 29364,
+          "sha256": "a5bae34c7324326a41aab9c23364cfacab7558c24bc30d49ee84a743684dd6b5"
+        },
+        {
+          "path": "Locale/zh-cn/Text.package",
+          "size": 740289,
+          "sha256": "5de7c5dc94af327d2d8e1b4df7bf2a45176ae2aa9608ab2f0b9a778e4f1e7c01"
+        },
+        {
+          "path": "Locale/zh-cn/UI.package",
+          "size": 2553639,
+          "sha256": "44e88858153c1e711a9eb72aece30577e88ac5f6a6fed82c29c5b3169a580fde"
+        },
+        {
+          "path": "Locale/zh-tw/NameGeneration.package",
+          "size": 11658,
+          "sha256": "abf4a5eb16b183acc43b2f9c507bed0f28a88636427e30e1cb1bee6f9dbc25be"
+        },
+        {
+          "path": "Locale/zh-tw/Text.package",
+          "size": 736257,
+          "sha256": "2c4cf3771ffb497d9dc8e3192221d2ebb6ffa122f6e941e23ad487879e76a63b"
+        },
+        {
+          "path": "Locale/zh-tw/UI.package",
+          "size": 3731571,
+          "sha256": "d157fa0ae7bcec23925c3baea6a92a350a7d98f02798d88afd26349d8a672ea8"
+        },
+        {
+          "path": "PatchData.package",
+          "size": 80428851,
+          "sha256": "cadbff237076b441e6981503f80538705aefa5863bb4c8d1b869f9db98d1adff"
+        },
+        {
+          "path": "Spore_Audio1.package",
+          "size": 1019011830,
+          "sha256": "54a46c03e921c2d8b5cf0d3998935f665fa53d1267d257dc85e8b90d94cee572"
+        },
+        {
+          "path": "Spore_Audio2.package",
+          "size": 1021382650,
+          "sha256": "bc17f2f6c18ad4277bb9c605a8359c9be14300abf3e626077bb21ec6b5c13dfb"
+        },
+        {
+          "path": "Spore_Content.package",
+          "size": 995268083,
+          "sha256": "0b849bd79d9c13dec5737159655bf7e2b7763cc2b79949c81370fa0490256e8c"
+        },
+        {
+          "path": "Spore_Game.package",
+          "size": 20210108,
+          "sha256": "9d085118c649d211a86723d363592fd66ad655fd24497289b3eab96bb07db329"
+        },
+        {
+          "path": "Spore_Graphics.package",
+          "size": 942881325,
+          "sha256": "e01bb86d8ddf02c56d52394b4e1db7181c1e1ebe1878bf6fb72c4ee523fcedd1"
+        },
+        {
+          "path": "Spore_Pack_03.package",
+          "size": 9580183,
+          "sha256": "08f82e782c4c309fb8027f45ce2cab2e76c7ba2e1677982a7ea85e563a7bb844"
+        }
+      ]
+    },
+    "DataEP1": {
+      "exists": true,
+      "directories": [
+        "Config"
+      ],
+      "files": [
+        {
+          "path": "Config/ConfigManager.txt",
+          "size": 23578,
+          "sha256": "4b7025b43d34e4a9521e22fc631be8a2859ecd781537e5b025ffcad440dc3f63"
+        },
+        {
+          "path": "Config/Properties.txt",
+          "size": 6425,
+          "sha256": "84732c348f1db95654ee5820d2bc0ed68c64adb609f74d0829f1ef9467ab6f73"
+        },
+        {
+          "path": "Config/VideoCards.txt",
+          "size": 23339,
+          "sha256": "47fe6d17ac05a8ed091965adb3183b422b44adc0ab82330b1d70a58b66e36d5a"
+        },
+        {
+          "path": "Spore_EP1_Content_01.package",
+          "size": 476555658,
+          "sha256": "d5377275dab759e68de822682cc2ee1787dc542e558f5eb43522290bdb3b0699"
+        },
+        {
+          "path": "Spore_EP1_Content_02.package",
+          "size": 757541293,
+          "sha256": "87f8a4b7965b8e1038599d10a469036a33869c7096b6c4975716097a0616ad42"
+        },
+        {
+          "path": "Spore_EP1_Data.package",
+          "size": 715614770,
+          "sha256": "5acecfc2a1e3bdd43b5d46dfefcfe79e16511c5e79edd17dc733d0415af7bd71"
+        },
+        {
+          "path": "Spore_EP1_Locale_01.package",
+          "size": 3794380,
+          "sha256": "447022bd079a8ba2b14fe19f0af9b0c8b86ea757d0ca37246b5034980387dbd1"
+        },
+        {
+          "path": "Spore_EP1_Locale_02.package",
+          "size": 838289,
+          "sha256": "e5384f95b4ad8d8b36340304b6bb9f9de5addf6a593cc4600181241f4482152f"
+        }
+      ]
+    },
+    "bp1content": {
+      "exists": true,
+      "directories": [],
+      "files": [
+        {
+          "path": "BoosterPack_01.package",
+          "size": 98031459,
+          "sha256": "4f69bc1ba939ec9676e447d872d7fcad352f170c1ed8671ea24eb1531bba0bcf"
+        }
+      ]
+    },
+    "SporebinEP1": {
+      "exists": true,
+      "directories": [],
+      "files": [
+        {
+          "path": "Ctimne_cs-cz.txt",
+          "size": 19912,
+          "sha256": "0ba55003a57464dbcb115364d26d0d8251dde993bc4862023c967315254c53a1"
+        },
+        {
+          "path": "goggame-1948823323.dll",
+          "size": 229984,
+          "sha256": "06bed869d828c58c91a9b2b5edd92544e456cea7c8b684872c8598fd6ff20aab"
+        },
+        {
+          "path": "Leeme_es-es.txt",
+          "size": 20671,
+          "sha256": "1f0352920bae78852974a2c43090074f58e295f75d03356f6e36b25b9c83ec61"
+        },
+        {
+          "path": "LeesMij_nl-nl.txt",
+          "size": 20095,
+          "sha256": "94da05818f1d21306ae29dff3b42570c290a74c999ed45ae96650dc3a76cc81c"
+        },
+        {
+          "path": "Leggimi_it-it.txt",
+          "size": 21466,
+          "sha256": "e7d6abdbd61b26ce2a04de708a0e900d975b8b71f2e5aef1fb9cc77646d320fc"
+        },
+        {
+          "path": "Leiame_pt-pt.txt",
+          "size": 20326,
+          "sha256": "23a966cac0490c8d083d121d371effd822a8cfe3d65ed40d44599b234e1c2522"
+        },
+        {
+          "path": "Lesmeg_no-no.txt",
+          "size": 17603,
+          "sha256": "992ebaf6897ada8d9dd59a6ff03a97e7ada8ff76594ca11c4cd775a5726408b3"
+        },
+        {
+          "path": "LisezMoi_fr-fr.txt",
+          "size": 20221,
+          "sha256": "59bfc9133e368fc98297c04233342e79b5118134cd95a2ab2343246ce268c1b7"
+        },
+        {
+          "path": "Lueminut_fi-fi.txt",
+          "size": 20369,
+          "sha256": "cc24ef275201cc141959ac131de8b7daf53ca977ba1edfed06e7d1e2daa31ad7"
+        },
+        {
+          "path": "Microsoft.VC90.CRT.manifest",
+          "size": 524,
+          "sha256": "9e0220511d4ebdb014cc17ecb8319d57e3b0fea09681a80d8084aa8647196582"
+        },
+        {
+          "path": "msvcr90.dll",
+          "size": 655872,
+          "sha256": "ed0170d3de86da33e02bfa1605eec8ff6010583481b1c530843867c1939d2185"
+        },
+        {
+          "path": "Olvassel_hu-hu.txt",
+          "size": 21304,
+          "sha256": "df3441dde72b8d658480fe10aeeb9f0e589a3f64675c1c9fcb534844788e40ed"
+        },
+        {
+          "path": "Przeczytaj_pl-pl.txt",
+          "size": 21440,
+          "sha256": "403b68adcd8a9cbc187043d863976220940851eff6ff201bb87cfe24c8d3740e"
+        },
+        {
+          "path": "readme_da-dk.txt",
+          "size": 18675,
+          "sha256": "21973ec73e88644f0235f9d747d3ba712ce49fc0021a0035131213e4133a7f26"
+        },
+        {
+          "path": "readme_de-de.txt",
+          "size": 19777,
+          "sha256": "bdd8dd9a3e2b7d0ae5b65ebf9193fbe437042eedda7bc3afc43fa110708d2f62"
+        },
+        {
+          "path": "readme_en-us.txt",
+          "size": 17907,
+          "sha256": "c662ee9226e4f76b373a29f892900f462904e3e954be539b37d966db62fb5bd5"
+        },
+        {
+          "path": "readme_ru-ru.txt",
+          "size": 30273,
+          "sha256": "67866bf0122d0a15a6a334cdb503b14a87a5a523b403afaf7389ad8884120ea8"
+        },
+        {
+          "path": "readme_sv-se.txt",
+          "size": 18310,
+          "sha256": "a02f588626f072587480080fa8454409c3a199ad199558f82727e10cf4eaebb8"
+        },
+        {
+          "path": "SporeApp.exe",
+          "size": 24895536,
+          "sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37"
+        },
+        {
+          "path": "steam_api.dll",
+          "size": 15360,
+          "sha256": "76c46ed372ec7bce7ea40c2b2137258dffb378993590535e8fbe72b2c30e4049"
+        }
+      ]
+    }
+  }
+}
