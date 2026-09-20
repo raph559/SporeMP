@@ -1,0 +1,14 @@
+[
+  {
+    "from": "actualites/premiere-scene-partagee.html",
+    "to": "news/first-shared-scene.html"
+  },
+  {
+    "from": "actualites/recompenses-sans-doublon.html",
+    "to": "news/rewards-counted-once.html"
+  },
+  {
+    "from": "actualites/monde-independant-du-joueur.html",
+    "to": "news/world-beyond-the-player.html"
+  }
+]

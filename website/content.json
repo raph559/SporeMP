@@ -1,0 +1,97 @@
+{
+  "news": [
+    {
+      "slug": "first-shared-scene",
+      "date": "2026-09-15",
+      "category": "Multiplayer",
+      "title": "Our first steps in a shared world.",
+      "summary": "Two games, one shared scene. Movement, jumping and reconnecting reach an early milestone in the original SPORE.",
+      "paragraphs": [
+        "Two copies of the original SPORE joined the same Creature stage scene, run by a dedicated instance of the game. Each player controls a separate character; movement and jumps were compared in recorded tests.",
+        "The launcher also lets players join this scene with a private invitation. A test of closing the game and reconnecting returned to the same character without creating a duplicate.",
+        "This is an experimental milestone, limited to a test scene with living creatures. It is not yet a playable co-op campaign. The observed issues with death, respawning and reconnecting after a respawn are part of the next step."
+      ]
+    },
+    {
+      "slug": "rewards-counted-once",
+      "date": "2026-09-14",
+      "category": "Development",
+      "title": "One reward. Counted once.",
+      "summary": "A DNA gain recorded in the original game was applied to a test instance without triggering a second reward.",
+      "paragraphs": [
+        "To share a world, connected games need to agree on the outcome of each action. A Creature stage combat scenario verified that a gain of 8.75 DNA points could be applied without awarding it twice.",
+        "These tests lay the groundwork for sharing outcomes between players while preserving the original game's rules. Safeguards were also tested to prevent the receiving instance from producing conflicting progress.",
+        "The result is limited to this specific scenario. Other abilities, inventories, complete encounters and progression through the full campaign still need development and testing."
+      ]
+    },
+    {
+      "slug": "world-beyond-the-player",
+      "date": "2026-09-13",
+      "category": "Foundations",
+      "title": "The world continues after you leave.",
+      "summary": "In testing, a dedicated game instance continued its actions after the player's game and launcher were closed.",
+      "paragraphs": [
+        "A persistent universe should not depend on a player staying connected. A dedicated instance of the original SPORE continued the planned actions in a test scene after the player's game and launcher were closed.",
+        "A save of that scene was then reloaded with the same characters. Tests also checked that two development instances and their saves remained separate.",
+        "This foundation is not yet a hosting solution ready for players. The tests currently require rendered game windows that remain open and are not minimized. Preserving all progress, handling restarts and connecting over the Internet still need work."
+      ]
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.9",
+      "date": "2026-09-14",
+      "title": "An invitation to join",
+      "changes": [
+        "Join the experimental scene from the launcher with a private invitation.",
+        "Return with the same player identity after disconnecting.",
+        "See the connection status directly on the home screen."
+      ],
+      "note": "Development version. The full multiplayer campaign and Internet hosting are still in development."
+    },
+    {
+      "version": "0.1.8",
+      "date": "2026-09-13",
+      "title": "More reliable test sessions",
+      "changes": [
+        "Keep the selected test server when its status refreshes.",
+        "Let start and stop requests finish after the launcher closes.",
+        "Fix a logging issue that could prevent a later launch."
+      ],
+      "note": "These improvements apply to the development tools."
+    },
+    {
+      "version": "0.1.3",
+      "date": "2026-09-08",
+      "title": "Your game, your resolution",
+      "changes": [
+        "Choose fullscreen or windowed mode and a resolution in Settings.",
+        "Keep your display preferences between launches.",
+        "Automatically use your desktop resolution."
+      ],
+      "note": "The settings are implemented; not every display combination has been verified in the game."
+    }
+  ],
+  "roadmap": [
+    {
+      "title": "A complete shared encounter",
+      "status": "Up next",
+      "description": "Fight the same creature, keep damage and rewards consistent, then handle death, respawning and reconnecting."
+    },
+    {
+      "title": "A universe that remembers",
+      "status": "Planned",
+      "description": "Share creations, preserve progress after a restart and let players explore separately before meeting again."
+    },
+    {
+      "title": "From Cell to Space",
+      "status": "Planned",
+      "description": "Cover all five stages, their editors and transitions, with independent progression for each player."
+    },
+    {
+      "title": "Make it ready for players",
+      "status": "Planned",
+      "description": "Simplify installation and Internet hosting, then test the complete campaign before a public release."
+    }
+  ]
+}

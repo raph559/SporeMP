@@ -1,0 +1,97 @@
+{
+  "news": [
+    {
+      "slug": "first-shared-scene",
+      "date": "2026-09-15",
+      "category": "Multijoueur",
+      "title": "Nos premiers pas dans un même monde.",
+      "summary": "Deux jeux, une scène partagée. Les déplacements, les sauts et la reconnexion franchissent une première étape dans le SPORE original.",
+      "paragraphs": [
+        "Deux exemplaires du SPORE original ont rejoint une même scène de l’étape Créature, animée par une instance dédiée du jeu. Chaque joueur contrôle son propre personnage ; les déplacements et les sauts ont été comparés dans les essais enregistrés.",
+        "Le launcher permet également de rejoindre cette scène avec une invitation privée. Un essai de fermeture puis de reconnexion a retrouvé le même personnage, sans le dupliquer.",
+        "Il s’agit d’une étape expérimentale, limitée à une scène de test avec des créatures vivantes. Ce n’est pas encore une campagne jouable en coopération. Les problèmes observés autour de la mort, de la réapparition et de la reconnexion après celle-ci font partie de la prochaine étape."
+      ]
+    },
+    {
+      "slug": "rewards-counted-once",
+      "date": "2026-09-14",
+      "category": "Développement",
+      "title": "Une récompense. Une seule fois.",
+      "summary": "Un gain d’ADN enregistré dans le jeu original a été appliqué à une instance de test sans déclencher une seconde récompense.",
+      "paragraphs": [
+        "Pour partager un monde, les jeux connectés doivent s’accorder sur le résultat des actions. Un scénario de combat de l’étape Créature a permis de vérifier qu’un gain de 8,75 points d’ADN pouvait être appliqué sans attribuer une deuxième récompense.",
+        "Ces essais préparent le partage des résultats entre joueurs tout en préservant les règles du jeu original. Des protections ont également été testées pour empêcher l’instance qui reçoit ces résultats de produire une progression contradictoire.",
+        "La validation porte sur ce scénario précis. Les autres capacités, les inventaires, les rencontres complètes et la progression de toute la campagne restent à développer et à vérifier."
+      ]
+    },
+    {
+      "slug": "world-beyond-the-player",
+      "date": "2026-09-13",
+      "category": "Fondations",
+      "title": "Le monde continue après votre départ.",
+      "summary": "Dans les essais, une instance dédiée poursuit ses actions après la fermeture du jeu du joueur et du launcher.",
+      "paragraphs": [
+        "Un univers persistant ne doit pas dépendre de la présence d’un joueur. Une instance dédiée du SPORE original a poursuivi les actions prévues dans la scène de test après la fermeture du jeu du joueur et du launcher.",
+        "Une sauvegarde de cette scène a ensuite été rechargée en retrouvant les mêmes personnages. Les tests ont aussi vérifié la séparation de deux instances de développement et de leurs sauvegardes.",
+        "Cette première base ne constitue pas encore un hébergement prêt pour le public. Les essais nécessitent actuellement des fenêtres de jeu rendues et non minimisées. La conservation de toute la progression, les redémarrages et l’accès par Internet demandent encore du travail."
+      ]
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.1.9",
+      "date": "2026-09-14",
+      "title": "Une invitation à se retrouver",
+      "changes": [
+        "Rejoindre la scène expérimentale depuis le launcher avec une invitation privée.",
+        "Revenir avec la même identité de joueur après une déconnexion.",
+        "Voir l’état de la connexion directement sur l’accueil."
+      ],
+      "note": "Version de développement. La campagne multijoueur complète et l’hébergement Internet restent en préparation."
+    },
+    {
+      "version": "0.1.8",
+      "date": "2026-09-13",
+      "title": "Des sessions de test plus stables",
+      "changes": [
+        "Conserver la sélection du serveur de test pendant l’actualisation de son état.",
+        "Laisser les demandes de démarrage et d’arrêt se terminer après la fermeture du launcher.",
+        "Corriger un problème de journal qui pouvait empêcher un nouveau lancement."
+      ],
+      "note": "Ces améliorations concernent les outils de développement."
+    },
+    {
+      "version": "0.1.3",
+      "date": "2026-09-08",
+      "title": "Le jeu à votre résolution",
+      "changes": [
+        "Choisir le mode plein écran ou fenêtré et la résolution depuis les paramètres.",
+        "Retrouver ses préférences d’affichage à chaque lancement.",
+        "Utiliser automatiquement la résolution du bureau."
+      ],
+      "note": "Les réglages sont implémentés ; toutes les combinaisons d’affichage ne sont pas encore validées en jeu."
+    }
+  ],
+  "roadmap": [
+    {
+      "title": "Une vraie rencontre, à plusieurs",
+      "status": "Prochaine étape",
+      "description": "Combattre une même créature, s’accorder sur les dégâts et les récompenses, puis gérer la mort, la réapparition et la reconnexion."
+    },
+    {
+      "title": "Un univers qui se souvient",
+      "status": "Prévu",
+      "description": "Partager les créations, conserver la progression après un redémarrage et permettre aux joueurs de s’éloigner puis de se retrouver."
+    },
+    {
+      "title": "De la Cellule à l’Espace",
+      "status": "Prévu",
+      "description": "Couvrir les cinq étapes du jeu, les éditeurs et leurs transitions, avec une évolution indépendante pour chaque joueur."
+    },
+    {
+      "title": "Le rendre accessible à tous",
+      "status": "Prévu",
+      "description": "Simplifier l’installation et l’hébergement sur Internet, puis vérifier la campagne complète avant une sortie publique."
+    }
+  ]
+}
