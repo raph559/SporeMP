@@ -38,3 +38,13 @@ No project license was selected during preparation. README records that public v
 The source code is the previously built M06 snapshot; filtering changed a synthetic test path but no production gameplay behavior. Native tests: NOT RUN, because publication makes no native implementation change. The full C++/WPF build result is the immediately preceding private-publication record; hosted CI intentionally checks Python tooling and website generation only.
 
 SDK and loader remain pinned in `config/dependencies.lock.json`. Game candidate identity and the bounded native acceptance constraints remain as recorded in STATUS.md. Future gameplay work still follows M07 and the full M00–M20 plan.
+
+## Live publication verification
+
+The independent repository was first uploaded privately, then changed to public after confirming its exact source commit. Anonymous GitHub API access returns HTTP 200 and `private: false` for `raph559/SporeMP`. The private archive returns HTTP 404 to anonymous callers. Requesting the original unfiltered commit through the public repository returns HTTP 422, with `No commit found for SHA`; the original history is not part of the public repository. An initial verifier expected 404 for that unknown commit; inspection confirmed GitHub's 422 response and corrected that expectation.
+
+Hosted workflow [35544078534](https://github.com/raph559/SporeMP/actions/runs/35544078534) passed for publication commit `14ecb42bbff0209de16292e233ae699f549b44f9`. GitHub secret scanning, push protection and private vulnerability reporting are enabled. The main branch requires the Windows Python and website checks for protected updates, with force pushes and branch deletion disabled; administrators retain GitHub's normal bypass permissions.
+
+The live presentation website now links to the public source in both languages. Its separate deployment [35544109688](https://github.com/raph559/sporemp-site/actions/runs/35544109688) passed for website commit `4ba2a627ade8f98347ffad6937ffce70346685c8`.
+
+The original working directory remains on its active M07 development branch, with its private history and in-progress changes preserved. Only publication documentation was committed there; no M07 implementation or native evidence was included in this public snapshot. The independent public checkout is clean and can receive reviewed source updates without merging private history.

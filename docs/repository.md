@@ -2,6 +2,8 @@
 
 The mod, launcher, tools, tests and reviewed development evidence are maintained in the public [raph559/SporeMP](https://github.com/raph559/SporeMP) repository. The local `main` branch tracks `origin/main`. Historical commit identities and private diagnostic fields were redacted before public publication; the original history and captures are preserved separately in a private archive. See [public-evidence.md](public-evidence.md).
 
+In the original private development workspace, `origin` points to `raph559/SporeMP-private-archive` and active milestone work continues there. Its public counterpart is the independent checkout at `local/public-preparation/public-export`. Review and transfer intended source changes to that checkout; never merge or push the unfiltered original history into the public repository. The commands below refer to the public checkout when publishing public changes.
+
 The presentation website has a separate public repository, [raph559/sporemp-site](https://github.com/raph559/sporemp-site), and is served at https://raph559.github.io/sporemp-site/. The `website/` sources are also recorded here as part of the development workspace. A push to the mod repository does not deploy the website; website publication follows [website.md](website.md).
 
 ## Commit and publish changes
