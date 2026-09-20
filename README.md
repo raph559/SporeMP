@@ -6,6 +6,8 @@ SporeMP is an experimental multiplayer mod for original SPORE. Its goal is to co
 
 This repository contains the C++ bridge, coordinator and worker tools, Windows desktop launcher, build tooling, tests and development documentation. Instrumented original SPORE processes execute native gameplay; the coordinator handles identity, transport, ownership and supervision. The project does not replace the game with a separate simulation.
 
+The mod source and development history are hosted in the private [raph559/SporeMP repository](https://github.com/raph559/SporeMP). See [repository workflow](docs/repository.md) for committing and publishing changes.
+
 For the project presentation, development news and roadmap, visit the [SporeMP website](https://raph559.github.io/sporemp-site/). Its independent public source repository is [raph559/sporemp-site](https://github.com/raph559/sporemp-site).
 
 ## Current progress

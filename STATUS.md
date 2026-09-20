@@ -1,6 +1,6 @@
 # Project status
 
-Updated: 2026-09-15. **Partial/experimental: authenticated shared Creature movement is implemented; the full multiplayer campaign is unfinished.**
+Updated: 2026-09-21. **Partial/experimental: authenticated shared Creature movement is implemented; the full multiplayer campaign is unfinished.**
 
 | Milestone | Status | Evidence boundary |
 |---|---|---|
@@ -16,6 +16,10 @@ Updated: 2026-09-15. **Partial/experimental: authenticated shared Creature movem
 | M20 | TODO | Optional native Galactic Adventures multiplayer. |
 
 M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No further native game launch or repeated M01 test followed the confirmation.
+
+## Source repository publication — 2026-09-21
+
+The mod source and recorded development evidence are now hosted in the private repository https://github.com/raph559/SporeMP. The original two commits are preserved, with integrated M02–M06 and website commits added on `main`. `origin` points to this repository and local `main` tracks `origin/main`. A fresh incremental Release build and all 9 HOST/FIXTURE CTest targets passed before publication; no new native gameplay acceptance is claimed. The current code still has the M07 and later limitations above. See `docs/repository.md` and `evidence/2026-09-21-repository-publication/SESSION.md`.
 
 ## Public presentation website — 2026-09-21
 
