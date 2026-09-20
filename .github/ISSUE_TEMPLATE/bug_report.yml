@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a reproducible problem in the current implementation.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        SporeMP is experimental. Please check STATUS.md and existing issues first.
+        This report is public. Do not attach saves, game files, session invitations, credentials, memory dumps or complete diagnostic archives. Redact personal details from any small error excerpt.
+        For a vulnerability, use Security → Report a vulnerability when available instead of a public issue.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What went wrong, and what did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the smallest repeatable sequence and whether it happens consistently. Do not include an invitation or access token.
+      placeholder: |
+        1. ...
+        2. ...
+        Expected: ...
+        Observed: ...
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Version and environment
+      description: Give the SporeMP commit/version, component, Windows version, and game store/build if relevant. No account names or personal paths are needed.
+      placeholder: |
+        SporeMP commit/version:
+        Component (launcher, bridge, coordinator, tooling, website):
+        Windows version:
+        Game store/build, if relevant:
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence_type
+    attributes:
+      label: Where did you observe the problem?
+      options:
+        - Original SPORE execution
+        - Build or host/fixture test
+        - Launcher interface
+        - Website or documentation
+        - Other / unsure
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Relevant error or additional context
+      description: Optional small, redacted error excerpt. Say which checks were run and which were not. Avoid full logs or diagnostic exports.

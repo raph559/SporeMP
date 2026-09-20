@@ -9,4 +9,17 @@ __pycache__/
 *.suo
 **/obj/
 **/bin/
-# Evidence is intentionally tracked; never place game binaries or saves there.
+# Only reviewed evidence exports are public; keep private originals under local/.
+/evidence/**/*.png
+/evidence/**/*.jpg
+/evidence/**/*.jpeg
+/evidence/**/*.jsonl
+/evidence/**/*.etl
+/evidence/**/*.mp4
+/evidence/**/*.wav
+.env
+.env.*
+!.env.example
+*.pem
+*.pfx
+*.p12

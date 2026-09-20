@@ -16,6 +16,7 @@ export const copy = {
   "support": "Support",
   "footer": "An independent project, built around the joy of playing together.",
   "backProject": "Back to the project ↑",
+  "sourceCode": "Source code on GitHub",
   "rights": "Unofficial community project. Not affiliated with Electronic Arts or Maxis. SPORE belongs to its respective rights holders.",
   "artNotice": "Original AI-generated project artwork, not a screenshot of multiplayer gameplay. No advertising trackers.",
   "skip": "Skip to content",

@@ -6,7 +6,7 @@ SporeMP is an experimental multiplayer mod for original SPORE. Its goal is to co
 
 This repository contains the C++ bridge, coordinator and worker tools, Windows desktop launcher, build tooling, tests and development documentation. Instrumented original SPORE processes execute native gameplay; the coordinator handles identity, transport, ownership and supervision. The project does not replace the game with a separate simulation.
 
-The mod source and development history are hosted in the private [raph559/SporeMP repository](https://github.com/raph559/SporeMP). See [repository workflow](docs/repository.md) for committing and publishing changes.
+The mod source and reviewed development history are hosted in the public [raph559/SporeMP repository](https://github.com/raph559/SporeMP). See [CONTRIBUTING.md](CONTRIBUTING.md) for reports and contributions, [repository workflow](docs/repository.md) for development, and [public evidence policy](docs/public-evidence.md) for the privacy redactions applied to historical reports.
 
 For the project presentation, development news and roadmap, visit the [SporeMP website](https://raph559.github.io/sporemp-site/). Its independent public source repository is [raph559/sporemp-site](https://github.com/raph559/sporemp-site).
 
@@ -57,3 +57,7 @@ python tools/diagnostics/sporemp_diag.py preflight --game-root 'C:\Games\SPORE'
 The old validate/preflight commands remain read-only diagnostics. Normal Play uses the compiled native host. Compatibility qualification covers the exact recorded local GOG GA 3.1.0.29 executable/content/SDK/injector configuration, not every SPORE installation. See [docs/compatibility.md](docs/compatibility.md), [docs/testing.md](docs/testing.md) and [docs/recovery.md](docs/recovery.md).
 
 No EA executables, assets or saves are distributed in source. Operators and players need their own original-game installations. Dependency provenance and redistribution review are tracked in `docs/sources.md`.
+
+## License status
+
+No license has been assigned to SporeMP's own code or artwork yet. Public access to this repository does not by itself grant an open-source license. Third-party components retain their respective terms, documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This source publication includes no compiled game package or EA content.

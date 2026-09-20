@@ -1,0 +1,33 @@
+name: Feature proposal
+description: Propose a focused improvement or clarify a planned capability.
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The full five-stage multiplayer campaign is already the project goal. Check MILESTONES.md and STATUS.md for planned work and current limitations.
+        Describe the concrete behavior you need. This form is public; do not include invitations, credentials or personal files.
+  - type: textarea
+    id: need
+    attributes:
+      label: Problem or use case
+      description: Who needs this and what are they trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Proposed behavior
+      description: Describe a concrete outcome, including how it should preserve original SPORE gameplay where applicable.
+    validations:
+      required: true
+  - type: input
+    id: related_work
+    attributes:
+      label: Related milestone or issue
+      description: Link existing work if you found it; leave blank if unsure.
+  - type: textarea
+    id: validation
+    attributes:
+      label: Acceptance and alternatives
+      description: What observation would show the proposal works? Include alternatives or limits if helpful. A suggested test is not evidence that the feature already exists.

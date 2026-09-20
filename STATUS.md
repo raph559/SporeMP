@@ -19,7 +19,7 @@ M01 is complete under the user's recorded launcher correction. On 2026-09-08 the
 
 ## Source repository publication — 2026-09-21
 
-The mod source and recorded development evidence are now hosted in the private repository https://github.com/raph559/SporeMP. The original two commits are preserved, with integrated M02–M06 and website commits added on `main`. `origin` points to this repository and local `main` tracks `origin/main`. A fresh incremental Release build and all 9 HOST/FIXTURE CTest targets passed before publication; no new native gameplay acceptance is claimed. The current code still has the M07 and later limitations above. See `docs/repository.md` and `evidence/2026-09-21-repository-publication/SESSION.md`.
+The mod source and reviewed development evidence are hosted at https://github.com/raph559/SporeMP. The initial private publication retained the original local history; public preparation redacts personal identifiers across that history and omits historical desktop captures. Private originals remain archived separately. `origin` points to the public repository and local `main` tracks `origin/main`. A fresh incremental Release build and all 9 HOST/FIXTURE CTest targets passed before the initial publication; no new native gameplay acceptance is claimed. Public contributor guidance, issue/PR templates and Windows Python plus website CI checks are included. The current code still has the M07 and later limitations above. See `docs/repository.md`, `docs/public-evidence.md` and `evidence/2026-09-21-repository-publication/SESSION.md`.
 
 ## Public presentation website — 2026-09-21
 
