@@ -1,4 +1,5 @@
-param([Parameter(Mandatory)][string]$Output, [Parameter(Mandatory)][string]$PersonalRoot, [Parameter(Mandatory)][string]$GameRoot)
+param([Parameter(Mandatory)][string]$Output, [Parameter(Mandatory)][string]$PersonalRoot, [Parameter(Mandatory)][string]$GameRoot,
+      [ValidatePattern('^SporeMP-(M01|M04-0[123])$')][string]$ExpectedUser='SporeMP-M01', [string]$PeerProfile='')
 $ErrorActionPreference = 'Stop'
 Add-Type -TypeDefinition @'
 using System;
@@ -21,11 +22,12 @@ foreach ($name in @('UserProfile','ApplicationData','LocalApplicationData','MyDo
     $folders[$name] = [Environment]::GetFolderPath([Environment+SpecialFolder]::$name)
 }
 $paths = @($PersonalRoot, (Join-Path $PersonalRoot 'AppData\Roaming'), (Join-Path $PersonalRoot 'AppData\Roaming\Spore'), (Join-Path $PersonalRoot 'Documents'), (Join-Path $PersonalRoot 'Documents\My Spore Creations'), $GameRoot, (Join-Path $GameRoot 'SporebinEP1\SporeApp.exe'))
+if($PeerProfile){$paths += @($PeerProfile,(Join-Path $PeerProfile 'AppData/Roaming/Spore'),(Join-Path $PeerProfile 'Documents/My Spore Creations'))}
 $access = foreach ($path in $paths) {
     # OPEN_EXISTING requests rights without changing, creating, or truncating anything.
     [ordered]@{path=$path; write_error=[SporeMPAccessProbe]::OpenOnly($path,0x40000000); delete_error=[SporeMPAccessProbe]::OpenOnly($path,0x10000)}
 }
-$isolated = $identity.Name.EndsWith('\SporeMP-M01') -and -not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+$isolated = $identity.Name.EndsWith('\'+$ExpectedUser) -and -not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 foreach ($folder in $folders.Values) { $isolated = $isolated -and $folder.StartsWith($folders.UserProfile, [StringComparison]::OrdinalIgnoreCase) -and -not $folder.StartsWith($PersonalRoot, [StringComparison]::OrdinalIgnoreCase) }
 foreach ($item in $access) { $isolated = $isolated -and $item.write_error -eq 5 -and $item.delete_error -eq 5 }
 $result = [ordered]@{schema_version=1;kind='disposable-os-profile-access-probe';utc=(Get-Date).ToUniversalTime().ToString('o');user=$identity.Name;sid=$identity.User.Value;admin=$principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator);shell_folders=$folders;access_probes=$access;os_isolation_gate=$isolated;native_tests='NOT_RUN'}

@@ -54,7 +54,7 @@
               <Grid.ColumnDefinitions><ColumnDefinition Width="17" /><ColumnDefinition Width="*" /></Grid.ColumnDefinitions>
               <Ellipse Width="6" Height="6" Fill="{Binding StatusBrush}" VerticalAlignment="Top" Margin="0,6,0,0" HorizontalAlignment="Left" />
               <StackPanel Grid.Column="1">
-                <TextBlock Text="{Binding StatusTitle}" FontSize="12" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding LauncherStatusTitle}" FontSize="12" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
                 <TextBlock Text="{Binding GameName}" FontSize="11" Foreground="{StaticResource Muted}" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Margin="0,6,0,0" />
               </StackPanel>
             </Grid>
@@ -108,6 +108,11 @@
                     </Button>
                     <TextBlock Text="{Binding PrimaryHint}" FontSize="11" Foreground="#BBCAE0" Margin="1,9,0,0" />
                   </StackPanel>
+                  <Button Grid.Row="1"
+                          HorizontalAlignment="Right" VerticalAlignment="Bottom" Style="{StaticResource QuietButton}"
+                          Foreground="#ECD2AA" FontSize="12" Click="SettingsClick" AutomationProperties.Name="Display settings">
+                    <TextBlock Text="{Binding Display.Summary, StringFormat='Display: {0}  →'}" />
+                  </Button>
                 </Grid>
               </Border>
             </Border>
@@ -116,11 +121,32 @@
                 <Grid.ColumnDefinitions><ColumnDefinition Width="20" /><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
                 <Ellipse Width="7" Height="7" Fill="{Binding StatusBrush}" VerticalAlignment="Top" Margin="0,6,0,0" HorizontalAlignment="Left" />
                 <StackPanel Grid.Column="1" Margin="0,0,18,0">
-                  <TextBlock Text="{Binding StatusTitle}" FontSize="14" FontWeight="SemiBold" AutomationProperties.LiveSetting="Polite" />
-                  <TextBlock Text="{Binding StatusDetail}" Style="{StaticResource Small}" FontSize="12" Margin="0,4,0,0" />
+                  <TextBlock Text="{Binding LauncherStatusTitle}" FontSize="14" FontWeight="SemiBold" AutomationProperties.LiveSetting="Polite" />
+                  <TextBlock Text="{Binding LauncherStatusDetail}" Style="{StaticResource Small}" FontSize="12" Margin="0,4,0,0" />
                   <ProgressBar Height="2" Margin="0,9,0,1" IsIndeterminate="True" Visibility="{Binding BusyVisibility}" Foreground="{StaticResource Accent}" Background="#2C3B50" />
                 </StackPanel>
                 <Button Grid.Column="2" Content="{Binding DetailsLabel}" Style="{StaticResource QuietButton}" Click="SettingsClick" FontSize="12" VerticalAlignment="Center" />
+              </Grid>
+            </Border>
+            <Border Style="{StaticResource Card}" Padding="22,19" Margin="0,0,0,18" BorderBrush="#36534F">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="250" /></Grid.ColumnDefinitions>
+                <StackPanel Margin="0,0,24,0">
+                  <TextBlock Text="PRIVATE MULTIPLAYER · EXPERIMENTAL" Style="{StaticResource Eyebrow}" Foreground="#96D8C8" />
+                  <TextBlock Text="{Binding Multiplayer.ServerLabel}" FontSize="22" FontWeight="SemiBold" Margin="0,9,0,7" TextTrimming="CharacterEllipsis" />
+                  <TextBlock Text="{Binding Multiplayer.Status}" FontSize="13" Foreground="#96D8C8" AutomationProperties.LiveSetting="Polite" />
+                  <TextBlock Text="{Binding Multiplayer.Detail}" Style="{StaticResource Small}" FontSize="12" Margin="0,6,0,0" />
+                  <TextBlock Text="{Binding JoinAvailabilityDetail}" FontSize="12" Foreground="#F1CB8A" TextWrapping="Wrap" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*" /><ColumnDefinition Width="Auto" /></Grid.ColumnDefinitions>
+                    <PasswordBox x:Name="InvitationBox" MaxLength="2048" PasswordChanged="InvitationChanged" IsEnabled="{Binding Multiplayer.CanEdit}" Padding="10,9" FontSize="12" Background="#0D1725" Foreground="#C5D1E2" BorderBrush="#3D526B" AutomationProperties.Name="Private server invitation" ToolTip="Paste the complete private invitation from your host. It is kept only while this launcher is open." />
+                    <Button Grid.Column="1" Content="Paste" Click="PasteInvitationClick" IsEnabled="{Binding Multiplayer.CanEdit}" Margin="6,0,0,0" Padding="10,8" FontSize="12" ToolTip="Paste an invitation from the clipboard" />
+                  </Grid>
+                  <Button x:Name="JoinButton" Content="{Binding Multiplayer.ButtonLabel}" Click="JoinClick" IsEnabled="{Binding CanJoin}" Margin="0,9,0,0" Padding="16,11" Background="#294D45" BorderBrush="#4D7D6E" Foreground="#DEF6E9" AutomationProperties.Name="{Binding Multiplayer.ButtonLabel}" />
+                  <TextBlock Text="Invite remembered until you close the launcher." FontSize="10" Foreground="{StaticResource Muted}" Margin="0,7,0,0" TextWrapping="Wrap" />
+                </StackPanel>
               </Grid>
             </Border>
             <Grid>
@@ -143,7 +169,7 @@
                 <StackPanel>
                   <TextBlock Text="THE JOURNEY AHEAD" Style="{StaticResource Eyebrow}" Foreground="#96D8C8" />
                   <TextBlock Text="A universe worth sharing." FontSize="20" FontWeight="SemiBold" Margin="0,10,0,7" />
-                  <TextBlock Text="Multiplayer is still in development. For now, jump into your installed SPORE and keep evolving." Style="{StaticResource Small}" />
+                  <TextBlock Text="Private multiplayer is taking its first steps. The full journey from Cell to Space is still in development." Style="{StaticResource Small}" />
                   <TextBlock Text="Your game. Your existing saves." FontSize="11" Foreground="#96D8C8" Margin="0,15,0,0" />
                 </StackPanel>
               </Border>
@@ -234,6 +260,39 @@
           <StackPanel Margin="30,19,30,24">
             <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold" />
             <TextBlock Text="Your game, just the way you left it." Style="{StaticResource Small}" Margin="0,7,0,25" />
+            <Border Style="{StaticResource Card}" Margin="0,0,0,18">
+              <StackPanel>
+                <TextBlock Text="MULTIPLAYER CONNECTION" Style="{StaticResource Eyebrow}" />
+                <TextBlock Text="{Binding Multiplayer.Status}" FontSize="22" FontWeight="SemiBold" Margin="0,10,0,9" />
+                <TextBlock Text="Invitations are private: each one identifies a player and the server certificate to trust. Rejoin uses the same invitation. Full campaign progression and Internet hosting setup are still in development." Style="{StaticResource Small}" />
+                <TextBlock Text="{Binding Multiplayer.TechnicalDetail}" Style="{StaticResource Small}" TextWrapping="Wrap" Margin="0,12,0,0" />
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource Card}" Margin="0,0,0,18" DataContext="{Binding Display}">
+              <StackPanel>
+                <TextBlock Text="DISPLAY" Style="{StaticResource Eyebrow}" />
+                <TextBlock Text="Start with the right view." FontSize="22" FontWeight="SemiBold" Margin="0,10,0,6" />
+                <TextBlock Text="Set how SPORE opens on your primary display." Style="{StaticResource Small}" Margin="0,0,0,19" />
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="0.8*" /><ColumnDefinition Width="18" /><ColumnDefinition Width="1.2*" /></Grid.ColumnDefinitions>
+                  <StackPanel>
+                    <Label Content="Display _mode" Target="{Binding ElementName=DisplayModeBox}" Foreground="{StaticResource Muted}" Padding="0,0,0,8" FontSize="12" />
+                    <ComboBox x:Name="DisplayModeBox" ItemsSource="{Binding Modes}" DisplayMemberPath="Label" SelectedItem="{Binding SelectedMode}"
+                              IsEnabled="{Binding CanEdit}" AutomationProperties.Name="Display mode" />
+                  </StackPanel>
+                  <StackPanel Grid.Column="2">
+                    <Label Content="_Resolution" Target="{Binding ElementName=ResolutionBox}" Foreground="{StaticResource Muted}" Padding="0,0,0,8" FontSize="12" />
+                    <ComboBox x:Name="ResolutionBox" ItemsSource="{Binding Resolutions}" DisplayMemberPath="Label" SelectedItem="{Binding SelectedResolution}"
+                              IsEnabled="{Binding CanChooseResolution}" AutomationProperties.Name="Game resolution" />
+                  </StackPanel>
+                </Grid>
+                <WrapPanel Margin="0,18,0,0">
+                  <Button x:Name="SaveDisplayButton" Content="{Binding SaveLabel}" IsEnabled="{Binding CanSave}" Click="SaveDisplayClick" Margin="0,0,10,0" />
+                  <Button Content="Refresh display" IsEnabled="{Binding CanReload}" Click="ReloadDisplayClick" Style="{StaticResource QuietButton}" />
+                </WrapPanel>
+                <TextBlock Text="{Binding Message}" Style="{StaticResource Small}" FontSize="12" Foreground="#96D8C8" Margin="0,12,0,0" AutomationProperties.LiveSetting="Polite" />
+              </StackPanel>
+            </Border>
             <Border Style="{StaticResource Card}">
               <StackPanel>
                 <TextBlock Text="GAME INSTALLATION" Style="{StaticResource Eyebrow}" />
@@ -277,6 +336,23 @@
                 </StackPanel>
               </Border>
             </Grid>
+            <Border x:Name="WorkerCard" Style="{StaticResource Card}" Margin="0,0,0,18" DataContext="{Binding Workers}">
+              <StackPanel>
+                <TextBlock Text="ISOLATED WORKERS · EXPERIMENTAL" Style="{StaticResource Eyebrow}" />
+                <TextBlock Text="Run a local worker." FontSize="22" FontWeight="SemiBold" Margin="0,10,0,6" />
+                <TextBlock Text="{Binding DesktopRequirement}" Style="{StaticResource Small}" Margin="0,0,0,15" />
+                <ComboBox x:Name="WorkerBox" ItemsSource="{Binding Workers}" SelectedItem="{Binding Selected}" DisplayMemberPath="Label"
+                          IsEnabled="{Binding CanSelect}" AutomationProperties.Name="Isolated worker" />
+                <TextBlock Text="{Binding Status}" FontSize="16" FontWeight="SemiBold" Margin="0,15,0,5" AutomationProperties.LiveSetting="Polite" />
+                <TextBlock Text="{Binding Detail}" Style="{StaticResource Small}" />
+                <WrapPanel Margin="0,17,0,0">
+                  <Button x:Name="StartWorkerButton" Content="Start worker" Click="StartWorkerClick" IsEnabled="{Binding CanStart}" Margin="0,0,10,0" />
+                  <Button x:Name="StopWorkerButton" Content="Stop worker" Click="StopWorkerClick" IsEnabled="{Binding CanStop}" Margin="0,0,10,0" Style="{StaticResource QuietButton}" />
+                  <Button Content="Refresh status" Click="RefreshWorkersClick" IsEnabled="{Binding CanRefresh}" Style="{StaticResource QuietButton}" />
+                </WrapPanel>
+                <TextBlock Text="{Binding Message}" Style="{StaticResource Small}" FontSize="12" Margin="0,12,0,0" />
+              </StackPanel>
+            </Border>
             <Border Style="{StaticResource Card}" Padding="23,18">
               <Expander Foreground="{StaticResource Text}" ExpandDirection="Down" HorizontalContentAlignment="Stretch">
                 <Expander.Header>

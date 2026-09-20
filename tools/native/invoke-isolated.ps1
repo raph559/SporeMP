@@ -3,9 +3,22 @@ param(
     [ValidateSet('Prepare','Probe','NativeProbe','Launch')][string]$Action = 'Probe',
     [string]$GameRoot = 'C:\Games\SPORE',
     [string]$RunName = ('run-' + (Get-Date -Format 'yyyyMMdd-HHmmss')),
-    [ValidateSet('Release','Debug')][string]$Configuration = 'Release'
+    [ValidateSet('Release','Debug')][string]$Configuration = 'Release',
+    [ValidateSet('Off','Observe','Actors','Worker')][string]$ObservationMode = 'Off',
+    [ValidateSet('Game','Fullscreen','Windowed')][string]$DisplayMode = 'Game',
+    [string]$Resolution = ''
 )
 $ErrorActionPreference = 'Stop'
+# Validate before provisioning, probing, or creating a native process.
+if ($DisplayMode -eq 'Game') {
+    if ($Resolution) { throw 'Resolution requires Fullscreen or Windowed display mode.' }
+} else {
+    if ($Resolution -cnotmatch '^([1-9][0-9]{2,3})x([1-9][0-9]{2,3})$' -or
+        [int]$Matches[1] -lt 640 -or [int]$Matches[1] -gt 8192 -or
+        [int]$Matches[2] -lt 480 -or [int]$Matches[2] -gt 8192) {
+        throw 'Resolution must be WIDTHxHEIGHT, from 640x480 through 8192x8192.'
+    }
+}
 $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
 $personalRoot = [Environment]::GetFolderPath('UserProfile')
 $stateRoot = Join-Path $repoRoot 'local\native-account'
@@ -106,8 +119,15 @@ if ($Action -eq 'Launch') {
 $nativeInfo = [Diagnostics.ProcessStartInfo]::new((Join-Path $payload 'SporeMP.NativeHost.exe'))
 $nativeInfo.UseShellExecute=$false; $nativeInfo.CreateNoWindow=$true; $nativeInfo.LoadUserProfile=$true
 $nativeInfo.UserName=$accountName; $nativeInfo.Domain=$env:COMPUTERNAME; $nativeInfo.Password=$credential.Password; $nativeInfo.WorkingDirectory=$payload
-$mode = if ($Action -eq 'Launch') { '--launch' } else { '--probe' }
+$mode = if ($Action -eq 'Launch' -and $ObservationMode -eq 'Worker') { '--worker' } elseif ($Action -eq 'Launch' -and $ObservationMode -eq 'Actors') { '--actors' } elseif ($Action -eq 'Launch' -and $ObservationMode -eq 'Observe') { '--observe' } elseif ($Action -eq 'Launch') { '--launch' } else { '--probe' }
 foreach ($arg in @($mode,$GameRoot,$payload,$runRoot,$state.sid,$personalRoot)) { $nativeInfo.ArgumentList.Add($arg) }
+if ($mode -eq '--worker') {
+    $nativeInfo.ArgumentList.Add([guid]::NewGuid().ToString('N'))
+    $nativeInfo.ArgumentList.Add('private')
+}
+if ($DisplayMode -ne 'Game') {
+    foreach ($arg in @('--display-mode',$DisplayMode.ToLowerInvariant(),'--resolution',$Resolution)) { $nativeInfo.ArgumentList.Add($arg) }
+}
 $nativeProcess = [Diagnostics.Process]::Start($nativeInfo)
 Write-Host "Native host PID: $($nativeProcess.Id); mode: $mode"
 $nativeProcess.WaitForExit()

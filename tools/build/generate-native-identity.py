@@ -23,7 +23,8 @@ for name, path in [
     ('mLibs/SporeMP.Bridge.dll', repo / 'build/win32' / configuration / 'SporeMP.Bridge.dll')]:
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     lines.append('{' + literal(name) + ',"' + digest + '"},')
-lines += ['};']
+lines += ['};', 'inline constexpr const char* network_content_sha256 = "' + hashlib.sha256((repo / 'config/compatibility.candidate.json').read_bytes()).hexdigest() + '";',
+          'inline constexpr const char* network_executable_sha256 = "' + candidate['executable']['sha256'] + '";']
 output.parent.mkdir(parents=True, exist_ok=True)
 text = '\n'.join(lines) + '\n'
 if not output.exists() or output.read_text() != text:

@@ -1,7 +1,8 @@
 """Player launcher operations: automatic discovery and guarded normal-account startup.
 
 Reports are exclusive-create, local, and explicitly retain the native evidence gate.
-The UI sends argument arrays, never shell commands. No network upload is provided.
+The UI sends argument arrays, never shell commands. Explicit Join connects only
+to the server named in the invitation. Diagnostic exports stay local.
 """
 from __future__ import annotations
 
@@ -25,6 +26,15 @@ spec.loader.exec_module(diag)
 spec = importlib.util.spec_from_file_location("game_discovery", REPO / "tools/launcher/game_discovery.py")
 discovery = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(discovery)
+spec = importlib.util.spec_from_file_location("display_settings", REPO / "tools/launcher/display_settings.py")
+display = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(display)
+spec = importlib.util.spec_from_file_location("worker_manager", REPO / "tools/launcher/worker_manager.py")
+workers = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(workers)
+spec = importlib.util.spec_from_file_location("multiplayer_session", REPO / "tools/launcher/multiplayer_session.py")
+multiplayer = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(multiplayer)
 
 
 def load_settings():
@@ -41,6 +51,32 @@ def save_settings(settings):
     temporary = path.with_name("settings-" + uuid4().hex + ".json")
     diag.write_json(temporary, {**settings, "schema_version": 1})
     os.replace(temporary, path)
+
+
+def display_options():
+    modes = display.display_modes()
+    try:
+        selected = display.preferences(load_settings().get("display"))
+        warning = ""
+        try:
+            display.resolve(selected, modes)
+        except ValueError as error:
+            warning = str(error)
+    except ValueError as error:
+        selected = display.preferences()
+        warning = str(error)
+    return {"display": selected, **modes, "warning": warning}
+
+
+def save_display(mode, resolution):
+    selected = display.preferences({"mode": mode, "resolution": resolution})
+    modes = display.display_modes()
+    display.resolve(selected, modes)
+    with preparation_lock():
+        settings = load_settings()
+        settings["display"] = selected
+        save_settings(settings)
+    return {"display": selected, **modes, "warning": ""}
 
 
 @contextmanager
@@ -131,6 +167,7 @@ def native_availability():
         REPO / "build/injector/Release/ModAPI.DLLInjector.dll",
     ]
     return {"available": all(diag.no_reparse(p).is_file() for p in required),
+            "join_available": all(diag.no_reparse(p).is_file() for p in required) and diag.no_reparse(REPO / "build/win32/Release/SporeMP.Coordinator.exe").is_file(),
             "mode": "current-user", "multiplayer": False,
             "note": "Play uses the player's Windows account and existing SPORE saves. Compiled fingerprints are checked before injection."}
 
@@ -170,7 +207,8 @@ def prepare(game_root=None, progress=None):
         if not check["candidate_match"]:
             return {**base, "state": "unsupported_installation", "message": "This installation does not match the current development build."}, 20
         if diag.game_running():
-            return {**base, "state": "game_running", "message": "SPORE is already running."}, 24
+            if not workers.only_registered_workers_running():
+                return {**base, "state": "game_running", "message": "SPORE is already running."}, 24
         base["native"] = native_availability()
         # Automatic preparation cannot manufacture the missing native acceptance evidence.
         return {**base, "state": "development_build", "message": "SPORE is ready. Multiplayer is still in development."}, 22
@@ -201,11 +239,13 @@ def native_launch(game_root, progress=None):
     prepared, code = prepare(game_root, progress)
     if code != 22 or not prepared.get("native", {}).get("available"):
         return {**prepared, "error": "This installation is not ready to launch."}, code if code != 22 else 22
+    # Resolve Desktop again for every Play, including monitor changes since saving.
+    selected_display = display.resolve(load_settings().get("display"))
     run_name = "player-" + uuid4().hex[:16]
     run_root = diag.no_reparse(REPO / "local/launcher/native-runs" / run_name)
     run_root.mkdir(parents=True)
     payload = stage_player_payload()
-    command = [str(payload / "SporeMP.NativeHost.exe"), "--play", prepared["installation"]["root"], str(payload), str(run_root)]
+    command = [str(payload / "SporeMP.NativeHost.exe"), "--play", prepared["installation"]["root"], str(payload), str(run_root), *selected_display["arguments"]]
     progress("native", "Starting SPORE…")
     completed = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", errors="replace")
     events = []
@@ -223,11 +263,105 @@ def native_launch(game_root, progress=None):
     clean = clean and [x["event"] for x in lifecycle if x["event"] in ("initialize", "dispose")] == ["initialize", "dispose"]
     result = {"mode": "current-user", "profile_redirection": False, "multiplayer": False, "run_name": run_name,
               "evidence_directory": str(run_root), "launched_processes": len(started), "clean_lifecycle": bool(clean),
-              "native_host_exit": completed.returncode, "lifecycle": lifecycle}
+              "native_host_exit": completed.returncode, "lifecycle": lifecycle, "display": selected_display}
     if not clean:
         result["error"] = next((x["reason"] for x in reversed(events) if x["event"] == "rejected"),
                                completed.stderr.strip() or "SPORE did not complete a normal initialization and shutdown. See the local native evidence.")
     return result, 0 if clean else (completed.returncode or 31)
+
+
+def native_join(game_root, invitation, progress=None):
+    progress = progress or (lambda phase, message: None)
+    config = multiplayer.parse_invitation(invitation)
+    prepared, code = prepare(game_root, progress)
+    if code != 22 or not prepared.get("native", {}).get("available"):
+        return {"error": "Your SPORE installation needs attention before joining.", "launched_processes": 0}, code
+    coordinator = diag.no_reparse(REPO / "build/win32/Release/SporeMP.Coordinator.exe")
+    if not coordinator.is_file():
+        return {"error": "The multiplayer component is missing from this development build.", "launched_processes": 0}, 22
+    folders = diag.known_folders()
+    if folders["errors"]:
+        return {"error": "Windows could not locate your SPORE saves for this multiplayer session.", "launched_processes": 0}, 32
+    fixture = diag.no_reparse(Path(folders["shell_folders"]["appdata"]) / "Spore/Games/Game0/Satiria.spo")
+    if not fixture.is_file():
+        return {"error": "This experimental server requires the Satiria Creature world in your existing SPORE saves. No save was replaced.", "launched_processes": 0}, 32
+    fixture_sha256 = diag.fingerprint(fixture)["sha256"]
+    selected_display = display.resolve(load_settings().get("display"))
+    payload = stage_player_payload()
+    candidate_path = diag.no_reparse(REPO / "config/compatibility.candidate.json")
+    candidate = json.loads(candidate_path.read_text(encoding="utf-8"))
+    config.update(role="player", build_sha256=diag.fingerprint(payload / "mLibs/SporeMP.Bridge.dll")["sha256"],
+                  executable_sha256=candidate["executable"]["sha256"],
+                  content_sha256=diag.fingerprint(candidate_path)["sha256"], fixture_sha256=fixture_sha256)
+    run_name = "join-" + uuid4().hex[:16]
+    run_root = diag.no_reparse(REPO / "local/launcher/native-runs" / run_name)
+    run_root.mkdir(parents=True)
+    with multiplayer.session_file(diag.no_reparse(REPO / "local/launcher/sessions"), config) as session_path:
+        progress("authenticate", "Checking the server and your invitation…")
+        try:
+            probe = subprocess.run([str(coordinator), "--client-probe", "--config", str(session_path)],
+                                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=25)
+            if len(probe.stdout) > 16384:
+                raise ValueError("The server check returned an invalid result.")
+            checked = json.loads(probe.stdout)
+            if not isinstance(checked, dict):
+                raise ValueError("The server check returned an invalid result.")
+            if probe.returncode != 0 or checked.get("authenticated") is not True:
+                # Coordinator's fixed protocol error is helpful in Settings;
+                # scrub credentials defensively before report/export storage.
+                reason = str(checked.get("error", "The server did not accept this invitation."))[:1024]
+                reason = reason.replace(config["credential"], "[private]").replace(invitation, "[private invitation]")
+                return {"error": reason, "authenticated": False, "launched_processes": 0}, 32
+        except subprocess.TimeoutExpired:
+            return {"error": "The server did not answer in time. Check that it is running and reachable.", "authenticated": False, "launched_processes": 0}, 32
+        except (ValueError, TypeError):
+            return {"error": "The server check returned an invalid result. Update this development build.", "authenticated": False, "launched_processes": 0}, 32
+        command = [str(payload / "SporeMP.NativeHost.exe"), "--join", prepared["installation"]["root"],
+                   str(payload), str(run_root), str(session_path), *selected_display["arguments"]]
+        progress("native", "Starting your shared scene in SPORE…")
+        with subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+                              encoding="utf-8", errors="replace") as process:
+            previous = None
+            connected = False
+            while True:
+                status = multiplayer.connection_state(run_root / "network-status.json")
+                if status and status != previous:
+                    previous = status
+                    connected = connected or status == "connected"
+                    progress(status, {"connecting": "Connecting your shared scene…", "connected": "Connected to your shared scene",
+                                      "disconnected": "Connection lost. Waiting for the server…", "error": "The connection needs attention."}[status])
+                try:
+                    _, error_output = process.communicate(timeout=.25)
+                    break
+                except subprocess.TimeoutExpired:
+                    continue
+            # The final atomic write can race process exit between two polls.
+            connected = connected or multiplayer.connection_state(run_root / "network-status.json") == "connected"
+            exit_code = process.returncode
+    # Credentials are already removed before reading, saving or exporting reports.
+    events = []
+    host_log = run_root / "native-host.jsonl"
+    if host_log.exists():
+        events = [json.loads(line) for line in host_log.read_text(encoding="utf-8").splitlines() if line.strip()]
+    started = [event for event in events if event.get("event") == "created_suspended"]
+    exited = [event for event in events if event.get("event") == "game_exited"]
+    lifecycle = []
+    if len(started) == 1:
+        trace = run_root / ("bridge-" + str(started[0]["game_pid"]) + ".jsonl")
+        if trace.exists():
+            lifecycle = [json.loads(line) for line in trace.read_text(encoding="utf-8").splitlines() if line.strip()]
+    clean = exit_code == 0 and len(exited) == 1 and exited[0]["exit_code"] == 0 and [
+        event["event"] for event in lifecycle if event.get("event") in ("initialize", "dispose")] == ["initialize", "dispose"]
+    result = {"mode": "current-user", "profile_redirection": False, "multiplayer": True,
+              "authenticated": True, "connected_baseline_observed": connected, "run_name": run_name,
+              "evidence_directory": str(run_root), "launched_processes": len(started), "clean_lifecycle": clean,
+              "native_host_exit": exit_code, "display": selected_display}
+    if not clean or not connected:
+        reason = next((event["reason"] for event in reversed(events) if event.get("event") == "rejected"),
+                      "The shared scene did not become ready. The session result is recorded in Settings." if not connected else
+                      "SPORE did not close normally. The session result is recorded in Settings.")
+        result["error"] = str(reason).replace(config["credential"], "[private]").replace(invitation, "[private invitation]")[:1024]
+    return result, 0 if clean and connected else exit_code or 31
 
 
 def new_run():
@@ -288,14 +422,26 @@ def export_report(report_path: Path):
             "sha256": diag.fingerprint(destination)["sha256"], "uploaded": False}, 0
 
 
-def perform(action: str, game_root: Path | None = None, report_path: Path | None = None, progress=None):
+def perform(action: str, game_root: Path | None = None, report_path: Path | None = None, progress=None,
+            display_mode=None, resolution=None, worker_id=None, invitation=None):
     run = new_run()
     code = 2
     try:
         if action == "prepare":
             result, code = prepare(game_root, progress)
+        elif action in ("worker_list", "worker_start", "worker_stop"):
+            if action == "worker_list": result = workers.worker_list()
+            elif action == "worker_start": result = workers.start(worker_id)
+            else: result = workers.stop(worker_id)
+            code = 0
+        elif action == "display_settings":
+            result, code = display_options(), 0
+        elif action == "save_display":
+            result, code = save_display(display_mode, resolution), 0
         elif action == "native_launch":
             result, code = native_launch(game_root, progress)
+        elif action == "native_join":
+            result, code = native_join(game_root, invitation, progress)
         elif action == "check":
             if game_root is None:
                 raise ValueError("Select the original game installation first")
@@ -315,8 +461,8 @@ def perform(action: str, game_root: Path | None = None, report_path: Path | None
         result = {"error": str(error), "launch_allowed": False, "launched_processes": 0}
     envelope = {"schema_version": 1, "kind": "sporemp-launcher-operation", "operation": action,
                 "utc": diag.utc_now(), "exit_code": code, "report_path": str(run / "result.json"),
-                "native_tests": ("LIFECYCLE_PASSED" if result.get("clean_lifecycle") else "FAILED")
-                    if action == "native_launch" and result.get("launched_processes", 0) else "NOT_RUN",
+                "native_tests": ("LIFECYCLE_PASSED" if result.get("clean_lifecycle") and code == 0 else "FAILED")
+                    if action in ("native_launch", "native_join") and result.get("launched_processes", 0) else "NOT_RUN",
                 "result": result}
     diag.write_json(run / "result.json", envelope)
     return envelope, code
@@ -324,13 +470,22 @@ def perform(action: str, game_root: Path | None = None, report_path: Path | None
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("action", choices=("prepare", "check", "backup", "workspace", "export", "native_launch"))
+    parser.add_argument("action", choices=("prepare", "check", "backup", "workspace", "export", "native_launch", "native_join", "display_settings", "save_display", "worker_list", "worker_start", "worker_stop"))
+    parser.add_argument("--worker-id", choices=("01", "02", "03"))
     parser.add_argument("--game-root", type=Path)
     parser.add_argument("--report", type=Path)
     parser.add_argument("--progress", action="store_true")
+    parser.add_argument("--display-mode", choices=("game", "fullscreen", "windowed"))
+    parser.add_argument("--resolution")
     args = parser.parse_args()
     try:
-        result, code = perform(args.action, args.game_root, args.report, emit_progress if args.progress else None)
+        if args.action != "save_display" and (args.display_mode is not None or args.resolution is not None):
+            parser.error("Display choices are only accepted by save_display")
+        if (args.action in ("worker_start", "worker_stop")) != (args.worker_id is not None):
+            parser.error("Worker selection is required only for worker start/stop")
+        invitation = sys.stdin.read(multiplayer.MAX_INVITATION + 1) if args.action == "native_join" else None
+        result, code = perform(args.action, args.game_root, args.report, emit_progress if args.progress else None,
+                               args.display_mode, args.resolution, args.worker_id, invitation)
         print(json.dumps(result, ensure_ascii=True))
         return code
     except (OSError, ValueError) as error:

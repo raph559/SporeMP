@@ -1,0 +1,69 @@
+{
+  "milestone": "M03",
+  "status": "VERIFIED",
+  "scope": "Multiple actors using original gameplay functions in the recorded original Creature fixture",
+  "native_run": "award-01",
+  "bridge_version": "0.0.12",
+  "criteria": [
+    {
+      "clause": "Distinct commands to A and B",
+      "status": "VERIFIED",
+      "evidence": "award-01 commands 1 and 2; retained September 9 probe04 distinct movement and jumps"
+    },
+    {
+      "clause": "Native NPC can interact with either actor",
+      "status": "VERIFIED",
+      "evidence": "award-01 six B hits/seven NPC replies; one A hit/two NPC replies plus five native allied hits"
+    },
+    {
+      "clause": "Damage, action attribution and tested rewards assigned correctly",
+      "status": "VERIFIED",
+      "evidence": "native-summary.json: B award 8.75 with A zero, then A assisted award 8.75 with B unchanged; native A item unlock recorded separately"
+    },
+    {
+      "clause": "A command does not spend B resources",
+      "status": "VERIFIED",
+      "scope": "Implemented movement/jump/Bite command paths and observed actor-local cooldown/zero-energy calls",
+      "evidence": "Retained probe04 cooldown attribution; award-01 no B energy call inside A command and no B balance change from A award",
+      "limitation": "Nonzero-cost abilities and stage economies NOT RUN"
+    },
+    {
+      "clause": "Original native processing causes outcomes",
+      "status": "VERIFIED",
+      "evidence": "21 correlated original strike/Animal/base-damage paths; original award calculation/application/counter, no combat health setter"
+    },
+    {
+      "clause": "At least one asynchronous action completes with correct identity",
+      "status": "VERIFIED",
+      "evidence": "Retained probe08 B6 accepted jump lands after 1.0027685 seconds and 70 AI ticks; current delayed B strike and native B reward dequeue preserve owner 2"
+    },
+    {
+      "clause": "Conditional server-only avatar does not steal outcomes or control remote area activation",
+      "status": "NOT_APPLICABLE_TO_CURRENT_HARNESS",
+      "evidence": "No server-only avatar or unattended worker is introduced. A is the actual owner-1 avatar; B is separately owned.",
+      "prerequisite": "M04 must qualify this before choosing a worker architecture that requires a server-only avatar; area separation remains M11"
+    },
+    {
+      "clause": "Exact unsupported behavior recorded",
+      "status": "VERIFIED",
+      "evidence": "SESSION.md and native-summary.json enumerate shared quest/tutorial/species context, brain boundary, world-update limit, costs, input cancellation and persistence limits"
+    }
+  ],
+  "retained_evidence": [
+    "../2026-09-09-m03-actors/SESSION.md",
+    "../2026-09-12-m03-decisions/SESSION.md",
+    "../2026-09-12-m03-rewards/SESSION.md"
+  ],
+  "limits": [
+    "Same-species brain-level-zero Creature fixture only",
+    "Shared first-victory tutorial and hunt counter 2/3; independent quest/part entitlement is not qualified",
+    "A native part unlock 53 to 54; B remains zero. This is not B part-unlock coverage",
+    "Native B display queue processed; brain threshold deliberately retains queued work pending M11 adaptation",
+    "Server-only avatar and camera-dependent area activation require M04/M11 evidence",
+    "No network clients, independent species campaign, persistence or worker acceptance"
+  ],
+  "next_milestone": "M04",
+  "full_global_multiplayer": "NOT_IMPLEMENTED",
+  "full_creature_campaign": "M11 NOT RUN",
+  "disposable_fixture_note": "GGEUserData.dat changed despite native Dont Save; creations and other Games files unchanged"
+}

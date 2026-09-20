@@ -1,4 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0-windows</TargetFramework><RuntimeFrameworkVersion>8.0.24</RuntimeFrameworkVersion><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings><TreatWarningsAsErrors>true</TreatWarningsAsErrors></PropertyGroup>
-  <ItemGroup><Compile Include="../../src/launcher/LauncherClient.cs" Link="LauncherClient.cs" /></ItemGroup>
+  <ItemGroup><Compile Include="../../src/launcher/LauncherClient.cs" Link="LauncherClient.cs" /><Compile Include="../../src/launcher/DisplaySettingsModel.cs" Link="DisplaySettingsModel.cs" /><Compile Include="../../src/launcher/WorkerSettingsModel.cs" Link="WorkerSettingsModel.cs" /><Compile Include="../../src/launcher/MultiplayerSessionModel.cs" Link="MultiplayerSessionModel.cs" /></ItemGroup>
 </Project>

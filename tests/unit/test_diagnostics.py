@@ -53,6 +53,23 @@ class DiagnosticsTest(unittest.TestCase):
         result = diag.compare_candidate(self.game, self.candidate)
         self.assertIn("EXECUTABLE_FINGERPRINT_MISMATCH", result["issues"])
 
+    def test_sdk_runtime_log_is_inventoried_without_blocking_next_launch(self):
+        log = self.game / "SporebinEP1" / "spore_log.txt"
+        log.write_text("SDK loaded; shutdown")
+        self.assertTrue(diag.compare_candidate(self.game, self.candidate)["candidate_match"])
+        self.assertEqual(diag.game_inventory(self.game)["runtime_artifacts"][0]["sha256"], diag.fingerprint(log)["sha256"])
+        log.write_text("SDK loaded again")
+        self.assertTrue(diag.compare_candidate(self.game, self.candidate)["candidate_match"])
+        (log.parent / "spore_log.dll").write_bytes(b"unapproved binary")
+        self.assertFalse(diag.compare_candidate(self.game, self.candidate)["candidate_match"])
+
+    def test_runtime_log_name_does_not_exempt_directories_or_other_locations(self):
+        (self.game / "Data" / "spore_log.txt").write_text("unknown content")
+        self.assertFalse(diag.compare_candidate(self.game, self.candidate)["candidate_match"])
+        (self.game / "Data" / "spore_log.txt").unlink()
+        (self.game / "SporebinEP1" / "spore_log.txt").mkdir()
+        self.assertFalse(diag.compare_candidate(self.game, self.candidate)["candidate_match"])
+
     def test_wrong_architecture_rejected_even_if_manifest_matches(self):
         synthetic_pe(self.game / diag.EXE_RELATIVE, 0x8664, 0x20B)
         report = diag.compare_candidate(self.game, diag.game_inventory(self.game))

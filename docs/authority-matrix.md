@@ -1,6 +1,6 @@
 # Authority matrix
 
-Status: required design, native implementation **TODO**. An ownership lease identifies resource ID, worker ID, universe/session epoch and monotonically increasing generation. The coordinator rejects old generations before committing or forwarding outcomes. A lease does not establish that native background mutation has been suppressed; that requires traces in M04/M05/M10.
+Status: required global design with **bounded native implementation in M03–M05**. M05 is VERIFIED for the recorded living Creature fixture under its [four original acceptance clauses](../evidence/2026-09-14-m05-ability/acceptance.md); whole-domain/global authority separation is not qualified. The planned global ownership lease identifies resource ID, worker ID, universe/session epoch and monotonically increasing generation. The coordinator must reject old generations before committing or forwarding outcomes. A lease does not establish that native background mutation has been suppressed; that requires traces in M04/M05/M10.
 
 | Mutable domain | Gameplay producer | Coordinator responsibility | Client/other-worker view | Required evidence |
 |---|---|---|---|---|
@@ -19,4 +19,19 @@ Status: required design, native implementation **TODO**. An ownership lease iden
 
 Native AI stays active for NPC tribes/civilizations/creatures as appropriate. Human ownership may change command authority, not native formulas. Changing avatar accessors temporarily does not prove correct actor identity for asynchronous actions, rewards, timers, UI or saving.
 
-All rows remain unverified. `native-behavior-baseline.md` maps mechanic coverage to native entry-point research. `multiplayer-policy.md` identifies choices introduced specifically for multiplayer.
+No complete global domain row is verified. `native-behavior-baseline.md` maps mechanic coverage to native entry-point research. `multiplayer-policy.md` identifies choices introduced specifically for multiplayer.
+
+## Current M05 implementation boundary
+
+| Domain in the recorded Creature fixture | Authority process | Armed replica process | Current evidence |
+|---|---|---|---|
+| Living A health, energy, hunger and A DNA scalar | Original combat and native state capture | Absolute values applied to existing A; pure DNA setter | Native DNA 0 → 8.75 once, no second award on fresh baseline, duplicate/disconnect/publication rejection. |
+| NPC/avatar AI, target, selector, ability, strike and damage | Original simulator | Gameplay entries denied; main-avatar selection admitted as presentation only | Live challenges and natural AI denials; own/foreign-species UI works. Actual bite remains active after arming and cleans up. Charge/projectile parity remains unqualified. |
+| Hunger/healing, cooldown, ability-use and herd/scene timers | Original native timers | Separable mutation callbacks denied; mixed presentation routines retained | Long disconnected native runs; .25 adds no-attack timer slices. Charm/no-attack temporary probes during original Update are explicitly field fixtures, not real casts. |
+| Part unlock/lock, identified grant actions, death/revival/growth/brain/removal | Original simulation | Terminal mutations and seven known part-action IDs denied | Live native item/lifecycle calls, counts/points/fingerprint comparisons; .20 action dispatch and pending-world checks. Natural consumption and every progression write remain unqualified. |
+| Creature creation and population | Original factory and native scheduling | Deny creature factory plus identified parent/herd/event paths | Direct creation returns null with unchanged noun count; corrected parent/timer boundary avoids observed .18 crash. Other factory callers remain an audit boundary. |
+| Save, load and outbound publication | Native owner may save/load/publish | Save/persistence-message and filename Load guards; actual ordinary Play cut before UI hiding; role never publishes | Actual .22–.24 Save and .29 saved-world Play denial with unchanged closed hashes and usable Cancel. Other unlisted load/cache routes remain unqualified. |
+| Binding/destruction/scene lifecycle | Original objects and worker generation | Existing-object binding, tombstones and baseline/entity fences | Native A/B adoption creates zero nouns; actual scene exit invalidates; stale/disconnected apply, publication and IPC load denied. Native reuse, death/respawn and network lifecycle remain M06/M07 work. |
+| Camera, movement, animation, audio, UI and interpolation | Original engine | Original presentation paths; narrow selection and mutation slices; no prediction/motion transport | Inspected movement/jump/selection, actual foreign-species social UI, active-bite cleanup and usable menu denial. Descriptive .23 frame/audio capture retained; perceptual listening and full effects parity unqualified. |
+
+The developer bootstrap is neither an authoritative baseline nor a safe player-facing connected mode. It loads the sealed fixture before arming and never reopens after disconnect. [M05 bindings, lifecycle and native evidence](m05-replicas.md) describes the exact coverage and next experiment. The current private IPC adapter is not global authority leasing, network authentication or multiplayer gameplay.

@@ -110,10 +110,19 @@ def tree_manifest(root: Path):
 
 def game_inventory(root: Path):
     root = no_reparse(root)
+    content = {folder: tree_manifest(root / folder) for folder in GAME_ROOTS}
+    # The pinned SDK writes this exact diagnostic text file on normal Play.
+    # It is not executable/content input. Keep its fingerprint in the inventory
+    # while excluding it from immutable-content equality. Directories/reparse
+    # points and every other file still pass through the ordinary strict guard.
+    runtime_artifacts = [entry for entry in content['SporebinEP1']['files']
+                         if entry['path'].casefold() == 'spore_log.txt']
+    content['SporebinEP1']['files'] = [entry for entry in content['SporebinEP1']['files']
+                                     if entry['path'].casefold() != 'spore_log.txt']
     return {"schema_version": 1, "profile_id": "gog-ga-3.1.0.29-observed",
             "native_status": "NOT_RUN", "content_provenance": "Local inventory; official clean-content equivalence NOT VERIFIED",
             "executable_relative": EXE_RELATIVE, "executable": pe_identity(root / EXE_RELATIVE),
-            "content": {folder: tree_manifest(root / folder) for folder in GAME_ROOTS}}
+            "content": content, "runtime_artifacts": runtime_artifacts}
 
 
 def compare_candidate(root: Path, candidate: dict):

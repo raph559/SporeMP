@@ -6,27 +6,29 @@ All original milestone work, dependencies, deliverables and acceptance text belo
 |---|---|---|
 | M00 | Establish the project contract and actionable backlog | VERIFIED |
 | M01 | Reproducible build, compatibility guard, and save protection | VERIFIED |
-| M02 | Native-behavior baseline and engine observability | TODO |
-| M03 | Multiple actors using original gameplay functions | TODO |
-| M04 | Unattended original-game worker and isolation | TODO |
-| M05 | Separate authoritative simulation from replica presentation | TODO |
-| M06 | Real network session and authoritative scene replication | TODO |
+| M02 | Native-behavior baseline and engine observability | VERIFIED |
+| M03 | Multiple actors using original gameplay functions | VERIFIED |
+| M04 | Unattended original-game worker and isolation | VERIFIED |
+| M05 | Separate authoritative simulation from replica presentation | VERIFIED |
+| M06 | Real network session and authoritative scene replication | VERIFIED |
 | M07 | First complete native shared encounter | TODO |
-| M08 | Native content, terrain, and editor-commit foundation | TODO |
-| M09 | Durable checkpoints, reconnects, and crash recovery | TODO |
-| M10 | One universe across multiple native locations | TODO |
-| M11 | Creature stage gameplay coverage | TODO |
-| M12 | Cell stage gameplay coverage | TODO |
-| M13 | Tribal stage gameplay coverage | TODO |
-| M14 | Civilization stage gameplay coverage | TODO |
-| M15 | Space stage and persistent galaxy gameplay | TODO |
-| M16 | Mixed stages and cross-location consequences | TODO |
-| M17 | Native editors and the full Cell-to-Space campaign | TODO |
-| M18 | Usable hosting, Internet operation, security, and capacity | TODO |
-| M19 | Release qualification and complete deliverables | TODO |
+| M08 | Native content, terrain, and editor-commit foundation | BLOCKED |
+| M09 | Durable checkpoints, reconnects, and crash recovery | BLOCKED |
+| M10 | One universe across multiple native locations | BLOCKED |
+| M11 | Creature stage gameplay coverage | BLOCKED |
+| M12 | Cell stage gameplay coverage | BLOCKED |
+| M13 | Tribal stage gameplay coverage | BLOCKED |
+| M14 | Civilization stage gameplay coverage | BLOCKED |
+| M15 | Space stage and persistent galaxy gameplay | BLOCKED |
+| M16 | Mixed stages and cross-location consequences | BLOCKED |
+| M17 | Native editors and the full Cell-to-Space campaign | BLOCKED |
+| M18 | Usable hosting, Internet operation, security, and capacity | BLOCKED |
+| M19 | Release qualification and complete deliverables | BLOCKED |
 | M20 | Optional extension: Galactic Adventures multiplayer | TODO |
 
-M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. Later milestones have no changed modules, commands or results yet; their native tests are NOT RUN. Each milestone gets its own evidence record when work starts. No stage scope is deferred to optional M20.
+M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07–M20 remain unverified. No stage scope is deferred to optional M20.
+
+M03–M06 are verified for their recorded native Creature fixtures. M07 is TODO with M03/M05/M06 dependencies satisfied; M08–M19 remain blocked on unfinished dependencies. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`.
 
 ## Required launcher amendment — 2026-09-08
 
@@ -95,6 +97,8 @@ The graph shows major gating paths; the exact dependency text below is authorita
 
 **Dependencies:** M01.
 
+**Current increment (2026-09-09):** M02 acceptance VERIFIED for the recorded original Creature baseline. The same closed 27-file fixture was run with observation Off and Observe. Three visible original jumps per condition, matched native entry/return/landing in Observe, normal movement/NPC behavior, a real scene exit/reload, fresh diagnostic avatar IDs, rendered read-only console output, normal exits and unchanged personal files are recorded. All 21 pair correlation checks pass; 28,614 native records have zero loss/foreign callbacks. Actual native D3D9 frame intervals were measured for 60 seconds per condition; medians 16.55235/16.54640 ms, p99 17.9772/18.0072 ms. The WGC recordings were inspected successfully. Source/ABI/lifetime qualification applies only to executed paths; additional gameplay families and stages remain explicitly unknown, with their conditional tracing backlog and later acceptance obligations intact. See `tests/engine/M02.md` and `evidence/2026-09-09-m02-completion/SESSION.md`. The original work/deliverables/acceptance below remain unchanged.
+
 **Work:** Add structured tracing for game mode, scene lifecycle, entity creation/destruction, player identity, native action entry/result, AI updates, damage/death, inventory/progression, and save/load as relevant bindings become verified. Establish reference runs with multiplayer mutations disabled. Inventory entry points for all five stages now, so later stage risk is visible early. Build a read-only diagnostic overlay or console and guarded investigation commands.
 
 **Deliverables:** native-behavior baseline, binding registry, stage capability matrix, reusable fixtures, and research log containing reproductions rather than speculation.
@@ -104,6 +108,8 @@ The graph shows major gating paths; the exact dependency text below is authorita
 ### M03 — Multiple actors using original gameplay functions
 
 **Dependencies:** M02.
+
+**Current increment (2026-09-12): M03 VERIFIED.** Bridge 0.0.12 completes B native DNA/goal/combat reward ownership and deferred display processing. In award-01, B earns 8.75 while A remains zero, then A earns 8.75 from an assisted encounter while B remains unchanged. Native NPCs damage either actor. This joins the retained distinct movement, delayed jump, ownership and reload evidence to satisfy the original bounded clauses below. The 18,733-record native trace closes cleanly; Release build and focused CTest pass 2/2 in 0.18s. All 29 personal hashes are unchanged; a disposable GGEUserData file changes despite Dont Save and is preserved. Shared quest/tutorial/species state, B part unlocks, brain progression, nonzero costs, active Stop/scene cancellation and worker/area activation remain explicitly unqualified for their later coverage. See `evidence/2026-09-12-m03-awards/SESSION.md` and `docs/m03-native-context-audit.md`. The original clauses below are unchanged.
 
 **Work:** In a controlled original-game scene, create/manage two independently owned actor representations. Drive both through native movement and action mechanisms, not transform-only teleports or custom attack formulas. Investigate local-avatar, player, species, faction, and inventory assumptions. Test actions during intervening AI ticks, delayed callbacks, death, and object recreation. Prefer verified per-actor entry points; carefully scoped context adaptation is an investigation, not an assumed solution.
 
@@ -117,6 +123,10 @@ The graph shows major gating paths; the exact dependency text below is authorita
 
 **Dependencies:** M01–M03 for an interactive worker acceptance test; basic supervision can start after M01.
 
+**Native completion (2026-09-13): VERIFIED for the recorded rendered Creature fixture.** Bridge 0.0.14 performs original fixed-filename load/save, explicit native completion observation, closed-checkpoint sealing, and adoption of the exact existing A/B nouns in fresh generations with zero created nouns. Four clean native worker lifecycles yield 12 matching jump/landing pairs, including actions after actual launcher and normal-account player closure. Two separate OS-profile workers perform overlapping original saves, then exit cleanly and seal separate backups. Full-lifetime ETW observes own-profile writes and no resolved personal/peer-profile accesses or mutations; zero lost events, unresolved correlations and shared driver output remain explicit. Retained 0.0.13 evidence covers deliberate crash containment, focus loss, minimization and recovery. Launcher 0.1.8 fixes detached Start completion, polling/selection and mutation lifetime, with real final selection and both Stops inspected. Current-desktop unminimized rendering is required; a later approximately 47-second AI plateau is recorded without an invented cause. Normal Play's ten personal-file changes are preserved and attributed to observed player mutations; the subsequent concurrent-worker baseline retains all 29 hashes. Release checks pass 184 worker/34 ABI/15 actor assertions and final 39 launcher/98 Python tests. Full campaign/reward persistence, native mismatched-sidecar negative execution, service/session variants and indefinite autonomy are not qualified. See `evidence/2026-09-13-m04-acceptance/SESSION.md` and `acceptance.json` in that directory. All original clauses below remain intact.
+
+**Historical increment (2026-09-13): IN_PROGRESS at that point; superseded by completion above.** Bridge 0.0.13 now has native evidence for current-desktop initialization, eight unattended A/B jumps with original landings, two simultaneous isolated workers, focus loss, deliberate crash containment and three clean engine exits. Minimization stalls app/AI progress; restoration resumes it. Concurrent ETW records no resolved personal/peer-profile mutations, with unresolved correlations and shared NVIDIA writes explicitly retained. Manual original Save and restart/reload work, but actor ownership does not restore; unattended load/save remain unavailable. All 29 personal hashes remain unchanged. Launcher 0.1.5 documents the window requirement; 30 launcher assertions and nine backend tests pass. The earlier 173 worker HOST assertions remain valid. Real player closure and full launcher-to-worker acceptance are NOT RUN. See `docs/m04-workers.md`, `tests/engine/M04.md` and `evidence/2026-09-13-m04-native/SESSION.md`. Every original clause below is unchanged.
+
 **Work:** Implement coordinator-to-worker private IPC, readiness/health states, startup arguments/configuration, scene loading, controlled shutdown, and crash detection. Start with normal rendering. Investigate focus loss, minimization, dialogs, desktop-session requirements, process-instance restrictions, file locking, and configuration/global path use. Verify isolation using observed file access; changing one environment variable is not proof. Investigate native save/load of the controlled fixture and basic restoration of mod identities.
 
 **Deliverables:** supervisor, worker configuration, isolated workspace manager, IPC protocol, and unattended operation instructions.
@@ -129,6 +139,8 @@ The graph shows major gating paths; the exact dependency text below is authorita
 
 **Dependencies:** M02–M04.
 
+**Current increment (2026-09-14): M05 VERIFIED for the recorded living Creature fixture.** Bridge 0.0.29 closes the four original clauses through actual 8.75-DNA result application without a second award, challenged local mutation denial, immutable disconnect/publication fences and retained original Off behavior. New native evidence covers an already-active bite and cleanup, foreign-species UI with unchanged awards, and actual saved-world Play denial with working Cancel. All six new processes exit cleanly with unchanged closed Games/personal hashes; failed intermediate UI expectations remain failures. The retained .24 run supplies 3,826 matching samples through 958.609 seconds. Charge/spit/projectile parity, full consumption/inventories, death/respawn/object/motion replication, listening and complete campaign coverage remain explicitly unqualified; they must pass before their corresponding features in M06/M07/M11–M15 are accepted. M06 dependencies are now satisfied. See `evidence/2026-09-14-m05-ability/acceptance.md`, `docs/m05-replicas.md`, `docs/m05-mutation-audit.md` and `tests/engine/M05.md`. The original clauses below are unchanged.
+
 **Work:** Identify and control the client's duplicate AI decisions, damage/death, pickups, rewards, spawning, timers, and progression. Preserve local camera, UI, animation, audio, interpolation, and appropriate movement presentation. Add explicit execution roles and a replica-application guard. Design local movement prediction only around proven reversible state; never replay irreversible native rewards as part of prediction.
 
 **Deliverables:** authority matrix, native hook policies, replica object lifecycle, and mutation-audit counters.
@@ -138,6 +150,8 @@ The graph shows major gating paths; the exact dependency text below is authorita
 ### M06 — Real network session and authoritative scene replication
 
 **Dependencies:** M04–M05.
+
+**Current increment (2026-09-15): M06 VERIFIED for the recorded living Creature fixture.** Bridge/NativeHost 0.0.30 and launcher 0.1.9 qualify one original authority with two original clients, 33-entity baselines, distinct controlled actors, native movement/jumps, sampled spatial agreement, authenticated transport and rejection gates, and a fresh reconnect baseline without duplicating the player. Actual WPF Join/close/Rejoin reaches Connected with baselines 3 → 5 and the same entity/generation; that lifecycle run pauses the original living authority, while native06 supplies unpaused gameplay evidence. Final files and permissions are preserved, and all test runtimes are stopped. The observed terminal death/client-removal and post-respawn Join failures remain explicit M07 prerequisites. [Acceptance decision](evidence/2026-09-14-m06-network/acceptance.md). This increment does not change any original clause below or claim full co-op/campaign completion.
 
 **Work:** Integrate the selected transport, authenticate sessions, enforce protocol/build/content handshakes, and route to the dedicated worker. Implement global IDs, entity generations, scene epochs, reliable spawn/despawn, motion snapshots, interpolation, baseline acknowledgments, bounded queues, and basic reconnect. Separate engine calls from networking threads. Use explicit protocol schemas, not native memory dumps.
 

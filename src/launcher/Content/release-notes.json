@@ -1,5 +1,81 @@
 [
   {
+    "version": "0.1.9",
+    "date": "2026-09-14",
+    "title": "Your invitation to a shared universe",
+    "summary": "Join a private experimental server from Home.",
+    "changes": [
+      { "category": "NEW", "text": "Paste your host’s private invitation on Home to check the server and join its shared scene." },
+      { "category": "NEW", "text": "Rejoin with the same invitation to return as the same player. Invitations stay private and are remembered only while the launcher is open." },
+      { "category": "IMPROVED", "text": "See when the shared scene is connected or the connection is lost. Connection details are available in Settings." },
+      { "category": "DEVELOPMENT", "text": "This is the first experimental shared-scene connection. Full campaign multiplayer and Internet hosting setup are still in development." }
+    ]
+  },
+  {
+    "version": "0.1.8",
+    "date": "2026-09-13",
+    "title": "Steadier worker sessions",
+    "summary": "Choose workers and close the launcher with confidence.",
+    "changes": [
+      { "category": "FIXED", "text": "Live status updates keep the worker list open and preserve your selection." },
+      { "category": "FIXED", "text": "Closing the launcher during a worker start or stop lets that request finish safely." },
+      { "category": "FIXED", "text": "The diagnostic log created by normal Play no longer prevents a later worker or game launch." }
+    ]
+  },
+  {
+    "version": "0.1.7",
+    "date": "2026-09-13",
+    "title": "Worker startup stays responsive",
+    "summary": "Keep using the launcher after starting a worker.",
+    "changes": [
+      { "category": "FIXED", "text": "Starting a worker now releases the busy state so its status and Stop control become available while SPORE continues running." }
+    ]
+  },
+  {
+    "version": "0.1.6",
+    "date": "2026-09-13",
+    "title": "More reliable worker controls",
+    "summary": "Keep control of the worker you selected.",
+    "changes": [
+      { "category": "FIXED", "text": "Stop stays attached to the selected worker session if that worker restarts while the request is being sent." },
+      { "category": "FIXED", "text": "A worker with unreadable settings no longer hides the status or controls of another healthy worker." },
+      { "category": "FIXED", "text": "A worker that fails to answer a shutdown request is stopped after the timeout, and the forced stop is recorded." }
+    ]
+  },
+  {
+    "version": "0.1.5",
+    "date": "2026-09-13",
+    "title": "Worker window guidance",
+    "summary": "Know how to keep experimental workers advancing.",
+    "changes": [
+      { "category": "IMPROVED", "text": "Worker Settings now explains that minimizing a worker pauses its simulation and can cause it to time out. Keep worker windows open and unminimized." }
+    ]
+  },
+  {
+    "version": "0.1.4",
+    "date": "2026-09-13",
+    "title": "Local worker controls",
+    "summary": "Manage prepared experimental workers from Settings.",
+    "changes": [
+      { "category": "NEW", "text": "Select, start and stop a prepared isolated worker in Settings. Worker startup opens a separate SPORE window." },
+      { "category": "NEW", "text": "See live worker status, including startup, scene readiness, pauses and crashes. Status refreshes while Settings is open." },
+      { "category": "IMPROVED", "text": "Play stays available when the only running SPORE processes belong to recognized isolated workers." },
+      { "category": "IMPROVED", "text": "A worker that gets stuck during startup is stopped and its diagnostic logs are preserved. Full multiplayer gameplay and checkpoint recovery remain in development." }
+    ]
+  },
+  {
+    "version": "0.1.3",
+    "date": "2026-09-08",
+    "title": "Your screen, your settings",
+    "summary": "Choose your resolution and display mode before starting SPORE.",
+    "changes": [
+      { "category": "NEW", "text": "Choose Fullscreen or Windowed and a resolution directly in Settings > Display." },
+      { "category": "NEW", "text": "Use Desktop resolution to match your primary display automatically at each launch." },
+      { "category": "IMPROVED", "text": "Saved display choices are applied every time you launch SPORE. You can also switch back to the game's own settings." },
+      { "category": "NEW", "text": "A display shortcut on Home shows your saved choice. Changes made while playing take effect on your next launch." }
+    ]
+  },
+  {
     "version": "0.1.2",
     "date": "2026-09-08",
     "title": "A new home for your universe",

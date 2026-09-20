@@ -15,16 +15,21 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 {
     private readonly LauncherClient client;
     private readonly CancellationTokenSource lifetime = new();
+    private bool closingAfterWorker;
+    private readonly System.Windows.Threading.DispatcherTimer workerRefresh = new() { Interval = TimeSpan.FromSeconds(3) };
     private enum LauncherPage { Home, Updates, Settings }
     private LauncherPage currentPage;
     private bool busy = true;
-    private bool nativeAvailable, nativeActive, closeAfterGame;
+    private bool nativeAvailable, joinAvailable, nativeActive, closeAfterGame;
     private string state = "preparing";
     private string? lastReport;
     private string searchQuery = "";
     private ReleaseNote? selectedUpdate;
     public event PropertyChangedEventHandler? PropertyChanged;
     public ObservableCollection<InstallationChoice> Installations { get; } = [];
+    public DisplaySettingsModel Display { get; }
+    public WorkerSettingsModel Workers { get; }
+    public MultiplayerSessionModel Multiplayer { get; }
     public IReadOnlyList<ReleaseNote> UpdateHistory { get; } = ReleaseNotes.Load();
     public ObservableCollection<ReleaseNote> VisibleUpdates { get; } = [];
     public ReleaseNote LatestUpdate => UpdateHistory[0];
@@ -61,12 +66,14 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     public Visibility EmptyUpdatesVisibility => VisibleUpdates.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
     public string GameRoot { get; private set; } = "Detecting automatically…";
     public string GameName { get; private set; } = "Looking for SPORE";
-    public bool CanRun => !busy;
+    public bool CanRun => !busy && !Multiplayer.IsActive;
+    public bool CanJoin => CanRun && joinAvailable && state == "development_build" && Multiplayer.CanJoin;
+    public string JoinAvailabilityDetail => Multiplayer.IsActive ? "" : nativeActive ? "Close SPORE before joining." : busy ? "Getting your installation ready…" : state != "development_build" ? "Get your SPORE installation ready to join." : !joinAvailable ? "Multiplayer is unavailable in this build." : "";
     public bool CanExport => !busy && lastReport is not null;
-    public bool CanPrimary => !busy && (nativeAvailable && state == "development_build" || state is "game_not_found" or "choose_installation" or "error" or "game_running" or "unsupported_installation");
-    public string PrimaryLabel => nativeActive ? "SPORE is running…" : busy && state == "preparing" ? "Getting ready…" : state switch { "game_not_found" => "Locate SPORE", "choose_installation" => "Choose installation", "game_running" => "Check again", "error" => "Try again", "unsupported_installation" => "Review installation", _ => nativeAvailable ? "Play SPORE" : "Unavailable" };
+    public bool CanPrimary => CanRun && (nativeAvailable && state == "development_build" || state is "game_not_found" or "choose_installation" or "error" or "game_running" or "unsupported_installation");
+    public string PrimaryLabel => Multiplayer.IsActive ? "Multiplayer session…" : nativeActive ? "SPORE is running…" : busy && state == "preparing" ? "Getting ready…" : state switch { "game_not_found" => "Locate SPORE", "choose_installation" => "Choose installation", "game_running" => "Check again", "error" => "Try again", "unsupported_installation" => "Review installation", _ => nativeAvailable ? "Play SPORE" : "Unavailable" };
     public string PrimaryIcon => nativeActive ? "\uE917" : state is "game_not_found" or "choose_installation" or "unsupported_installation" ? "\uE8B7" : state is "error" or "game_running" ? "\uE72C" : "\uE768";
-    public string PrimaryHint => nativeActive ? "Enjoy your game" : busy && state == "preparing" ? "Getting everything ready for you" : state == "development_build" && nativeAvailable ? "Your installed game. Your existing saves." : "We’ll help you get ready to play.";
+    public string PrimaryHint => Multiplayer.IsActive ? Multiplayer.IsConnected ? "Your shared scene is open in SPORE." : "Your multiplayer session is connecting." : nativeActive ? "Enjoy your game" : busy && state == "preparing" ? "Getting everything ready for you" : state == "development_build" && nativeAvailable ? "Your installed game. Your existing saves." : "We’ll help you get ready to play.";
     public string DetailsLabel => state == "development_build" && !nativeAvailable ? "View details  →" : "Manage game  →";
     public string StatusBrush => state == "development_build" ? "#96D8C8" : state == "error" || state == "unsupported_installation" ? "#EEB193" : "#F1CB8A";
     public Visibility BusyVisibility => busy && state == "preparing" ? Visibility.Visible : Visibility.Collapsed;
@@ -76,6 +83,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     public Visibility ChoicesVisibility => Installations.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
     public string StatusTitle { get; private set; } = "Finding SPORE…";
     public string StatusDetail { get; private set; } = "We’ll take care of the setup.";
+    public string LauncherStatusTitle => Multiplayer.IsActive ? Multiplayer.Status : StatusTitle;
+    public string LauncherStatusDetail => Multiplayer.IsActive ? Multiplayer.Detail : StatusDetail;
     public string FilesDetail { get; private set; } = "Game files · waiting for detection";
     public string TechnicalDetail { get; private set; } = "";
     public string ExportDetail { get; private set; } = "";
@@ -83,6 +92,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     public MainWindow(LauncherClient client)
     {
         this.client = client;
+        Display = new DisplaySettingsModel(client);
+        Workers = new WorkerSettingsModel(client);
+        Multiplayer = new MultiplayerSessionModel(client);
+        Multiplayer.PropertyChanged += (_, _) => Refresh();
+        workerRefresh.Tick += async (_, _) => { if (IsSettings) await Workers.LoadAsync(lifetime.Token); };
+        Closed += (_, _) => workerRefresh.Stop();
         InitializeComponent();
         // Keep the first opening within the available desktop at common display scales.
         Width = Math.Min(Width, SystemParameters.WorkArea.Width);
@@ -112,7 +127,39 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         FrameworkElement view = page switch { LauncherPage.Home => HomePage, LauncherPage.Updates => UpdatesPage, _ => SettingsPage };
         view.BeginAnimation(OpacityProperty, new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(140)) { FillBehavior = FillBehavior.Stop });
     }
-    private async void OnLoaded(object sender, RoutedEventArgs e) { busy = false; await Prepare(); }
+    private async void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var workerLoad = Workers.LoadAsync(lifetime.Token);
+        var displayLoad = Display.LoadAsync(lifetime.Token);
+        busy = false;
+        await Prepare();
+        await displayLoad;
+        await workerLoad;
+        if (!lifetime.IsCancellationRequested) workerRefresh.Start();
+    }
+    private async void RefreshWorkersClick(object sender, RoutedEventArgs e) => await Workers.LoadAsync(lifetime.Token);
+    private async void StartWorkerClick(object sender, RoutedEventArgs e) => await Workers.StartAsync(lifetime.Token);
+    private async void StopWorkerClick(object sender, RoutedEventArgs e) => await Workers.StopAsync(lifetime.Token);
+    private async void SaveDisplayClick(object sender, RoutedEventArgs e) => await Display.SaveAsync(lifetime.Token);
+    private async void ReloadDisplayClick(object sender, RoutedEventArgs e) => await Display.LoadAsync(lifetime.Token);
+    private void InvitationChanged(object sender, RoutedEventArgs e) => Multiplayer.Invitation = InvitationBox.Password;
+    private void PasteInvitationClick(object sender, RoutedEventArgs e)
+    {
+        if (!Multiplayer.CanEdit) return;
+        try
+        {
+            if (Clipboard.ContainsText()) InvitationBox.Password = Clipboard.GetText();
+        }
+        catch (System.Runtime.InteropServices.ExternalException) { }
+    }
+    private async void JoinClick(object sender, RoutedEventArgs e)
+    {
+        if (!CanJoin) return;
+        await Multiplayer.JoinAsync(GameRoot);
+        lastReport = Multiplayer.LastReport?.ReportPath ?? lastReport;
+        Refresh();
+        if (closeAfterGame) Close();
+    }
 
     private async Task Prepare(string? selectedRoot = null)
     {
@@ -156,6 +203,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
                 if (!matches) TechnicalDetail = string.Join(", ", compatibility.GetProperty("issues").EnumerateArray().Select(x => x.GetString()));
             }
             nativeAvailable = result.TryGetProperty("native", out var native) && native.GetProperty("available").GetBoolean();
+            joinAvailable = result.TryGetProperty("native", out var join) && join.TryGetProperty("join_available", out var available) && available.GetBoolean();
             if (nativeAvailable)
             {
                 TechnicalDetail = "Game and launcher files are checked automatically before starting SPORE.";
@@ -256,7 +304,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void MaximizeClick(object sender, RoutedEventArgs e) => WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
     private void OnClosing(object? sender, CancelEventArgs e)
     {
-        if (nativeActive)
+        if (nativeActive || Multiplayer.IsActive)
         {
             e.Cancel = true;
             closeAfterGame = true;
@@ -264,7 +312,28 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             Hide();
             return;
         }
+        if (Workers.IsMutating)
+        {
+            e.Cancel = true;
+            lifetime.Cancel();
+            workerRefresh.Stop();
+            ShowInTaskbar = false;
+            Hide();
+            if (!closingAfterWorker)
+            {
+                closingAfterWorker = true;
+                _ = FinishWorkerAndClose();
+            }
+            return;
+        }
         lifetime.Cancel();
+    }
+    private async Task FinishWorkerAndClose()
+    {
+        // Keep queued explicit Start/Stop work alive while the window is gone.
+        // LauncherClient bounds its wait; backend authority is never tree-killed.
+        await Workers.PendingMutation;
+        Close();
     }
 
     private async void ExportClick(object sender, RoutedEventArgs e)

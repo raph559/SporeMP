@@ -1,6 +1,11 @@
 #include <Spore/ModAPI.h>
 #include <Spore/Resource/Paths.h>
 #include "diagnostics.h"
+#include "native_observation.h"
+#include "native_actors.h"
+#include "native_worker.h"
+#include "native_replica.h"
+#include "native_network.h"
 
 namespace {
 sporemp::DiagnosticSession session;
@@ -30,9 +35,18 @@ void Initialize() {
         static_assert(sizeof(char16_t) == sizeof(wchar_t));
         session.native_path(static_cast<unsigned int>(id), reinterpret_cast<const wchar_t*>(path));
     }
+    sporemp::initialize_native_observation(directory);
+    sporemp::initialize_native_actors(directory);
+    sporemp::initialize_native_worker();
+    // Initializes a normal-account network client's verified loader before
+    // replica detours patch the checked entry prefixes. No AppUpdate runs here.
+    sporemp::initialize_native_network(directory);
+    // M04 verifies the untouched Save entry before M05 attaches its guard.
+    // Both finish synchronously inside the same verified post-init callback.
+    sporemp::initialize_native_replica();
 }
 
-void Dispose() { session.dispose(); }
+void Dispose() { sporemp::dispose_native_network(); sporemp::dispose_native_worker(); sporemp::dispose_native_replica(); sporemp::dispose_native_actors(); sporemp::dispose_native_observation(); session.dispose(); }
 }
 
 BOOL APIENTRY DllMain(HMODULE, DWORD reason, LPVOID) {

@@ -25,7 +25,7 @@ public sealed record ReleaseNote(string Version, string Date, string Title, stri
 
 public static class ReleaseNotes
 {
-    public static string CurrentVersion => typeof(ReleaseNotes).Assembly.GetName().Version?.ToString(3) ?? "0.1.2";
+    public static string CurrentVersion => typeof(ReleaseNotes).Assembly.GetName().Version?.ToString(3) ?? "0.1.4";
 
     public static IReadOnlyList<ReleaseNote> Load()
     {

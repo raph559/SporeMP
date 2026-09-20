@@ -72,10 +72,17 @@ class LauncherAutomationTest(unittest.TestCase):
         self.assertEqual(bad.read_bytes(), b"corrupt")
 
     def test_game_running_stops_before_backups(self):
-        with patch.object(service.diag, "game_running", return_value=True), patch.object(service, "ensure_backup") as backup:
+        with patch.object(service.diag, "game_running", return_value=True), patch.object(service.workers, "only_registered_workers_running", return_value=False), patch.object(service, "ensure_backup") as backup:
             result, code = service.prepare()
         self.assertEqual(code, 24)
         self.assertEqual(result["state"], "game_running")
+        backup.assert_not_called()
+
+    def test_registered_workers_allow_normal_player_preparation_without_backup(self):
+        with patch.object(service.diag, "game_running", return_value=True), patch.object(service.workers, "only_registered_workers_running", return_value=True), patch.object(service, "ensure_backup") as backup:
+            result, code = service.prepare()
+        self.assertEqual(code, 22)
+        self.assertEqual(result['state'], 'development_build')
         backup.assert_not_called()
 
     def test_mismatch_stops_before_backups(self):

@@ -1,6 +1,6 @@
 # Architecture — initial decisions
 
-Status: architectural contract, **not implemented multiplayer functionality**. Only the M01 build and diagnostic tooling exist. Required product scope is in `../GOAL.md`; all milestones remain in `../MILESTONES.md`.
+Status: architectural contract, **not implemented multiplayer functionality**. M01 tooling and the M02 observation baseline are qualified for their recorded configuration. M02's 2026-09-09 native pair verifies the selected Creature action, scene and diagnostic paths; other stages and multiplayer capabilities remain unqualified. Required product scope is in `../GOAL.md`; all milestones remain in `../MILESTONES.md`.
 
 ## Original engine owns gameplay
 
@@ -17,7 +17,7 @@ flowchart LR
   S[Worker supervisor] --> W
 ```
 
-This is a proposed execution flow. No network session or worker implementation is claimed by the diagram.
+This is a proposed complete execution flow. M04 qualifies the local worker supervisor/private IPC subset through concurrent original-game processes, native actions, actual player closure and retained crash tests. The controlled native checkpoint now reloads in fresh generations and restores basic A/B ownership by adopting exact existing saved nouns. M05 adds a bounded living Creature avatar vitals projection between isolated original processes, selected native mutation guards, immutable roles and a fenced local replica registry. Full transactional identity/progression recovery, network sessions, complete replica presentation and global authority remain unfinished. See [M04 process, protocol and native boundaries](m04-workers.md) and [M05 implemented subset and remaining gates](m05-replicas.md).
 
 ## Boundaries
 
@@ -34,6 +34,8 @@ This is a proposed execution flow. No network session or worker implementation i
 The bridge follows the pinned SDK's `AddPostInitFunction` / `AddDisposeFunction` registration pattern. DllMain only registers these callbacks; the bridge installs no detours or gameplay hooks. Hashing and log I/O occur in the initialization callback. Disposal flushes and closes diagnostics through the SDK callback, never during DLL detach.
 
 The upstream core hooks during DLL load, so the implemented native host validates compiled game/content/payload hashes before process creation and injection. Normal Play uses the player's account and saves. Optional separate-account tooling retains the earlier developer checks. Three original-game bridge lifecycles and final user acceptance complete M01.
+
+M02 adds seven opt-in gameplay detours installed after SDK post-init and removed during SDK disposal, outside loader lock. Engine calls still run on their original paths. Only fixed-size scalar observations and opaque diagnostic IDs enter a bounded local trace; no coordinator/network or gameplay mutation was added. Normal Play clears the experimental switch. The accepted native fixture, measured presentation/CPU samples and remaining lifetime/thread/gameplay limits are in `m02-binding-registry.md` and `../evidence/2026-09-09-m02-completion/SESSION.md`.
 
 ## Persistence and world ownership
 

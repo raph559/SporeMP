@@ -1,14 +1,36 @@
 # SporeMP
 
-Global multiplayer for original SPORE, developed incrementally across all five campaign stages in one persistent shared universe. **Partial/experimental: no multiplayer gameplay is implemented yet.**
+SporeMP is an experimental multiplayer mod for original SPORE. Its goal is to connect all five campaign stages—Cell, Creature, Tribal, Civilization and Space—in one persistent shared universe, while preserving the original game's gameplay, AI, combat, economy, editors and progression.
 
-M00 and M01 are VERIFIED. Three original-game bridge lifecycles and compatibility checks passed, and the user confirmed the simplified player launcher works. See STATUS.md and evidence/2026-09-08-m01-native/SESSION.md.
+**Partial/experimental: authenticated shared Creature movement and reconnects have been demonstrated in a bounded original-game test scene. The full multiplayer campaign is unfinished; this repository is not a public multiplayer release.**
 
-Start with `GOAL.md`, `MILESTONES.md` and `STATUS.md`. The complete user-adopted brief is preserved in `docs/implementation-brief.md`.
+This repository contains the C++ bridge, coordinator and worker tools, Windows desktop launcher, build tooling, tests and development documentation. Instrumented original SPORE processes execute native gameplay; the coordinator handles identity, transport, ownership and supervision. The project does not replace the game with a separate simulation.
+
+For the project presentation, development news and roadmap, visit the [SporeMP website](https://raph559.github.io/sporemp-site/). Its independent public source repository is [raph559/sporemp-site](https://github.com/raph559/sporemp-site).
+
+## Current progress
+
+M00–M06 are **VERIFIED within their recorded acceptance boundaries**:
+
+| Milestones | Recorded result |
+|---|---|
+| M00–M01 | Project scope, pinned build, guarded original-game loading and the normal-account player launcher. |
+| M02–M03 | Native Creature observations, two-actor commands, NPC combat and reward ownership in the recorded test scene. |
+| M04 | Original-game worker independence, bounded worker isolation, overlapping native saves and checkpoint recovery with existing actor identities. |
+| M05 | Authoritative results applied to a replica without a duplicate reward, with challenged local mutations and stale/disconnected updates fenced. |
+| M06 | One original-game worker and two original-game clients, authenticated scene sharing, distinct controlled actors, movement/jumps and fresh reconnect baselines. Actual launcher Join/Rejoin preserves player identity. |
+
+The current networking qualification is limited to a **living Creature test scene** with matching game/content and saved-world fixtures. Death/respawn and a complete shared encounter are the next M07 work. General content transfer, durable server restart recovery, all-stage gameplay, Internet hosting qualification and release packaging remain unfinished. Rendered workers currently require the recorded signed-in Windows desktop configuration; headless/service operation is not qualified.
+
+See [STATUS.md](STATUS.md) for the current evidence and limitations, [GOAL.md](GOAL.md) for the product scope, and [MILESTONES.md](MILESTONES.md) for the complete M00–M20 acceptance plan. The complete user-adopted brief is preserved in [docs/implementation-brief.md](docs/implementation-brief.md). Native execution and HOST/FIXTURE tests are reported separately; a successful build or host test does not establish native gameplay acceptance.
+
+## Launcher
 
 The launcher's **What's new** section shows the latest changes and complete release history. Repository history is also summarized in [CHANGELOG.md](CHANGELOG.md).
 
-Open build/launcher/Release/SporeMP.exe and select **Play SPORE**. It detects the installed game, checks compatibility automatically and launches under your normal Windows account with existing saves. No separate profile or backup setup is required. Details stay in Settings; multiplayer is still in development.
+After building, open `build/launcher/Release/SporeMP.exe` and select **Play SPORE**. It detects the installed game, checks compatibility automatically and launches under your normal Windows account with existing saves. No separate profile or backup setup is required. Details stay in Settings.
+
+Launcher **0.1.9** adds private invitations, authenticated **Join/Rejoin** and connection status, using bridge/NativeHost **0.0.30**. These experimental multiplayer controls require the matching prepared Creature fixture described in [docs/m06-network.md](docs/m06-network.md). They do not make arbitrary saves or installations multiplayer-ready. Separate worker accounts and native test preparation are developer infrastructure, not normal Play prerequisites.
 
 ## Build and test
 
@@ -30,6 +52,6 @@ python tools/diagnostics/sporemp_diag.py validate --game-root 'C:\Games\SPORE'
 python tools/diagnostics/sporemp_diag.py preflight --game-root 'C:\Games\SPORE'
 ```
 
-The old validate/preflight commands remain read-only diagnostics. Normal Play uses the compiled native host. M01 qualification covers the exact recorded local executable/content/SDK/injector configuration. See docs/testing.md and docs/recovery.md.
+The old validate/preflight commands remain read-only diagnostics. Normal Play uses the compiled native host. Compatibility qualification covers the exact recorded local GOG GA 3.1.0.29 executable/content/SDK/injector configuration, not every SPORE installation. See [docs/compatibility.md](docs/compatibility.md), [docs/testing.md](docs/testing.md) and [docs/recovery.md](docs/recovery.md).
 
 No EA executables, assets or saves are distributed in source. Operators and players need their own original-game installations. Dependency provenance and redistribution review are tracked in `docs/sources.md`.

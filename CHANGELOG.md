@@ -2,6 +2,61 @@
 
 These are development builds. Multiplayer gameplay is still in development.
 
+## 0.1.9 — 2026-09-14
+
+### Your invitation to a shared universe
+
+- Paste your host’s private invitation on Home to check the server and join its shared scene.
+- Rejoin with the same invitation to return as the same player. Invitations stay private and are remembered only while the launcher is open.
+- See when the shared scene is connected or the connection is lost. Connection details are available in Settings.
+- This is the first experimental shared-scene connection. Full campaign multiplayer and Internet hosting setup are still in development.
+
+## 0.1.8 — 2026-09-13
+
+### Steadier worker sessions
+
+- Live status updates keep the worker list open and preserve your selection.
+- Closing the launcher during a worker start or stop lets that request finish safely.
+- The diagnostic log created by normal Play no longer prevents a later worker or game launch.
+
+## 0.1.7 — 2026-09-13
+
+### Worker startup stays responsive
+
+- Starting a worker now releases the busy state so its status and Stop control become available while SPORE continues running.
+
+## 0.1.6 — 2026-09-13
+
+### More reliable worker controls
+
+- Stop stays attached to the selected worker session if that worker restarts while the request is being sent.
+- A worker with unreadable settings no longer hides the status or controls of another healthy worker.
+- A worker that fails to answer a shutdown request is stopped after the timeout, and the forced stop is recorded.
+
+## 0.1.5 — 2026-09-13
+
+### Worker window guidance
+
+- Worker Settings now explains that minimizing a worker pauses its simulation and can cause it to time out. Keep worker windows open and unminimized.
+
+## 0.1.4 — 2026-09-13
+
+### Local worker controls
+
+- Select, start and stop a prepared isolated worker from Settings. A worker opens a separate SPORE window on the current Windows desktop.
+- Read live status for startup, scene readiness, pauses and crashes, with automatic refresh while Settings is open.
+- Keep Play available when the only running SPORE processes belong to recognized isolated workers.
+- Preserve worker diagnostics when the game crashes or gets stuck during startup. Full multiplayer gameplay and checkpoint recovery remain in development.
+
+## 0.1.3 — 2026-09-08
+
+### Your screen, your settings
+
+- Choose Fullscreen or Windowed and a resolution directly in Settings > Display.
+- Use Desktop resolution to match your primary display automatically at each launch.
+- Saved display choices are applied every time you launch SPORE. Switch back to Use game settings whenever you prefer.
+- A display shortcut on Home shows your saved choice. Changes made while playing take effect on your next launch.
+
 ## 0.1.2 — 2026-09-08
 
 ### A new home for your universe
