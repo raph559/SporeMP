@@ -35,6 +35,9 @@ jobs:
       - name: Run tooling tests without launching SPORE
         shell: pwsh
         run: python -m unittest discover -s tests/unit -p 'test_*.py' -v
+      - name: Check reviewed public evidence
+        shell: pwsh
+        run: python tools/check-public-evidence.py
 
   website:
     name: Static website build and links

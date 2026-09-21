@@ -211,8 +211,8 @@ def main():
         max(a['connected_baselines']) < min(b['connected_baselines']) for a, b in pairs) else 'NOT_RUN' if not pairs else 'FAIL'
     for path in args.image:
         path = safe_path(path)
-        if path.suffix.lower() not in ('.png', '.jpg', '.jpeg') or REPO / 'evidence/2026-09-14-m06-network' not in path.parents:
-            raise ValueError('Only explicitly named local M06 PNG/JPEG evidence is supported')
+        if path.suffix.lower() not in ('.png', '.jpg', '.jpeg') or REPO / 'local' not in path.parents:
+            raise ValueError('Only explicitly named PNG/JPEG evidence under ignored local/ is supported')
         data = read_bounded(path)
         # The desktop capture API can return JPEG bytes even when the supplied
         # evidence filename ends in .png. Record the actual format explicitly.

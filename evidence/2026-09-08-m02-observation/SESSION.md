@@ -12,7 +12,7 @@ Objective: begin native-behavior observability after the accepted M01, preservin
 
 ## Build and executable results
 
-Exact ordered commands, working directories, UTC intervals, expected and observed exits: [commands.json](commands.json). Reproduction script: [run-host-checks.ps1](run-host-checks.ps1). These commands never start a game; the new-mode guard command deliberately fails before creation.
+Exact ordered commands, working directories, UTC intervals, expected and observed exits: [commands.json (archived)](../../docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m02-observation/commands.json"). Reproduction script: [run-host-checks.ps1 (archived)](../../docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m02-observation/run-host-checks.ps1"). These commands never start a game; the new-mode guard command deliberately fails before creation.
 
 | Command / evidence | Expected | Observed |
 |---|---|---|
@@ -44,11 +44,11 @@ Expected/observed: exit 0, **13/13 tests pass**, retained in `parser-final-tests
 
 ## Identity and evidence boundary
 
-Environment: [environment.json](environment.json). Windows 11 Pro 10.0.26200 x64; AMD Ryzen 7 9700X (8 cores/16 threads), 33,407,430,656 bytes RAM; NVIDIA RTX 4080 SUPER plus recorded AMD/Parsec adapters. SDK commit `cbf9206b9a823f0911cd9be0217104a49d72380b`; injector source `26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9`. Tracked SDK source was clean during inspection; no dependency was fetched or edited.
+Environment: [environment.json (archived)](../../docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m02-observation/environment.json"). Windows 11 Pro 10.0.26200 x64; AMD Ryzen 7 9700X (8 cores/16 threads), 33,407,430,656 bytes RAM; NVIDIA RTX 4080 SUPER plus recorded AMD/Parsec adapters. SDK commit `cbf9206b9a823f0911cd9be0217104a49d72380b`; injector source `26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9`. Tracked SDK source was clean during inspection; no dependency was fetched or edited.
 
 The original executable was hashed read-only: GOG GA 3.1.0.29 Win32, SHA-256 `dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37`. The content candidate manifest SHA-256 is `06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b`. Content files were not requalified and no candidate inventory was promoted.
 
-Exact project source hashes: [source-manifest.json](source-manifest.json). Exact Release/Debug bridge, host, fixture executable, core and injector hashes: [build-artifacts.json](build-artifacts.json). Pinned binding headers/implementations/Detours provenance hashes: [sdk-binding-sources.json](sdk-binding-sources.json). The capture script checks that all 21 original milestone work/deliverables/acceptance sections remain intact; `docs/implementation-brief.md` was not changed.
+Exact project source hashes: [source-manifest.json (archived)](../../docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m02-observation/source-manifest.json"). Exact Release/Debug bridge, host, fixture executable, core and injector hashes: [build-artifacts.json (archived)](../../docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m02-observation/build-artifacts.json"). Pinned binding headers/implementations/Detours provenance hashes: [sdk-binding-sources.json (archived)](../../docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m02-observation/sdk-binding-sources.json"). The capture script checks that all 21 original milestone work/deliverables/acceptance sections remain intact; `docs/implementation-brief.md` was not changed.
 
 **NATIVE: NOT RUN.** No game was launched, no desktop input was sent, and personal save files were not accessed. There is no new original-game action trace, baseline equivalence, runtime binding qualification, scene-lifecycle proof or measured native overhead. No engine failure or native impossibility has been reproduced. Documentation of the next fixture is not evidence that it passed.
 

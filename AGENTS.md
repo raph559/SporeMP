@@ -1,6 +1,6 @@
 # Working contract
 
-This is the public source checkout. Keep private raw logs, captures, credentials and account inventories under ignored `local/`; publish only reviewed evidence exports. Read `docs/public-evidence.md` before adding evidence. Historical public reports have documented privacy redactions; their original hashes refer to the private archive. New code, documentation and commit messages use English, except explicit visitor locale files.
+This is the public source checkout. Keep private raw logs, captures, credentials and account inventories under ignored `local/`; publish only compact reviewed evidence reports listed in `docs/public-evidence-files.txt`. Read `docs/public-evidence.md` before adding evidence and run `python tools/check-public-evidence.py` before publishing. Reusable analyzers and generators belong under `tools/`. Do not merge pre-cleanup public history or private development history into this repository. Historical public reports have documented privacy redactions and condensation; their original hashes refer to the named archived run/export. New code, documentation and commit messages use English, except explicit visitor locale files.
 
 Read `GOAL.md`, `STATUS.md`, `MILESTONES.md`, then the documents relevant to the change. The user-adopted brief is preserved verbatim in `docs/implementation-brief.md`; it is requirements/reference material, not evidence that any proposed capability works.
 

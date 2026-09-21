@@ -9,14 +9,12 @@ __pycache__/
 *.suo
 **/obj/
 **/bin/
-# Only reviewed evidence exports are public; keep private originals under local/.
-/evidence/**/*.png
-/evidence/**/*.jpg
-/evidence/**/*.jpeg
-/evidence/**/*.jsonl
-/evidence/**/*.etl
-/evidence/**/*.mp4
-/evidence/**/*.wav
+# Only allowlisted Markdown/JSON reports are public; CI enforces the exact list.
+# Raw outputs, scripts and captures belong under local/ or tools/, not evidence/.
+/evidence/**
+!/evidence/**/
+!/evidence/**/*.md
+!/evidence/**/*.json
 .env
 .env.*
 !.env.example

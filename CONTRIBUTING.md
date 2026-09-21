@@ -41,6 +41,8 @@ Read [docs/compatibility.md](docs/compatibility.md) and the relevant protocol un
 
 Keep evidence classes explicit: **BUILD**, **HOST**, **FIXTURE/MOCK**, **NATIVE** and **NETWORK-REAL**. Preserve failed experiments and their limitations. Use a fresh evidence path and record the source revision, relevant artifact hashes, pinned dependencies, tested configuration, commands, exit codes, expected and observed behavior, and next step. Do not mark a milestone verified from compilation, synthetic inputs or an analyzer result alone.
 
+Write full traces and operational output under ignored `local/`, and preserve complete runs privately. Submit a compact reviewed report under `evidence/`, add its exact path to `docs/public-evidence-files.txt`, and run `python tools/check-public-evidence.py`. CI rejects raw files and unreviewed additions. Reusable analyzers and generators belong under `tools/`. See the [public evidence policy](docs/public-evidence.md) and [report index](evidence/README.md).
+
 ## Before opening a pull request
 
 - Explain the problem, resulting behavior and remaining limitations.

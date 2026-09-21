@@ -17,7 +17,11 @@ New documentation, code comments and commit messages use English. Visitor transl
 
 ## What is stored
 
-Project sources, build configuration, dependency pins, documentation, tests, original project artwork and reviewed text evidence are versioned. `evidence/** -text` preserves the exported evidence bytes rather than converting line endings. Historical hash manifests refer to private original artifacts unless explicitly stated otherwise; they must not be used to assert byte identity of redacted exports.
+Project sources, build configuration, dependency pins, documentation, tests, original project artwork and explicitly allowlisted evidence reports are versioned. `evidence/** -text` preserves the reviewed report bytes rather than converting line endings. Historical hash manifests refer to their recorded original artifacts or named public exports; they must not be used to assert byte identity of condensed current reports.
+
+Raw historical evidence is excluded from the cleaned public Git history as well as the latest tree. The complete pre-cleanup history is backed up privately. Existing public clones need a fresh clone after local work is saved; reapply intended source changes instead of merging an old branch. Only `main` existed at cleanup, with no public forks, open pull requests or tags. The private M07 development checkout remains independent and is not rewritten.
+
+For a new public evidence report, review its content, add its exact path to `docs/public-evidence-files.txt`, and stage both files before running `python tools/check-public-evidence.py`. This check uses Git's tracked file list, so it follows staging for a new report. Inspect the staged diff before committing. CI enforces the file types, allowlist and size limits. Reusable analysis code belongs in `tools/`; raw test outputs belong under ignored `local/`.
 
 Downloaded dependencies, generated builds, local runtime configuration, credentials, game binaries and personal saves are not repository deliverables. The existing `external/`, `build/`, `artifacts/` and `local/` exclusions remain in force. New raw traces and captures should be produced under `local/`, inspected and redacted before any explicit publication. Personal account paths, email addresses, machine names, real account SIDs and session credentials do not belong in public reports. Use the GitHub noreply commit address for new commits.
 
