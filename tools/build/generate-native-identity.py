@@ -3,8 +3,11 @@ import hashlib
 import json
 from pathlib import Path
 import sys
+import subprocess
 
 repo, configuration, output = Path(sys.argv[1]), sys.argv[2], Path(sys.argv[3])
+subprocess.run([sys.executable, str(repo / 'tools/build/verify-sdk-detours.py'),
+                '--repo', str(repo), '--configuration', configuration, '--check'], check=True)
 candidate = json.loads((repo / 'config/compatibility.candidate.json').read_text())
 def literal(value):
     return 'L' + json.dumps(value, ensure_ascii=True)

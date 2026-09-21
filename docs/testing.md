@@ -1,5 +1,9 @@
 # Testing and evidence contract
 
+## SDK Detours 4 build qualification — 2026-09-21
+
+The supported build replaces the SDK's old Detours 3 dependency with pinned MIT Detours 4.0.1. Run `pwsh -NoProfile -File tools/build/build.ps1 -Configuration Release -FetchDependencies` before building bridge/native-host targets; direct CMake builds reject missing or stale SDK provenance. The Release build and all **10/10 HOST/FIXTURE CTest targets pass**, including the actual SDK wrapper hook test and 122 Python tests. The Debug SDK/base build and its focused SDK wrapper test also pass. These are BUILD/HOST results, not original-game acceptance of the changed SDK DLL. Historical native results still refer to their recorded payloads. See [migration details](detours4-migration.md) and [the reviewed session](../evidence/2026-09-21-detours4-license/SESSION.md).
+
 The full acceptance text for M00–M20 is retained in `../MILESTONES.md`. Every milestone records its objective, dependencies, changed modules, commands, expected/observed outcomes, evidence, unresolved issues and next step. Current M01 observations and user acceptance are in ../evidence/2026-09-08-m01-native/SESSION.md. Do not repeat completed tests without a relevant change, failure or unresolved concern.
 
 ## M05 verified Creature fixture

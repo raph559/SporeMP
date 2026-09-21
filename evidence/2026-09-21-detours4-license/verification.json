@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "evidence_kind": "BUILD_HOST_FIXTURE_NOT_NATIVE",
+  "public_base_commit": "7822e2e2ef21b586f119f7372953ec30902382a1",
+  "native_acceptance": "NOT_RUN",
+  "release_ctest": {
+    "passed": 10,
+    "failed": 0,
+    "python_tests": 122,
+    "seconds": 11.93
+  },
+  "debug_sdk_wrapper_ctest": {
+    "passed": 1,
+    "failed": 0,
+    "seconds": 0.02
+  },
+  "sdk_provenance": {
+    "Release": {
+      "schema_version": 1,
+      "evidence_kind": "BUILD_TLOG_PROVENANCE_NOT_NATIVE_ACCEPTANCE",
+      "configuration": "Release",
+      "verified_at_utc": "2026-09-21T08:47:42.317971+00:00",
+      "dependency_revisions": {
+        "modapi": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+        "native_loader": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9"
+      },
+      "sha256": {
+        "build/sdk/Release/SporeModAPI.dll": "776c8a7e24c4907ae5be4ade8ccf2058c245bd6acddcf1edba94d8308b6ed890",
+        "build/sdk-base/Release/SporeModAPIBase.lib": "4dc3f38e5b44e784544bd2015f89b1b79db82d3f18f16350eb287dd64a16eda6",
+        "build/detours4/Release/sporemp_detours.lib": "fe5f9dc2348294499267f217e67b4f689513aa111d1556a31755d1bb9d9523d4",
+        "external/ModAPI-Launcher-Kit/ModAPI.DLLInjector/Detours/src/detours.h": "d9870cd2815958a335ff041c4d53d1951a8b7014a84d1c6e1b689b91607e09c9",
+        "config/dependencies.lock.json": "1d4078766284ad22bcf8167592e64ff3ad41478afd37d9135ddc88b2281fba1c",
+        "tools/build/sdk-detours4.targets": "f43719909b9cb8806c4847cabe384cc403b06cfe37ec1e35b089be785d4aa351",
+        "tools/build/detours4-guard.h": "d5181a4aac3febc26b6fe1685f2a8db1da4cf8ebedb4a82ac60492c118a395a3",
+        "tools/build/detours4/CMakeLists.txt": "b333f0cc9bc192cc0c99172efa0fdc4220ff76d7614407400e2b6c7548ddf080",
+        "tools/build/build.ps1": "71c8b856a2bcfee23ad366be306f194a98500de183968af12f4d06d44935dca3",
+        "tools/build/verify-sdk-detours.py": "5e1cc336831c33406c04ee86465caaaf3602aa4a06030f7daee2856436f3349a"
+      },
+      "build_input_logs": {
+        "sdk_compile": [
+          "build/sdk/Release/obj-detours4/Spore ModAPI.tlog/CL.read.1.tlog"
+        ],
+        "base_compile": [
+          "build/sdk-base/Release/obj-detours4/Spore ModAPI.tlog/CL.read.1.tlog"
+        ],
+        "sdk_link": [
+          "build/sdk/Release/obj-detours4/Spore ModAPI.tlog/link.read.1.tlog"
+        ]
+      }
+    },
+    "Debug": {
+      "schema_version": 1,
+      "evidence_kind": "BUILD_TLOG_PROVENANCE_NOT_NATIVE_ACCEPTANCE",
+      "configuration": "Debug",
+      "verified_at_utc": "2026-09-21T08:48:18.686798+00:00",
+      "dependency_revisions": {
+        "modapi": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+        "native_loader": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9"
+      },
+      "sha256": {
+        "build/sdk/Debug/SporeModAPI.dll": "488e22f2846d6e64be7d57f7e5ba4ee00a916e50174c85b7751bc61386f5fa56",
+        "build/sdk-base/Debug/SporeModAPIBase.lib": "05295e446724a42565d432df8daea614f1803ee2452d6d31183d52b12ed87eea",
+        "build/detours4/Debug/sporemp_detours.lib": "351c3ddb2a44f33f421a3b7dc569283d7a50e5227288c7f400ab4c7e88ccbf55",
+        "external/ModAPI-Launcher-Kit/ModAPI.DLLInjector/Detours/src/detours.h": "d9870cd2815958a335ff041c4d53d1951a8b7014a84d1c6e1b689b91607e09c9",
+        "config/dependencies.lock.json": "1d4078766284ad22bcf8167592e64ff3ad41478afd37d9135ddc88b2281fba1c",
+        "tools/build/sdk-detours4.targets": "f43719909b9cb8806c4847cabe384cc403b06cfe37ec1e35b089be785d4aa351",
+        "tools/build/detours4-guard.h": "d5181a4aac3febc26b6fe1685f2a8db1da4cf8ebedb4a82ac60492c118a395a3",
+        "tools/build/detours4/CMakeLists.txt": "b333f0cc9bc192cc0c99172efa0fdc4220ff76d7614407400e2b6c7548ddf080",
+        "tools/build/build.ps1": "71c8b856a2bcfee23ad366be306f194a98500de183968af12f4d06d44935dca3",
+        "tools/build/verify-sdk-detours.py": "5e1cc336831c33406c04ee86465caaaf3602aa4a06030f7daee2856436f3349a"
+      },
+      "build_input_logs": {
+        "sdk_compile": [
+          "build/sdk/Debug/obj-detours4/Spore ModAPI.tlog/CL.read.1.tlog"
+        ],
+        "base_compile": [
+          "build/sdk-base/Debug/obj-detours4/Spore ModAPI.tlog/CL.read.1.tlog"
+        ],
+        "sdk_link": [
+          "build/sdk/Debug/obj-detours4/Spore ModAPI.tlog/link.read.1.tlog"
+        ]
+      }
+    }
+  },
+  "other_artifact_sha256": {
+    "build/win32/Release/SporeMP.Bridge.dll": "d006f5b1f6f42dabfb7beb6db16392e8319520ef94ed75374ed4d7f42af7628f",
+    "build/win32/Release/SporeMP.NativeHost.exe": "5d7202312ee88201770af18c065dcb67071f7577889bf94efda13caf797085ec",
+    "build/injector/Release/ModAPI.DLLInjector.dll": "512ca72df4c69e016cfa468c357b842ebdc1a6219d9c3b94c277177c358ac10b",
+    "build/launcher/Release/SporeMP.dll": "4bd38f8c043e5ec2015806f03bd0cadf76a9c6642d70257d6007a601e9a9dd34",
+    "build/win32/Release/sporemp_sdk_detours_tests.exe": "a5a5bdf899a5ffb38727ed3183a6b1bebf7aed114c982e8c85d7b45a93d37e64",
+    "build/win32/Debug/sporemp_sdk_detours_tests.exe": "5aa1805d52775f19e3b6974503235a6f0adf1b659e120be2fdcc8a41139cd30c"
+  },
+  "compatibility_inventory_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "private_log_sha256": {
+    "local/detours4-migration/build-debug-sdk.log": "57ffb84d2e7656abd4b0469fab0027418a654660dd253a7209da0b078b86d131",
+    "local/detours4-migration/build-debug-wrapper.log": "ca6feb174fb45c178067d556cb197a1d43ac19112ec64ff89f45a3cb47286845",
+    "local/detours4-migration/build-release-02.log": "90fadfe34b3e30d095954a67614597ef93c906c0e392cccd8e0b0f75de782035",
+    "local/detours4-migration/build-release-03.log": "ad4e37092d9020203eafe8decc2e86a7a31a6a280b1c4abbbc0322270c80e5c2",
+    "local/detours4-migration/build-release-final.log": "cb5f293ed2913fe95d58efb12e56f5dab7cf33e51ea71f654dd3dbd9f84844a5",
+    "local/detours4-migration/build-release.log": "ec78ff57e65c1c8a171442a059343d3ffee0c9e92415aa4da13622a34401b1c8",
+    "local/detours4-migration/ctest-debug-wrapper.log": "556c7f1c276927532965339a840620fd33beea6ed902793df77f965f79e534ac",
+    "local/detours4-migration/ctest-release.log": "90fd2390ac8a4acf0b5cf19435be97055293fe669706659f18b01751f9fe261f",
+    "local/detours4-migration/restored-target-build.log": "04eeb0de9e1373107a513294f7700170335e78ce5f1cd124525f5c96763d1e8c",
+    "local/detours4-migration/stale-sdk-rejection.log": "8f888ad183ec37c9d3a0166830b3ff506d219ab339f6b9c2b45b5d1c4348a576"
+  },
+  "source_worktree_sha256": {
+    "CMakeLists.txt": "3d9f05c06b1ce198f2cbc59df35bd775addea0299269f73677c1c72fbdf62136",
+    "CONTRIBUTING.md": "e33db066e8d08e9f7a949b55e6868f865925a7208427706a8118df765b247a6e",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "README.md": "4e8a1bd9b7fcb3fed349628ce3745a615f60dd6d4054bbd2435012176509af61",
+    "STATUS.md": "4ad15003b994f66f8cb8db3b227b02991238a38e5d344d5d099d25a6f87fa6bc",
+    "THIRD_PARTY_NOTICES.md": "6f513f818abc7d6859dd3c7d8d1e9187b32f219393c9937691a0a0e09da7531c",
+    "docs/detours4-migration.md": "56e41aeba6583093a784f9bba51b72bb3696b28dc04256620f813708e4db8216",
+    "docs/licensing.md": "0e13c4a9ae7e9e8b967f59a9206531e675b9e333abb57f518648d03a633c19ee",
+    "docs/sources.md": "9a2cb48037bcae176c3598abba7f550915df7fa2bf7aa44e92a59996187d55ee",
+    "docs/testing.md": "e98da5d72048d274d3f73b2e8c6def7f7d9695f70f1f208553e4c65a2dcdca04",
+    "evidence/2026-09-21-detours4-license/SESSION.md": "988e8d0bcda8276dd06851d78fa559500ac4633535f63e89fe1ed5b6ce314436",
+    "tests/unit/sdk_detours_tests.cpp": "8dc2d198033c548f3e0e29d34d066dd24c37f9621afc1881a848e60cf2783c29",
+    "tests/unit/test_sdk_detours_provenance.py": "66da779373cde2419ba409a0b859f6fa9db1cff97ef47de53cad2f9518c98d5c",
+    "tools/build/build.ps1": "71c8b856a2bcfee23ad366be306f194a98500de183968af12f4d06d44935dca3",
+    "tools/build/detours4-guard.h": "d5181a4aac3febc26b6fe1685f2a8db1da4cf8ebedb4a82ac60492c118a395a3",
+    "tools/build/detours4/CMakeLists.txt": "b333f0cc9bc192cc0c99172efa0fdc4220ff76d7614407400e2b6c7548ddf080",
+    "tools/build/generate-native-identity.py": "f1a4accdbd5a16b407671ad2d687dbceb3916ae1fabfdb00d871d14d2596304e",
+    "tools/build/sdk-detours4.targets": "f43719909b9cb8806c4847cabe384cc403b06cfe37ec1e35b089be785d4aa351",
+    "tools/build/verify-sdk-detours.py": "5e1cc336831c33406c04ee86465caaaf3602aa4a06030f7daee2856436f3349a"
+  },
+  "source_git_blob_sha256": {
+    "CMakeLists.txt": "3d9f05c06b1ce198f2cbc59df35bd775addea0299269f73677c1c72fbdf62136",
+    "CONTRIBUTING.md": "e33db066e8d08e9f7a949b55e6868f865925a7208427706a8118df765b247a6e",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "README.md": "4e8a1bd9b7fcb3fed349628ce3745a615f60dd6d4054bbd2435012176509af61",
+    "STATUS.md": "b40c2e27bcbe089f53247b68c5db5db7e3442606a79181623fc843ba1f10d933",
+    "THIRD_PARTY_NOTICES.md": "6f513f818abc7d6859dd3c7d8d1e9187b32f219393c9937691a0a0e09da7531c",
+    "docs/detours4-migration.md": "56e41aeba6583093a784f9bba51b72bb3696b28dc04256620f813708e4db8216",
+    "docs/licensing.md": "0e13c4a9ae7e9e8b967f59a9206531e675b9e333abb57f518648d03a633c19ee",
+    "docs/sources.md": "9a2cb48037bcae176c3598abba7f550915df7fa2bf7aa44e92a59996187d55ee",
+    "docs/testing.md": "e98da5d72048d274d3f73b2e8c6def7f7d9695f70f1f208553e4c65a2dcdca04",
+    "evidence/2026-09-21-detours4-license/SESSION.md": "988e8d0bcda8276dd06851d78fa559500ac4633535f63e89fe1ed5b6ce314436",
+    "tests/unit/sdk_detours_tests.cpp": "8dc2d198033c548f3e0e29d34d066dd24c37f9621afc1881a848e60cf2783c29",
+    "tests/unit/test_sdk_detours_provenance.py": "66da779373cde2419ba409a0b859f6fa9db1cff97ef47de53cad2f9518c98d5c",
+    "tools/build/build.ps1": "71c8b856a2bcfee23ad366be306f194a98500de183968af12f4d06d44935dca3",
+    "tools/build/detours4-guard.h": "d5181a4aac3febc26b6fe1685f2a8db1da4cf8ebedb4a82ac60492c118a395a3",
+    "tools/build/detours4/CMakeLists.txt": "b333f0cc9bc192cc0c99172efa0fdc4220ff76d7614407400e2b6c7548ddf080",
+    "tools/build/generate-native-identity.py": "f1a4accdbd5a16b407671ad2d687dbceb3916ae1fabfdb00d871d14d2596304e",
+    "tools/build/sdk-detours4.targets": "f43719909b9cb8806c4847cabe384cc403b06cfe37ec1e35b089be785d4aa351",
+    "tools/build/verify-sdk-detours.py": "5e1cc336831c33406c04ee86465caaaf3602aa4a06030f7daee2856436f3349a"
+  }
+}

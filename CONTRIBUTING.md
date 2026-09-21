@@ -8,6 +8,12 @@ Use an issue to describe a reproducible bug or a concrete proposal. Check existi
 
 Write code, comments, documentation, issue reports and pull requests in English. Website translations belong in `website/locales/`; English remains the default. Preserve the original game's gameplay and keep engine dependencies inside `src/bridge`. Do not introduce a replacement simulation or assume an unverified SDK method, ABI, address, launch flag or headless mode.
 
+## Contribution licensing
+
+Submit original code contributions under **GPL-3.0-or-later**, the same license as SporeMP's original code. By submitting a code contribution for inclusion, you agree to make it available under those terms and confirm that you have the right to do so. Copyright remains with the respective contributors; no copyright assignment is required.
+
+Preserve existing copyright and license notices. Identify any third-party code, its source and its license in the pull request so its compatibility and notice requirements can be reviewed. Do not relabel third-party code as project-owned GPL code. Artwork and third-party materials require a separate review; the code license does not automatically cover them. See [licensing scope](docs/licensing.md), [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Development and checks
 
 The native bridge and launcher target Windows. Exact toolchain versions, dependency pins and build commands are in [README.md](README.md), [docs/testing.md](docs/testing.md) and `config/dependencies.lock.json`. Fetch dependencies through the build tooling. Do not commit downloaded dependencies or generated builds.

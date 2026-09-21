@@ -30,8 +30,7 @@ target_include_directories(sporemp_diagnostics PUBLIC src/bridge "${CMAKE_BINARY
 target_link_libraries(sporemp_diagnostics PUBLIC bcrypt)
 target_compile_definitions(sporemp_diagnostics PUBLIC WIN32_LEAN_AND_MEAN NOMINMAX UNICODE _UNICODE)
 target_compile_options(sporemp_diagnostics PRIVATE /W4 /WX)
-# The SDK's Detours 3.0 rejects four-byte getters. Build Detours 4.0.1
-# from the already pinned injector checkout; it consumes verified CC padding.
+# The SDK and bridge use the same pinned MIT Detours 4.0.1 build.
 set(INJECTOR_ROOT "${CMAKE_SOURCE_DIR}/external/ModAPI-Launcher-Kit")
 string(JSON INJECTOR_REVISION GET "${DEPENDENCIES}" native_loader commit)
 execute_process(COMMAND git -C "${INJECTOR_ROOT}" rev-parse HEAD OUTPUT_VARIABLE INJECTOR_ACTUAL OUTPUT_STRIP_TRAILING_WHITESPACE COMMAND_ERROR_IS_FATAL ANY)
@@ -39,9 +38,12 @@ if(NOT INJECTOR_ACTUAL STREQUAL INJECTOR_REVISION)
   message(FATAL_ERROR "Injector/Detours revision differs from the dependency lock.")
 endif()
 set(DETOURS_ROOT "${INJECTOR_ROOT}/ModAPI.DLLInjector/Detours/src")
-add_library(sporemp_detours STATIC "${DETOURS_ROOT}/detours.cpp" "${DETOURS_ROOT}/modules.cpp" "${DETOURS_ROOT}/disasm.cpp" "${DETOURS_ROOT}/image.cpp" "${DETOURS_ROOT}/creatwth.cpp")
-target_include_directories(sporemp_detours PUBLIC "${DETOURS_ROOT}")
-target_compile_definitions(sporemp_detours PRIVATE WIN32_LEAN_AND_MEAN _WIN32_WINNT=0x0601)
+add_library(sporemp_detours STATIC IMPORTED)
+foreach(CONFIG Debug Release)
+  string(TOUPPER "${CONFIG}" UPPER_CONFIG)
+  set_property(TARGET sporemp_detours PROPERTY IMPORTED_LOCATION_${UPPER_CONFIG} "${CMAKE_SOURCE_DIR}/build/detours4/${CONFIG}/sporemp_detours.lib")
+endforeach()
+target_include_directories(sporemp_detours INTERFACE "${DETOURS_ROOT}")
 add_library(sporemp_observation STATIC src/bridge/observation.cpp src/bridge/detour_transaction.cpp)
 target_link_libraries(sporemp_observation PUBLIC sporemp_diagnostics sporemp_detours)
 target_compile_options(sporemp_observation PRIVATE /W4 /WX)
@@ -62,7 +64,8 @@ target_compile_options(SporeMP.WorkerControl PRIVATE /W4 /WX)
 include(CTest)
 add_subdirectory(src/network)
 add_library(SporeMP.Bridge SHARED src/bridge/dllmain.cpp src/bridge/native_observation.cpp src/bridge/native_actors.cpp src/bridge/native_player_context.cpp src/bridge/native_award_context.cpp src/bridge/native_worker.cpp src/bridge/native_persistence.cpp src/bridge/native_replica.cpp src/bridge/native_scene.cpp src/bridge/native_network.cpp)
-target_include_directories(SporeMP.Bridge SYSTEM PRIVATE "${SDK_ROOT}/Spore ModAPI" "${SDK_ROOT}/EASTL-3.02.01/include" "${SDK_ROOT}/EASTL-3.02.01/test/packages/EABase/include/Common" "${SDK_ROOT}/EASTL-3.02.01/test/packages/EAAssert/include" "${SDK_ROOT}/EASTL-3.02.01/test/packages/EAStdC/include" "${SDK_ROOT}/Detours/include")
+target_include_directories(SporeMP.Bridge SYSTEM PRIVATE "${SDK_ROOT}/Spore ModAPI" "${SDK_ROOT}/EASTL-3.02.01/include" "${SDK_ROOT}/EASTL-3.02.01/test/packages/EABase/include/Common" "${SDK_ROOT}/EASTL-3.02.01/test/packages/EAAssert/include" "${SDK_ROOT}/EASTL-3.02.01/test/packages/EAStdC/include")
+target_compile_options(SporeMP.Bridge PRIVATE "/FI${CMAKE_SOURCE_DIR}/tools/build/detours4-guard.h")
 target_link_libraries(SporeMP.Bridge PRIVATE modapi_base modapi sporemp_diagnostics sporemp_observation sporemp_actor_commands sporemp_worker sporemp_replica sporemp_network)
 target_compile_options(SporeMP.Bridge PRIVATE /W4)
 # No post-build install/copy to a game/launcher directory and no automatic launch.
@@ -86,6 +89,12 @@ target_link_libraries(sporemp_native_actor_abi_tests PRIVATE sporemp_observation
 target_compile_options(sporemp_native_actor_abi_tests PRIVATE /W4 /WX)
 add_test(NAME native_actor_abi_host COMMAND sporemp_native_actor_abi_tests)
 set_tests_properties(native_actor_abi_host PROPERTIES LABELS "host;fixture;not-native")
+add_executable(sporemp_sdk_detours_tests tests/unit/sdk_detours_tests.cpp)
+target_include_directories(sporemp_sdk_detours_tests SYSTEM PRIVATE "${SDK_ROOT}/Spore ModAPI" "${DETOURS_ROOT}")
+target_link_libraries(sporemp_sdk_detours_tests PRIVATE sporemp_detours)
+target_compile_options(sporemp_sdk_detours_tests PRIVATE /W4 /WX)
+add_test(NAME sdk_detours_host COMMAND sporemp_sdk_detours_tests)
+set_tests_properties(sdk_detours_host PROPERTIES LABELS "host;fixture;not-native")
 add_executable(sporemp_diagnostics_tests tests/unit/diagnostics_tests.cpp)
 target_link_libraries(sporemp_diagnostics_tests PRIVATE sporemp_diagnostics)
 target_compile_options(sporemp_diagnostics_tests PRIVATE /W4 /WX)
@@ -97,12 +106,20 @@ target_compile_options(sporemp_observation_tests PRIVATE /W4 /WX)
 add_test(NAME observation_host COMMAND sporemp_observation_tests)
 set_tests_properties(observation_host PROPERTIES LABELS "host;fixture;not-native")
 find_package(Python3 3.10 REQUIRED COMPONENTS Interpreter)
+add_custom_target(verify_sdk_detours
+  COMMAND "${Python3_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tools/build/verify-sdk-detours.py"
+    --repo "${CMAKE_SOURCE_DIR}" --configuration "$<CONFIG>" --check
+  COMMENT "Checking SDK Detours 4 artifact provenance" VERBATIM)
+add_dependencies(SporeMP.Bridge verify_sdk_detours)
 add_custom_command(OUTPUT "${CMAKE_BINARY_DIR}/native/$<CONFIG>/native_identity.h"
   COMMAND "${Python3_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/tools/build/generate-native-identity.py" "${CMAKE_SOURCE_DIR}" "$<CONFIG>" "${CMAKE_BINARY_DIR}/native/$<CONFIG>/native_identity.h"
   DEPENDS SporeMP.Bridge config/compatibility.candidate.json tools/build/generate-native-identity.py
+    tools/build/verify-sdk-detours.py tools/build/sdk-detours4.targets tools/build/detours4-guard.h
+    "${CMAKE_SOURCE_DIR}/build/sdk/$<CONFIG>/detours-provenance.json"
     "${CMAKE_SOURCE_DIR}/build/injector/$<CONFIG>/ModAPI.DLLInjector.dll"
     "${CMAKE_SOURCE_DIR}/build/sdk/$<CONFIG>/SporeModAPI.dll")
 add_executable(SporeMP.NativeHost src/bridge/native_host.cpp "${CMAKE_BINARY_DIR}/native/$<CONFIG>/native_identity.h")
+add_dependencies(SporeMP.NativeHost verify_sdk_detours)
 target_include_directories(SporeMP.NativeHost PRIVATE "${CMAKE_BINARY_DIR}/native/$<CONFIG>")
 target_link_libraries(SporeMP.NativeHost PRIVATE sporemp_diagnostics sporemp_worker sporemp_network shell32 advapi32 userenv user32)
 target_compile_options(SporeMP.NativeHost PRIVATE /W4 /WX)

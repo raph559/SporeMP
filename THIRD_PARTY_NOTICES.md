@@ -2,7 +2,7 @@
 
 Reviewed: 2026-09-21.
 
-This document records the dependencies and source references used by SporeMP. It does not assign a license to SporeMP's own code, change an upstream license, or constitute a completed review for distributing compiled packages. The project license status is separate from these notices.
+This document records the dependencies and source references used by SporeMP. Original project code is licensed under [GPL-3.0-or-later](docs/licensing.md). These notices do not change upstream licenses or constitute a completed review for distributing compiled packages.
 
 The dependency checkouts in `external/` and generated binaries in `build/` are excluded from this repository. The build tooling fetches the exact revisions in [the dependency lock](config/dependencies.lock.json) and rejects tracked modifications to those checkouts. Upstream copyright notices and license files remain in the fetched sources.
 
@@ -13,7 +13,7 @@ The dependency checkouts in `external/` and generated binaries in `build/` are e
 - Use: native bridge headers, the SDK DLL and the SDK base library.
 - The pinned [`Spore/Internal.h`](https://github.com/Spore-Community/Spore-ModAPI/blob/cbf9206b9a823f0911cd9be0217104a49d72380b/Spore%20ModAPI/Spore/Internal.h) carries copyright 2019 Eric Mor and a GNU General Public License version 3 or later notice. The full license is available from the [GNU project](https://www.gnu.org/licenses/gpl-3.0.html).
 
-That notice does not replace the separate terms of components bundled in the SDK. In particular, the SDK contains EASTL and the older Detours distribution described below. The bridge's use of SDK headers and its linkage to SDK libraries must be included in any future distribution review.
+That notice does not replace the separate terms of components bundled in the SDK. EASTL retains its notices. The old Detours distribution remains in the unmodified upstream checkout but is excluded from SporeMP's supported build, as described below. The bridge's use of SDK headers and its linkage to SDK libraries must be included in any future distribution review.
 
 ## ModAPI Launcher Kit and injector
 
@@ -25,21 +25,21 @@ That notice does not replace the separate terms of components bundled in the SDK
 
 The MIT copyright and permission notices must accompany copies or substantial portions of this upstream software. The injector source is fetched separately rather than vendored into this repository.
 
-## Microsoft Detours: two distinct versions
+## Microsoft Detours
 
-### Detours 4.0.1 used by the SporeMP detour library and injector
+### Detours 4.0.1 used by the SDK, bridge and injector
 
-The pinned Launcher Kit contains [Detours sources](https://github.com/Spore-Community/ModAPI-Launcher-Kit/tree/26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9/ModAPI.DLLInjector/Detours). SporeMP's `sporemp_detours` target builds those sources, as recorded in [CMakeLists.txt](CMakeLists.txt).
+The pinned Launcher Kit contains [Detours sources](https://github.com/Spore-Community/ModAPI-Launcher-Kit/tree/26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9/ModAPI.DLLInjector/Detours). The [build entrypoint](tools/build/build.ps1) compiles those sources into `build/detours4/<Configuration>/sporemp_detours.lib`. Both SporeModAPI.dll and the SporeMP bridge use that library and its 4.0.1 headers. The pinned injector compiles its own copy of the same MIT sources.
 
 Its [included license](https://github.com/Spore-Community/ModAPI-Launcher-Kit/blob/26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9/ModAPI.DLLInjector/Detours/LICENSE.md) is MIT, copyright Microsoft Corporation. Copies or substantial portions require the copyright and permission notices.
 
-### Detours 3.0 Express bundled in the SDK
+### Detours 3.0 Express: historical dependency, excluded from the current build
 
 The pinned Spore ModAPI checkout separately contains [Detours 3.0 Express](https://github.com/Spore-Community/Spore-ModAPI/tree/cbf9206b9a823f0911cd9be0217104a49d72380b/Detours). Its [`LICENSE.RTF`](https://github.com/Spore-Community/Spore-ModAPI/blob/cbf9206b9a823f0911cd9be0217104a49d72380b/Detours/LICENSE.RTF) is the Microsoft Research Shared Source License Agreement, marked **Non-commercial Use Only**, copyright Microsoft Corporation. It is not the MIT license used by Detours 4.0.1.
 
-The pinned SDK project references `Detours/lib.X86` and links `detours.lib`; SporeMP's build invokes that SDK project. Building SporeMP's own detour library from version 4.0.1 does not by itself replace the SDK's separate dependency.
+The upstream SDK project references `Detours/lib.X86` and `detours.lib`. SporeMP overrides those settings with a reviewed [late MSBuild overlay](tools/build/sdk-detours4.targets), replacing the SDK DLL and base-library include paths and the DLL link dependency. Separate intermediate directories avoid reusing objects compiled with Detours 3. A forced header checks version 4.0.1, and the [provenance verifier](tools/build/verify-sdk-detours.py) requires the actual compiler/linker input logs to exclude the old Detours directory and library. The bridge's old SDK Detours include path is removed too.
 
-The older license restricts use and distribution to non-commercial purposes, requires its notices and terms to be retained, and specifies notices for modified source files. The complete upstream terms govern. Compatibility and redistribution conditions for the combined SDK output remain to be resolved before publishing a compiled package. Neither public access to this repository nor a license selected for SporeMP's own code resolves that packaging question. No SDK or Detours binary is distributed in this repository.
+The old files remain untouched inside the ignored dependency checkout; their license still governs those files. They are not build inputs or release materials for the new configuration. Do not distribute the entire upstream SDK checkout as a SporeMP binary package. Earlier build artifacts and historical native evidence used the original SDK configuration and are not retroactively relabeled. New original-game compatibility acceptance is separate from the build migration. See [the migration and validation boundary](docs/detours4-migration.md). No SDK or Detours binary is distributed in this source repository.
 
 ## EASTL 3.02.01 and bundled support code
 

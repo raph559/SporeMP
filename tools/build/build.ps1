@@ -45,13 +45,18 @@ if (-not $vsRoot) { throw 'Visual Studio 2022 C++ x86/x64 tools missing.' }
 $compiler = Join-Path $vsRoot ('VC\Tools\MSVC\' + $lock.modapi.msvc_tools_version + '\bin\Hostx64\x86\cl.exe')
 if (-not (Test-Path -LiteralPath $compiler)) { throw "Pinned compiler missing: $compiler" }
 $msbuild = Join-Path $vsRoot 'MSBuild\Current\Bin\MSBuild.exe'
+$detoursBuild = Join-Path $repoRoot 'build\detours4'
+Invoke-Checked 'cmake' @('-S', (Join-Path $PSScriptRoot 'detours4'), '-B', $detoursBuild, '-G', 'Visual Studio 17 2022', '-A', 'Win32', '-T', "v143,version=$($lock.modapi.msvc_tools_version)", "-DCMAKE_SYSTEM_VERSION=$($lock.modapi.windows_sdk)")
+Invoke-Checked 'cmake' @('--build', $detoursBuild, '--config', $Configuration, '--parallel', '4')
+$sdkDetours = @("/p:ForceImportAfterCppTargets=$(Join-Path $PSScriptRoot 'sdk-detours4.targets')", "/p:SporeMPDetoursSource=$(Join-Path $loaderRoot 'ModAPI.DLLInjector\Detours\src')", "/p:SporeMPDetoursLibrary=$(Join-Path $detoursBuild "$Configuration\sporemp_detours.lib")")
 $sdkOutput = Join-Path $repoRoot "build\sdk\$Configuration"
 New-Item -ItemType Directory -Path $sdkOutput -Force | Out-Null
 $sdkProject = Join-Path $sdkRoot 'Spore ModAPI\Spore ModAPI.vcxproj'
-Invoke-Checked $msbuild @($sdkProject, '/t:Build', '/m:2', '/v:minimal', '/nologo', "/p:Configuration=$Configuration DLL", '/p:Platform=Win32', "/p:PlatformToolset=$($lock.modapi.toolset)", "/p:VCToolsVersion=$($lock.modapi.msvc_tools_version)", "/p:WindowsTargetPlatformVersion=$($lock.modapi.windows_sdk)", "/p:SDK_BUILD_VER=$($lock.modapi.sdk_build_ver)", "/p:EXECUTABLE_TYPE=$($lock.modapi.executable_type)", "/p:OutDir=$sdkOutput\", "/p:IntDir=$sdkOutput\obj\", '/p:CL_MPCount=4', "/bl:$sdkOutput\sdk-build.binlog", '/fl', "/flp:logfile=$sdkOutput\sdk-build.log;verbosity=normal")
+Invoke-Checked $msbuild (@($sdkProject, '/t:Build', '/m:2', '/v:minimal', '/nologo', "/p:Configuration=$Configuration DLL", '/p:Platform=Win32', "/p:PlatformToolset=$($lock.modapi.toolset)", "/p:VCToolsVersion=$($lock.modapi.msvc_tools_version)", "/p:WindowsTargetPlatformVersion=$($lock.modapi.windows_sdk)", "/p:SDK_BUILD_VER=$($lock.modapi.sdk_build_ver)", "/p:EXECUTABLE_TYPE=$($lock.modapi.executable_type)", "/p:OutDir=$sdkOutput\", "/p:IntDir=$sdkOutput\obj-detours4\", '/p:CL_MPCount=4', "/bl:$sdkOutput\sdk-build.binlog", '/fl', "/flp:logfile=$sdkOutput\sdk-build.log;verbosity=normal") + $sdkDetours)
 $baseOutput = Join-Path $repoRoot "build\sdk-base\$Configuration"
 New-Item -ItemType Directory -Path $baseOutput -Force | Out-Null
-Invoke-Checked $msbuild @($sdkProject, '/t:Build', '/m:2', '/v:minimal', '/nologo', "/p:Configuration=$Configuration", '/p:Platform=Win32', "/p:PlatformToolset=$($lock.modapi.toolset)", "/p:VCToolsVersion=$($lock.modapi.msvc_tools_version)", "/p:WindowsTargetPlatformVersion=$($lock.modapi.windows_sdk)", "/p:OutDir=$baseOutput\", "/p:IntDir=$baseOutput\obj\", '/p:CL_MPCount=4', '/fl', "/flp:logfile=$baseOutput\build.log;verbosity=normal")
+Invoke-Checked $msbuild (@($sdkProject, '/t:Build', '/m:2', '/v:minimal', '/nologo', "/p:Configuration=$Configuration", '/p:Platform=Win32', "/p:PlatformToolset=$($lock.modapi.toolset)", "/p:VCToolsVersion=$($lock.modapi.msvc_tools_version)", "/p:WindowsTargetPlatformVersion=$($lock.modapi.windows_sdk)", "/p:OutDir=$baseOutput\", "/p:IntDir=$baseOutput\obj-detours4\", '/p:CL_MPCount=4', '/fl', "/flp:logfile=$baseOutput\build.log;verbosity=normal") + $sdkDetours)
+Invoke-Checked 'python' @((Join-Path $PSScriptRoot 'verify-sdk-detours.py'), '--repo', $repoRoot, '--configuration', $Configuration)
 if ($SdkOnly) { return }
 $loaderOutput = Join-Path $repoRoot "build\injector\$Configuration"
 New-Item -ItemType Directory -Path $loaderOutput -Force | Out-Null

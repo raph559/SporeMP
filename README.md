@@ -58,6 +58,8 @@ The old validate/preflight commands remain read-only diagnostics. Normal Play us
 
 No EA executables, assets or saves are distributed in source. Operators and players need their own original-game installations. Dependency provenance and redistribution review are tracked in `docs/sources.md`.
 
-## License status
+## License
 
-No license has been assigned to SporeMP's own code or artwork yet. Public access to this repository does not by itself grant an open-source license. Third-party components retain their respective terms, documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). This source publication includes no compiled game package or EA content.
+SporeMP's original code is licensed under the **GNU General Public License, version 3 or any later version** (`GPL-3.0-or-later`). See [LICENSE](LICENSE) for the license text and [licensing scope](docs/licensing.md) for the grant and exclusions.
+
+Third-party components retain their respective licenses, documented in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The code license does not assign a license to the project's artwork or grant rights to EA game content, third-party materials or personal data. This source publication includes no compiled game package or EA content.

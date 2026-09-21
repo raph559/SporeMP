@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- Imported after the pinned upstream project's C++ targets; no upstream edits. -->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <IncludePath>$(SporeMPDetoursSource);$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath);$(ProjectDir)..\EASTL-3.02.01\test\packages\EABase\include\Common;$(ProjectDir)..\EASTL-3.02.01\test\packages\EAAssert\include;$(ProjectDir)..\EASTL-3.02.01\test\packages\EAStdC\include;$(ProjectDir)..\EASTL-3.02.01\include</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <ForcedIncludeFiles>$(MSBuildThisFileDirectory)detours4-guard.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>$([MSBuild]::Unescape($([System.String]::Copy('%(Link.AdditionalDependencies)').Replace('detours.lib', '$(SporeMPDetoursLibrary)'))))</AdditionalDependencies>
+      <AdditionalOptions>/VERBOSE:LIB %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <Target Name="RequireSporeMPDetours4" BeforeTargets="PrepareForBuild">
+    <Error Condition="'$(SporeMPDetoursSource)' == '' Or !Exists('$(SporeMPDetoursSource)\detours.h')" Text="Pinned Detours 4 headers missing. Run tools/build/build.ps1." />
+    <Error Condition="'$(SporeMPDetoursLibrary)' == '' Or !Exists('$(SporeMPDetoursLibrary)')" Text="Pinned Detours 4 library missing. Run tools/build/build.ps1." />
+    <Error Condition="'$(Platform)' != 'Win32'" Text="Only the pinned Win32 SDK configuration is supported." />
+  </Target>
+</Project>
