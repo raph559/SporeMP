@@ -2,8 +2,6 @@
 
 Live website: https://raph559.github.io/sporemp-site/
 
-When this directory is viewed inside the public SporeMP mod repository, it is a reviewed website source snapshot through M08. The live publication source is the separate [sporemp-site repository](https://github.com/raph559/sporemp-site); its design and news may be newer. The editing and deployment instructions below apply to that standalone repository.
-
 A bilingual static website, with English as the default and French available through the EN / FR selector. It has no npm dependencies, visitor accounts or trackers. This repository contains the website and its original illustration, without game files or private development data.
 
 ## Publish news and development updates
