@@ -13,7 +13,7 @@ for(const file of files.filter(p=>p.endsWith('.html'))){
   for(const match of html.matchAll(/(?:href|src)="([^"]*)"/g)){
     const value=match[1]; if(!value)throw new Error('Empty URL: '+file);
     if(/^(https:|data:)/.test(value))continue;
-    const [url,anchor]=value.split('#'); let target=path.resolve(path.dirname(file),url||path.basename(file));
+    const [resource,anchor]=value.split('#'); const url=resource.split('?')[0]; let target=path.resolve(path.dirname(file),url||path.basename(file));
     if(!target.startsWith(root+path.sep)&&target!==root)throw new Error('Outside output: '+target);
     if((await stat(target)).isDirectory())target=path.join(target,'index.html');
     const content=await readFile(target);
