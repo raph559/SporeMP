@@ -5,7 +5,7 @@
 
 namespace sporemp::network {
 struct CoordinatorConfig {std::string bind_host="127.0.0.1";uint16_t port=27060;SessionConfig session{};};
-struct CoordinatorEvent {uint64_t connection=0;Event event{};};
+struct CoordinatorEvent {uint64_t connection=0;Event event{};bool outbound=false;};
 class Coordinator {
 public:
     Coordinator();~Coordinator();

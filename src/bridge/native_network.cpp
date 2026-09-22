@@ -1,8 +1,10 @@
 #include "native_network.h"
 #include "native_actors.h"
 #include "native_scene.h"
+#include "native_scene_cadence.h"
 #include "native_replica.h"
 #include "native_persistence.h"
+#include "native_content_network.h"
 #include "../network/peer.h"
 #include <Spore/App/IMessageManager.h>
 #include <Windows.h>
@@ -19,6 +21,10 @@
 namespace sporemp {
 namespace {
 using namespace network;
+static_assert(uint32_t(Verb::move)==uint32_t(ActorVerb::move)&&uint32_t(Verb::jump)==uint32_t(ActorVerb::jump)&&
+    uint32_t(Verb::attack)==uint32_t(ActorVerb::attack)&&uint32_t(Verb::stop)==uint32_t(ActorVerb::stop)&&
+    uint32_t(Verb::approach)==uint32_t(ActorVerb::approach)&&uint32_t(Verb::engage)==uint32_t(ActorVerb::engage)&&uint32_t(Verb::pickup)==uint32_t(ActorVerb::pickup),
+    "Network/native input verb values must match at the scalar boundary");
 std::unique_ptr<Peer> peer;
 PeerConfig config;
 DWORD engine_thread=0;
@@ -66,7 +72,7 @@ void status(const char* state,const std::string& detail) {
 }
 void quarantine(const std::string& reason) {
     if(failed) return;
-    failed=true;ready=false;motion.clear();held={};pressed={};
+    failed=true;ready=false;motion.clear();held={};pressed={};fence_native_content_network();
     native_replica_arm_network();reset_native_scene_baseline();
     status("error",reason);
 }
@@ -76,13 +82,15 @@ bool send(Packet packet) {
 }
 Entity encode_entity(const NativeSceneEntity& in,uint64_t) { return in; }
 NativeSceneEntity decode_entity(const Entity& in) { return in; }
-bool intention(Verb verb,int direction=0) {
+bool intention(Verb verb,int direction=0,uint64_t target=0,uint64_t target_generation=0,uint64_t actor_id=0) {
     if(!ready || failed || config.role!=Role::player || player<1 || player>2) return false;
-    auto controlled=std::find_if(motion.begin(),motion.end(),[](const auto& item){return item.second.target.owner==player;});
+    auto controlled=actor_id?motion.find(actor_id):std::find_if(motion.begin(),motion.end(),[](const auto& item){return item.second.target.owner==player;});
     if(controlled==motion.end())return false;
     Packet packet;packet.kind=Kind::action;packet.scene=scene;packet.baseline=baseline;packet.player=player;
     packet.entity=controlled->second.target;packet.verb=verb;packet.direction=direction;packet.request=++request_sequence;
-    event("network_intention",",\"request\":"+std::to_string(packet.request)+",\"player\":"+std::to_string(player)+",\"entity\":"+std::to_string(packet.entity.id)+",\"verb\":"+std::to_string(static_cast<unsigned>(verb)));
+    packet.target=target;packet.target_generation=target_generation;
+    if(!valid_action(packet))return false;
+    event("network_intention",",\"request\":"+std::to_string(packet.request)+",\"player\":"+std::to_string(player)+",\"entity\":"+std::to_string(packet.entity.id)+",\"verb\":"+std::to_string(static_cast<unsigned>(verb))+",\"target\":"+std::to_string(target)+",\"target_generation\":"+std::to_string(target_generation));
     return send(packet);
 }
 int movement_key(WPARAM key) {
@@ -131,11 +139,13 @@ void native_bootstrap() {
         if(native_actor_worker_command(request)==worker::Result::accepted)setup_queued=true;
         return;
     }
-    if(state.values[3] && state.values[4]) {local_ready=true;install_input();}
+    if(state.values[3] && state.values[4]) {
+        if(config.role==Role::authority&&!native_actor_network_prepare_rewards())return;
+        local_ready=true;install_input();
+    }
 }
 void publish_scene() {
     const auto now=GetTickCount64();if(!welcomed || !local_ready || now<next_snapshot)return;
-    next_snapshot=now+50;
     NativeSceneFrame frame;
     const auto result=capture_native_scene(frame);
     if(result!=NativeSceneResult::accepted) {quarantine(std::string("Native scene capture failed: ")+native_scene_result_name(result));return;}
@@ -161,6 +171,7 @@ void publish_scene() {
     }
     published=std::move(current);
     if(begin) {Packet packet;packet.kind=Kind::scene_end;packet.scene=scene;packet.baseline=baseline;packet.count=static_cast<uint32_t>(frame.count);send(packet);ready=true;status("connected","Dedicated Creature scene is running.");}
+    next_snapshot=next_native_scene_capture(GetTickCount64());
 }
 void apply_baseline() {
     if(!baseline_complete || !local_ready || failed)return;
@@ -179,32 +190,43 @@ void authority_action(const Packet& packet) {
     auto state=native_actor_worker_status();
     auto found=published.find(packet.entity.id);
     if(!ready || packet.scene!=scene || found==published.end() || found->second.generation!=packet.entity.generation || found->second.owner!=packet.player || packet.player<1 || packet.player>2)reply.error=Error::ownership;
+    else if(!valid_action(packet)||packet.baseline!=baseline||state.epoch!=scene)reply.error=Error::stale;
+    else if(found->second.life_state || found->second.health<=0)reply.error=Error::not_ready;
+    else if(validate_native_scene_action_entity(scene,found->second)!=NativeSceneResult::accepted)reply.error=Error::stale;
     else {
-        worker::Message command;command.epoch=state.epoch;command.sequence=packet.request;
-        command.values[0]=packet.player;command.values[1]=state.values[packet.player==1?3:4];command.values[2]=static_cast<uint64_t>(packet.direction);
-        if(packet.verb==Verb::move)command.op=worker::Op::move;
-        else if(packet.verb==Verb::jump)command.op=worker::Op::jump;
-        else if(packet.verb==Verb::stop)command.op=worker::Op::stop;
-        else {reply.error=Error::not_ready;send(reply);return;}
-        const auto result=native_actor_worker_command(command);
+        uint32_t target_native_id=UINT32_MAX;
+        if(targeted(packet.verb)) {
+            const auto target=published.find(packet.target);
+            if(target==published.end()||target->second.generation!=packet.target_generation) {reply.error=Error::stale;send(reply);return;}
+            if(target->second.owner) {reply.error=Error::ownership;send(reply);return;}
+            if(packet.verb==Verb::pickup ? !target->second.life_state||target->second.food<=0 : target->second.life_state!=0||target->second.health<=0) {reply.error=Error::not_ready;send(reply);return;}
+            if(validate_native_scene_action_entity(scene,target->second)!=NativeSceneResult::accepted) {reply.error=Error::stale;send(reply);return;}
+            target_native_id=target->second.native_id;
+        }
+        const auto result=native_actor_network_command(state.epoch,static_cast<uint32_t>(packet.player),
+            found->second.native_id,target_native_id,static_cast<ActorVerb>(packet.verb),packet.direction,packet.request);
         reply.error=result==worker::Result::accepted?Error::none:Error::not_ready;
-        event("network_native_intention",",\"request\":"+std::to_string(packet.request)+",\"player\":"+std::to_string(packet.player)+",\"entity\":"+std::to_string(packet.entity.id)+",\"queued\":"+(result==worker::Result::accepted?"true":"false"));
+        event("network_native_intention",",\"request\":"+std::to_string(packet.request)+",\"player\":"+std::to_string(packet.player)+",\"entity\":"+std::to_string(packet.entity.id)+",\"target\":"+std::to_string(packet.target)+",\"target_generation\":"+std::to_string(packet.target_generation)+",\"queued\":"+(result==worker::Result::accepted?"true":"false"));
     }
     send(reply);
 }
 void receive_packet(const Packet& packet) {
+    if(packet.kind==Kind::content_response){receive_native_content_network(packet);return;}
     if(packet.kind==Kind::welcome) {welcomed=true;player=packet.player;status("connecting","Authenticated. Waiting for the shared scene.");return;}
     if(packet.kind==Kind::reject) {
+        event("network_rejected",",\"request\":"+std::to_string(packet.request)+",\"player\":"+std::to_string(packet.player)+",\"entity\":"+std::to_string(packet.entity.id)+",\"error\":"+quoted(error_detail(packet)));
         if(config.role==Role::player && packet.error==Error::authority_lost) {
+            fence_native_content_network();
             ready=false;baseline_complete=false;motion.clear();held={};pressed={};
             reset_native_scene_baseline();native_replica_arm_network();
             status("disconnected","The dedicated worker disconnected. Waiting for a fresh shared scene.");
             return;
         }
-        quarantine(std::string("Server rejected the session: ")+error_name(packet.error));return;
+        quarantine(std::string("Server rejected the session: ")+error_detail(packet));return;
     }
     if(config.role==Role::authority) {if(packet.kind==Kind::action)authority_action(packet);return;}
     if(packet.kind==Kind::scene_begin) {
+        fence_native_content_network();
         if(packet.baseline<=baseline || !packet.scene || packet.count>NativeSceneFrame::capacity) {quarantine("Invalid or oversized scene baseline.");return;}
         scene=packet.scene;baseline=packet.baseline;baseline_count=packet.count;staging={};staging.epoch=scene;
         motion.clear();tombstones.clear();ready=false;baseline_complete=false;return;
@@ -216,7 +238,24 @@ void receive_packet(const Packet& packet) {
         if(!ready) {
             if(staging.count>=baseline_count || staging.count>=NativeSceneFrame::capacity){quarantine("Scene baseline entity overflow.");return;}
             staging.entities[staging.count++]=decode_entity(packet.entity);
-        } else if(spawn_native_scene_entity(decode_entity(packet.entity))!=NativeSceneResult::accepted) {quarantine("Native entity spawn failed.");return;}
+        } else {
+            const auto result=spawn_native_scene_entity(decode_entity(packet.entity));
+            if(result!=NativeSceneResult::accepted) {
+                const auto& entity=packet.entity;
+                char fields[1024]{};
+                sprintf_s(fields,",\"result\":\"%s\",\"result_code\":%u,\"scene\":%llu,\"baseline\":%llu,"
+                    "\"remote_entity\":%llu,\"entity_generation\":%llu,\"owner\":%llu,\"source_native_id\":%u,\"source_tick\":%llu,"
+                    "\"source_species\":[%u,%u,%u],\"source_archetype\":%u,\"source_herd\":%u,"
+                    "\"source_age\":%u,\"source_health\":%.9g,\"source_life_state\":%u,\"source_alpha\":%u,"
+                    "\"source_combatant_state\":%u,\"source_scale\":%.9g",
+                    native_scene_result_name(result),static_cast<unsigned>(result),packet.scene,packet.baseline,
+                    entity.id,entity.generation,entity.owner,entity.native_id,entity.tick,
+                    entity.species_instance,entity.species_type,entity.species_group,entity.archetype,entity.herd_native_id,
+                    entity.age,double(entity.health),entity.life_state,entity.alpha,entity.combatant_state,double(entity.scale));
+                event("network_scene_spawn_failed",fields);
+                quarantine("Native entity spawn failed.");return;
+            }
+        }
         motion.emplace(packet.entity.id,Motion{packet.entity,packet.entity,GetTickCount64()});
     } else if(packet.kind==Kind::scene_end) {
         if(staging.count!=baseline_count || packet.count!=baseline_count){quarantine("Incomplete scene baseline.");return;}
@@ -236,7 +275,7 @@ void receive_packet(const Packet& packet) {
         if(ready && despawn_native_scene_entity(packet.entity.id,packet.entity.generation)!=NativeSceneResult::accepted) {quarantine("Native entity removal failed.");return;}
         tombstones[packet.entity.id]=packet.entity.generation;motion.erase(found);
     } else if(packet.kind==Kind::action_result) {
-        event("network_action_result",",\"request\":"+std::to_string(packet.request)+",\"error\":"+quoted(error_name(packet.error))+",\"accepted_is_queued\":true");
+        event("network_action_result",",\"request\":"+std::to_string(packet.request)+",\"error\":"+quoted(error_detail(packet))+",\"accepted_is_queued\":true");
     }
 }
 void project_motion() {
@@ -282,6 +321,7 @@ class Listener final:public App::IUnmanagedMessageListener {
         while(handled++<2*NativeSceneFrame::capacity+2 && peer->poll(incoming)) {
             if(incoming.kind==EventKind::packet)receive_packet(incoming.packet);
             else if(incoming.kind==EventKind::disconnected) {
+                fence_native_content_network();
                 ready=welcomed=false;motion.clear();reset_native_scene_baseline();native_replica_arm_network();
                 held={};pressed={};
                 if(config.role==Role::authority)published_epoch=0;
@@ -290,6 +330,7 @@ class Listener final:public App::IUnmanagedMessageListener {
             if(failed)break;
         }
         if(failed)return false;
+        update_native_content_network();
         if(!welcomed && next_retry && GetTickCount64()>=next_retry) {
             std::string error;
             if(!peer->try_restart(config,error)) {
@@ -323,6 +364,7 @@ void initialize_native_network(const wchar_t* directory) {
         if(!initialize_native_persistence(base,base+pe->OptionalHeader.SizeOfImage,engine_thread,native_actor_worker_event)){quarantine("Native fixture loader is unavailable.");return;}
     }
     peer=std::make_unique<Peer>();
+    initialize_native_content_network(config,output_directory,send);
     messages=App::IMessageManager::Get();
     if(!messages){quarantine("Native app updates are unavailable.");return;}
     messages->AddUnmanagedListener(&listener,startup_menu_ready_message);
@@ -333,14 +375,39 @@ void native_network_scene_exit() {
     if(!on_thread() || !peer || !local_ready)return;
     quarantine("The native scene was closed. Rejoin from the launcher.");
 }
+NativeNetworkProjection native_network_projection() {
+    NativeNetworkProjection result;
+    if(!on_thread() || !peer || config.role!=Role::player)return result;
+    result.state=worker::ProjectionState::waiting;
+    // ready is cleared on a replacement baseline, disconnect or quarantine,
+    // and is set only after native application and the baseline acknowledgement.
+    // This snapshot must not depend on successful publication of a status file.
+    if(listening && connect_started && welcomed && ready && local_ready && !failed &&
+       !baseline_complete && scene && baseline && baseline_count && player>=1 && player<=2) {
+        result.state=worker::ProjectionState::connected;
+        result.baseline=baseline;
+    }
+    return result;
+}
 worker::Result native_network_command(const worker::Message& request) {
     if(!on_thread() || !peer)return worker::Result::unavailable;
     if(request.op==worker::Op::jump)return intention(Verb::jump)?worker::Result::accepted:worker::Result::unavailable;
     if(request.op==worker::Op::move && request.values[2]<=3)return intention(Verb::move,static_cast<int>(request.values[2]))?worker::Result::accepted:worker::Result::unavailable;
+    if(request.op==worker::Op::stop)return intention(Verb::stop)?worker::Result::accepted:worker::Result::unavailable;
+    if(request.op==worker::Op::network_action) {
+        // Developer acceptance request through this real client's authenticated
+        // connection. Explicit actor IDs permit a deliberate ownership challenge;
+        // only the authority may accept/reject an actor intention.
+        for(size_t i=6;i<request.values.size();++i)if(request.values[i])return worker::Result::invalid;
+        if(request.values[0]!=player||request.values[2]>7||request.values[2]==4||request.values[3]>3)return worker::Result::invalid;
+        return intention(static_cast<Verb>(request.values[2]),static_cast<int>(request.values[3]),
+            request.values[4],request.values[5],request.values[1])?worker::Result::accepted:worker::Result::unavailable;
+    }
     return worker::Result::unavailable;
 }
 void dispose_native_network() {
     if(!on_thread())return;
+    dispose_native_content_network();
     if(listening){messages->RemoveListener(&listener,App::kMsgAppUpdate);messages->RemoveListener(&listener,startup_menu_ready_message);listening=false;}
     if(original_window_proc && IsWindow(game_window))SetWindowLongPtrW(game_window,GWLP_WNDPROC,reinterpret_cast<LONG_PTR>(original_window_proc));
     original_window_proc=nullptr;game_window=nullptr;

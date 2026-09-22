@@ -10,9 +10,9 @@ std::string ascii_generation(const Generation& generation) {
     return result;
 }
 }
-Supervisor::Supervisor(const Generation& generation, const std::filesystem::path& run, Log log, Clock clock)
-    : generation_(generation), sid_(current_sid()), run_(run), log_(std::move(log)), clock_(std::move(clock)) {
-    started_ = last_heartbeat_ = last_ai_ = clock_();
+Supervisor::Supervisor(const Generation& generation, const std::filesystem::path& run, Log log, Clock clock, ProgressRole role)
+    : generation_(generation), sid_(current_sid()), run_(run), log_(std::move(log)), clock_(std::move(clock)), role_(role) {
+    started_ = last_heartbeat_ = last_app_ = last_ai_ = clock_();
     if (!engine_.server(pipe_name(generation_, false), sid_, false)) throw std::runtime_error("Private engine pipe unavailable");
     new_control();
     job_ = CreateJobObjectW(nullptr, nullptr);
@@ -50,12 +50,38 @@ void Supervisor::publish(const char* state) {
         << ",\"native_ai_entries\":" << latest_.values[2] << ",\"actor_a\":" << latest_.values[3]
         << ",\"actor_b\":" << latest_.values[4] << ",\"mode\":" << latest_.values[5]
         << ",\"heartbeat_age_ms\":" << clock_() - last_heartbeat_
+        << ",\"app_progress_age_ms\":" << clock_() - last_app_
         << ",\"native_progress_age_ms\":" << clock_() - last_ai_
+        << ",\"progress_role\":\"" << (role_ == ProgressRole::network_replica ? "network_replica" : "native_simulation") << "\""
+        << ",\"projection_state\":" << projection_state_ << ",\"projection_baseline\":" << projection_baseline_
+        << ",\"projection_status_age_ms\":" << (last_projection_ ? clock_() - last_projection_ : 0)
         << ",\"uptime_ms\":" << clock_() - started_
         << ",\"desktop_requirement\":\"rendered Windows desktop; qualification pending\"}\n";
     out.close();
-    if (!out || !MoveFileExW((run_ / L"worker-status.tmp").c_str(), (run_ / L"worker-status.json").c_str(), MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH))
-        throw std::runtime_error("Worker status publication failed");
+    if (!out) throw std::runtime_error("Worker status temporary write failed");
+    // Readers that omit FILE_SHARE_DELETE can briefly prevent atomic replacement.
+    // Keep the old complete status and retry only that narrow class of errors.
+    // This runs on the supervisor thread, never the original engine thread, and
+    // uses a real clock so an injected status clock cannot make the wait infinite.
+    const auto retry_started = GetTickCount64();
+    constexpr ULONGLONG retry_limit_ms = 500;
+    constexpr unsigned retry_limit = 25;
+    unsigned retries = 0;
+    while (!MoveFileExW((run_ / L"worker-status.tmp").c_str(), (run_ / L"worker-status.json").c_str(),
+        MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH)) {
+        const auto error = GetLastError();
+        const bool transient = error == ERROR_SHARING_VIOLATION || error == ERROR_LOCK_VIOLATION || error == ERROR_ACCESS_DENIED;
+        const auto elapsed = GetTickCount64() - retry_started;
+        if (!transient || elapsed >= retry_limit_ms || retries >= retry_limit)
+            throw std::runtime_error("Worker status publication failed: win32=" + std::to_string(error) +
+                " retries=" + std::to_string(retries) + " elapsed_ms=" + std::to_string(elapsed));
+        if (!retries) log_("worker_status_publication_retry", ",\"win32_error\":" + std::to_string(error) +
+            ",\"retry_limit_ms\":" + std::to_string(retry_limit_ms));
+        ++retries;
+        Sleep(static_cast<DWORD>((retry_limit_ms - elapsed) < 20 ? retry_limit_ms - elapsed : 20));
+    }
+    if (retries) log_("worker_status_publication_recovered", ",\"retries\":" + std::to_string(retries) +
+        ",\"elapsed_ms\":" + std::to_string(GetTickCount64() - retry_started));
     last_publish_ = clock_();
 }
 void Supervisor::stop(const char* reason) {
@@ -79,7 +105,19 @@ void Supervisor::tick() {
             }
             if (message.values[0] == static_cast<uint64_t>(Phase::failed)) { stop("engine_reported_failure"); return; }
             if (message.values[1] < latest_.values[1] || message.values[2] < latest_.values[2]) { stop("regressed_native_progress"); return; }
+            if (message.values[1] > latest_.values[1]) last_app_ = now;
             if (message.values[2] > latest_.values[2]) last_ai_ = now;
+            if (role_ == ProgressRole::network_replica && message.kind == Kind::status) {
+                // Only an authenticated, sequenced engine status describes
+                // current baseline application. Reply words 6/7 are request
+                // and result; they must never establish or refresh readiness.
+                projection_state_ = message.values[6]; projection_baseline_ = message.values[7];
+                last_projection_ = now;
+                projection_valid_ =
+                    ((projection_state_ == static_cast<uint64_t>(ProjectionState::none) ||
+                      projection_state_ == static_cast<uint64_t>(ProjectionState::waiting)) && !projection_baseline_) ||
+                    (projection_state_ == static_cast<uint64_t>(ProjectionState::connected) && projection_baseline_ != 0);
+            }
             latest_ = message; last_heartbeat_ = now;
             if (message.kind == Kind::reply) {
                 if (!pending_ || message.values[6] != pending_ || message.op != pending_op_) { stop("unmatched_engine_reply"); return; }
@@ -101,7 +139,10 @@ void Supervisor::tick() {
         if (control_->receive(request)) {
             if (request.kind != Kind::command || request.generation != generation_ || request.sequence != 1) { new_control(); return; }
             reply_ = latest_; reply_.kind = Kind::reply; reply_.op = request.op; reply_.sequence = 1;
-            reply_.generation = generation_; reply_.values[7] = static_cast<uint64_t>(Result::accepted);
+            reply_.generation = generation_;
+            // A locally answered status/refusal has no engine command ID.
+            // Latest status word 6 is projection metadata, never a request ID.
+            reply_.values[6] = 0; reply_.values[7] = static_cast<uint64_t>(Result::accepted);
             if (request.op == Op::status) response_ready_ = true;
             else if (request.op == Op::shutdown && !requested_stop_ && (!incoming_ || now - last_heartbeat_ > 3000 || engine_.failed())) {
                 requested_stop_ = failed_ = true; stopping_ = now; response_ready_ = true;
@@ -131,8 +172,13 @@ void Supervisor::tick() {
         failed_ = true; TerminateJobObject(job_, 35);
     }
     if (now - last_publish_ >= 1000) {
-        const char* state = requested_stop_ ? "stopping" : !incoming_ ? "starting" : now - last_heartbeat_ > 3000 ? "unresponsive" :
-            latest_.values[0] == static_cast<uint64_t>(Phase::scene) ? (now - last_ai_ < 3000 ? "ready" : "simulation_stalled") :
+        const char* state = requested_stop_ ? "stopping" : !incoming_ ? "starting" :
+            now - last_heartbeat_ > 3000 || now - last_app_ > 3000 ? "unresponsive" :
+            latest_.values[0] == static_cast<uint64_t>(Phase::scene) ?
+                (role_ == ProgressRole::network_replica ?
+                    (projection_valid_ && projection_state_ == static_cast<uint64_t>(ProjectionState::connected) &&
+                     now - last_projection_ < 3000 ? "ready" : "replica_waiting") :
+                    (now - last_ai_ < 3000 ? "ready" : "simulation_stalled")) :
             latest_.values[0] == static_cast<uint64_t>(Phase::loading) ? "loading" :
             latest_.values[0] == static_cast<uint64_t>(Phase::failed) ? "bridge_failed" : "menu";
         publish(state);

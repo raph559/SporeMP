@@ -28,7 +28,7 @@ bool decode(const uint8_t* bytes, size_t size, Message& message) noexcept {
     if (!bytes || size != frame_size || get(bytes, 0, 4) != 0x34574d53 ||
         get(bytes, 4, 2) != 1 || get(bytes, 6, 2) != frame_size) return false;
     const auto kind = get(bytes, 8, 4), op = get(bytes, 12, 4);
-    if (kind < 1 || kind > 3 || op > static_cast<uint32_t>(Op::replica)) return false;
+    if (kind < 1 || kind > 3 || op > static_cast<uint32_t>(Op::import_creation)) return false;
     Message decoded;
     decoded.kind = static_cast<Kind>(kind); decoded.op = static_cast<Op>(op);
     std::copy(bytes + 16, bytes + 32, decoded.generation.begin());
@@ -62,8 +62,23 @@ bool accept_sequence(const Message& message, const Generation& generation, uint6
     last = message.sequence; return true;
 }
 const char* op_name(Op op) noexcept {
-    constexpr const char* names[] = {"status", "setup", "players", "rewards", "jump", "move", "duel", "retire", "load", "save", "shutdown", "stop", "checkpoint", "restore", "replica"};
+    constexpr const char* names[] = {"status", "setup", "players", "rewards", "jump", "move", "duel", "retire", "load", "save", "shutdown", "stop", "checkpoint", "restore", "replica", "network_action", "inspect_creation", "import_creation"};
     const auto index = static_cast<size_t>(op); return index < std::size(names) ? names[index] : "invalid";
+}
+bool valid_creation_inspection(const Message& message) noexcept {
+    if (message.kind != Kind::command || message.op != Op::inspect_creation ||
+        !message.values[0] || message.values[0] >= UINT32_MAX || message.values[2] >= UINT32_MAX ||
+        message.values[1] != 0x2b978c46u) return false;
+    return std::all_of(message.values.begin() + 3, message.values.end(), [](uint64_t value) { return value == 0; });
+}
+bool valid_creation_import(const Message& message) noexcept {
+    if (message.kind != Kind::command || message.op != Op::import_creation || message.values[8] || message.values[9]) return false;
+    bool nonzero = false;
+    for (size_t i = 0; i < 8; ++i) {
+        if (message.values[i] > UINT32_MAX) return false;
+        nonzero = nonzero || message.values[i] != 0;
+    }
+    return nonzero;
 }
 const char* result_name(Result result) noexcept {
     constexpr const char* names[] = {"none", "accepted", "unavailable", "stale", "invalid", "busy", "failed"};

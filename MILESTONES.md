@@ -11,9 +11,9 @@ All original milestone work, dependencies, deliverables and acceptance text belo
 | M04 | Unattended original-game worker and isolation | VERIFIED |
 | M05 | Separate authoritative simulation from replica presentation | VERIFIED |
 | M06 | Real network session and authoritative scene replication | VERIFIED |
-| M07 | First complete native shared encounter | TODO |
-| M08 | Native content, terrain, and editor-commit foundation | BLOCKED |
-| M09 | Durable checkpoints, reconnects, and crash recovery | BLOCKED |
+| M07 | First complete native shared encounter | VERIFIED |
+| M08 | Native content, terrain, and editor-commit foundation | VERIFIED |
+| M09 | Durable checkpoints, reconnects, and crash recovery | TODO |
 | M10 | One universe across multiple native locations | BLOCKED |
 | M11 | Creature stage gameplay coverage | BLOCKED |
 | M12 | Cell stage gameplay coverage | BLOCKED |
@@ -26,9 +26,9 @@ All original milestone work, dependencies, deliverables and acceptance text belo
 | M19 | Release qualification and complete deliverables | BLOCKED |
 | M20 | Optional extension: Galactic Adventures multiplayer | TODO |
 
-M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07–M20 remain unverified. No stage scope is deferred to optional M20.
+M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07 completion: `evidence/2026-09-21-m07-completion/acceptance.md` (VERIFIED for the recorded shared Creature fixture). M08 completion: `evidence/2026-09-22-m08-completion/SESSION.md` (VERIFIED for the recorded Creature content/editor foundation). M09–M20 remain unverified. No stage scope is deferred to optional M20.
 
-M03–M06 are verified for their recorded native Creature fixtures. M07 is TODO with M03/M05/M06 dependencies satisfied; M08–M19 remain blocked on unfinished dependencies. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`.
+M03–M08 are verified for their recorded native Creature fixtures. M09 is TODO with its M04/M07/M08 dependencies satisfied; M10–M19 remain blocked on unfinished dependencies. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
 
 ## Required launcher amendment — 2026-09-08
 
@@ -163,6 +163,8 @@ The graph shows major gating paths; the exact dependency text below is authorita
 
 **Dependencies:** M03, M05, M06.
 
+**Completion 2026-09-21: VERIFIED for the pinned Creature fixture.** Native18 records both owners damaging one common NPC, original retaliation against A, one B kill reward, contested original feeding and a result-preserving fresh Join. Native27/.45 completes the complementary shared encounter with retaliation against B, contested feeding, result-preserving reconnect, a late-resource refusal, real wrong-owner rejection and legitimate B continuation under actual packet delay/loss. Native28 completes the declared original fresh-session reset and subsequent B movement/jump/landing under the same filter. All G01–G09 evidence, inspected views, clean exits and protected-file checks are evaluated in the [acceptance decision](evidence/2026-09-21-m07-completion/acceptance.md). The paired-trial design does not claim a same-fight NPC target switch; reset does not establish restart durability. Earlier failures and narrower lifecycle evidence remain retained. No original work, deliverable or acceptance clause below is changed. [Native protocol](tests/engine/M07.md), [session record](evidence/2026-09-21-m07-completion/SESSION.md), [pickup boundary](docs/m07-native-pickup.md), [pool lifetime](docs/m07-native-pool.md), [life-state evidence](docs/m07-life-state.md).
+
 **Work:** Integrate original movement, target selection, AI response, attack execution, damage, death, at least one contested pickup/reward, and respawn or scene reset. Ensure client-origin requests reach the correct actor in the dedicated worker. Capture native action traces alongside authoritative network events and normalized shared-state digests.
 
 **Deliverables:** an end-to-end shared encounter regression test with recordings, logs, and assertions.
@@ -174,6 +176,8 @@ This is the first meaningful multiplayer integration slice, not the final produc
 ### M08 — Native content, terrain, and editor-commit foundation
 
 **Dependencies:** M06–M07.
+
+**Completed 2026-09-22: VERIFIED for the recorded native Creature content/editor foundation.** Original source, authority and receiver agree on native models, 23 rigblocks/47 capability entries and nine installed part roots. Native preflight refuses a missing part before import; original terrain lookup correlates the canonical persisted record, and an actual-profile byte change is refused before startup. Concurrent editor cancellation preserves the saved creation; real-authority validation and all-peer readiness publish one immutable version, with stale/duplicate/cancel fences. The locally approved developer path and fixed world/content profile are explicit boundaries; M09 owns durability. [Acceptance](evidence/2026-09-22-m08-completion/SESSION.md), [all gates](tests/engine/M08.md), [transaction contract](docs/m08-content-transactions.md). The original clauses below are unchanged.
 
 **Work:** Create a content-addressed manifest for custom creations and their dependencies; map global content identities to native resource keys. Verify the actual creation representation needed by the engine instead of assuming an image alone contains everything. Transfer only approved data, with size/dependency validation and a quarantined import path. Keep native assets installed locally. Synchronize canonical generated terrain and relevant world records, not just a random seed. Establish native editor begin/commit/cancel transactions, with immutable creation versions and authoritative native validation of the resulting gameplay properties.
 

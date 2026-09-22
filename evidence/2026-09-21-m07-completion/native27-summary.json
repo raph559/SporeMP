@@ -1,0 +1,487 @@
+{
+  "schema_version": 1,
+  "evidence_class": "NATIVE / NETWORK-REAL",
+  "run": "native27",
+  "scope": "Pinned original Creature fixture; original hashes identify retained private artifacts, not this reviewed scalar export.",
+  "bridge_version": "0.0.45",
+  "wire_schema": 4,
+  "wire_packet_bytes": 400,
+  "original_executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "original_source_manifest_sha256": "c57e18e6fe0d00cb22d64496d0169a9ef94a153a3944e35831a029649efec39a",
+  "compatibility_candidate_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "content_inventory_canonical_sha256": "2c9050ac600f85e0aaa6a79ed8bcf8d220edf543e17e9309fa60f31b627120fa",
+  "fixture_manifest_sha256": "fcc48e03c54bc71f93f259f46b36a2c2708acc344fb81b0417578bd84083c284",
+  "payload_sha256": {
+    "ModAPI.DLLInjector.dll": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b",
+    "SporeModAPI.dll": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d",
+    "SporeMP.Bridge.dll": "00a0a58c134fc4f5e854b6d59b8fefaa15d4ae9d1fb1c5c703fd08bdd0f2118c",
+    "SporeMP.Coordinator.exe": "bd5ae6396a1aa123cf5702392a9b8476ef80d8617872d3b578fa948ac63d1405",
+    "SporeMP.NativeHost.exe": "ee672588040d61e8e48618390175506bbdfabd817e62f1c519400501caa13804",
+    "SporeMP.WorkerControl.exe": "29aca02206542735b829ce6a59ddb49440615b429b75012c2352059ffb2f365c"
+  },
+  "original_sources_sha256": {
+    "src/bridge/native_actor_abi.h": "dbc601b3ea310a10e9e413a5f54e9ada3c0a4e5ff37349e12f2adb673b149a87",
+    "src/bridge/native_actors.cpp": "5e736f523a3a474756d8074374a6691896cac0de1d8bd34676061dcf288d2136",
+    "src/bridge/native_actors.h": "1039d72f0aad0fc7807dbf688714ad85aa10ec87cf7313b1f9e6228df72d1792",
+    "src/bridge/native_award_abi.h": "907d5045d3a0bb880ec4c9ee68ca9d65d1a6b8e7bbc67eefa918956a5ba68e2e",
+    "src/bridge/native_award_context.cpp": "4114b4b24709e9146adeec4b3230b35a9e116e79b45c0c83c43039ee1fc79ac1",
+    "src/bridge/native_award_context.h": "6649b5b69988b5af25af694c764da2cdd49ae5b0676cad99b0943518cb2a3fda",
+    "src/bridge/native_award_prefixes.inc": "f8e5f0b3e183b144a18da4457d2429fddb4e3871c98816a30bdacd7683cd1356",
+    "src/bridge/native_life_abi.h": "3bd43255e193da935cf58c88a3f5510c481cdde2614910583a66eced14da10a3",
+    "src/bridge/native_life_presentation.cpp": "5c18e99194e71affee6b229af9550fe9b7f27337d9c03d6b59a3069ee35753c7",
+    "src/bridge/native_life_presentation.h": "0b8768faaf139da3171363e529407e67711379e7d7035f0c38e7aeb2a15983b0",
+    "src/bridge/native_network.cpp": "906fb2760f8e3b6b46c6863bb83c8a90807650a7cf33ac8a94737c3a050d42bc",
+    "src/bridge/native_network.h": "b3cdfec7b84f057f5c4e39426a363d772a3d8cd0845116ab57a3e8f11752d70f",
+    "src/bridge/native_pickup.cpp": "502a058e336465f816727ada2f9fafa654921e9214f1b6906d2c81ec96248b51",
+    "src/bridge/native_pickup.h": "9cbdc07c0f7ef107383b4584978b29f027a53f2d6902667a565acaed896a46b6",
+    "src/bridge/native_pickup_abi.h": "a73af93d0e7413cd4b4a6f11a38d919e9e50855d84521bbd291f819521631d59",
+    "src/bridge/native_pool_abi.h": "bdc05b1b95aaf72738e652b917fbb7666c619ff45372b5565b868dbe4ff3168b",
+    "src/bridge/native_scene.cpp": "23b000a4c636a6bbbfa67b03e24f91af789c980e7b1144635caeae0f05ae7553",
+    "src/bridge/native_scene.h": "2486773607591ecd7d28321bf88204e6c0611bcd507a6b7140a05431c4ebe3fd",
+    "src/bridge/native_scene_cadence.h": "d53b3a0694a67745a68afc56894efce62cdca8649fafcf04383529ab5d0e4208"
+  },
+  "cleanup": {
+    "personal_files_unchanged": 29,
+    "six_fixture_trees_unchanged": true,
+    "original_personal_check_sha256": "132e37f24ff78dde2fcf2c53eca15cc00956b44767c344da75eef175749b1942",
+    "original_save_check_sha256": "753dcca0e6c2cb1bbd7c7ace842e923871ed52cfaa42030fe55c718a2976acad"
+  },
+  "closed": {
+    "original_closed_report_sha256": "c12e1cae0ac37190b463f15d76864fa131ebd7ef31908a91f44c11ed923b5006",
+    "original_coordinator_trace_sha256": "e93b7b7eca91cdbd1249b21afd61fdc335c36e3da86e396369d6378f3bb35dcf",
+    "endpoints": {
+      "authority": {
+        "original_trace_sha256": "310a84cfc1da583aaf597dd854faf68d682dc542bc8673322e3930527be0a579",
+        "trace_events": 30540,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "ed004133b776df4a1f6e9df482aaec93888406e86135c5ad29e2bde8b5222ba5",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      },
+      "client_a": {
+        "original_trace_sha256": "85dde3b46f18837410f631f92859f2d1cdd16a3c42cff035835c18afb6394c9b",
+        "trace_events": 9791,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "5e1b283bc4e74a0a810c20c4b8e2030c20b56cb1b8d2a5a8ff27955823abdf42",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      },
+      "client_b": {
+        "original_trace_sha256": "304521dd1db5ce9882568c93c9d7d0bcfc60012b3e8151ec99fcfc0184246bcf",
+        "trace_events": 1832,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "86533b93085a59c397a326220e1843f7783251253115cf5e36d25ee77da2aba9",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      }
+    },
+    "no_running_games_at_archive": true
+  },
+  "media": {
+    "authority": {
+      "original_recording_sha256": "e532c355aefcb34f98c438d59cc9b756e7c7e3857b3fd4eabc6cfd224b7f8b5d",
+      "original_request_sha256": "3d874d96c92e8a67ad29665372b5ff9e9590c419ba0264e88d4de50cf230b7ce",
+      "original_completion_sha256": "77ee8ba8f69df9f45e3710d993310425c829085b3a2cb53182e76fa703f76210",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "139a05b3b0326aa944a446ed1c01d41855979c9174c2048b01ff4b8804fe7356"
+      }
+    },
+    "client-a": {
+      "original_recording_sha256": "d7f54b92d652e780819d613bbbd0da68cb6fdc8efa31d96d69997ea63cb242de",
+      "original_request_sha256": "5d4d87fbd72f4e3dfc9cadd6a21bc39222766a533e1acb01db2b08627fcdc158",
+      "original_completion_sha256": "d6eaaca2ab142a6a854156f7c298a385ab22e3a6b2c7a19ae0ce341c1bb377ac",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "fc7dfe48234677797b679da8997fe1d0792cf228b1c21f1d7653502061d3d4fe",
+        "post-fight-60.png": "18fcd055a1cf55b12626f52220625ba28e0e84757936d9d4613c720351432f70"
+      }
+    },
+    "client-b": {
+      "original_recording_sha256": "ed2deadbe2c8c3d6ed7df553a308dbaa39c5ce889754366fe0fe36cdf1ab183a",
+      "original_request_sha256": "760930946103330d2548afc6a7712427a8b64b6599dda0cf00d927863e28dc99",
+      "original_completion_sha256": "281fb469207a14ee59a9ab77e18584f886dec52a35113adb108771246835cacf",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "bf3ddaab39bdb0befde4f312c59433053e84d92b38a7204890f0d3be72b64dac",
+        "post-fight-60.png": "a3c1ac602537bcffaa2e6815cf491e1b2ab236f5c0e248ab09e21e377a4651e6"
+      }
+    },
+    "rejoined-b": {
+      "original_recording_sha256": "512dfb3f148adbc27697f28aec54356dc760e9a701bc3526e04e6da64d345e2a",
+      "original_request_sha256": "2af079bdfa138993791b79981b8c20a479c031fe83fe15f7ce4298357771a5e2",
+      "original_completion_sha256": "ebf3495b992c688a9ed9893d48ed8ad475dfd6941ea9a6dfe1cfb537a1777136",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "post-connected.png": "3a1943d94ba991f80c286ab520f206433d3b86f41c37f91665fcd4fac9481480"
+      }
+    }
+  },
+  "limits": [
+    "One pinned Creature fixture; other stages and broader progression are not qualified.",
+    "No coordinator crash durability; retained G05 reward precedes explicit fresh-session reset.",
+    "Compositor captures prove inspected presentation, not game frame timing."
+  ],
+  "result": "QUALIFIED_ACTION_SEQUENCE_COMPLETE",
+  "g02_design": "Predeclared paired shared fights: native18 damages A; native27 damages B. No same-fight target-switch claim.",
+  "combat": {
+    "both_players_damage_same_incarnation": true,
+    "actions": [
+      {
+        "owner": 1,
+        "scene_lifecycle_unchanged": true,
+        "native_damage_observed": true,
+        "native_target_observed": true,
+        "network_intention": {
+          "event": "network_intention",
+          "sequence": 2687,
+          "request": 1,
+          "verb": 6
+        },
+        "authority_received": {
+          "event": "network_native_intention",
+          "sequence": 10308,
+          "request": 1
+        },
+        "authority_queued": {
+          "event": "network_actor_command_queued",
+          "sequence": 10307,
+          "request": 1,
+          "command": 3,
+          "actor": 1,
+          "owner": 1,
+          "verb": "engage"
+        },
+        "native_command_begin": {
+          "event": "command_begin",
+          "sequence": 10316,
+          "command": 3,
+          "actor": 1,
+          "owner": 1,
+          "verb": "engage"
+        },
+        "native_target": {
+          "event": "native_target_enter",
+          "sequence": 13151,
+          "actor": 1,
+          "owner": 1
+        },
+        "action_result": {
+          "event": "network_action_result",
+          "sequence": 2696,
+          "request": 1,
+          "error": "none"
+        },
+        "actual_npc_health_decreases": 1,
+        "npc_health_decreases_owner": 0
+      },
+      {
+        "owner": 2,
+        "scene_lifecycle_unchanged": true,
+        "native_damage_observed": true,
+        "native_target_observed": true,
+        "network_intention": {
+          "event": "network_intention",
+          "sequence": 2108,
+          "request": 2,
+          "verb": 6
+        },
+        "authority_received": {
+          "event": "network_native_intention",
+          "sequence": 8725,
+          "request": 2
+        },
+        "authority_queued": {
+          "event": "network_actor_command_queued",
+          "sequence": 8724,
+          "request": 2,
+          "command": 2,
+          "actor": 2,
+          "owner": 2,
+          "verb": "engage"
+        },
+        "native_command_begin": {
+          "event": "command_begin",
+          "sequence": 8735,
+          "command": 2,
+          "actor": 2,
+          "owner": 2,
+          "verb": "engage"
+        },
+        "native_target": {
+          "event": "native_target_enter",
+          "sequence": 11074,
+          "actor": 2,
+          "owner": 2
+        },
+        "action_result": {
+          "event": "network_action_result",
+          "sequence": 2112,
+          "request": 2,
+          "error": "none"
+        },
+        "actual_npc_health_decreases": 5,
+        "npc_health_decreases_owner": 4
+      }
+    ],
+    "npc_retaliation": {
+      "1": false,
+      "2": true
+    },
+    "npc_dead_on_all_three": true,
+    "single_native_kill_reward_call": true,
+    "kill_reward_owner": 2,
+    "kill_reward_dna": 7,
+    "published_dna": {
+      "A": 0,
+      "B": 7
+    }
+  },
+  "pickup": {
+    "winner": 1,
+    "both_original_orders_returned": true,
+    "both_original_orders_before_first_feed": true,
+    "single_original_first_feed_call_observed": true,
+    "losing_owner_no_nutrition_gain": true,
+    "positive_native_food_consumption_observed": true,
+    "native_dna_zero_amount": true,
+    "native_dna_readback_after_first_feed": true,
+    "single_owner_balance_delta_matches": true,
+    "pickup_projected_on_all_three": true,
+    "complete_prefixes_match": true,
+    "all_endpoints_connected": true,
+    "first_positive_native_transfer": {
+      "owner": 1,
+      "food_used": 0.23999790000000587,
+      "hunger_gain": 0.24000001,
+      "health_gain": 0.02799988000000031,
+      "claim_verified": true
+    }
+  },
+  "rejoin": {
+    "checks": {
+      "before_strict_pickup_passed": true,
+      "authority_and_a_unchanged": true,
+      "authority_and_a_prefixes_preserved": true,
+      "fresh_b_generation_and_process": true,
+      "old_b_actual_exit": true,
+      "fresh_baseline_applied_before_connected": true,
+      "higher_b_baseline": true,
+      "all_three_connected_in_after_archive": true,
+      "same_unique_owned_entities": true,
+      "b_controls_its_unique_native_actor": true,
+      "published_owner_balances_preserved": true,
+      "current_controlled_native_dna_preserved": true,
+      "no_repeated_original_first_feed": true,
+      "no_original_client_award_after_baseline": true,
+      "source_original_removal_and_grant_retirement": true,
+      "a_observed_authoritative_native_removal": true,
+      "fresh_b_removed_or_rebound_saved_npc_before_connected": true,
+      "consumed_incarnation_absent_all_three": true,
+      "no_native_saved_npc_resurrection": true,
+      "coordinator_received_real_despawn": true,
+      "no_intervening_native_or_network_failure": true
+    },
+    "baseline_before": 2,
+    "baseline_after": 3
+  },
+  "late_pickup": {
+    "remotely_refused": true,
+    "error": "stale_epoch_baseline_or_sequence",
+    "checks": {
+      "exact_owned_B_intention": true,
+      "client_remote_refusal": true,
+      "coordinator_received_exact_action": true,
+      "coordinator_dispatched_matching_refusal": true,
+      "no_authority_forward_or_native_action": true,
+      "no_original_award_or_first_feed": true,
+      "no_old_incarnation_revival": true,
+      "owner_balances_and_controlled_native_DNA_unchanged": true,
+      "all_endpoints_remain_connected": true,
+      "complete_evidence_prefixes": true,
+      "bounded_observation_complete": true
+    }
+  },
+  "unauthorized": {
+    "remote_rejection": "wrong_actor_owner",
+    "no_authority_action_in_complete_prefix": true,
+    "other_client_still_connected": true,
+    "legitimate_b_jump_after": {
+      "owner": 2,
+      "operation": "jump",
+      "direction": null,
+      "native_action_observed": true,
+      "scene_lifecycle_unchanged": true,
+      "network_intention": {
+        "event": "network_intention",
+        "sequence": 1644,
+        "request": 2,
+        "verb": 1
+      },
+      "authority_received": {
+        "event": "network_native_intention",
+        "sequence": 30143,
+        "request": 2
+      },
+      "authority_queued": {
+        "event": "network_actor_command_queued",
+        "sequence": 30142,
+        "request": 2,
+        "command": 6,
+        "actor": 2,
+        "owner": 2,
+        "verb": "jump"
+      },
+      "native_entry": {
+        "event": "native_jump_return",
+        "sequence": 30154,
+        "actor": 2,
+        "accepted": true
+      },
+      "native_landing": {
+        "event": "native_landing",
+        "sequence": 30297,
+        "actor": 2,
+        "owner": 2,
+        "jump_command": 6
+      }
+    }
+  },
+  "impairment": {
+    "dedicated_loopback_port": 27160,
+    "delay_ms": 25,
+    "jitter_ms": 5,
+    "loss_percent": 1,
+    "seed": 731,
+    "requested_maximum_seconds": 600,
+    "counts": {
+      "captured": 34954,
+      "dropped": 357,
+      "reinjected": 34597,
+      "retransmitted_dropped_data": 32,
+      "shutdown_flush": 0,
+      "overflow_bypass": 0
+    },
+    "direction_counts": {
+      "client_to_server": {
+        "captured": 17461,
+        "dropped": 175,
+        "reinjected": 17286
+      },
+      "server_to_client": {
+        "captured": 17493,
+        "dropped": 182,
+        "reinjected": 17311
+      }
+    },
+    "observed_delay_ms": {
+      "minimum": 20.1477,
+      "maximum": 46.0254
+    },
+    "errors": [],
+    "pending_packets": 0,
+    "service_cleanup_verified": true,
+    "wrapper_exit_code": 0,
+    "original_report_sha256": "a86bb59d21ecb76be352282b80511274fd7431dd6ac2b9bbbf6445ee2dc16e4b",
+    "original_events_sha256": "8d1d8e9b6c755744ce734365381152afba9226c9d58f0fb929c300b1a0cfcf94",
+    "original_setup_sha256": "8bdb8472afca0fed7e09106ac34db26f8694f9af27ea5a4461b286749a31a156"
+  },
+  "visual": {
+    "initial_three_worlds": true,
+    "original_victory_dialog_observed_and_confirmed": true,
+    "both_client_terminal_bodies": "Rounded green body resting on ground without living legs; nearby blue actors. A health7/DNA0; B health8/DNA7.",
+    "fresh_b_after_connected": "Original nest rendered, health8/DNA7.",
+    "original_contact_sha256": "3cb5f696dcf4c7423c1c3f2f4df6e8a31a17da79d28c53b79561bd19383629cd",
+    "original_observations_sha256": "87dbc060415c090ac7e3293c9bf8b43112ff9d90532379c796292a5b4d4f6dec",
+    "original_victory_input_metadata_sha256": "3bb70a455cebd088b8a1e734d89a277fa0e97763f573e6022f902e809b96ec7b"
+  },
+  "old_b_closed": {
+    "original_closed_report_sha256": "aa283268a8cabd063c8bb8208888758a58d9ce415c5de67e78a8f0b8e5d7f34b",
+    "original_coordinator_trace_sha256": "91e972831814da9455ac5b10cacd1d99f2069a10b1905fc719ea9fc06af2d2f7",
+    "endpoints": {
+      "client_b": {
+        "original_trace_sha256": "391d6d4150b42a670bd37ced8885735afcb0f57444f62e59de54bc0e9940b812",
+        "trace_events": 5924,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "f31d41ea69d9ade93d1e72f8f57530d06a2c72e9cdf5d23c2ef914d4e1032596",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      }
+    },
+    "no_running_games_at_archive": false
+  },
+  "commands": [
+    {
+      "step": "kickoff",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "pickup",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "fresh-b-rejoin",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "evaluate-rejoin",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "fresh-b-frame",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "late-pickup",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "unauthorized",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "closed",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "personal-after",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "fixture-after",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    }
+  ],
+  "original_reports_sha256": {
+    "native27-complete-pipeline/report.json": "524d5e2bc7887b41919e6afbb761904735f7becf138119a0f2497192efc0f7b7",
+    "native27-staged-combat/report.json": "fd5ead2e9b1741f64819b734f615fbdb2d669a3330f4a35279f74ae767a500ee",
+    "native27-pickup/report.json": "79787d08beabcd78b241584d5e19a7486e8eb57c6e77fcc61a5b70122716de56",
+    "native27-g05-evaluation.json": "b304535f3ebf453409e7e649c655833c8f66933b22934a66f0553b5748ce896d",
+    "native27-late-pickup/report.json": "017105da6fbd187dfd7dadb9c99111c96b3ba89b1ea53d3cb504a10e2de7b6e8",
+    "native27-unauthorized/report.json": "bc1d3b5ba005ba8ffb24cfb1d70a1e9fea78917bd8ab814221a626830c12d807"
+  }
+}

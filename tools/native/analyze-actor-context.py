@@ -20,10 +20,14 @@ SCOPES = {"ability_scope": "native_ability", "strike_scope": "native_strike",
           "animal_damage_scope": "native_animal_damage"}
 PINNED_EXE = "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37"
 PINNED_SDK = "cbf9206b9a823f0911cd9be0217104a49d72380b"
+MAX_TRACE = 66 * 1024 * 1024
 
 
 def analyze(path):
-    raw = Path(path).read_bytes()
+    with Path(path).open("rb") as stream:
+        raw = stream.read(MAX_TRACE + 1)
+    if len(raw) > MAX_TRACE:
+        raise ValueError("Actor trace exceeds the bounded probe size")
     errors = []
     events = []
     def reject_constant(value):

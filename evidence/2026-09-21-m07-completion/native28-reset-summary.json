@@ -1,0 +1,320 @@
+{
+  "schema_version": 1,
+  "evidence_class": "NATIVE / NETWORK-REAL",
+  "run": "native28",
+  "scope": "Pinned original Creature fixture; original hashes identify retained private artifacts, not this reviewed scalar export.",
+  "bridge_version": "0.0.45",
+  "wire_schema": 4,
+  "wire_packet_bytes": 400,
+  "original_executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "original_source_manifest_sha256": "74fce8a213f7f645f375d69680832a63b2356f7d0c5bbcb319e5d128a879374a",
+  "compatibility_candidate_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "content_inventory_canonical_sha256": "2c9050ac600f85e0aaa6a79ed8bcf8d220edf543e17e9309fa60f31b627120fa",
+  "fixture_manifest_sha256": "fcc48e03c54bc71f93f259f46b36a2c2708acc344fb81b0417578bd84083c284",
+  "payload_sha256": {
+    "ModAPI.DLLInjector.dll": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b",
+    "SporeModAPI.dll": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d",
+    "SporeMP.Bridge.dll": "00a0a58c134fc4f5e854b6d59b8fefaa15d4ae9d1fb1c5c703fd08bdd0f2118c",
+    "SporeMP.Coordinator.exe": "bd5ae6396a1aa123cf5702392a9b8476ef80d8617872d3b578fa948ac63d1405",
+    "SporeMP.NativeHost.exe": "ee672588040d61e8e48618390175506bbdfabd817e62f1c519400501caa13804",
+    "SporeMP.WorkerControl.exe": "29aca02206542735b829ce6a59ddb49440615b429b75012c2352059ffb2f365c"
+  },
+  "original_sources_sha256": {
+    "src/bridge/native_actor_abi.h": "dbc601b3ea310a10e9e413a5f54e9ada3c0a4e5ff37349e12f2adb673b149a87",
+    "src/bridge/native_actors.cpp": "5e736f523a3a474756d8074374a6691896cac0de1d8bd34676061dcf288d2136",
+    "src/bridge/native_actors.h": "1039d72f0aad0fc7807dbf688714ad85aa10ec87cf7313b1f9e6228df72d1792",
+    "src/bridge/native_award_abi.h": "907d5045d3a0bb880ec4c9ee68ca9d65d1a6b8e7bbc67eefa918956a5ba68e2e",
+    "src/bridge/native_award_context.cpp": "4114b4b24709e9146adeec4b3230b35a9e116e79b45c0c83c43039ee1fc79ac1",
+    "src/bridge/native_award_context.h": "6649b5b69988b5af25af694c764da2cdd49ae5b0676cad99b0943518cb2a3fda",
+    "src/bridge/native_award_prefixes.inc": "f8e5f0b3e183b144a18da4457d2429fddb4e3871c98816a30bdacd7683cd1356",
+    "src/bridge/native_life_abi.h": "3bd43255e193da935cf58c88a3f5510c481cdde2614910583a66eced14da10a3",
+    "src/bridge/native_life_presentation.cpp": "5c18e99194e71affee6b229af9550fe9b7f27337d9c03d6b59a3069ee35753c7",
+    "src/bridge/native_life_presentation.h": "0b8768faaf139da3171363e529407e67711379e7d7035f0c38e7aeb2a15983b0",
+    "src/bridge/native_network.cpp": "906fb2760f8e3b6b46c6863bb83c8a90807650a7cf33ac8a94737c3a050d42bc",
+    "src/bridge/native_network.h": "b3cdfec7b84f057f5c4e39426a363d772a3d8cd0845116ab57a3e8f11752d70f",
+    "src/bridge/native_pickup.cpp": "502a058e336465f816727ada2f9fafa654921e9214f1b6906d2c81ec96248b51",
+    "src/bridge/native_pickup.h": "9cbdc07c0f7ef107383b4584978b29f027a53f2d6902667a565acaed896a46b6",
+    "src/bridge/native_pickup_abi.h": "a73af93d0e7413cd4b4a6f11a38d919e9e50855d84521bbd291f819521631d59",
+    "src/bridge/native_pool_abi.h": "bdc05b1b95aaf72738e652b917fbb7666c619ff45372b5565b868dbe4ff3168b",
+    "src/bridge/native_scene.cpp": "23b000a4c636a6bbbfa67b03e24f91af789c980e7b1144635caeae0f05ae7553",
+    "src/bridge/native_scene.h": "2486773607591ecd7d28321bf88204e6c0611bcd507a6b7140a05431c4ebe3fd",
+    "src/bridge/native_scene_cadence.h": "d53b3a0694a67745a68afc56894efce62cdca8649fafcf04383529ab5d0e4208"
+  },
+  "cleanup": {
+    "personal_files_unchanged": 29,
+    "six_fixture_trees_unchanged": true,
+    "original_personal_check_sha256": "a13f9b5c75cfcc2a7f461b53e67aefbfc71ce597d710bfbdba9ad6dd7e7b3f2a",
+    "original_save_check_sha256": "c913b5212dab3b2582783f6adc4c10571d2ecba24def870654c34c06ee4ef5fd"
+  },
+  "closed": {
+    "original_closed_report_sha256": "a21e1c81965fd47db762c59fec8068c2376ab46170890d552950f6914a2c54b1",
+    "original_coordinator_trace_sha256": "da9fe833b121e2fbe953cd54d3aae33607c5d584f877d7c70d43ad00cb9fc66e",
+    "endpoints": {
+      "authority": {
+        "original_trace_sha256": "ff3287791471a61a3f486b5215f42bfb8cdf2f62f8158cf0f900b1e92e846ca2",
+        "trace_events": 9976,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "d031a87474c4544eae09f6b8f7e3143f2bac158505354270915115317c0e3146",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      },
+      "client_a": {
+        "original_trace_sha256": "aac9031314c6e9822c8f0440ec786c319c13e6547800fc0b6553e47725014480",
+        "trace_events": 2712,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "283603f358e2567655b8698b2d080b32ff1f0e2de115723ed396fa4c1b51e2d4",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      },
+      "client_b": {
+        "original_trace_sha256": "bedd360f498147704fb3c4f7c697867cd25c9c0f4969b602301df11c375d6483",
+        "trace_events": 2387,
+        "trace_contiguous": true,
+        "healthy_trace_stop": true,
+        "original_host_log_sha256": "4c15cf37c5f2e8f45e99809828b207f82d9d2b1a5c0ee1300583a86345c58876",
+        "game_exit_code": 0,
+        "worker_exit_code": 0,
+        "requested": true
+      }
+    },
+    "no_running_games_at_archive": true
+  },
+  "media": {
+    "authority": {
+      "original_recording_sha256": "816c8e59eec58440c40ad4c4568982b85c5422a4b8a69bb2ce7a68607f137877",
+      "original_request_sha256": "05ddca885d4a38b40787cf36723704a028884e8a95981eb0ceef633d23401a0e",
+      "original_completion_sha256": "0315f41b968901242171c2eafd782b8ff31b9e72cdb3050b5d566d9d863d1c55",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "fc5a92b9afe7bbbfd7f830ab42793a0279d7922c4cb279ed11600659a7660136"
+      }
+    },
+    "client-a": {
+      "original_recording_sha256": "0388227327792b33c898af96a6dc311ac6edb1ddf8aaeb32872133837d512bc3",
+      "original_request_sha256": "f565629693f1bcc32ade0b5072bc10215c70ea1306455d402e9bb62cdd75fcea",
+      "original_completion_sha256": "e9ae4903c58a77d31cd917050e996b585964ee454194c766c5d719728fbdfa6a",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "2509d75c0adf02c5f21fdbcbc10f1056a44ff49adc8b1bb38dabe07bbfcf4450"
+      }
+    },
+    "client-b": {
+      "original_recording_sha256": "bf3d7e8ef9c699bd3ed08a587e8f9aa9a7f16a884ef6731825ed2c27309415ac",
+      "original_request_sha256": "e1c1d74052bd9287a4a2f3c7672a72c822fe702b9d9301a06a9877c4c006af04",
+      "original_completion_sha256": "7774db049eb3dfa27550ae0069b6e2407fd1f49fcd8624d1202e25b58d90bded",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "d5775929bd4e84097c6fe32359e7a55b285a9aec79114294a1ccfa47fbb98100",
+        "post-actions.png": "757dd4a18da773a7c9f3fcb3ab9f79907c7fee09da8fccfb85bc22141e44d2f8"
+      }
+    }
+  },
+  "limits": [
+    "One pinned Creature fixture; other stages and broader progression are not qualified.",
+    "No coordinator crash durability; retained G05 reward precedes explicit fresh-session reset.",
+    "Compositor captures prove inspected presentation, not game frame timing."
+  ],
+  "result": "QUALIFIED_ORIGINAL_FRESH_SESSION_RESET",
+  "selected_path": "Original fresh-session fixture load after native27 G05 preserved reward; all three baselines complete before Connected. Fresh session intentionally resets fixture balances to zero.",
+  "same_live_filter_as_native27": true,
+  "filter_remaining_before_server_seconds": 316.4123184680939,
+  "actions": [
+    {
+      "owner": 2,
+      "operation": "move",
+      "direction": 0,
+      "native_action_observed": true,
+      "native_displacement": 1.5679945972308003,
+      "exercise_threshold": 1.0,
+      "scene_lifecycle_unchanged": true,
+      "network_intention": {
+        "event": "network_intention",
+        "sequence": 2159,
+        "request": 1,
+        "verb": 0
+      },
+      "authority_received": {
+        "event": "network_native_intention",
+        "sequence": 8976,
+        "request": 1
+      },
+      "authority_queued": {
+        "event": "network_actor_command_queued",
+        "sequence": 8975,
+        "request": 1,
+        "command": 1,
+        "actor": 2,
+        "owner": 2,
+        "verb": "move"
+      },
+      "native_entry": {
+        "event": "native_walk_request",
+        "sequence": 8984,
+        "actor": 2
+      }
+    },
+    {
+      "owner": 2,
+      "operation": "jump",
+      "direction": null,
+      "native_action_observed": true,
+      "scene_lifecycle_unchanged": true,
+      "network_intention": {
+        "event": "network_intention",
+        "sequence": 2219,
+        "request": 2,
+        "verb": 1
+      },
+      "authority_received": {
+        "event": "network_native_intention",
+        "sequence": 9328,
+        "request": 2
+      },
+      "authority_queued": {
+        "event": "network_actor_command_queued",
+        "sequence": 9327,
+        "request": 2,
+        "command": 2,
+        "actor": 2,
+        "owner": 2,
+        "verb": "jump"
+      },
+      "native_entry": {
+        "event": "native_jump_return",
+        "sequence": 9337,
+        "actor": 2,
+        "accepted": true
+      },
+      "native_landing": {
+        "event": "native_landing",
+        "sequence": 9591,
+        "actor": 2,
+        "owner": 2,
+        "jump_command": 2
+      }
+    }
+  ],
+  "visual": {
+    "initial_three_worlds": true,
+    "initial_hud_health": [
+      9,
+      9,
+      10
+    ],
+    "initial_dna": [
+      0,
+      0,
+      0
+    ],
+    "post_actions_b": "Original nest world rendered with blue actors, health10/hungerfull/DNA0; native traces establish movement and landing.",
+    "original_contact_sha256": "985b393768dfb4bc17788732693b29a4dc983fc918df1faedd6b09585f0606fa",
+    "original_observations_sha256": "99fa578be4bc2e9276c7fcaedf72c4c29692976777413df5fd66a411af642abb"
+  },
+  "original_reset_report_sha256": "a1210b87571474921d7d89064fb73e55530641fd677085d99900ae0c8c5903e0",
+  "commands": [
+    {
+      "step": "personal-before",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "fixture-before",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "freeze",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "server-start",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "start-02",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "start-03",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "start-01",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "frame-02-attempt-1",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "frame-03-attempt-1",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "frame-01-attempt-1",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "review-contact-sheet",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "worker_control_status",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "worker_control_move",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "worker_control_status",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "worker_control_jump",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "closed_archive",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "personal_after",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    },
+    {
+      "step": "fixture_after",
+      "exit_code": 0,
+      "outcome": "RETURNED"
+    }
+  ],
+  "bounds": {
+    "shutdown_seconds_from_server_gate": 110,
+    "maximum_seconds_from_server_gate": 140,
+    "capture_seconds": 90
+  }
+}

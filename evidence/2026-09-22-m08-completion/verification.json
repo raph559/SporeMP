@@ -1,0 +1,1825 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "utc": "2026-09-22T14:12:08.902180+00:00",
+  "milestone": "M08",
+  "status": "VERIFIED",
+  "boundary": "Recorded native Creature creation/content/editor foundation on the pinned installed profile and canonical Satiria bundle; not a complete multiplayer campaign",
+  "runs": [
+    {
+      "run": "native-07",
+      "worker": "01",
+      "pid": 48904,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-07/01/closed-run/actors-48904.jsonl",
+        "bytes": 42781670,
+        "sha256": "9de6e28c1b81e6c78b9b5da093eccd74a8a7edf472f8e8ba933f16193f12488a"
+      },
+      "trace_rows": 61120,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [
+        {
+          "event": "canonical_world_prelaunch_validated",
+          "utc": "2026-09-22T13:27:24.987Z",
+          "host_pid": 30628,
+          "bundle_version": 1,
+          "files": 6,
+          "runtime_terrain_qualified": false
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-07/01/capture/capture.mkv",
+          "bytes": 112050048,
+          "sha256": "6cf3ef394b62b9b35ee40b803ae08fa607ac20fd8bcfbfc3c9b17482ef17acd9",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png",
+            "review-270.png"
+          ]
+        }
+      ],
+      "observations": []
+    },
+    {
+      "run": "native-07",
+      "worker": "02",
+      "pid": 17852,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-07/02/closed-run/actors-17852.jsonl",
+        "bytes": 56721,
+        "sha256": "41aa24013006dbdf6a0ec3f3e6609230baa166244ed74f33f30e55edb2f3e7b9"
+      },
+      "trace_rows": 124,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-07/02/capture/capture.mkv",
+          "bytes": 53336102,
+          "sha256": "43ffd112021a6eec013974e7571034ac5d61a86fc63e47dc8dd08c69c0c45e38",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png",
+            "review-110.png",
+            "review-180.png",
+            "review-230.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "editor_request_observed",
+          "sequence": 12,
+          "epoch": 1,
+          "message": 2956706572,
+          "editor": 1180455098,
+          "instance": 0,
+          "type": 0,
+          "group": 0,
+          "calling_mode": 46977490,
+          "routing_id": 0,
+          "show_save": 1,
+          "show_new": 1,
+          "show_publish": 1,
+          "show_cancel": 1,
+          "show_play": 0,
+          "observation_only": true,
+          "editor_landing_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "editor_result_observed",
+          "sequence": 14,
+          "epoch": 2,
+          "message": 51122631,
+          "routing_id": 0,
+          "model_type": 2661483290,
+          "instance": 685549699,
+          "type": 731352134,
+          "group": 1080189440,
+          "outcome": "accepted",
+          "play": 0,
+          "observation_only": true,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 47,
+          "epoch": 3,
+          "request": 1,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 118,
+          "epoch": 3,
+          "request": 1,
+          "instance": 685549699,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "editor_request_observed",
+          "sequence": 119,
+          "epoch": 3,
+          "message": 2956706572,
+          "editor": 1180455098,
+          "instance": 0,
+          "type": 0,
+          "group": 0,
+          "calling_mode": 46977490,
+          "routing_id": 0,
+          "show_save": 1,
+          "show_new": 1,
+          "show_publish": 1,
+          "show_cancel": 1,
+          "show_play": 0,
+          "observation_only": true,
+          "editor_landing_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "editor_result_observed",
+          "sequence": 121,
+          "epoch": 4,
+          "message": 51122631,
+          "routing_id": 0,
+          "model_type": 2661483290,
+          "instance": 0,
+          "type": 0,
+          "group": 0,
+          "outcome": "cancelled",
+          "play": 0,
+          "observation_only": true,
+          "native_commit_validation": false,
+          "readiness": false
+        }
+      ]
+    },
+    {
+      "run": "native-07",
+      "worker": "03",
+      "pid": 63188,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-07/03/closed-run/actors-63188.jsonl",
+        "bytes": 18728100,
+        "sha256": "c650bf55d030ebd554c26ba91e3d036f1c1eee1c36f54769f079c03915137ea8"
+      },
+      "trace_rows": 18045,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [
+        {
+          "event": "canonical_world_prelaunch_validated",
+          "utc": "2026-09-22T13:27:52.189Z",
+          "host_pid": 48444,
+          "bundle_version": 1,
+          "files": 6,
+          "runtime_terrain_qualified": false
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-07/03/capture/capture.mkv",
+          "bytes": 201072189,
+          "sha256": "b4b5b59a8a1c356e45d567ccd85473519d4bb4260bc50116fdd21d805cb73292",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png"
+          ]
+        }
+      ],
+      "observations": []
+    },
+    {
+      "run": "native-08",
+      "worker": "01",
+      "pid": 41720,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-08/01/closed-run/actors-41720.jsonl",
+        "bytes": 34578814,
+        "sha256": "7b139f7c946812940b86ef684b763f18211cb24a6a99321c6bfe868a6d8c181d"
+      },
+      "trace_rows": 50998,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [
+        {
+          "event": "canonical_world_prelaunch_validated",
+          "utc": "2026-09-22T13:35:57.193Z",
+          "host_pid": 26328,
+          "bundle_version": 1,
+          "files": 6,
+          "runtime_terrain_qualified": false
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-08/01/capture/capture.mkv",
+          "bytes": 135974757,
+          "sha256": "e06ca638563b2a8555e844c6c871bb371e552115ef6222583bfcda6802a10e97",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "network_content_cancelled",
+          "sequence": 27016,
+          "epoch": 3,
+          "transaction": 1,
+          "reason": "",
+          "authority": true,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "content_import_begin",
+          "sequence": 28978,
+          "epoch": 3,
+          "request": 1,
+          "png_sha256": "8ebdf46d2054dea2c75eb50f775478b8e446e0ded77825a4a55e0c2e690536d1",
+          "png_bytes": 28766,
+          "readiness": false
+        },
+        {
+          "event": "content_import_returned",
+          "sequence": 28979,
+          "epoch": 3,
+          "request": 1,
+          "native_result": true,
+          "instance": 685550157,
+          "type": 731352134,
+          "group": 1080189440,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 29011,
+          "epoch": 3,
+          "request": 1,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 29082,
+          "epoch": 3,
+          "request": 1,
+          "instance": 685550157,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "network_content_native_observed",
+          "sequence": 29083,
+          "epoch": 3,
+          "transaction": 2,
+          "png_sha256": "8ebdf46d2054dea2c75eb50f775478b8e446e0ded77825a4a55e0c2e690536d1",
+          "instance": 685550157,
+          "type": 731352134,
+          "group": 1080189440,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "publication": false
+        },
+        {
+          "event": "network_content_attested",
+          "sequence": 29131,
+          "epoch": 3,
+          "transaction": 2,
+          "reason": "original_import_and_load",
+          "authority": true,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "network_content_published",
+          "sequence": 29863,
+          "epoch": 3,
+          "transaction": 2,
+          "reason": "",
+          "authority": true,
+          "publication": true,
+          "version_sha256": "d8316dfa23e62f60bad0d681d6dbd499f7962964bf01061de123cd991a876c91"
+        },
+        {
+          "event": "network_content_cancelled",
+          "sequence": 50721,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "",
+          "authority": true,
+          "publication": false,
+          "version_sha256": ""
+        }
+      ]
+    },
+    {
+      "run": "native-08",
+      "worker": "02",
+      "pid": 51736,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-08/02/closed-run/actors-51736.jsonl",
+        "bytes": 6991,
+        "sha256": "fdca986b05f2a806010648a4510254fee51fe3a771ab9b83d6d7c37e684cae6b"
+      },
+      "trace_rows": 17,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-08/02/capture/capture.mkv",
+          "bytes": 21856330,
+          "sha256": "4c7cc418a6e84527592be4d9131a04fda1a99cae9d884351dc062b02bb9e8663",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png",
+            "review-045.png",
+            "review-090.png",
+            "review-110.png",
+            "review-120.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "editor_request_observed",
+          "sequence": 12,
+          "epoch": 1,
+          "message": 2956706572,
+          "editor": 1180455098,
+          "instance": 685549699,
+          "type": 731352134,
+          "group": 1080189440,
+          "calling_mode": 46977490,
+          "routing_id": 331721054,
+          "show_save": 1,
+          "show_new": 1,
+          "show_publish": 1,
+          "show_cancel": 1,
+          "show_play": 0,
+          "observation_only": true,
+          "editor_landing_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "editor_result_observed",
+          "sequence": 14,
+          "epoch": 2,
+          "message": 51122631,
+          "routing_id": 331721054,
+          "model_type": 2661483290,
+          "instance": 685549699,
+          "type": 731352134,
+          "group": 1080189440,
+          "outcome": "cancelled",
+          "play": 0,
+          "observation_only": true,
+          "native_commit_validation": false,
+          "readiness": false
+        }
+      ]
+    },
+    {
+      "run": "native-08",
+      "worker": "03",
+      "pid": 31124,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-08/03/closed-run/actors-31124.jsonl",
+        "bytes": 14138713,
+        "sha256": "d97203e14d14edc1bb2ff9026c2e255eac283b61a0c928667593b1dcd633ad5f"
+      },
+      "trace_rows": 13737,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [
+        {
+          "event": "canonical_world_prelaunch_validated",
+          "utc": "2026-09-22T13:36:02.301Z",
+          "host_pid": 29916,
+          "bundle_version": 1,
+          "files": 6,
+          "runtime_terrain_qualified": false
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-08/03/capture/capture.mkv",
+          "bytes": 130555919,
+          "sha256": "aab6e914ef7015d72e5ed6691aa0758eae418962b6021b2b15eb946bed55f295",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png",
+            "review-140.png",
+            "review-170.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "network_content_cancelled",
+          "sequence": 5753,
+          "epoch": 3,
+          "transaction": 1,
+          "reason": "",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "content_import_begin",
+          "sequence": 6372,
+          "epoch": 3,
+          "request": 1,
+          "png_sha256": "8ebdf46d2054dea2c75eb50f775478b8e446e0ded77825a4a55e0c2e690536d1",
+          "png_bytes": 28766,
+          "readiness": false
+        },
+        {
+          "event": "content_import_returned",
+          "sequence": 6373,
+          "epoch": 3,
+          "request": 1,
+          "native_result": true,
+          "instance": 685550162,
+          "type": 731352134,
+          "group": 1080189440,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 6405,
+          "epoch": 3,
+          "request": 1,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 6476,
+          "epoch": 3,
+          "request": 1,
+          "instance": 685550162,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "network_content_native_observed",
+          "sequence": 6477,
+          "epoch": 3,
+          "transaction": 2,
+          "png_sha256": "8ebdf46d2054dea2c75eb50f775478b8e446e0ded77825a4a55e0c2e690536d1",
+          "instance": 685550162,
+          "type": 731352134,
+          "group": 1080189440,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "publication": false
+        },
+        {
+          "event": "network_content_ready",
+          "sequence": 6515,
+          "epoch": 3,
+          "transaction": 2,
+          "reason": "original_import_and_load",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "network_content_published",
+          "sequence": 6516,
+          "epoch": 3,
+          "transaction": 2,
+          "reason": "",
+          "authority": false,
+          "publication": true,
+          "version_sha256": "d8316dfa23e62f60bad0d681d6dbd499f7962964bf01061de123cd991a876c91"
+        },
+        {
+          "event": "network_content_cancelled",
+          "sequence": 13663,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        }
+      ]
+    },
+    {
+      "run": "native-09",
+      "worker": "03",
+      "pid": 25456,
+      "bridge_version": "0.0.49",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-09/closed-run/actors-25456.jsonl",
+        "bytes": 54968,
+        "sha256": "6bbe1a24f201384c3355e9c9a0dca733e57954d47baef131580b580ae9ffcf89"
+      },
+      "trace_rows": 120,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-09/capture/capture.mkv",
+          "bytes": 22474302,
+          "sha256": "5e3024184d4856633ea8eb3ef0552841dd17ae7bc0a482861c84de0fb42b743f",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png",
+            "review-060.png",
+            "review-095.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "editor_request_observed",
+          "sequence": 12,
+          "epoch": 1,
+          "message": 2956706572,
+          "editor": 1180455098,
+          "instance": 685550162,
+          "type": 731352134,
+          "group": 1080189440,
+          "calling_mode": 46977490,
+          "routing_id": 331721054,
+          "show_save": 1,
+          "show_new": 1,
+          "show_publish": 1,
+          "show_cancel": 1,
+          "show_play": 0,
+          "observation_only": true,
+          "editor_landing_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "editor_result_observed",
+          "sequence": 14,
+          "epoch": 2,
+          "message": 51122631,
+          "routing_id": 331721054,
+          "model_type": 2661483290,
+          "instance": 685550162,
+          "type": 731352134,
+          "group": 1080189440,
+          "outcome": "cancelled",
+          "play": 0,
+          "observation_only": true,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 47,
+          "epoch": 3,
+          "request": 1,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 118,
+          "epoch": 3,
+          "request": 1,
+          "instance": 685550162,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        }
+      ]
+    },
+    {
+      "run": "native-10",
+      "worker": "02",
+      "pid": 19536,
+      "bridge_version": "0.0.50",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-10/02/closed-run/actors-19536.jsonl",
+        "bytes": 55014,
+        "sha256": "9fb8bfd53fcc59d7e47b4811989e7e34af02cfad7355756c5920721e0556e5ae"
+      },
+      "trace_rows": 120,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-10/02/capture/capture.mkv",
+          "bytes": 39752745,
+          "sha256": "7345e34dd126607179afc02f50219dae25420568057e299d386b9abb1ccdfc18",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "first.png"
+          ]
+        },
+        {
+          "path": "local/m08-native-2026-09-22/native-10/02/capture-editor/capture.mkv",
+          "bytes": 18846380,
+          "sha256": "166d086e02988a8580f3d474fdbeffbec753343d9e5ba96df0136df3637bc689",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "frame-002.png",
+            "review-075.png",
+            "review-095.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "editor_request_observed",
+          "sequence": 12,
+          "epoch": 1,
+          "message": 2956706572,
+          "editor": 1180455098,
+          "instance": 0,
+          "type": 0,
+          "group": 0,
+          "calling_mode": 46977490,
+          "routing_id": 0,
+          "show_save": 1,
+          "show_new": 1,
+          "show_publish": 1,
+          "show_cancel": 1,
+          "show_play": 0,
+          "observation_only": true,
+          "editor_landing_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "editor_result_observed",
+          "sequence": 14,
+          "epoch": 2,
+          "message": 51122631,
+          "routing_id": 0,
+          "model_type": 2661483290,
+          "instance": 685551213,
+          "type": 731352134,
+          "group": 1080189440,
+          "outcome": "accepted",
+          "play": 0,
+          "observation_only": true,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 47,
+          "epoch": 3,
+          "request": 1,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 118,
+          "epoch": 3,
+          "request": 1,
+          "instance": 685551213,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        }
+      ]
+    },
+    {
+      "run": "native-11",
+      "worker": "01",
+      "pid": 52636,
+      "bridge_version": "0.0.50",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-11/01/closed-run/actors-52636.jsonl",
+        "bytes": 21345373,
+        "sha256": "5582cca145308039f2c376021a420fe878198b6b06f36ab7fe520a90447cfa33"
+      },
+      "trace_rows": 33019,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [
+        {
+          "event": "canonical_world_prelaunch_validated",
+          "utc": "2026-09-22T14:04:30.592Z",
+          "host_pid": 69332,
+          "bundle_version": 1,
+          "files": 6,
+          "runtime_terrain_qualified": false
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-11/01/capture/capture.mkv",
+          "bytes": 108296706,
+          "sha256": "5a36eaadac083643409d72125e17b875aa14d2ae0f6e3271aa0f726e0a58a7c1",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "frame-002.png",
+            "review-085.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "content_import_begin",
+          "sequence": 12461,
+          "epoch": 3,
+          "request": 1,
+          "png_sha256": "f0ea2c1326d3e0c278663d1c31474dae58c66cf83884905fcc9e2869a30cb3d8",
+          "png_bytes": 28812,
+          "readiness": false
+        },
+        {
+          "event": "content_import_returned",
+          "sequence": 12462,
+          "epoch": 3,
+          "request": 1,
+          "native_result": true,
+          "instance": 685551871,
+          "type": 731352134,
+          "group": 1080189440,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 12494,
+          "epoch": 3,
+          "request": 1,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 12565,
+          "epoch": 3,
+          "request": 1,
+          "instance": 685551871,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "network_content_native_observed",
+          "sequence": 12566,
+          "epoch": 3,
+          "transaction": 3,
+          "png_sha256": "f0ea2c1326d3e0c278663d1c31474dae58c66cf83884905fcc9e2869a30cb3d8",
+          "instance": 685551871,
+          "type": 731352134,
+          "group": 1080189440,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "publication": false
+        },
+        {
+          "event": "network_content_attested",
+          "sequence": 12662,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "original_import_and_load",
+          "authority": true,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "network_content_published",
+          "sequence": 13512,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "",
+          "authority": true,
+          "publication": true,
+          "version_sha256": "e824c00d2d6e8895507779c029255f2df0f4e6a50abb1f6e35877a7affb16e79"
+        }
+      ]
+    },
+    {
+      "run": "native-11",
+      "worker": "03",
+      "pid": 60080,
+      "bridge_version": "0.0.50",
+      "trace": {
+        "path": "local/m08-native-2026-09-22/native-11/03/closed-run/actors-60080.jsonl",
+        "bytes": 13844876,
+        "sha256": "83ef3cc426a7f75a19d226841fd02e0d5520302076fb6f1e5ab4a214e75b49bb"
+      },
+      "trace_rows": 19332,
+      "healthy_closed": true,
+      "game_exit": 0,
+      "supervisor_exit": 0,
+      "observer_cleanup": true,
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "nativehost_world_guard": [
+        {
+          "event": "canonical_world_prelaunch_validated",
+          "utc": "2026-09-22T14:02:31.393Z",
+          "host_pid": 55528,
+          "bundle_version": 1,
+          "files": 6,
+          "runtime_terrain_qualified": false
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/native-11/03/capture/capture.mkv",
+          "bytes": 173160315,
+          "sha256": "02c506bcc879577b2f74974fa43746329a84edb81a5e23d91ee48fb1b1faf6f3",
+          "recorder_exit": 0,
+          "wall_timeout": false,
+          "inspected_frames": [
+            "frame-002.png",
+            "review-205.png"
+          ]
+        }
+      ],
+      "observations": [
+        {
+          "event": "network_content_missing_part",
+          "sequence": 11658,
+          "epoch": 3,
+          "transaction": 2,
+          "group": 1080188928,
+          "instance": 16711422,
+          "type": 11645188,
+          "before_import": true,
+          "readiness": false
+        },
+        {
+          "event": "network_content_failed",
+          "sequence": 11660,
+          "epoch": 3,
+          "transaction": 2,
+          "reason": "required_native_part_missing",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "network_content_cancelled",
+          "sequence": 11661,
+          "epoch": 3,
+          "transaction": 2,
+          "reason": "",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "content_required_parts_complete",
+          "sequence": 15041,
+          "epoch": 3,
+          "request": 2,
+          "parts": 9,
+          "before_import": true
+        },
+        {
+          "event": "network_content_dependencies_ready",
+          "sequence": 15042,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "original_exact_and_mapped_records",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "content_import_begin",
+          "sequence": 15198,
+          "epoch": 3,
+          "request": 3,
+          "png_sha256": "f0ea2c1326d3e0c278663d1c31474dae58c66cf83884905fcc9e2869a30cb3d8",
+          "png_bytes": 28812,
+          "readiness": false
+        },
+        {
+          "event": "content_import_returned",
+          "sequence": 15199,
+          "epoch": 3,
+          "request": 3,
+          "native_result": true,
+          "instance": 685551752,
+          "type": 731352134,
+          "group": 1080189440,
+          "native_commit_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "content_part_records_complete",
+          "sequence": 15231,
+          "epoch": 3,
+          "request": 3,
+          "unique_parts": 9,
+          "exact_parts_in_both_managers": 9,
+          "dependency_closure_verified": false,
+          "readiness": false
+        },
+        {
+          "event": "content_inspection_complete",
+          "sequence": 15302,
+          "epoch": 3,
+          "request": 3,
+          "instance": 685551752,
+          "type": 256049818,
+          "group": 1080189440,
+          "model_type": 2661483290,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "owned_release_completed": true,
+          "gameplay_validation": false,
+          "readiness": false
+        },
+        {
+          "event": "network_content_native_observed",
+          "sequence": 15303,
+          "epoch": 3,
+          "transaction": 3,
+          "png_sha256": "f0ea2c1326d3e0c278663d1c31474dae58c66cf83884905fcc9e2869a30cb3d8",
+          "instance": 685551752,
+          "type": 731352134,
+          "group": 1080189440,
+          "rigblocks": 23,
+          "capabilities": 47,
+          "publication": false
+        },
+        {
+          "event": "network_content_ready",
+          "sequence": 15307,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "original_import_and_load",
+          "authority": false,
+          "publication": false,
+          "version_sha256": ""
+        },
+        {
+          "event": "network_content_published",
+          "sequence": 15312,
+          "epoch": 3,
+          "transaction": 3,
+          "reason": "",
+          "authority": false,
+          "publication": true,
+          "version_sha256": "e824c00d2d6e8895507779c029255f2df0f4e6a50abb1f6e35877a7affb16e79"
+        }
+      ]
+    }
+  ],
+  "builds": [
+    {
+      "bridge_version": "0.0.49",
+      "source_set_sha256": "807f0d42016a7834bce1f01c5dd1589ec959a6e69b1e37b18594faaa9822a986",
+      "artifacts": [
+        {
+          "path": "build/injector/Release/ModAPI.DLLInjector.dll",
+          "bytes": 36864,
+          "sha256": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b"
+        },
+        {
+          "path": "build/launcher/Release/SporeMP.dll",
+          "bytes": 2121216,
+          "sha256": "c03d9f9d50d7f951d608499c35ef4cf18e86db2c9d2e5260a5204f9b5493575a"
+        },
+        {
+          "path": "build/launcher/Release/SporeMP.exe",
+          "bytes": 152064,
+          "sha256": "cfee7f9380975c71752d3673ef148fde9079539d7690b5782a997cb36725e972"
+        },
+        {
+          "path": "build/sdk/Release/SporeModAPI.dll",
+          "bytes": 247296,
+          "sha256": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.Bridge.dll",
+          "bytes": 960000,
+          "sha256": "e7d7381e199a4dc97da34b5a0ba42831a136b79cbcf6bdecb31de87c131f92ec"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.ContentClient.exe",
+          "bytes": 91136,
+          "sha256": "0bc567be93e39d38d110000b3ff8a1b142c829c0825db9a52875ed75c92a031d"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.Coordinator.exe",
+          "bytes": 207360,
+          "sha256": "7c8ac623b5603fcf713955f9b3274bb9467cd4303193ef7ac1501e5b8d9bacb3"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.NativeHost.exe",
+          "bytes": 182784,
+          "sha256": "ccdcffbad3746ddaeeaabeaa2f89a8edb777cdc99269a1f50fafa9eab68b8b34"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.WorkerControl.exe",
+          "bytes": 25088,
+          "sha256": "89105b4d76b84dc5bf708445c2898829f455dd190a9953e8137d6981cd659bfa"
+        }
+      ],
+      "checks": {
+        "release_build_exit": 0,
+        "full_ctest_exit": 0,
+        "full_ctest_targets": 14,
+        "full_ctest_seconds": 31.32,
+        "content_registry_host_assertions": 190,
+        "content_transport_tls_assertions": 580,
+        "final_tooling_tests": 244,
+        "final_tooling_exit": 0,
+        "content_cli_tls_pipe_checks": 6,
+        "content_cli_exit": 0
+      },
+      "logs": [
+        {
+          "path": "local/m08-2026-09-22/transactions-build-049-final2.log",
+          "bytes": 3335,
+          "sha256": "029bc907ad9ff3bfac815bd54dea365191b3c707af8fce73591da069429a9790"
+        },
+        {
+          "path": "local/m08-2026-09-22/transactions-tests-049.log",
+          "bytes": 82815,
+          "sha256": "b0794f8d003cdf81a3d38190e4797f1944b7c0da0f90e9d88aa6560cfcba5f71"
+        },
+        {
+          "path": "local/m08-2026-09-22/transactions-affected-049-final.log",
+          "bytes": 40723,
+          "sha256": "18c7f1c4201e1431d4244fc9a370a41d10ca1fc3e2515b3c7623d36249f975fc"
+        },
+        {
+          "path": "local/m08-2026-09-22/content-cli-smoke-049-02/result.json",
+          "bytes": 2875,
+          "sha256": "a31cce0968e00e8ad7740ef0db0015664e833c2efedebb1bed705d27044e3fd6"
+        }
+      ]
+    },
+    {
+      "bridge_version": "0.0.50",
+      "source_set_sha256": "abf90e82788a11aa11bbe840d3e219c4c0857fca09c50f0d6c275e71647a881b",
+      "artifacts": [
+        {
+          "path": "build/injector/Release/ModAPI.DLLInjector.dll",
+          "bytes": 36864,
+          "sha256": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b"
+        },
+        {
+          "path": "build/launcher/Release/SporeMP.dll",
+          "bytes": 2121216,
+          "sha256": "c03d9f9d50d7f951d608499c35ef4cf18e86db2c9d2e5260a5204f9b5493575a"
+        },
+        {
+          "path": "build/launcher/Release/SporeMP.exe",
+          "bytes": 152064,
+          "sha256": "cfee7f9380975c71752d3673ef148fde9079539d7690b5782a997cb36725e972"
+        },
+        {
+          "path": "build/sdk/Release/SporeModAPI.dll",
+          "bytes": 247296,
+          "sha256": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.Bridge.dll",
+          "bytes": 965120,
+          "sha256": "a6511640587acd8d630852506791c68974d9cf6e7808ba7d3857b47717ea7558"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.ContentClient.exe",
+          "bytes": 91648,
+          "sha256": "e2dd2bfb2035c9a17e90cb2f96741cc2a7724dc3a760aaaeccc687aa24b2a11a"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.Coordinator.exe",
+          "bytes": 213504,
+          "sha256": "688ed4c7463e9915840171be1b38621bf265bfdfa04b9997304d6e7166321ffd"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.NativeHost.exe",
+          "bytes": 182784,
+          "sha256": "433aa5be408558de120e0133b4ca0480bcd890d99cd0f8c64a24c8b111988d3e"
+        },
+        {
+          "path": "build/win32/Release/SporeMP.WorkerControl.exe",
+          "bytes": 25088,
+          "sha256": "89105b4d76b84dc5bf708445c2898829f455dd190a9953e8137d6981cd659bfa"
+        }
+      ],
+      "checks": {
+        "release_build_exit": 0,
+        "full_ctest_exit": 0,
+        "full_ctest_targets": 14,
+        "full_ctest_seconds": 32.77,
+        "content_registry_host_assertions": 190,
+        "content_transport_tls_assertions": 937,
+        "final_tooling_tests": 244,
+        "final_tooling_exit": 0,
+        "content_cli_tls_pipe_checks": 6,
+        "content_cli_exit": 0
+      },
+      "logs": [
+        {
+          "path": "local/m08-2026-09-22/dependency-build-050-final.log",
+          "bytes": 3400,
+          "sha256": "5204bbd1b7db98b5360e35c162dbd326c31b290b5f3558b24e62e796139777b8"
+        },
+        {
+          "path": "local/m08-2026-09-22/dependency-tests-050-final.log",
+          "bytes": 83143,
+          "sha256": "870003e2fe94b50653dc3a19d09d353f367006a066ab8bd2d624b2495f55b0b2"
+        },
+        {
+          "path": "local/m08-2026-09-22/dependency-tests-050-initial.log",
+          "bytes": 42419,
+          "sha256": "b7bf074ae809fefa2395420fe2c4cabba1c1a85b4b525fa01e6d03f0c91435ef"
+        },
+        {
+          "path": "local/m08-2026-09-22/content-cli-smoke-050/result.json",
+          "bytes": 2854,
+          "sha256": "ab7b40fb60ed8d3a88df7bc28c68cb8d6b1c0bea09e3beb2715c220be6192a27"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    "10 healthy closed original-process traces on .49/.50; games/supervisors exit0",
+    "All 29 protected personal files unchanged per run",
+    "Six canonical world files unchanged per run",
+    "Native source/authority/receiver rigblocks and capabilities exactly equal",
+    "Changed draft leaves saved archive byte identical",
+    "Two fresh approved native transfers published once",
+    "Native dependency refusal occurs before import",
+    "Actual-profile terrain record mutation refused before game creation and fully restored"
+  ],
+  "private_base_revision": "a33567d77ebee48442365c5cc6f1af4b93eb7803",
+  "source_state": "DIRTY_M07_AND_M08_PRESERVED",
+  "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "compatibility_candidate_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "environment": {
+    "gpu": [
+      {
+        "Name": "Parsec Virtual Display Adapter",
+        "DriverVersion": "0.45.0.0"
+      },
+      {
+        "Name": "NVIDIA GeForce RTX 4080 SUPER",
+        "DriverVersion": "32.0.15.9649"
+      },
+      {
+        "Name": "AMD Radeon(TM) Graphics",
+        "DriverVersion": "32.0.21042.62"
+      }
+    ],
+    "os": "Microsoft Windows 11 Pro",
+    "version": "10.0.26200",
+    "ram_bytes": 33407430656,
+    "cpu": [
+      "AMD Ryzen 7 9700X 8-Core Processor             "
+    ],
+    "build": "26200"
+  },
+  "native_properties": {
+    "rigblocks": 23,
+    "capabilities": 47,
+    "unique_part_roots": 9,
+    "all_source_authority_receiver_scalars_equal": true,
+    "copied_scalar_sha256": "35cdece5f47b461a6dc9323811637835969f1a49b88020e1d9d82914280b0f4b",
+    "authority_network_digest": "3d7917d8b5745a2ddea177d1bc25f9131e760f13a8a0c064219fc73c1b0e6789",
+    "behavior": "Original source/receiver editor and test-drive views inspected; movement observed. Campaign actor replacement/combat with imported model NOT RUN."
+  },
+  "cancel": {
+    "native_result": "cancelled",
+    "saved_editor_archive_byte_identical": true,
+    "archive_sha256": "3d6891be5cfca37b36fdd7138b2c970bcc7d792492a521124d530ec604e9ec82",
+    "no_accepted_native_save": true
+  },
+  "actions": [
+    {
+      "run": "native-07",
+      "name": "during-editor",
+      "move": true,
+      "jump_and_landing": true,
+      "displacement": 2.0334682690861,
+      "utc_started": "2026-09-22T13:29:29.752111+00:00",
+      "utc_finished": "2026-09-22T13:29:35.347463+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-07/during-editor.json",
+        "bytes": 13937,
+        "sha256": "177dca122e84b2f3f5a6c70ed9d75d7ec84be1eecad3569079ffc4a2711a97cb"
+      }
+    },
+    {
+      "run": "native-07",
+      "name": "during-testdrive",
+      "move": false,
+      "jump_and_landing": false,
+      "displacement": null,
+      "utc_started": "2026-09-22T13:31:49.833566+00:00",
+      "utc_finished": "2026-09-22T13:32:18.914833+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-07/during-testdrive.json",
+        "bytes": 9319,
+        "sha256": "0b2edae3c9bbcfe4394e58e1618511129fef21d7eaf5beb02a4368f57951958b"
+      }
+    },
+    {
+      "run": "native-08",
+      "name": "during-draft",
+      "move": true,
+      "jump_and_landing": true,
+      "displacement": 1.0022396629399468,
+      "utc_started": "2026-09-22T13:37:37.280581+00:00",
+      "utc_finished": "2026-09-22T13:37:41.098966+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-08/during-draft.json",
+        "bytes": 13930,
+        "sha256": "ba39e16af89280936f3dd44eb7b8ebaaea9dd0e973af7d6d3148280dfec6865b"
+      }
+    },
+    {
+      "run": "native-08",
+      "name": "during-transfer",
+      "move": true,
+      "jump_and_landing": true,
+      "displacement": 4.615989426265495,
+      "utc_started": "2026-09-22T13:38:46.192801+00:00",
+      "utc_finished": "2026-09-22T13:38:53.481349+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-08/during-transfer.json",
+        "bytes": 13936,
+        "sha256": "db1819091412dcfe1bfe364a47e24a689ef874c446ee67670553a7b45b5371cb"
+      }
+    },
+    {
+      "run": "native-08",
+      "name": "after-content",
+      "move": true,
+      "jump_and_landing": true,
+      "displacement": 2.284234858731026,
+      "utc_started": "2026-09-22T13:39:05.199945+00:00",
+      "utc_finished": "2026-09-22T13:39:19.923058+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-08/after-content.json",
+        "bytes": 13913,
+        "sha256": "6014ea66f2759d2e4e58173cb841cec9cb378fc406138297b67b617767f5c1d1"
+      }
+    },
+    {
+      "run": "native-11",
+      "name": "during-content",
+      "move": true,
+      "jump_and_landing": true,
+      "displacement": 3.224603530126755,
+      "utc_started": "2026-09-22T14:05:19.519893+00:00",
+      "utc_finished": "2026-09-22T14:05:23.722635+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-11/during-content.json",
+        "bytes": 13751,
+        "sha256": "85161eab03b666a4142bc9cfde92617ec8e08e8f0644c5e69b53e780ccb52389"
+      }
+    },
+    {
+      "run": "native-11",
+      "name": "after-content",
+      "move": true,
+      "jump_and_landing": true,
+      "displacement": 1.3472146536484197,
+      "utc_started": "2026-09-22T14:06:12.149869+00:00",
+      "utc_finished": "2026-09-22T14:06:17.290380+00:00",
+      "evidence": {
+        "path": "local/m08-native-2026-09-22/native-11/after-content.json",
+        "bytes": 13803,
+        "sha256": "3360ebf6c293285391649e78e30a33b700bf49eee9e849e4a750c9b60d514851"
+      }
+    }
+  ],
+  "publications": [
+    {
+      "run": "native-08",
+      "version_sha256": "d8316dfa23e62f60bad0d681d6dbd499f7962964bf01061de123cd991a876c91",
+      "png_sha256": "8ebdf46d2054dea2c75eb50f775478b8e446e0ded77825a4a55e0c2e690536d1",
+      "transaction": 2,
+      "fresh_native_imports": 2,
+      "source_closed": true
+    },
+    {
+      "run": "native-11",
+      "version_sha256": "e824c00d2d6e8895507779c029255f2df0f4e6a50abb1f6e35877a7affb16e79",
+      "png_sha256": "f0ea2c1326d3e0c278663d1c31474dae58c66cf83884905fcc9e2869a30cb3d8",
+      "transaction": 3,
+      "fresh_native_imports": 2,
+      "source_closed": true
+    }
+  ],
+  "dependency_refusal": {
+    "native_receiver": true,
+    "authority": "HOST/FIXTURE adversarial requirement; not native attestation",
+    "missing_key": "40626000!00fefefe.00b1b104",
+    "exact_and_mapped_missing_in_both_managers": true,
+    "no_png_fetch_or_import_before_refusal": true,
+    "owner_received_precise_error": true,
+    "commit_refused": true,
+    "published_versions": 0,
+    "corrected_trial": "New authenticated owner and original authority; original nine part keys resolve before true import and publication"
+  },
+  "terrain_refusal": {
+    "classification": "HOST actual-profile NativeHost prelaunch denial; original game must not start",
+    "key": "4084a100!28ca32e7.00b1b104",
+    "original_sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+    "changed_sha256": "5c229ca20aa3025ef51fc69daabcfce75dd15a5617bda1bcbaa819bcb029fadb",
+    "same_size": true,
+    "offset": 56037,
+    "original_satiria_sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+    "expected_reason": "canonical_world_mismatch:Games/Game0/PlanetScripts.pld",
+    "host_exit": 20,
+    "native_game_launched": false,
+    "all_profile_files_restored": true
+  },
+  "terrain": {
+    "runtime_key": "4084a100!28ca32e7.011989b7",
+    "persisted_key": "4084a100!28ca32e7.00b1b104",
+    "database": "PlanetScripts.pld",
+    "native_authority_and_receiver_resolve": true,
+    "canonical_six_files_equal": true,
+    "provisioning": "Complete closed original fixture copied and hash verified by prepare-worker.ps1; no seed-only recreation",
+    "dynamic_other_planets": "NOT_RUN"
+  },
+  "retained_failed_attempts": [
+    "Native07 during-testdrive move/jump failed after original authority starved; original death screen inspected. Successful during-editor action and source save retained.",
+    "Native07 owner draft expired at its five-minute deadline; no publication. Native08 fresh bounded cancel/commit run passes.",
+    "Native07 launcher-status read happened before status file appeared; original launch succeeded; recovered captured generation without relaunch.",
+    "Native11 first adversarial attestation preceded receiver authentication by about two seconds; no receiver event. Timed out without retry; both pipe clients exited zero.",
+    "Native11 second negative trial passes. Its owner pipe closes with exit 2 on fixture-authority loss, as designed; attempted reuse was refused. A fresh authenticated owner completes positive publication.",
+    "Initial .50 CTest failed a stale schema-6 assertion; corrected to schema7; final full suite passes. No native code changed after freezing .50."
+  ],
+  "limitations": [
+    "Dependency qualification uses the pinned installed-content inventory and all observed native part roots, not arbitrary mod or expansion dependency discovery.",
+    "Only locally allowlisted closed native PNG candidates enter the native receiver; no arbitrary untrusted Internet creation support.",
+    "Owner transaction controls are a developer private-pipe path. Normal Play has no new content-sharing UI.",
+    "Imported creations and native data are verified; campaign species replacement and campaign combat with imported models are not claimed.",
+    "Content registry is in memory. Restart durability and recovery remain M09.",
+    "Native11 final catalog was inspected live after its 240-second receiver recording ended. The recorded transfer/continuation frames were inspected separately.",
+    "Native10 first 180-second clip ended before editing; separate editor capture covers the new creation/test drive/save return.",
+    "Original native calls carry observation-only/readiness-false fields; publication is evidenced separately by correlated network readiness and the immutable commit."
+  ],
+  "private_helpers": [
+    {
+      "path": "local/m08-native-2026-09-22/integration.py",
+      "bytes": 14791,
+      "sha256": "a6c900a0c398ef9ae6e178fd3266cc6850a18926e2a40be4aa9335bfd7635747"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/integration-050.py",
+      "bytes": 15045,
+      "sha256": "d83322f99974e8f6e8686e6854b0d5c4821487fcfc6671ad19a651d13c45e89c"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/native-transfer.py",
+      "bytes": 4124,
+      "sha256": "23291e435d2731e7394dea5883cb08950e967ea0bffd3dcc644a64e2a5427ad6"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/native-final.py",
+      "bytes": 6972,
+      "sha256": "b02fe4ae695da69a589579ad4606e8ff1992eae26a86047d9f6080259f2a880c"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/native-final-02.py",
+      "bytes": 7428,
+      "sha256": "a905726d817bc8cc694476044250e9e6278dbcb4c631b7d832a18ed7d5512d9d"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/native-positive.py",
+      "bytes": 4298,
+      "sha256": "31f78a47af54f38c60f1eed7ad77f6ea0a9916dd82d24e56d394dd1a2aa3700e"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/world-mismatch.py",
+      "bytes": 4282,
+      "sha256": "8c38baaefe0c7ee7b50872a38186a2b9319affdbec034384246e6e72186743be"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/seal-completion.py",
+      "bytes": 14650,
+      "sha256": "2e8e95046200193a4734e22b45d8005bc9dce83260361817144f09df28c39010"
+    }
+  ]
+}

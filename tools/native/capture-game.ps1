@@ -36,7 +36,9 @@ $help = & $ffmpeg -hide_banner -h filter=gfxcapture 2>&1 | Out-String
 if ($LASTEXITCODE -ne 0 -or $help -notmatch 'gfxcapture AVOptions:' -or $help -notmatch 'hwnd\s+<uint64>') { throw 'Installed FFmpeg lacks exact HWND capture.' }
 New-Item -ItemType Directory -Path $outputRoot | Out-Null
 $filter = "gfxcapture=hwnd=${captureHandle}:capture_cursor=0:max_framerate=30,hwdownload,format=bgra,format=yuv420p"
-$arguments = @('-hide_banner','-loglevel','info','-nostats','-stats_period','1','-progress',(Join-Path $outputRoot 'progress.txt'),'-filter_complex',$filter,'-t',"$Seconds",'-an','-c:v','libx264','-preset','ultrafast','-crf','23','-fps_mode','vfr','-n',(Join-Path $outputRoot 'capture.mkv'))
+# Flush short Matroska clusters so a live first-frame reader sees complete data.
+# These container options leave the encoder, quality and captured frames unchanged.
+$arguments = @('-hide_banner','-loglevel','info','-nostats','-stats_period','1','-progress',(Join-Path $outputRoot 'progress.txt'),'-filter_complex',$filter,'-t',"$Seconds",'-an','-c:v','libx264','-preset','ultrafast','-crf','23','-fps_mode','vfr','-flush_packets','1','-cluster_time_limit','1000','-n',(Join-Path $outputRoot 'capture.mkv'))
 $request = [ordered]@{schema_version=1;utc=(Get-Date).ToUniversalTime().ToString('o');game_pid=$GamePid;game_executable=$selectedGame.ExecutablePath;game_created=$selectedGame.CreationDate;window_handle=$captureHandle;window_title=$captureProcess.MainWindowTitle;concurrent_capture=[bool]$AllowConcurrent;recorder_executable=$ffmpeg;recorder_sha256=(Get-FileHash -LiteralPath $ffmpeg -Algorithm SHA256).Hash.ToLowerInvariant();arguments=$arguments;maximum_seconds=$Seconds;source='Windows.Graphics.Capture via FFmpeg gfxcapture';visual_review='REQUIRED: frame count and dimensions do not establish captured game content';native_frame_timing='NOT_MEASURED: compositor capture cadence is not game timing';assistant_desktop_input=$false}
 $request | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $outputRoot 'request.json') -Encoding utf8NoBOM
 $help | Set-Content -LiteralPath (Join-Path $outputRoot 'gfxcapture-help.txt') -Encoding utf8NoBOM

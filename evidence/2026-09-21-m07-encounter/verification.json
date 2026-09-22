@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-20T23:31:30.224515+00:00",
+  "evidence_class": "REVIEWED_BUILD_HOST_FIXTURE_EXPORT",
+  "milestone": "M07",
+  "milestone_status": "IN_PROGRESS",
+  "native_execution": "NOT_RUN",
+  "bridge_version": "0.0.31",
+  "wire_schema": 2,
+  "hash_provenance": "Original uncommitted development sources and built payloads; no public Git revision or new native qualification is implied",
+  "private_manifest_sha256": "bcd61b128c1b3fb600fc2415277ef94383401151837aa494c2ba3dc145a76464",
+  "source_sha256": {
+    "CMakeLists.txt": "81357432a947b1c921de7acdd96c7a688fcc04848ba0ee295a10d98a8975b5ce",
+    "config/compatibility.candidate.json": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+    "config/dependencies.lock.json": "1d4078766284ad22bcf8167592e64ff3ad41478afd37d9135ddc88b2281fba1c",
+    "docs/m06-network.md": "252c2c553c9ec2101a621adcb682084f3a27abf17ae05d712387c339dce6d37b",
+    "docs/m07-encounter.md": "27e8987b6292ecacd28ac106e8ac73e3301e95994ed90ff46082406619cadc16",
+    "docs/m07-life-state.md": "7ca72e9289c1d183b571c948bf5a8c2a2608cebaf3786521f4854584aac5b68f",
+    "docs/m07-native-encounter-audit.md": "ecc3dd6690e89353571f224133cad2c563f28963347a29936f779159f7fc14ec",
+    "docs/testing.md": "556b5c69cbcb87404f41c284fcb70c1de9b64b6862eac33094e2591c78339b51",
+    "evidence/2026-09-21-m07-encounter/impairment-prerequisites.md": "4a29283e80ac81e4e762869b37aabe577f83e58335e1c79f930061e6e3d7c9dd",
+    "evidence/2026-09-21-m07-encounter/life-state-analysis.json": "7a3688ec2b0cdeff738b84fb77d10947db427661a46cee351a8efe16531940bc",
+    "evidence/2026-09-21-m07-encounter/SESSION.md": "9247e82c672b753c2ee03ec8a89edfbd5b4fbc2411ea3658e4386de4b5d94f5e",
+    "MILESTONES.md": "d3640e5cae13acd8f9aad6d710cbcfdfcfa76fc31d98ded3ac35162514430617",
+    "src/bridge/actor_commands.cpp": "7186e77a0615525d673fc27da62f40951a1af958f57662cdbf061e49eac1ff19",
+    "src/bridge/actor_commands.h": "d04fe708a2a8c71df76f47107522f765b37954803b472dc349dd2294923deb03",
+    "src/bridge/build_identity.h.in": "57b122750faf6c8d6cf4d762ad2bfb47a6f2e62e142e44d8af2ab9c4cce8b6d7",
+    "src/bridge/detour_transaction.cpp": "682094d8dcb8a6072e97d8aa409f1c63fc7778e4d27fe81f1592d511394cb770",
+    "src/bridge/detour_transaction.h": "7fe5a4f5d482cc8221d5cb16909748cac672ac36dc6eb1fa1dda17b70d934f6d",
+    "src/bridge/diagnostics.cpp": "d96a2fffb2efc986f42f068dbcf38c118c87a7127afb64a4cfc3160ddb49c43a",
+    "src/bridge/diagnostics.h": "6b04d575e2d0e4ed9c5661803670009d17bde8d3a7c16bca9695d67d4eca87ae",
+    "src/bridge/dllmain.cpp": "71f0a0b7c149f8017b8125de11883b2f208f589e6289c488be386ab06176a985",
+    "src/bridge/native_actor_abi.h": "dbc601b3ea310a10e9e413a5f54e9ada3c0a4e5ff37349e12f2adb673b149a87",
+    "src/bridge/native_actors.cpp": "980348a5b951fe1c0bc9705a1b5f7e12e8fd604171e0cec42086427cb4d6310e",
+    "src/bridge/native_actors.h": "bcc1870afd213853f1406bb53580657176f48baea94bbd26a1a3db8590980c4a",
+    "src/bridge/native_award_abi.h": "907d5045d3a0bb880ec4c9ee68ca9d65d1a6b8e7bbc67eefa918956a5ba68e2e",
+    "src/bridge/native_award_context.cpp": "7afcdb3531e55c71ca6cd2276fdc2acb96ab11453a2af522e220176046fc3aec",
+    "src/bridge/native_award_context.h": "fcb8824f1daabd4c568986d9935235de21e9174deda9e768492581218ddf2afd",
+    "src/bridge/native_award_prefixes.inc": "f8e5f0b3e183b144a18da4457d2429fddb4e3871c98816a30bdacd7683cd1356",
+    "src/bridge/native_branch.h": "b4a61150ee0cc3eb89f3e96c548e6270b4f843c90fa20f7fe26dba5e03b4228b",
+    "src/bridge/native_display.h": "b13921631e6339367ab249aad33a7256dba4e078f7bce082c4008e4aa84d1460",
+    "src/bridge/native_host.cpp": "3aeac4ade171db98d725328c56d950350ca3770ef80d1c2ed918ed63e995c135",
+    "src/bridge/native_network.cpp": "6f267be445e8b654e4641d619a8571ad2006de63062dd5540d7d8156fba22324",
+    "src/bridge/native_network.h": "fd06ef14bc8281ef0119bb28a4d7621a58104de7d341e1edc224e8c2d03a3a39",
+    "src/bridge/native_observation.cpp": "fd8a8633e703a5d7fa09f616158bc83da74ecf7dbbf1c7fd69f02c28b3b8830a",
+    "src/bridge/native_observation.h": "4616527c5c5d6ae5d61bd52505657d0637ec3de5ee139fad67c2c809adae7225",
+    "src/bridge/native_persistence.cpp": "22c55d82fedb89ad744cd74f625ce05ab383d56f14c42eb523fb5a183c7817d4",
+    "src/bridge/native_persistence.h": "1098a9f7055fc709c349516531123444d5e3686c53654196d450db852bd1b7fa",
+    "src/bridge/native_persistence_abi.h": "2f6e6b0a21dce46e43188bfddd6dafe7a456f4e25174195b0ca19115c5364024",
+    "src/bridge/native_player_context.cpp": "8b0aaa507ee1e9ece14a0d3ee9102c3dc41d0f055749259fa0024f43a804c34e",
+    "src/bridge/native_player_context.h": "0046f2ea83ca5a841ebeebf6ce71ca3db351eae02a4f10ec311f4eb9756ca75c",
+    "src/bridge/native_replica.cpp": "1de93574f6338f95d74b2b639ef4fde7710944a4c4e407607e9ee491046604e2",
+    "src/bridge/native_replica.h": "1258870932562fec27fdc5f4b545fc74cfe0fe100dc51e83918d699e922ca9c9",
+    "src/bridge/native_replica_abi.h": "08a7d9d6b4911873bdabe71acd320c5555f4e897d9195944102b5387b2b7a552",
+    "src/bridge/native_scene.cpp": "8346fc4c2e48a6d8187588469182f1f9c2e5c02f22cb44a57ba0d44e114ebf00",
+    "src/bridge/native_scene.h": "97e4370fc7328eda2d15e0050cc6fda2ecea3704d97983814e2e0dd7cf3c047a",
+    "src/bridge/native_worker.cpp": "7910421b5a6ff0668bd8f7a707d1994191bea0fc7b4b54c541d4b1dcfbe3dfe3",
+    "src/bridge/native_worker.h": "eb5e5a45f2f9c9830760a2b80282c431fb89f4183bc0a6b52a617be3b315c255",
+    "src/bridge/observation.cpp": "506b142d1d6f7b6c029a01dac11495ac3909c1e066e5207026ef31a3414f1d48",
+    "src/bridge/observation.h": "0dd7ba60f05f4711746fe003ef2ba2bc66b4ca088a01f9c8a1517a8abcb48f63",
+    "src/bridge/replica_policy.cpp": "a232c193abb559034355e6b5a64a5d0718657bebef53648dbb4b0baaba2c82fb",
+    "src/bridge/replica_policy.h": "bbfaa167678774d36812cd3d59108d195ea5f859bd813d29b7a0e1bd5da9ae46",
+    "src/bridge/trace_extract.cpp": "cc18f39ebc3bdf580f1a469d7dd8915052b842c9b2f56a20a88f0bceafc669e4",
+    "src/network/channel.cpp": "0a7ec3e2585d2c048f9e27a9488d4f75b4614d7c9eeb09d508f334cfb076c3fc",
+    "src/network/channel.h": "a6f3ee44aaf2502488b9badfee400b779bff8b9758b6ff896c6ce435c530df8a",
+    "src/network/CMakeLists.txt": "63288a853bc7aaa3c1af08aa345c0ea6665fb05deba04a76dda0a311ec9cb5a5",
+    "src/network/coordinator.cpp": "51d1795b182ba8cebaa13e6a9b125b5f0de94940bda948d1b8d292fe9bbf9f6a",
+    "src/network/coordinator.h": "33aa04b3417f3bec356c68c308b71e5107923b84d5af94dcb9aa245fe44b171f",
+    "src/network/main.cpp": "bedf878f617775ecee986f0d5e4a37e311515dd22c2ce3b1a02a6c84c3af1f95",
+    "src/network/peer.cpp": "9915969607e61409c946aea5c9537746b7964ee7afd7a3794348d1a2f98792b6",
+    "src/network/peer.h": "e412c39c131ddd4c957603cbb5849fa24ea540abf532bfe61dccc0501380ea16",
+    "src/network/protocol.cpp": "1e137cbce1f29d5af897a7b146745943ee70d22331c041f3c8e80f5ad55b7388",
+    "src/network/protocol.h": "31423a9b45f840a358a83858307ab0b30a31229043a81acf667fa203b4ffd1fd",
+    "src/network/session.cpp": "0343b399349b302a3d29d9d50adf451d5739fcf3947f4cc7189c64f696d6247d",
+    "src/network/session.h": "4e49e2565634af19857ed9521db0117b5d44e9a1fc99cea052fda4fcdfcdb81d",
+    "src/network/tls.cpp": "3917fac20666a43f7e787c4387292131eab6c3c41fc492981d929ad6b601fd0e",
+    "src/network/tls.h": "b019cae663d20f3a84931ada6751bf113b91927b3c880340cc7a660428a12349",
+    "src/worker/control.cpp": "f8c35cd1970ec2ce7c9292dcea61236de90b2a538d017372b127c968a84f5ba3",
+    "src/worker/pipe.cpp": "f0bc24d3034b0e17b162c3348067c8283ab65c495393d1bf9f91f622344e2b3a",
+    "src/worker/pipe.h": "10bff47c96a8a9bfb8eb8d444da3d33fc2fbb5a5e4b7a4861dc2c4261e564d6e",
+    "src/worker/process_guard.cpp": "6118cad0aa6dc7ee80b8db1b281e3a080a8ee375ef3166df56efe1d3682e759b",
+    "src/worker/process_guard.h": "c94334ad03c0356d1cbae2c2c1ea13c48e0214e55d9158645df957acf41519b2",
+    "src/worker/protocol.cpp": "a3ad77cfe563d791ab24a4b99b025fc16bee15f4d4336e78456c99cca1527c7a",
+    "src/worker/protocol.h": "9e93cc5894dc2fa9f47f3bf12c836c22a56e9d5de45c00f2bfb2f6f2e51dd80f",
+    "src/worker/supervisor.cpp": "5cd8a65d95891d6ad6914d0db9d58926f178a3421ca1c8789f3c27391a06e5df",
+    "src/worker/supervisor.h": "1b97210797f413f7d934dbf6608dcdfa5bd261d4cc7112f4b1435d65a3a15842",
+    "STATUS.md": "c00fadb2537b528b52caa0d838d4994760ed9b9a7b97a1cd08b8479ec84ad891",
+    "tests/engine/M07.md": "c612af29614e06bf363f7c8d422bae24fbc2ccc9e3d7d76ffd44d122e4055efd",
+    "tests/unit/encounter_network_tests.cpp": "ae7bc065a94b5e6251658e5939743d4777bf87e0c03a7488b771057939035565",
+    "tests/unit/network_tests.cpp": "2d418d77f15975505577ee6d2e344848eeaaf2620e810e1839d8b3f8b49ab60f",
+    "tests/unit/test_m07_delay_proxy.py": "7b861124a0a5ca033b24889128527d4e4417dd7db9384ef4087faddbf664eb61",
+    "tests/unit/test_m07_harness.py": "54b213bb794a4d7086c5d8f0f7058c9c9a439900ed5bf6f4ae56d25133c8626a",
+    "tools/native/m06-harness.py": "c2809392eda230b59b20f3c2769be2431e4cfb81dcc880c56a76327ba2fa72e3",
+    "tools/native/m07-delay-proxy.py": "d392ff8f84300ec437458672e17165f3d5ef7a956cc3fdd70d4fff00cd39d345",
+    "tools/native/m07-harness.py": "7846d70732ae1d51ed2733eff0a7fd399620a5e07d7cb201a135890d6bacc335"
+  },
+  "payload_sha256": {
+    "build/win32/Release/SporeMP.Bridge.dll": "9d9bf273af91db0c6700dd938b0de37ed75865dccedfa773b83318dce34fcc2e",
+    "build/win32/Release/SporeMP.NativeHost.exe": "0e66f12e59a0322f3dc714ce6afcd95a2a39f546e801faa0d840d0b22ac15934",
+    "build/win32/Release/SporeMP.WorkerControl.exe": "4c9950d8545d7f3ac8282f6f71813b4808f1c597c5281d60fc94aeaad7209906",
+    "build/win32/Release/SporeMP.Coordinator.exe": "30ba496a5bddc9b0efc4d4ca10eadee7e06dbc6ac58a651de9a1066777939949",
+    "build/sdk/Release/SporeModAPI.dll": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d",
+    "build/injector/Release/ModAPI.DLLInjector.dll": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b"
+  },
+  "log_sha256": {
+    "local/m07-encounter-2026-09-21/build-031-01.log": "22da3e12c69e0a9985aab9312843084cbba1736d010de3ee69928c22dacd986c",
+    "local/m07-encounter-2026-09-21/build-031-02.log": "460fe118655e66322454865043e6f18c87af353e36f1d6e8d6548a3917586adb",
+    "local/m07-encounter-2026-09-21/ctest-031-01.log": "758446860882e80529d7a88f31c0bf38e89d82f80eb83709af92181cc662de51",
+    "local/m07-encounter-2026-09-21/ctest-031-02.log": "bd1f453e12e6a035d591cb97c09f3847c449b565b0efa2e70d73a8c2a4461245",
+    "local/m07-encounter-2026-09-21/ctest-031-03.log": "e255b5ec2cb0b35ab437d4f768cc27f85d04414687a61bc145fc2ec6c5582d0d"
+  },
+  "commands": {
+    "build-031-01.command.json": {
+      "command": "cmake --build build/win32 --config Release --parallel 4",
+      "exit_code": 0,
+      "completed_utc": "2026-09-20T23:09:33.4073878Z"
+    },
+    "build-031-02.command.json": {
+      "command": "cmake --build build/win32 --config Release --parallel 4",
+      "exit_code": 0,
+      "completed_utc": "2026-09-20T23:16:26.1356162Z"
+    },
+    "ctest-031-01.command.json": {
+      "command": "ctest --test-dir build/win32 -C Release --output-on-failure -V",
+      "exit_code": 0,
+      "completed_utc": "2026-09-20T23:09:55.2660447Z"
+    },
+    "ctest-031-02.command.json": {
+      "command": "ctest --test-dir build/win32 -C Release --output-on-failure -V",
+      "exit_code": 8,
+      "completed_utc": "2026-09-20T23:19:53.3738310Z"
+    },
+    "ctest-031-03.command.json": {
+      "command": "ctest --test-dir build/win32 -C Release --output-on-failure -V",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "started_utc": "2026-09-20T23:28:43.1867779Z",
+      "completed_utc": "2026-09-20T23:28:55.4104508Z"
+    },
+    "diff-check.command.json": {
+      "command": "git diff --check",
+      "expected_exit_code": 0,
+      "exit_code": 0,
+      "completed_utc": "2026-09-20T23:30:56.6743504Z"
+    }
+  },
+  "environment": {
+    "utc": "2026-09-20T23:15:06.2973536Z",
+    "os": "Microsoft Windows 11 Pro",
+    "os_version": "10.0.26200",
+    "os_build": "26200",
+    "cpu": [
+      {
+        "Name": "AMD Ryzen 7 9700X 8-Core Processor             ",
+        "NumberOfCores": 8,
+        "NumberOfLogicalProcessors": 16
+      }
+    ],
+    "gpu": [
+      {
+        "Name": "Parsec Virtual Display Adapter",
+        "DriverVersion": "0.45.0.0"
+      },
+      {
+        "Name": "NVIDIA GeForce RTX 4080 SUPER",
+        "DriverVersion": "32.0.15.9649"
+      },
+      {
+        "Name": "AMD Radeon(TM) Graphics",
+        "DriverVersion": "32.0.21042.62"
+      }
+    ],
+    "native_processes": [],
+    "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+    "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+    "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37"
+  },
+  "final_process_check": {
+    "checked_utc": "2026-09-20T23:30:56.6205060Z",
+    "command": "Get-CimInstance Win32_Process with explicit game and test process-name filter",
+    "expected_count": 0,
+    "observed_count": 0,
+    "processes": [],
+    "native_execution": "NOT_RUN"
+  },
+  "final_results": {
+    "release_build": "PASS",
+    "ctest_targets_passed": 9,
+    "ctest_targets_total": 9,
+    "ctest_seconds": 12.16,
+    "network_assertions": 2564,
+    "python_tests": 132,
+    "python_seconds": 2.002,
+    "proxy_tests": 8,
+    "encounter_parser_tests": 12,
+    "native_tests": "NOT_RUN"
+  },
+  "retained_failure": {
+    "log": "local/m07-encounter-2026-09-21/ctest-031-02.log",
+    "exit_code": 8,
+    "failed_target": "tooling_unit",
+    "cause": "Python 3.14 delay-proxy shutdown ordering; corrected before final CTest"
+  },
+  "open_gates": [
+    "original death-state presentation and same-noun revival",
+    "native08 post-respawn NPC97 Join failure",
+    "original two-client shared NPC combat, response and single reward",
+    "simultaneous contested original pickup",
+    "post-death reconnect",
+    "original-client unauthorized-action acceptance",
+    "actual latency/loss repeat and inspected native cleanup"
+  ]
+}

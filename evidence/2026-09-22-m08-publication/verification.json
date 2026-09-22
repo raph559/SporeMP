@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-22",
+  "utc": "2026-09-22T14:29:14.450885+00:00",
+  "classification": [
+    "BUILD",
+    "HOST",
+    "FIXTURE",
+    "PUBLICATION"
+  ],
+  "public_base": "13428ab9b6a1a63134a9bb66367d6874baa1e940",
+  "private_history_imported": false,
+  "source_file_count": 234,
+  "source_set_algorithm": "sha256 of UTF-8 json.dumps(sorted path/sha256 objects, sort_keys=True, separators=(comma, colon))",
+  "source_set_sha256": "b6ffc4adeaafa60a35a7f4693093bee8fc0e978d65eb68a87eb6aeb1305411fc",
+  "artifacts": [
+    {
+      "path": "build/win32/Release/SporeMP.Bridge.dll",
+      "bytes": 965120,
+      "sha256": "662320a37c25c4f12531ee2a8450f24c8dd3e088b2fca9863b9e349dfe76e9d6"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.NativeHost.exe",
+      "bytes": 182784,
+      "sha256": "7783f76a4a8bebf9c5b0384a7456d46921978eb7d3ccab60eba86ec5499129a7"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.WorkerControl.exe",
+      "bytes": 25088,
+      "sha256": "3099628c1d913fbd4acb740387b5b9d214493ba90ecbf4c561e9903a36216b98"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.Coordinator.exe",
+      "bytes": 213504,
+      "sha256": "ef8c8879092eef336d80da3a58ec1ed39ea427780fdf407580f94911bdd6dc88"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.ContentClient.exe",
+      "bytes": 91648,
+      "sha256": "571edbe32cd3c47b64173d364801c8c7d81f9f9cfb84a529e56b85395f195f26"
+    },
+    {
+      "path": "build/sdk/Release/SporeModAPI.dll",
+      "bytes": 246272,
+      "sha256": "776c8a7e24c4907ae5be4ade8ccf2058c245bd6acddcf1edba94d8308b6ed890"
+    },
+    {
+      "path": "build/injector/Release/ModAPI.DLLInjector.dll",
+      "bytes": 36864,
+      "sha256": "512ca72df4c69e016cfa468c357b842ebdc1a6219d9c3b94c277177c358ac10b"
+    },
+    {
+      "path": "build/launcher/Release/SporeMP.exe",
+      "bytes": 152064,
+      "sha256": "0abc53acc0893c9382984dcf360470724eed5c0e99f084477906a70882884869"
+    }
+  ],
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "detours": "Pinned MIT Detours 4.0.1; public SDK migration and provenance guard preserved",
+  "os": {
+    "system": "Windows",
+    "version": "10.0.26200",
+    "machine": "AMD64"
+  },
+  "hardware": {
+    "cpu": "AMD Ryzen 7 9700X",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+    "ram_bytes": 33407430656
+  },
+  "tests": {
+    "release_build_exit": 0,
+    "ctest_exit": 0,
+    "ctest_targets_passed": 15,
+    "ctest_targets_failed": 0,
+    "ctest_seconds": 35.4,
+    "python_tests": 268,
+    "launcher_assertions": 54,
+    "content_registry_checks": 190,
+    "content_transport_tls_checks": 937,
+    "network_checks": 2963
+  },
+  "private_logs": [
+    {
+      "path": "local/m08-native-2026-09-22/public-export-review/build-release.log",
+      "sha256": "bca36ee97b24f53c6727c83f90a399155aeaff09481f68a53562c320d6565ad7"
+    },
+    {
+      "path": "local/m08-native-2026-09-22/public-export-review/ctest-release.log",
+      "sha256": "e6f9632bb8516810558d01f08949b28f19944996ec623e525f49185ce15b847a"
+    }
+  ],
+  "website": {
+    "commit": "25cc33456282ea398b8e8cc0853b12bd80680cc2",
+    "generated_files": 25,
+    "local_references_checked": 290,
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "visual_review": "English and French M08 article and current homepage inspected in a real browser",
+    "deployment": {
+      "commit": "25cc33456282ea398b8e8cc0853b12bd80680cc2",
+      "workflow_run": 35740373625,
+      "conclusion": "success",
+      "url": "https://github.com/raph559/sporemp-site/actions/runs/35740373625",
+      "browser_verified_at_utc": "2026-09-22T14:30:08.002782+00:00",
+      "verified_pages": [
+        "https://raph559.github.io/sporemp-site/",
+        "https://raph559.github.io/sporemp-site/news/creations-without-interrupting-play.html",
+        "https://raph559.github.io/sporemp-site/fr/news/creations-without-interrupting-play.html"
+      ],
+      "progress_link_verified": true,
+      "article_language_switch_verified": true
+    }
+  },
+  "export_review": {
+    "staged_paths_reviewed": 171,
+    "private_identifiers": 0,
+    "credential_or_account_patterns": 0,
+    "missing_markdown_targets": 0,
+    "raw_game_assets_added": false
+  },
+  "native_evidence": {
+    "path": "evidence/2026-09-22-m08-completion/verification.json",
+    "sha256": "2d801a3f4e8831c0c28a627d9aa0103dc9e58b785662e5d0eafc0ef5acd9d90f",
+    "status": "VERIFIED",
+    "qualification": "Frozen development payloads only; not the separately rebuilt public SDK"
+  },
+  "native_public_sdk": "NOT RUN",
+  "next_smallest_step": "M09 durable native checkpoint/content-version recovery; qualify the public SDK payload before claiming native execution with that build"
+}

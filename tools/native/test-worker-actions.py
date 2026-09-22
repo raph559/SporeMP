@@ -39,7 +39,7 @@ def main():
         if response.get('op') != op or response.get('result') != expected: raise ValueError(f'{op}: expected {expected}, got {response}')
         return response
     def rows():
-        if trace.stat().st_size > 34 * 1024 * 1024: raise ValueError('Unexpected trace size')
+        if trace.stat().st_size > 66 * 1024 * 1024: raise ValueError('Unexpected trace size')
         # Ignore only an unfinished last write, never a malformed complete record.
         data = trace.read_bytes(); complete = data[:data.rfind(b'\n') + 1]
         result = [json.loads(line) for line in complete.splitlines()]

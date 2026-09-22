@@ -1,0 +1,420 @@
+{
+  "schema_version": 1,
+  "evidence_class": [
+    "NATIVE",
+    "NETWORK-REAL"
+  ],
+  "run": "native11",
+  "bridge_version": "0.0.39",
+  "wire_schema": 4,
+  "full_m07": "NOT_VERIFIED",
+  "terminal_outcome_gate": "FAILED",
+  "contested_pickup": "NOT_RUN",
+  "reconnect_after_pickup": "NOT_RUN",
+  "workers": {
+    "authority": {
+      "actor_trace_sha256": "eb796558513fe250651f3d021051f63b6c977239af4b0e8d5461d2ffe69a86f4",
+      "actor_trace_bytes": 10473401,
+      "actor_records": 16264,
+      "trace_duration_seconds": 119.1391669,
+      "contiguous_sequence": true,
+      "qpc_monotonic": true,
+      "foreign_callbacks": 0,
+      "trace_stop_healthy": true,
+      "detach_status": 0,
+      "game_exit_code": 0,
+      "worker_exit_code": 0,
+      "bridge_disposed": true,
+      "worker_state": "stopped",
+      "combat_archived_prefixes_match": {
+        "before": true,
+        "after": true
+      },
+      "target_dead_scene_samples": 0,
+      "last_target_native_sample": {
+        "sequence": 14689,
+        "source_tick": 72088281,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 2,
+        "dead": false,
+        "position": [
+          -406.245972,
+          179.25206,
+          249.526627
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100
+      },
+      "trace_limit_events": 0,
+      "scene_capture_rejections": 1,
+      "scene_projection_rejections": 0,
+      "life_presentation_rejections": 0,
+      "intentional_target_samples_omitted": 3,
+      "pickup_order_or_grant_events": 0,
+      "failures": [
+        {
+          "event": "scene_capture_rejected",
+          "sequence": 14960,
+          "reason": "unsupported_native_values",
+          "remote_entity": 12884901967,
+          "native_id": 79
+        },
+        {
+          "event": "network_status",
+          "sequence": 14961,
+          "state": "error",
+          "detail": "Native scene capture failed: unsupported_entity"
+        }
+      ]
+    },
+    "client_a": {
+      "actor_trace_sha256": "cb3b55a0295816dd47740d04392d401fb480bf7d16164040b36823bd1f28f6b6",
+      "actor_trace_bytes": 4144966,
+      "actor_records": 4086,
+      "trace_duration_seconds": 96.7467779,
+      "contiguous_sequence": true,
+      "qpc_monotonic": true,
+      "foreign_callbacks": 0,
+      "trace_stop_healthy": true,
+      "detach_status": 0,
+      "game_exit_code": 0,
+      "worker_exit_code": 0,
+      "bridge_disposed": true,
+      "worker_state": "stopped",
+      "combat_archived_prefixes_match": {
+        "before": true,
+        "after": true
+      },
+      "target_dead_scene_samples": 0,
+      "last_target_native_sample": {
+        "sequence": 4005,
+        "source_tick": 72089109,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 1,
+        "dead": false,
+        "position": [
+          -406.253479,
+          179.179504,
+          249.53656
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100
+      },
+      "trace_limit_events": 0,
+      "scene_capture_rejections": 0,
+      "scene_projection_rejections": 0,
+      "life_presentation_rejections": 0,
+      "intentional_target_samples_omitted": 0,
+      "pickup_order_or_grant_events": 0,
+      "failures": []
+    },
+    "client_b": {
+      "actor_trace_sha256": "a17ca8ff6b2cb9369362e1e0eaebde2cca9e15a870cbb9722c1b94bf3ce58eeb",
+      "actor_trace_bytes": 4090061,
+      "actor_records": 4040,
+      "trace_duration_seconds": 95.5053311,
+      "contiguous_sequence": true,
+      "qpc_monotonic": true,
+      "foreign_callbacks": 0,
+      "trace_stop_healthy": true,
+      "detach_status": 0,
+      "game_exit_code": 0,
+      "worker_exit_code": 0,
+      "bridge_disposed": true,
+      "worker_state": "stopped",
+      "combat_archived_prefixes_match": {
+        "before": true,
+        "after": true
+      },
+      "target_dead_scene_samples": 0,
+      "last_target_native_sample": {
+        "sequence": 3963,
+        "source_tick": 72089109,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 1,
+        "dead": false,
+        "position": [
+          -406.253479,
+          179.179504,
+          249.53656
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100
+      },
+      "trace_limit_events": 0,
+      "scene_capture_rejections": 0,
+      "scene_projection_rejections": 0,
+      "life_presentation_rejections": 0,
+      "intentional_target_samples_omitted": 0,
+      "pickup_order_or_grant_events": 0,
+      "failures": []
+    }
+  },
+  "captures": {
+    "authority": {
+      "source": "Windows.Graphics.Capture via FFmpeg gfxcapture",
+      "requested_maximum_seconds": 270,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "video_sha256": "cfde4f96a4e1b233da77ccec214fbf668c4fd4eda43abeba15708ded93b36bdf",
+      "visual_acceptance": "NOT_REVIEWED_BY_THIS_TRACE_REPORT",
+      "capture_ended_when_game_closed": true,
+      "audio_recorded": false
+    },
+    "client_a": {
+      "source": "Windows.Graphics.Capture via FFmpeg gfxcapture",
+      "requested_maximum_seconds": 270,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "video_sha256": "1f78062cb3fbf2dfd290307ff18a4727f44bd7e85941e5910e12a73d387a3fce",
+      "visual_acceptance": "NOT_REVIEWED_BY_THIS_TRACE_REPORT",
+      "capture_ended_when_game_closed": true,
+      "audio_recorded": false
+    },
+    "client_b": {
+      "source": "Windows.Graphics.Capture via FFmpeg gfxcapture",
+      "requested_maximum_seconds": 270,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "video_sha256": "6e9799af3244bc6e6c749a7fcd1cfce55db9f63d0d31c9e582713fab0d4af373",
+      "visual_acceptance": "NOT_REVIEWED_BY_THIS_TRACE_REPORT",
+      "capture_ended_when_game_closed": true,
+      "audio_recorded": false
+    }
+  },
+  "source": {
+    "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+    "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+    "bridge_sha256": "d9a1be4b25f2d6c27e8eff1642c414388e0e923ef858b22a8d5a3fe033bb95e0",
+    "native_host_sha256": "69ba5b795df31aa9a0264c663ec5371a8827270bf8683cd15d8b57d17fb77df3",
+    "protocol_source_sha256": "e1dd0c4ebb8f6f422d888ab51045caae186ba4c048e6e869d92194628775cc23",
+    "native_scene_source_sha256": "6a58f5d99b580cb1ae89519fd64234e21c5c6d5b2b2e3c746c8623aea24afda5"
+  },
+  "terminal_failure": {
+    "target": 12884901967,
+    "generation": 7,
+    "native_id": 79,
+    "actor": 3,
+    "zero_health_not_dead": {
+      "sequence": 14950,
+      "health": 0,
+      "dead": false,
+      "position": [
+        -406.25473,
+        179.173523,
+        249.536377
+      ],
+      "food_value": 100,
+      "has_been_eaten": false,
+      "animal_damage_scope": 3009
+    },
+    "kill_reward": {
+      "owner": 1,
+      "actor": 1,
+      "amount": 7,
+      "before": 0,
+      "after": 7,
+      "enter_sequence": 14951,
+      "return_sequence": 14952,
+      "damage_scope": 3009
+    },
+    "capture_rejection": {
+      "sequence": 14960,
+      "reason": "unsupported_native_values",
+      "remote_entity": 12884901967,
+      "native_id": 79
+    },
+    "network_error": {
+      "sequence": 14961,
+      "state": "error",
+      "detail": "Native scene capture failed: unsupported_entity"
+    },
+    "later_original_dead_state": {
+      "sequence": 14969,
+      "health": 0,
+      "dead": true,
+      "position": [
+        -406.659058,
+        179.356552,
+        249.789017
+      ],
+      "food_value": 100,
+      "has_been_eaten": false
+    },
+    "later_dead_sample_after_rejection_seconds": 0.1194022,
+    "published_terminal_scene_sample": false
+  },
+  "shared_combat": {
+    "both_owners_original_damage_observed": true,
+    "hits": [
+      {
+        "owner": 2,
+        "scope": 2514,
+        "enter_sequence": 12932,
+        "return_sequence": 12939,
+        "before_health": 6,
+        "after_health": 5
+      },
+      {
+        "owner": 2,
+        "scope": 2671,
+        "enter_sequence": 13524,
+        "return_sequence": 13531,
+        "before_health": 5,
+        "after_health": 4
+      },
+      {
+        "owner": 2,
+        "scope": 2829,
+        "enter_sequence": 14158,
+        "return_sequence": 14165,
+        "before_health": 4,
+        "after_health": 3
+      },
+      {
+        "owner": 1,
+        "scope": 2915,
+        "enter_sequence": 14503,
+        "return_sequence": 14509,
+        "before_health": 3,
+        "after_health": 2
+      },
+      {
+        "owner": 2,
+        "scope": 2976,
+        "enter_sequence": 14798,
+        "return_sequence": 14805,
+        "before_health": 2,
+        "after_health": 1
+      },
+      {
+        "owner": 1,
+        "scope": 3009,
+        "enter_sequence": 14947,
+        "return_sequence": 14954,
+        "before_health": 1,
+        "after_health": 0
+      }
+    ],
+    "terminal_shared_state_matched": false,
+    "requested_observation_seconds": 25.0,
+    "requested_b_lead_seconds": 5.0,
+    "harness_operation_completed": true,
+    "harness_bounded_encounter_observed": false
+  },
+  "inactive_existing_herd_fallback": {
+    "native_success_observed_on": "client_a",
+    "source_native_id": 69,
+    "global_entity": 12884901957,
+    "generation": 34,
+    "herd_native_id": 1772,
+    "species": [
+      108668588,
+      731352134,
+      1080189440
+    ],
+    "archetype": 4130283391,
+    "template_selected": false,
+    "current_manager_profile_owned": true,
+    "archetype_matches": true,
+    "preflight_sequence": 1861,
+    "census_complete": true,
+    "nouns_inspected": 8048,
+    "herd_enabled_byte": 0,
+    "herd_enable_called": false,
+    "factory_sequence": 1862,
+    "created_native_id": 9637,
+    "projected_sequence": 1863,
+    "spawn_sequence": 1864,
+    "source_tick": 72086000,
+    "position": [
+      -372.070801,
+      235.877411,
+      249.032349
+    ],
+    "health": 6,
+    "native_max_health": 6,
+    "age": 1,
+    "scale": 0.518023372,
+    "client_b_used_existing_living_template": true,
+    "limit": "One existing inactive herd/profile/archetype fixture; no missing-profile or generated-archetype claim"
+  },
+  "protected_files": {
+    "personal_files_unchanged": 29,
+    "recognized_running_workers": 0,
+    "games_files_unchanged_per_worker": [
+      16,
+      16,
+      16
+    ],
+    "creations_files_per_worker": [
+      0,
+      0,
+      0
+    ]
+  },
+  "timing": {
+    "overall_bound_seconds": 300,
+    "capture_maximum_seconds": 270,
+    "stopped_early_on_native_failure": true,
+    "full_requested_capture_duration_completed": false
+  },
+  "build_host_only": {
+    "build": {
+      "command": "cmake --build build/win32 --config Release --parallel 4",
+      "exit_code": 0,
+      "utc": "2026-09-21T09:29:26.6171057Z"
+    },
+    "ctest": {
+      "command": "ctest --test-dir build/win32 -C Release --output-on-failure -V",
+      "utc": "2026-09-21T09:30:38.0448551Z",
+      "exit_code": 0
+    },
+    "native_acceptance_implied": false
+  },
+  "artifact_hashes": {
+    "native11-closed/report.json": {
+      "bytes": 31661,
+      "sha256": "24b13d4b271c5e7420b46af784154c4a1a7a0cc055ccc4f31ae06dc89fe20d92"
+    },
+    "native11-combat/report.json": {
+      "bytes": 59150,
+      "sha256": "d9412d17d29204e1de438b7066c64a4b5d925440dae0104cd1a37ebf24e796a0"
+    },
+    "native11-source-payloads.json": {
+      "bytes": 12720,
+      "sha256": "c1f910b71bdd2d5a087f50a4f01c5e16afc24be546e849aa6e5c3efa44e3c9c6"
+    },
+    "native11-stop.json": {
+      "bytes": 1626,
+      "sha256": "78d00eb7aad6feb93ee80373a70b83da2fc3aedd24fb5ca1898a764de1835dc6"
+    },
+    "native11-save-check.json": {
+      "bytes": 1000,
+      "sha256": "57fe1778c47b9c29528ac89ed10138861c8be0cf6252eae64f5e45e86c1ea5c5"
+    },
+    "native11-personal-after.json": {
+      "bytes": 272,
+      "sha256": "bb914c9a820100dadcf7797f2b3d496bb43dc6dc3fd4959b3a9015cc48c46594"
+    },
+    "analyze-native11.py": {
+      "bytes": 12777,
+      "sha256": "13ce10e377b4ea62d49f93ca6bd2583d975ab0d7b8d842cb6a6a74319950fc21"
+    }
+  }
+}

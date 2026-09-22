@@ -1,6 +1,7 @@
 #pragma once
 #include "../worker/protocol.h"
 #include "replica_policy.h"
+#include "actor_commands.h"
 #include <array>
 #include <cstdint>
 namespace sporemp {
@@ -33,4 +34,20 @@ bool native_actor_apply_vitals(uint64_t local_id, const replica::Vitals& state);
 bool native_actor_probe_replica_denials();
 // Engine-thread-only M06 mapping; returns a value, never a native pointer.
 bool native_actor_owner_native_id(uint32_t owner, uint32_t& native_id);
+// Engine-thread-only M07 authority input. The network caller must first fence
+// scene/global ID/generation; this boundary rechecks epoch, local noun lifetime
+// and owner before queuing the existing original-game command implementation.
+// UINT32_MAX means no target. Targeted actions currently admit NPCs only.
+worker::Result native_actor_network_command(uint64_t epoch, uint32_t owner,
+    uint32_t actor_native_id, uint32_t target_native_id, ActorVerb verb,
+    int direction, uint64_t request);
+// Idempotent authority-only bootstrap of the qualified M03 B player/reward
+// context. Failure never publishes a fabricated zero B balance.
+bool native_actor_network_prepare_rewards();
+// current_native distinguishes a present native balance from the retained
+// last observed balance of a corpse whose reward context has been retired.
+bool native_actor_owner_dna(uint32_t owner, float& dna, bool* current_native=nullptr);
+// Observed original first-feed grant beneficiary in the current native scene.
+// Zero means unknown; it neither claims nor consumes the remaining corpse food.
+uint32_t native_actor_pickup_owner(uint32_t corpse_native_id);
 }

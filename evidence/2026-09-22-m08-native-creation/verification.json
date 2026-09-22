@@ -1,0 +1,458 @@
+{
+  "private_base_revision": "a33567d77ebee48442365c5cc6f1af4b93eb7803",
+  "source_state": "DIRTY_M07_AND_M08_PRESERVED",
+  "source_set_sha256": "3ea44b3dcda68ba1c56dc5e1a2291fdf7cc813031bd90ae0ba37b919d8393ee6",
+  "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "compatibility_candidate_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "environment": {
+    "gpu": [
+      {
+        "Name": "Parsec Virtual Display Adapter",
+        "DriverVersion": "0.45.0.0"
+      },
+      {
+        "Name": "NVIDIA GeForce RTX 4080 SUPER",
+        "DriverVersion": "32.0.15.9649"
+      },
+      {
+        "Name": "AMD Radeon(TM) Graphics",
+        "DriverVersion": "32.0.21042.62"
+      }
+    ],
+    "os": "Microsoft Windows 11 Pro",
+    "version": "10.0.26200",
+    "ram_bytes": 33407430656,
+    "cpu": [
+      "AMD Ryzen 7 9700X 8-Core Processor             "
+    ],
+    "build": "26200"
+  },
+  "artifacts": [
+    {
+      "path": "build/win32/Release/SporeMP.Bridge.dll",
+      "bytes": 924672,
+      "sha256": "3e16bea2e6be07ee9996ce904a44ea34ae457f44696418dbecb469ac2aec9137"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.NativeHost.exe",
+      "bytes": 182784,
+      "sha256": "ee2236e6c1bf89aba326d2be5fb9c9f3f236cc03b004b546b8bbc020747c0d87"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.WorkerControl.exe",
+      "bytes": 25088,
+      "sha256": "2569bcd31d19f0add9c9bb29f8ce78f9a4bca1f2bd4c5dc437654ff3b9d4b82a"
+    },
+    {
+      "path": "build/win32/Release/SporeMP.Coordinator.exe",
+      "bytes": 153600,
+      "sha256": "74a083306f12db84d797b0ab0fd98cc2fe264bd84d604db1f76b1738c7607e57"
+    },
+    {
+      "path": "build/sdk/Release/SporeModAPI.dll",
+      "bytes": 247296,
+      "sha256": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d"
+    },
+    {
+      "path": "build/injector/Release/ModAPI.DLLInjector.dll",
+      "bytes": 36864,
+      "sha256": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b"
+    },
+    {
+      "path": "build/launcher/Release/SporeMP.exe",
+      "bytes": 152064,
+      "sha256": "cfee7f9380975c71752d3673ef148fde9079539d7690b5782a997cb36725e972"
+    },
+    {
+      "path": "build/launcher/Release/SporeMP.dll",
+      "bytes": 2121216,
+      "sha256": "c03d9f9d50d7f951d608499c35ef4cf18e86db2c9d2e5260a5204f9b5493575a"
+    }
+  ],
+  "schema_version": 1,
+  "utc": "2026-09-22T12:06:04.525689+00:00",
+  "milestone": "M08",
+  "status": "IN_PROGRESS",
+  "native_acceptance": "NOT_VERIFIED",
+  "readiness": false,
+  "bridge_version": "0.0.46",
+  "desktop_input_authorized": true,
+  "desktop_input_sent": true,
+  "source_build_boundary": "Frozen .46 build; Python driver subsequently updated",
+  "updated_source_hashes": [
+    {
+      "path": "tools/native/m08-content-probe.py",
+      "sha256": "9025f133e7f838d22ecb44401a036f807b872bd97052739d6a6decf50d6e18a5"
+    },
+    {
+      "path": "tests/unit/test_m08_content_probe.py",
+      "sha256": "920843bdf0de8fb29a3b3aea84b253dccea33a10734bec0a09f12d3df5f459d6"
+    }
+  ],
+  "runs": [
+    {
+      "run": "native-01",
+      "worker": "02",
+      "pid": 7212,
+      "trace_rows": 19,
+      "trace_sha256": "b18f5351109ffd66b696e4f9bdf7b162b9281db67817a725014ee68aa56c0f8d",
+      "trace_healthy": true,
+      "thread_id": 51172,
+      "observer_listeners_removed": true,
+      "foreign_thread_callbacks": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-22T11:45:30.030Z",
+          "host_pid": 35340,
+          "game_pid": 7212,
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-22T11:45:30.030Z",
+          "host_pid": 35340,
+          "exit_code": 0,
+          "requested": true
+        }
+      ],
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/editor-01/native-01/capture-01/capture.mkv",
+          "bytes": 28700896,
+          "sha256": "a719f91498cd60e8a0ade3cbd4d406cf1ca155d636208f535321d1b3bc45e3df",
+          "exit_code": 0,
+          "wall_timeout": false,
+          "reviewed_frames": [
+            "initial.png"
+          ]
+        },
+        {
+          "path": "local/m08-native-2026-09-22/editor-01/native-01/capture-02/capture.mkv",
+          "bytes": 30454154,
+          "sha256": "6994d51cecf3d68166122a796dfab08bd395382cbb8f5ba7d889e6c8db924e5c",
+          "exit_code": 0,
+          "wall_timeout": false,
+          "reviewed_frames": [
+            "initial.png",
+            "review-055.png",
+            "review-063.png",
+            "review-085.png",
+            "review-115.png",
+            "review-130.png"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "native-02",
+      "worker": "02",
+      "pid": 32832,
+      "trace_rows": 87,
+      "trace_sha256": "b47e16d8c080bf5fb0f0600f5df903f6561fb80f80b047449ac7d0bdc8aa9025",
+      "trace_healthy": true,
+      "thread_id": 25524,
+      "observer_listeners_removed": true,
+      "foreign_thread_callbacks": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-22T11:53:24.489Z",
+          "host_pid": 37956,
+          "game_pid": 32832,
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-22T11:53:24.489Z",
+          "host_pid": 37956,
+          "exit_code": 0,
+          "requested": true
+        }
+      ],
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/editor-01/native-02/capture-01/capture.mkv",
+          "bytes": 31166148,
+          "sha256": "143bf8cf76dfd519da4dde516ce74d12b657b638c34febc188e52fbb24d71fdb",
+          "exit_code": 0,
+          "wall_timeout": false,
+          "reviewed_frames": [
+            "initial.png",
+            "review-070.png",
+            "review-085.png",
+            "review-095.png",
+            "review-105.png",
+            "review-115.png",
+            "review-119.png"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "native-03",
+      "worker": "03",
+      "pid": 35024,
+      "trace_rows": 15,
+      "trace_sha256": "73e7fb3f43ab354ec9ed86703d8e298f55c56bb375f17fedf29ef90523d5ccfb",
+      "trace_healthy": true,
+      "thread_id": 66040,
+      "observer_listeners_removed": true,
+      "foreign_thread_callbacks": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-22T11:58:26.337Z",
+          "host_pid": 10488,
+          "game_pid": 35024,
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-22T11:58:26.337Z",
+          "host_pid": 10488,
+          "exit_code": 0,
+          "requested": true
+        }
+      ],
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/editor-01/native-03/capture-01/capture.mkv",
+          "bytes": 31593565,
+          "sha256": "e6b4109f9f174809274f6a96f59c11fe1cc4a1f2609a083375d546c74a4831b7",
+          "exit_code": 0,
+          "wall_timeout": false,
+          "reviewed_frames": [
+            "initial.png",
+            "review-050.png",
+            "review-070.png",
+            "review-095.png",
+            "review-105.png",
+            "review-126.png",
+            "review-134.png",
+            "review-146.png",
+            "review-158.png",
+            "review-177.png"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "native-04",
+      "worker": "03",
+      "pid": 60840,
+      "trace_rows": 487,
+      "trace_sha256": "9b3f31bd8012b02931388efef72d63e9eb0d5d2c567bc9696c4954f9e906f9d8",
+      "trace_healthy": true,
+      "thread_id": 54664,
+      "observer_listeners_removed": true,
+      "foreign_thread_callbacks": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-22T12:03:37.325Z",
+          "host_pid": 23888,
+          "game_pid": 60840,
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-22T12:03:37.325Z",
+          "host_pid": 23888,
+          "exit_code": 0,
+          "requested": true
+        }
+      ],
+      "personal_files_unchanged": 29,
+      "world_files": [
+        {
+          "path": "Games/Game0/Satiria.spo",
+          "sha256": "ca504370ceaa0cf7b21489ab1870b4e586f99e258523953606a3cd3e41d4a0fb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkp",
+          "sha256": "35919a57062116d6ca85d22aa00912753c2ca64307d8875f058667179dd5fcdb",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/planetRecords.pkt",
+          "sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/PlanetScripts.pld",
+          "sha256": "4eb36bc0f5ebb5da01da3077fb189081785d57bd570f25d4276c83df4d68160e",
+          "unchanged": true
+        },
+        {
+          "path": "Games/Game0/stars.db",
+          "sha256": "31e6f31fdcf7a4103dfd4b4a2dc26de6dc22593726802deb77cc657e01b6e241",
+          "unchanged": true
+        },
+        {
+          "path": "Planets.package",
+          "sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+          "unchanged": true
+        }
+      ],
+      "captures": [
+        {
+          "path": "local/m08-native-2026-09-22/editor-01/native-04/capture-01/capture.mkv",
+          "bytes": 72991412,
+          "sha256": "265d4da27d1e8470106a9295499c7f285c86ab94a8acbca4a50ab287f554525c",
+          "exit_code": 0,
+          "wall_timeout": false,
+          "reviewed_frames": [
+            "initial.png",
+            "loaded-world.png"
+          ]
+        }
+      ]
+    }
+  ],
+  "creation": {
+    "name": "M08 Native One",
+    "source_key": "40626200!28dc8ee1.2b978c46",
+    "import_key": "40626200!28dc92ab.2b978c46",
+    "source_representation": "EditorSaves BEM",
+    "import_representation": "Pollination CRT",
+    "png_sha256": "61a90fb4a58ff0ee5b17c37224a467975a35605b44c214a6bbc3178abcadcd8f",
+    "png_bytes": 28667,
+    "rigblocks": 23,
+    "capabilities": 47,
+    "unique_part_references": 9,
+    "copied_native_scalars_equal": true,
+    "copied_native_scalars_sha256": "35cdece5f47b461a6dc9323811637835969f1a49b88020e1d9d82914280b0f4b",
+    "raw_model_bytes_equal": false,
+    "full_dependency_closure": "NOT_VERIFIED",
+    "multiplayer_publication": "NOT_IMPLEMENTED"
+  },
+  "terrain": {
+    "logical_key": "4084a100!28ca32e7.011989b7",
+    "native_home_world": true,
+    "exact_record_in_closed_archives": false,
+    "serialized_key_byte_search_matches": 0,
+    "complete_canonical_mapping": "NOT_VERIFIED"
+  },
+  "checks": {
+    "focused_probe_tests": 19,
+    "tooling_tests": 223,
+    "tooling_ctest_passed": 1,
+    "tooling_ctest_seconds": 6.72,
+    "build": "Retained unchanged .46 Release artifact verification",
+    "prior_full_ctest_targets": 12
+  },
+  "limitations": [
+    "Creation derives from an installed original Alderbrook template with native paint/name changes.",
+    "Attempted manual part placement in native-01 did not attach; no added-part claim.",
+    "Native-02 video ended before final Cancel click; original trace and observed UI plus closed files establish outcome.",
+    "Native-03 capture includes orange draft, discard prompt and cyan Sporepedia return.",
+    "Capture helper assistant_desktop_input=false describes the capture helper only; actual session UI input was true.",
+    "Test-drive movement is not full campaign combat or authoritative publication.",
+    "Native-04 loaded the existing Satiria fixture, not the new creature as a campaign actor.",
+    "First native-03 review failed its BEM assumption; preserved comparison revealed native CRT import.",
+    "Exact-record and serialized-key byte searches are investigation results, not complete terrain format decoding."
+  ]
+}

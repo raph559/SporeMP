@@ -1,0 +1,291 @@
+{
+  "evidence_class": "RETAINED_NATIVE_TRACE_ANALYSIS_NOT_NEW_NATIVE_EXECUTION",
+  "created_utc": "2026-09-20T23:08:36.940945+00:00",
+  "traces": [
+    {
+      "path": "evidence/2026-09-14-m06-network/native05-closed/snapshot/01/actors-41472.jsonl",
+      "sha256": "1efcab5e92bcbee66551980e4c08b6508a6d3517129d62c4b0267e11591c50d2",
+      "owner_life_transitions": [
+        {
+          "sequence": 117,
+          "qpc": 172593221,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": false,
+          "health": 8.62631321,
+          "hunger": 0
+        },
+        {
+          "sequence": 118,
+          "qpc": 172595830,
+          "epoch": 3,
+          "actor": 2,
+          "owner": 2,
+          "native_id": 9599,
+          "dead": false,
+          "health": 10,
+          "hunger": 100
+        },
+        {
+          "sequence": 35644,
+          "qpc": 1995711426,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": true,
+          "health": 0,
+          "hunger": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "path": "evidence/2026-09-14-m06-network/native07-source-closed/snapshot/01/actors-25564.jsonl",
+      "sha256": "95764dbefe5355bf625d1be79374030db6bd85f6072fd0f1f1105a3cc7b600ac",
+      "owner_life_transitions": [
+        {
+          "sequence": 128,
+          "qpc": 280483715,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": false,
+          "health": 8.62051296,
+          "hunger": 0
+        },
+        {
+          "sequence": 129,
+          "qpc": 280486564,
+          "epoch": 3,
+          "actor": 2,
+          "owner": 2,
+          "native_id": 9601,
+          "dead": false,
+          "health": 10,
+          "hunger": 100
+        },
+        {
+          "sequence": 50676,
+          "qpc": 4652538227,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": true,
+          "health": 0,
+          "hunger": 0
+        }
+      ],
+      "errors": []
+    },
+    {
+      "path": "evidence/2026-09-14-m06-network/native08-source-closed/snapshot/01/actors-32020.jsonl",
+      "sha256": "2c14eb19ec2dd7fe6cc5325ddd4e0bed594e2d288d6cd9f84406f790273d2172",
+      "owner_life_transitions": [
+        {
+          "sequence": 128,
+          "qpc": 280585139,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": false,
+          "health": 8.62031364,
+          "hunger": 0
+        },
+        {
+          "sequence": 129,
+          "qpc": 280588429,
+          "epoch": 3,
+          "actor": 2,
+          "owner": 2,
+          "native_id": 9601,
+          "dead": false,
+          "health": 10,
+          "hunger": 100
+        },
+        {
+          "sequence": 35453,
+          "qpc": 2005428024,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": true,
+          "health": 0,
+          "hunger": 0
+        },
+        {
+          "sequence": 36929,
+          "qpc": 2395211683,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": false,
+          "health": 5,
+          "hunger": 100
+        }
+      ],
+      "errors": []
+    },
+    {
+      "path": "evidence/2026-09-14-m06-network/native05-closed/snapshot/02/actors-5752.jsonl",
+      "sha256": "60db3d9d0dafcd65c2ca9ab9f563505f1935b74c0eaa4ca9125629032d3184e9",
+      "owner_life_transitions": [
+        {
+          "sequence": 117,
+          "qpc": 173362108,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": false,
+          "health": 8.62631321,
+          "hunger": 0
+        },
+        {
+          "sequence": 118,
+          "qpc": 173365205,
+          "epoch": 3,
+          "actor": 2,
+          "owner": 2,
+          "native_id": 9599,
+          "dead": false,
+          "health": 10,
+          "hunger": 100
+        }
+      ],
+      "errors": [
+        {
+          "schema_version": 1,
+          "evidence_class": "NATIVE_PROBE",
+          "harness": "M03",
+          "event": "network_status",
+          "sequence": 4131,
+          "pid": 5752,
+          "thread_id": 37064,
+          "qpc": 1904302386,
+          "qpc_frequency": 10000000,
+          "epoch": 3,
+          "executing_command": 0,
+          "foreign_callbacks": 0,
+          "ability_scope": 0,
+          "strike_scope": 0,
+          "animal_damage_scope": 0,
+          "state": "error",
+          "player_id": 1,
+          "baseline_sequence": 1,
+          "detail": "Native entity removal failed."
+        }
+      ]
+    },
+    {
+      "path": "evidence/2026-09-14-m06-network/launcher-native08-failed/join-04f174a5f0694933/actors-26684.jsonl",
+      "sha256": "3311c5293618fe95ab6ee8db7ecdfb03f713a3d39cc1445040876344097a2d27",
+      "owner_life_transitions": [
+        {
+          "sequence": 129,
+          "qpc": 281712984,
+          "epoch": 3,
+          "actor": 1,
+          "owner": 1,
+          "native_id": 232,
+          "dead": false,
+          "health": 8.62441349,
+          "hunger": 0
+        },
+        {
+          "sequence": 130,
+          "qpc": 281716836,
+          "epoch": 3,
+          "actor": 2,
+          "owner": 2,
+          "native_id": 9601,
+          "dead": false,
+          "health": 10,
+          "hunger": 100
+        }
+      ],
+      "errors": [
+        {
+          "schema_version": 1,
+          "evidence_class": "NATIVE_PROBE",
+          "harness": "M03",
+          "event": "scene_projection_rejected",
+          "sequence": 152,
+          "pid": 26684,
+          "thread_id": 10964,
+          "qpc": 282522338,
+          "qpc_frequency": 10000000,
+          "epoch": 3,
+          "executing_command": 0,
+          "foreign_callbacks": 0,
+          "ability_scope": 0,
+          "strike_scope": 0,
+          "animal_damage_scope": 0,
+          "reason": "native_binding_or_pose",
+          "remote_entity": 12884901985,
+          "native_id": 97
+        },
+        {
+          "schema_version": 1,
+          "evidence_class": "NATIVE_PROBE",
+          "harness": "M03",
+          "event": "network_status",
+          "sequence": 154,
+          "pid": 26684,
+          "thread_id": 10964,
+          "qpc": 282522739,
+          "qpc_frequency": 10000000,
+          "epoch": 3,
+          "executing_command": 0,
+          "foreign_callbacks": 0,
+          "ability_scope": 0,
+          "strike_scope": 0,
+          "animal_damage_scope": 0,
+          "state": "error",
+          "player_id": 2,
+          "baseline_sequence": 3,
+          "detail": "Shared scene could not be applied: native_failure"
+        }
+      ]
+    }
+  ],
+  "static_export": {
+    "command": "pwsh -NoProfile -File tools/native/invoke-static-audit.ps1 -RunKey m07-life-fields-01 -ReuseDatabase -Addresses C0BB00,C08210,C02D00",
+    "exit_code": 0,
+    "report": "local/m03-static/m07-life-fields-01.json",
+    "dead_set": "C0838F: c6 86 5e 0b 00 00 01",
+    "dead_clear": "C0BB00: c6 81 5e 0b 00 00 00",
+    "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+    "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37"
+  },
+  "source_sha256": {
+    "src/bridge/native_scene.cpp": "8346fc4c2e48a6d8187588469182f1f9c2e5c02f22cb44a57ba0d44e114ebf00",
+    "src/bridge/native_scene.h": "97e4370fc7328eda2d15e0050cc6fda2ecea3704d97983814e2e0dd7cf3c047a",
+    "docs/m07-life-state.md": "7ca72e9289c1d183b571c948bf5a8c2a2608cebaf3786521f4854584aac5b68f"
+  },
+  "static_export_sha256": {
+    "local/m03-static/m07-life-fields-01/C02D00.asm.txt": "9390d9494c25ea9a1fec43de904d51d5449ded3073c0d02ff2b4e4dc1f164b89",
+    "local/m03-static/m07-life-fields-01/C02D00.c.txt": "0e293c4a3d3310310001f152a77ffc720459662a394a94284088618293317bcd",
+    "local/m03-static/m07-life-fields-01/C02D00.window.txt": "25bc143c20ebd2ef83fa123fb37e7cc772764b6be57fccc2ace5df9a1119e770",
+    "local/m03-static/m07-life-fields-01/C08210.asm.txt": "45bb382a23e5dd4a3756e5ff002dc76773477a56cdfc290fa556895a946f2ffe",
+    "local/m03-static/m07-life-fields-01/C08210.c.txt": "f168ac88ac4c1e8e26cbd076186746f10fd9a3fe6eac2ffe192e56d2839605e6",
+    "local/m03-static/m07-life-fields-01/C08210.window.txt": "8d8b6f467d13d704cb38e13839b567cfdcaa1a485ce20053c67690a6de09401c",
+    "local/m03-static/m07-life-fields-01/C0BB00.asm.txt": "0235ea5a81836a40f7dd0bf429bcd0e0f1975cc11471f8b7c551d83289ade89d",
+    "local/m03-static/m07-life-fields-01/C0BB00.c.txt": "b449dd3d5575d219cec346721dd9dc86974701117563ffd622fb5bafa8b0db96",
+    "local/m03-static/m07-life-fields-01/C0BB00.window.txt": "9347ebeea0794b2a687d0be18b72310d154c5ab0c5183c549f20ead43060e2fc",
+    "local/m03-static/m07-life-fields-01/index.txt": "5d8d2f63772319f8127aa183cd59e31c2da0c99c37ace0c4bfac7047eb3545c7"
+  },
+  "boundary": {
+    "native_execution": "NOT RUN",
+    "death_animation_gameover_ui": "NOT IMPLEMENTED BY SCALAR LIFE PROJECTION",
+    "actual_owner_destruction": "FAIL CLOSED; SAME-NOUN REVIVAL ONLY",
+    "native08_post_respawn_join": "NPC97 projection failed; retained trace cannot identify which old compound predicate failed; new diagnostic does"
+  }
+}

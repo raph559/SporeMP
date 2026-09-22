@@ -6,7 +6,9 @@
 #include <fstream>
 #include <memory>
 #include <iostream>
+#include <regex>
 #include <stdexcept>
+#include <thread>
 
 using namespace sporemp::worker;
 namespace {
@@ -208,6 +210,195 @@ void supervision() {
     for (auto name : {L"one", L"two", L"orphan", L"forced", L"shutdown-timeout", L"engine-failure"}) { std::filesystem::remove(root / name / L"worker-status.json"); std::filesystem::remove(root / name); }
     std::filesystem::remove(root);
 }
+void status_publication() {
+    const auto root = std::filesystem::temp_directory_path() /
+        (L"SporeMP-status-host-" + std::to_wstring(GetCurrentProcessId()) + L"-" + std::to_wstring(GetTickCount64()));
+    check(std::filesystem::create_directory(root), "fresh publication HOST directory");
+    Generation generation{};
+    generation_from_hex(L"50505050505050505050505050505050", generation);
+    for (size_t i = 0; i < 4; ++i) generation[i] = static_cast<uint8_t>(GetCurrentProcessId() >> (i * 8));
+    const auto status = root / L"worker-status.json";
+    const auto read = [&] {
+        std::ifstream stream(status);
+        return std::string((std::istreambuf_iterator<char>(stream)), {});
+    };
+    // This flat-object JSON subset accepts only quoted strings and uint values;
+    // full matching catches truncation, concatenation and malformed separators.
+    const std::regex json(R"json(\{"[a-z_]+":("[^"\\\x00-\x1f]*"|[0-9]+)(,"[a-z_]+":("[^"\\\x00-\x1f]*"|[0-9]+))*\}\n)json");
+    uint64_t now = 1000;
+    unsigned retries = 0, recoveries = 0;
+    std::string retry_detail;
+    {
+        Supervisor supervisor(generation, root, [&](const char* event, const std::string& detail) {
+            if (std::string(event) == "worker_status_publication_retry") { ++retries; retry_detail = detail; }
+            if (std::string(event) == "worker_status_publication_recovered") ++recoveries;
+        }, [&] { return now; });
+        const auto original = read();
+        check(std::regex_match(original,json), "initial status is one complete valid flat JSON object");
+        auto held = CreateFileW(status.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+        check(held != INVALID_HANDLE_VALUE, "actual reader opens status without FILE_SHARE_DELETE");
+        now += 1000;
+        std::thread release([held] { Sleep(80); CloseHandle(held); });
+        std::string unexpected;
+        try { supervisor.tick(); } catch (const std::exception& error) { unexpected = error.what(); }
+        release.join();
+        check(unexpected.empty(), "transient status reader cannot abort the worker supervisor");
+        auto content = read();
+        check(std::regex_match(content,json) && content.find("\"uptime_ms\":1000") != std::string::npos,
+            "released reader permits a complete atomic updated JSON publication");
+        check(retries == 1 && recoveries == 1 && retry_detail.find("\"win32_error\":") != std::string::npos,
+            "transient replacement conflict and recovery retain rare diagnostic events");
+
+        held = CreateFileW(status.c_str(), GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+        check(held != INVALID_HANDLE_VALUE, "persistent reader lock held for bounded failure test");
+        now += 1000;
+        const auto started = GetTickCount64();
+        std::string failure;
+        try { supervisor.tick(); } catch (const std::exception& error) { failure = error.what(); }
+        const auto elapsed = GetTickCount64() - started;
+        CloseHandle(held);
+        check(!failure.empty() && failure.find("win32=") != std::string::npos,
+            "persistent replacement conflict fails with the exact Win32 diagnostic");
+        check(elapsed >= 100 && elapsed < 2000, "publication contention has a finite real-time retry bound");
+        check(read() == content, "failed replacement preserves the previous atomic status bytes");
+        check(retries == 2 && recoveries == 1, "permanent failure does not masquerade as recovered publication");
+        // Do not advance the synthetic clock: failure must not update last_publish.
+        supervisor.tick();
+        content = read();
+        check(std::regex_match(content,json) && content.find("\"uptime_ms\":2000") != std::string::npos,
+            "failed publication leaves its cadence eligible for immediate recovery");
+    }
+    std::filesystem::remove(root / L"worker-status.tmp");
+    std::filesystem::remove(status);
+    std::filesystem::remove(root);
+}
+void role_readiness() {
+    // Real authenticated local pipes, with an injected clock. Projection state
+    // comes from status frames, never an old connected-status file.
+    // No original game or native AI is executed by this fixture.
+    const auto root = std::filesystem::temp_directory_path() /
+        (L"SporeMP-readiness-host-" + std::to_wstring(GetCurrentProcessId()) + L"-" + std::to_wstring(GetTickCount64()));
+    check(std::filesystem::create_directory(root), "fresh readiness HOST directory");
+    for (auto role : {ProgressRole::native_simulation, ProgressRole::network_replica}) {
+        const auto run = root / (role == ProgressRole::network_replica ? L"replica" : L"authority");
+        std::filesystem::create_directory(run);
+        Generation generation{};
+        generation_from_hex(L"60606060606060606060606060606060", generation);
+        for (size_t i = 0; i < 4; ++i) generation[i] = static_cast<uint8_t>(GetCurrentProcessId() >> (i * 8));
+        generation.back() = role == ProgressRole::network_replica ? 61 : 60;
+        uint64_t now = 1000, sequence = 0;
+        {
+            Supervisor supervisor(generation, run, [](const char*, const std::string&) {}, [&] { return now; }, role);
+            Pipe engine;
+            check(engine.client(pipe_name(generation, false), GetCurrentProcessId()), "readiness engine verifies supervisor PID");
+            const auto pump = [&] {
+                for (int i = 0; i < 25; ++i) { supervisor.tick(); Sleep(2); }
+            };
+            pump();
+            const auto state = [&] {
+                std::ifstream input(run / L"worker-status.json");
+                const std::string text((std::istreambuf_iterator<char>(input)), {});
+                const auto begin = text.find("\"state\":\"");
+                if (begin == std::string::npos) return std::string{};
+                const auto value = begin + 9;
+                return text.substr(value, text.find('"', value) - value);
+            };
+            const auto send = [&](Message value, uint64_t advance) {
+                now += advance;
+                value.generation = generation; value.sequence = ++sequence;
+                check(engine.writable() && engine.send(value), "readiness HOST sends monotonic engine observation");
+                pump(); now += 1000; supervisor.tick();
+                return state();
+            };
+            const auto feed = [&](uint64_t app, uint64_t ai, ProjectionState projection = ProjectionState::connected,
+                uint64_t baseline = 7, uint64_t advance = 1000) {
+                Message value;
+                value.epoch = 3; value.values[0] = static_cast<uint64_t>(Phase::scene);
+                value.values[1] = app; value.values[2] = ai;
+                value.values[6] = static_cast<uint64_t>(projection); value.values[7] = baseline;
+                return send(value, advance);
+            };
+            const auto reply = [&](uint64_t app, uint64_t advance) {
+                // A real operator command produces a correlated engine reply.
+                // Request 2 / accepted 1 deliberately resembles connected / 1.
+                Pipe controller;
+                check(controller.client(pipe_name(generation, true), GetCurrentProcessId()),
+                    "readiness operator verifies supervisor PID");
+                Message request; request.kind = Kind::command; request.op = Op::move;
+                request.generation = generation; request.sequence = 1; request.epoch = 3;
+                check(controller.send(request), "readiness operator sends bounded HOST command");
+                Message forwarded; bool received = false;
+                const auto until = GetTickCount64() + 1000;
+                do { supervisor.tick(); received = engine.receive(forwarded); if (!received) Sleep(2); }
+                while (!received && GetTickCount64() < until);
+                check(received && forwarded.op == Op::move, "readiness command is actually forwarded to engine fixture");
+                Message value; value.kind = Kind::reply; value.op = forwarded.op; value.epoch = 3;
+                value.values[0] = static_cast<uint64_t>(Phase::scene); value.values[1] = app; value.values[2] = 163;
+                value.values[6] = forwarded.sequence; value.values[7] = static_cast<uint64_t>(Result::accepted);
+                const auto observed = send(value, advance);
+                Message acknowledged;
+                check(controller.receive(acknowledged) && acknowledged.kind == Kind::reply &&
+                    acknowledged.values[6] == forwarded.sequence &&
+                    acknowledged.values[7] == static_cast<uint64_t>(Result::accepted),
+                    "readiness HOST command reply remains normally correlated and accepted");
+                controller.close(); pump();
+                return observed;
+            };
+            check(feed(1, 163) == "ready", "fresh role-specific engine and projection evidence is ready");
+            const auto local_status = request(supervisor, supervisor, generation, Op::status);
+            check(local_status.values[6] == 0 && local_status.values[7] == static_cast<uint64_t>(Result::accepted),
+                "local status reply clears projection word two instead of inventing an engine request ID");
+            pump();
+            if (role == ProgressRole::native_simulation) {
+                check(feed(2, 163, ProjectionState::connected, 7, 4000) == "simulation_stalled",
+                    "authority with app heartbeat but stopped native AI remains stalled despite projection annotation");
+                check(feed(3, 164, static_cast<ProjectionState>(99), 999) == "ready",
+                    "authority readiness depends on original AI and ignores replica annotation words");
+            } else {
+                check(feed(2, 163, ProjectionState::connected, 7, 4000) == "ready",
+                    "verified replica with live app and established projection remains ready while native AI is suppressed");
+                {
+                    std::ofstream stale(run / L"network-status.json");
+                    stale << "{\"state\":\"connected\",\"player_id\":2,\"baseline_sequence\":7,\"detail\":\"old\"}\n";
+                }
+                check(feed(3, 163, ProjectionState::waiting, 0) == "replica_waiting",
+                    "new baseline waiting status clears connected readiness despite stale connected file");
+                check(reply(4, 1000) == "replica_waiting", "first command reply cannot establish projection readiness");
+                check(reply(5, 1000) == "replica_waiting",
+                    "request two and accepted one reply cannot masquerade as connected projection baseline one");
+                check(feed(6, 163, ProjectionState::connected, 8) == "ready", "new applied baseline restores replica readiness");
+                check(reply(7, 4000) == "replica_waiting",
+                    "fresh command reply and app heartbeat cannot refresh stale projection observation");
+                std::filesystem::remove(run / L"network-status.json");
+                check(feed(8, 163, ProjectionState::connected, 8) == "ready", "authenticated status establishes readiness without any network status file");
+                uint64_t app = 8;
+                struct InvalidProjection { ProjectionState state; uint64_t baseline; };
+                for (const auto& invalid : {
+                    InvalidProjection{ProjectionState::connected, 0},
+                    InvalidProjection{static_cast<ProjectionState>(3), 7},
+                    InvalidProjection{static_cast<ProjectionState>(UINT64_MAX), 7},
+                    InvalidProjection{ProjectionState::none, 7},
+                    InvalidProjection{ProjectionState::waiting, 7}}) {
+                    check(feed(++app, 163, invalid.state, invalid.baseline) == "replica_waiting",
+                        "invalid projection enum or baseline immediately fails closed");
+                }
+                check(feed(++app, 163, ProjectionState::none, 0) == "replica_waiting",
+                    "explicit absent projection cannot admit a network replica");
+                check(feed(++app, 163, ProjectionState::connected, UINT64_MAX) == "ready",
+                    "maximum nonzero applied baseline retains full scalar width");
+                check(feed(app, 163, ProjectionState::connected, UINT64_MAX, 4000) == "unresponsive",
+                    "fresh replica pipe messages cannot hide an app-update counter stall");
+                check(feed(++app, 163) == "ready", "fresh app progress restores otherwise qualified replica readiness");
+                now += 4000; supervisor.tick();
+                check(state() == "unresponsive", "connected replica projection cannot hide stale engine heartbeat");
+            }
+        }
+        std::filesystem::remove(run / L"worker-status.json");
+        std::filesystem::remove(run / L"network-status.json");
+        std::filesystem::remove(run);
+    }
+    std::filesystem::remove(root);
+}
 }
 int main(int argc, char** argv) {
     try {
@@ -227,6 +418,41 @@ int main(int argc, char** argv) {
         const auto replica_wire = encode(replica_request);
         check(decode(replica_wire.data(), replica_wire.size(), decoded) && decoded.op == Op::replica && decoded.values == original.values,
             "M05 private probe opcode retains all ten scalar words");
+        auto creation_request = original; creation_request.op = Op::inspect_creation;
+        creation_request.values = {0x12345678, 0x2b978c46, 0x40626200};
+        const auto creation_wire = encode(creation_request);
+        check(decode(creation_wire.data(), creation_wire.size(), decoded) && valid_creation_inspection(decoded),
+            "M08 private creature key roundtrip admitted without pointer or path");
+        for (size_t i = 0; i < creation_request.values.size(); ++i) {
+            auto invalid = creation_request; invalid.values[i] |= uint64_t(1) << 32;
+            check(!valid_creation_inspection(invalid), "M08 oversized key or nonzero reserved payload rejected");
+        }
+        auto invalid_creation = creation_request; invalid_creation.values[0] = 0;
+        check(!valid_creation_inspection(invalid_creation), "M08 zero creation identity rejected");
+        invalid_creation.values[0] = UINT32_MAX;
+        check(!valid_creation_inspection(invalid_creation), "M08 sentinel creation identity rejected");
+        invalid_creation = creation_request; invalid_creation.values[2] = UINT32_MAX;
+        check(!valid_creation_inspection(invalid_creation), "M08 sentinel creation group rejected");
+        invalid_creation = creation_request; invalid_creation.values[1] = 0x00e6bce5;
+        check(!valid_creation_inspection(invalid_creation), "M08 generated model is not a creature query");
+        invalid_creation = creation_request; invalid_creation.kind = Kind::status;
+        check(!valid_creation_inspection(invalid_creation), "M08 observation cannot masquerade as command");
+        invalid_creation = creation_request; invalid_creation.op = Op::network_action;
+        check(!valid_creation_inspection(invalid_creation), "M08 network action cannot become inspection");
+        auto import_request = original; import_request.op = Op::import_creation;
+        import_request.values = {0x12345678,UINT32_MAX,0,4,5,6,7,8,0,0};
+        auto import_wire = encode(import_request);
+        check(decode(import_wire.data(), import_wire.size(), decoded) && valid_creation_import(decoded), "M08 import sends an exact digest without a peer path");
+        for (size_t i = 0; i < 10; ++i) {
+            auto invalid = import_request; invalid.values[i] = uint64_t(1) << 32;
+            check(!valid_creation_import(invalid), "M08 import rejects oversized digest words and every reserved slot");
+        }
+        auto invalid_import = import_request; invalid_import.values = {};
+        check(!valid_creation_import(invalid_import), "M08 all-zero import digest rejected");
+        invalid_import = import_request; invalid_import.kind = Kind::reply;
+        check(!valid_creation_import(invalid_import), "M08 import requires command frame");
+        invalid_import = import_request; invalid_import.op = Op::inspect_creation;
+        check(!valid_creation_import(invalid_import), "M08 import cannot reuse an inspection opcode");
         for (size_t i = 0; i < frame_size; ++i) check(!decode(wire.data(), i, decoded), "every truncated frame rejected");
         check(!decode(wire.data(), frame_size + 1, decoded), "oversized frame rejected without read");
         auto bad = wire; bad[4] = 2; check(!decode(bad.data(), bad.size(), decoded), "unknown schema rejected");
@@ -261,6 +487,8 @@ int main(int argc, char** argv) {
         check(impersonation_server.server(other_name, current_sid(), false), "identity fixture pipe created");
         check(!wrong.client(other_name, GetCurrentProcessId() + 1) && wrong.error() == ERROR_ACCESS_DENIED, "wrong server PID rejected");
         supervision();
+        status_publication();
+        role_readiness();
         std::cout << count << " HOST/FIXTURE worker assertions passed. Native SPORE NOT RUN.\n";
         return 0;
     } catch (const std::exception& error) { std::cerr << error.what() << " win32=" << GetLastError() << '\n'; return 1; }

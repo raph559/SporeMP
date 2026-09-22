@@ -3,8 +3,11 @@
 #include "native_persistence.h"
 #include "native_replica.h"
 #include "native_network.h"
+#include "native_content.h"
+#include "native_editor_observer.h"
 #include "../worker/pipe.h"
 #include <Spore/App/IMessageManager.h>
+#include <Spore/Simulator/SubSystem/GameModeManager.h>
 #include <memory>
 #include <cstdlib>
 
@@ -23,8 +26,23 @@ worker::Result dispatch(const worker::Message& request) {
     if (request.op == Op::shutdown) { quitting = true; return Result::accepted; }
     if (request.epoch != status.epoch) return Result::stale;
     if (native_persistence_busy()) return Result::busy;
+    if (request.op == Op::inspect_creation || request.op == Op::import_creation) {
+        // Explicit private developer probe; no normal-account or network entry.
+        // This original loader may populate caches. Never run it in a replica.
+        if (native_replica_is_client()) return Result::unavailable;
+        if (request.op == Op::inspect_creation ? !worker::valid_creation_inspection(request) : !worker::valid_creation_import(request)) return Result::invalid;
+        if ((status.values[0] != static_cast<uint64_t>(worker::Phase::menu) &&
+             status.values[0] != static_cast<uint64_t>(worker::Phase::scene)) ||
+            Simulator::IsLoadingGameMode()) return Result::busy;
+        if (request.op == Op::import_creation)
+            return import_native_content(request.values, request.sequence) ? Result::accepted : Result::failed;
+        return inspect_native_content(static_cast<uint32_t>(request.values[0]),
+            static_cast<uint32_t>(request.values[1]), static_cast<uint32_t>(request.values[2]),
+            request.sequence) ? Result::accepted : Result::failed;
+    }
     if (request.op == Op::replica) return native_replica_command(request);
-    if (native_replica_is_client() && (request.op == Op::move || request.op == Op::jump)) {
+    if (request.op == Op::network_action) return native_network_command(request);
+    if (native_replica_is_client() && (request.op == Op::move || request.op == Op::jump || request.op == Op::stop)) {
         const auto network_result = native_network_command(request);
         if (network_result != Result::unavailable) return network_result;
     }
@@ -90,6 +108,9 @@ public:
         if (!quitting && now - last_status >= 250 && channel->writable()) {
             auto status = native_actor_worker_status();
             annotate_native_persistence(status);
+            const auto projection = native_network_projection();
+            status.values[6] = static_cast<uint64_t>(projection.state);
+            status.values[7] = projection.baseline;
             status.generation = generation; status.sequence = ++sent; status.values[1] = app_ticks;
             channel->send(status); last_status = now;
         }
@@ -119,9 +140,13 @@ void initialize_native_worker() {
     const auto dos = reinterpret_cast<const IMAGE_DOS_HEADER*>(base);
     const auto pe = reinterpret_cast<const IMAGE_NT_HEADERS*>(base + dos->e_lfanew);
     initialize_native_persistence(base, base + pe->OptionalHeader.SizeOfImage, engine_thread, native_actor_worker_event);
+    initialize_native_content(base, pe->OptionalHeader.SizeOfImage, engine_thread, native_actor_worker_event);
+    initialize_native_editor_observer(base, pe->OptionalHeader.SizeOfImage, engine_thread, native_actor_worker_event);
     messages->AddUnmanagedListener(&listener, App::kMsgAppUpdate); listening = true;
 }
 void dispose_native_worker() {
+    dispose_native_editor_observer();
+    dispose_native_content();
     dispose_native_persistence();
     if (listening && GetCurrentThreadId() == engine_thread) {
         messages->RemoveListener(&listener, App::kMsgAppUpdate); listening = false;

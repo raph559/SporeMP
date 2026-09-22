@@ -1,6 +1,31 @@
 {
   "news": [
     {
+      "slug": "creations-without-interrupting-play",
+      "date": "2026-09-22",
+      "category": "Développement",
+      "title": "Créer pendant que le monde continue.",
+      "summary": "Le partage de créations natives, la vérification des pièces et la validation des modifications franchissent une nouvelle étape expérimentale.",
+      "paragraphs": [
+        "Une créature nouvellement enregistrée peut maintenant passer entre les exemplaires du SPORE original utilisés dans nos essais. Le jeu dédié vérifie ses pièces et ses capacités natives, puis le jeu destinataire charge la même création avec sa propre identité locale.",
+        "L’édition a été testée pendant qu’un autre joueur continuait à se déplacer et à sauter. Annuler une modification a préservé la créature enregistrée. Une création terminée n’est devenue une version partagée qu’après les vérifications requises ; les brouillons sont restés non publiés.",
+        "Les essais ont aussi refusé une pièce manquante avant l’importation et détecté un enregistrement de terrain modifié avant le lancement du jeu. Le modèle reçu et ses déplacements dans le mode d’essai original ont été inspectés dans SPORE.",
+        "M08 est validé dans cette configuration de test de l’étape Créature. Le partage utilise encore des outils de développement et des créations approuvées localement ; ce n’est pas une fonction de campagne disponible au public. La prochaine étape concerne la conservation de la progression et la récupération après un redémarrage du serveur."
+      ]
+    },
+    {
+      "slug": "shared-encounter-verified",
+      "date": "2026-09-21",
+      "category": "Multijoueur",
+      "title": "Une rencontre. Des résultats partagés.",
+      "summary": "Combat, alimentation et reconnexion concordent désormais dans une rencontre Créature enregistrée dans le jeu original.",
+      "paragraphs": [
+        "La scène Créature partagée dépasse les premiers essais de déplacement. Deux clients et une instance dédiée du jeu original ont réalisé une rencontre limitée avec combat, alimentation disputée et résultats cohérents.",
+        "La session a été soumise à des retards et à des pertes de paquets réseau. La reconnexion a préservé le résultat enregistré, tandis que les mises à jour périmées ou attribuées au mauvais joueur ont été refusées. Une réinitialisation de session a également retrouvé les déplacements et les sauts natifs.",
+        "M07 est validé pour cette configuration Créature précise. Cela ne couvre pas encore toute la campagne Créature, les cinq étapes ou une version publique prête pour Internet. Les créations natives et les transactions d’éditeur constituent la fondation suivante."
+      ]
+    },
+    {
       "slug": "first-shared-scene",
       "date": "2026-09-15",
       "category": "Multijoueur",
@@ -39,6 +64,17 @@
   ],
   "releases": [
     {
+      "version": "0.1.10",
+      "date": "2026-09-22",
+      "title": "Des vérifications du monde plus claires",
+      "changes": [
+        "Vérifier la sauvegarde du monde et ses fichiers associés avant de lancer SPORE pour rejoindre une session.",
+        "Nommer le fichier absent ou différent pour identifier le problème.",
+        "Conserver les sauvegardes existantes en vérifiant que les joueurs et l’hôte utilisent des versions de développement compatibles."
+      ],
+      "note": "Version de développement. Le partage de créations reste un outil de test ; aucun téléchargement multijoueur public pour le moment."
+    },
+    {
       "version": "0.1.9",
       "date": "2026-09-14",
       "title": "Une invitation à se retrouver",
@@ -74,24 +110,24 @@
   ],
   "roadmap": [
     {
-      "title": "Une vraie rencontre, à plusieurs",
+      "title": "Garder sa progression après un redémarrage",
       "status": "Prochaine étape",
-      "description": "Combattre une même créature, s’accorder sur les dégâts et les récompenses, puis gérer la mort, la réapparition et la reconnexion."
+      "description": "M09 : conserver les points de sauvegarde natifs et les versions des créations, se reconnecter et récupérer les modifications interrompues après un redémarrage du serveur."
     },
     {
-      "title": "Un univers qui se souvient",
+      "title": "Explorer séparément. Se retrouver.",
       "status": "Prévu",
-      "description": "Partager les créations, conserver la progression après un redémarrage et permettre aux joueurs de s’éloigner puis de se retrouver."
+      "description": "Relier des lieux simulés séparément dans un univers canonique commun, avec des transferts sûrs et des conséquences partagées."
     },
     {
       "title": "De la Cellule à l’Espace",
       "status": "Prévu",
-      "description": "Couvrir les cinq étapes du jeu, les éditeurs et leurs transitions, avec une évolution indépendante pour chaque joueur."
+      "description": "Couvrir les cinq étapes, leurs éditeurs et leurs transitions, avec une progression indépendante pour chaque joueur."
     },
     {
-      "title": "Le rendre accessible à tous",
+      "title": "Préparer l’arrivée des joueurs",
       "status": "Prévu",
-      "description": "Simplifier l’installation et l’hébergement sur Internet, puis vérifier la campagne complète avant une sortie publique."
+      "description": "Simplifier l’installation et l’hébergement sur Internet, puis tester toute la campagne avant une sortie publique."
     }
   ]
 }

@@ -3,7 +3,8 @@ param([Parameter(Mandatory)][ValidateSet('01','02','03')][string]$WorkerId,
       [Parameter(Mandatory)][ValidatePattern('^[a-f0-9]{32}$')][string]$Generation,
       [Parameter(Mandatory)][ValidateSet('private','current')][string]$Desktop,
       [ValidateSet('Authority','Replica')][string]$M05Role,
-      [string]$M06SessionConfig)
+      [string]$M06SessionConfig,
+      [ValidatePattern('^[a-f0-9]{64}$')][string[]]$M08ApprovedContent)
 $ErrorActionPreference='Stop'
 $repoRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $stateRoot=Join-Path $repoRoot "local/worker-accounts/$WorkerId"
@@ -66,6 +67,14 @@ if(-not(Test-Path -LiteralPath $payload)){
 }
 if((Get-FileHash -LiteralPath (Join-Path $payload 'SporeMP.NativeHost.exe')).Hash.ToLowerInvariant() -ne $hash){throw 'Staged supervisor changed.'}
 New-Item -ItemType Directory -Path $run -Force | Out-Null
+if($M08ApprovedContent){
+    if(-not $M06SessionConfig -or -not $M05Role -or $M08ApprovedContent.Count -gt 32 -or
+       @($M08ApprovedContent | Select-Object -Unique).Count -ne $M08ApprovedContent.Count){throw 'M08 content approval requires 1-32 unique hashes and an explicit network worker.'}
+    # Developer-local approval only. The bridge rechecks this fixed local file
+    # before import; a network peer cannot add entries or select an import path.
+    $approvedPath=Join-Path $run 'm08-content-allowlist.txt'
+    [IO.File]::WriteAllBytes($approvedPath,[Text.Encoding]::ASCII.GetBytes(($M08ApprovedContent -join "`n")+"`n"))
+}
 $acl=Get-Acl -LiteralPath $run
 $acl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new($user.SID,'Modify','ContainerInherit,ObjectInherit','None','Allow'))
 Set-Acl -LiteralPath $run -AclObject $acl

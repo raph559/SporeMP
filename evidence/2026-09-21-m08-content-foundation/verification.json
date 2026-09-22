@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "evidence_class": [
+    "HOST",
+    "FIXTURE"
+  ],
+  "milestone": "M08",
+  "milestone_status": "IN_PROGRESS",
+  "native_acceptance": "NOT_RUN",
+  "game_processes_launched": 0,
+  "base_private_revision": "a33567d77ebee48442365c5cc6f1af4b93eb7803",
+  "source_state": "existing M07 work preserved; M08 increment uncommitted",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "content_profile_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "environment": {
+    "os": {
+      "Caption": "Microsoft Windows 11 Pro",
+      "Version": "10.0.26200",
+      "BuildNumber": "26200",
+      "OSArchitecture": "64-bit"
+    },
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+    "memory_bytes": 33407430656,
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER",
+    "direct_python": "3.11.15",
+    "ctest_python": "3.14.3"
+  },
+  "tests": {
+    "focused": {
+      "passed": 23,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "tooling_ctest": {
+      "tests_passed": 193,
+      "failed": 0,
+      "ctest_targets_passed": 1,
+      "ctest_targets_run": 1,
+      "exit_code": 0
+    },
+    "prior_failure": {
+      "run": "local/m08-content/session-01/final-01",
+      "ctest_exit_code": 8,
+      "failures": 1,
+      "errors": 2,
+      "cause": "Windows Python 3.14 handle/path ctime semantics differ; corrected and regression tested"
+    }
+  },
+  "archives": {
+    "pollination": {
+      "archive_sha256": "2dcd5f46b17f4e8839f75c332a20c65cd6791eec46dc6649f4275f1045314e31",
+      "archive_size": 1610347,
+      "container": "DBBF",
+      "record_count": 2617,
+      "compressed_record_count": 0,
+      "expanded_size": 1192903,
+      "record_set_sha256": "e356c274eba91e1167137e19e246d36b9ae584ffb9069ed8dff7cb9d702bcd7b"
+    },
+    "graphics": {
+      "archive_sha256": "99e872e5d7f84087753c091e5f7ba836b30fa693b4d8ef93dd48d069eb40ac40",
+      "archive_size": 34186124,
+      "container": "DBBF",
+      "record_count": 221,
+      "compressed_record_count": 0,
+      "expanded_size": 34150184,
+      "record_set_sha256": "0f5660cce689e9c34812029efc71e4f57dbe3b8c9abe9a14d871b419b51b7fbe"
+    },
+    "world": {
+      "archive_sha256": "30401fc44e90e379e866ca64e8ac1802c586eb7a8c3fb3ec5555c52695d3fce5",
+      "archive_size": 344675,
+      "container": "DBPF",
+      "record_count": 39,
+      "compressed_record_count": 35,
+      "expanded_size": 2225367,
+      "record_set_sha256": "65087e45e024268d7e4086be84224773d80604990534c98d7ac24478a3437985"
+    },
+    "planet_records": {
+      "archive_sha256": "9c2f5d19c58dc583297aeadffd22e13543ae2164155a44146c0d1f133464d0e1",
+      "archive_size": 44653,
+      "container": "DBPF",
+      "record_count": 73,
+      "compressed_record_count": 73,
+      "expanded_size": 29428,
+      "record_set_sha256": "7ee499094d1dde4c0398a610f8ed4021612690493e46acdf6ebd0c89686eaf7f"
+    },
+    "planets": {
+      "archive_sha256": "88a9042501c372aaddd6635f966057463f2657d30da8630f12dc8d7576e3d2aa",
+      "archive_size": 373136,
+      "container": "DBPF",
+      "record_count": 0,
+      "compressed_record_count": 0,
+      "expanded_size": 0,
+      "record_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "editor": {
+      "archive_sha256": "3cad4d68030b62ac5b566c47d1b731bf2857353dad3321a1d37c2ec4f42f43d8",
+      "archive_size": 96,
+      "container": "DBPF",
+      "record_count": 0,
+      "compressed_record_count": 0,
+      "expanded_size": 0,
+      "record_set_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "quarantine": {
+    "candidate_id": "84b7b89639c068e063a8987d5382ad912c8fc552a6db826981b386f411811831",
+    "native_validation": "NOT_RUN",
+    "readiness": false,
+    "records": 1,
+    "source_archive_sha256": "99e872e5d7f84087753c091e5f7ba836b30fa693b4d8ef93dd48d069eb40ac40",
+    "transfer_approved": false
+  },
+  "quarantine_reuse_equal": true,
+  "world_comparison": {
+    "changed_keys": [],
+    "evidence_class": "HOST",
+    "kind": "spore-record-comparison",
+    "missing_keys": [],
+    "native_validation": "NOT_RUN",
+    "readiness": false,
+    "records_equal": true,
+    "unexpected_keys": []
+  },
+  "source_archives_unchanged": true,
+  "source_hashes": [
+    {
+      "path": "tools/content/spore_content.py",
+      "sha256": "d5d122efc47d2418937a1f3b6ba3aeea0b95883a2754b44366abe85986bb6d64"
+    },
+    {
+      "path": "tests/unit/test_spore_content.py",
+      "sha256": "a231be481a1361e3723db575b062d6e0a73d9428ae872f03bfeca2a56a12d5f6"
+    },
+    {
+      "path": "config/dependencies.lock.json",
+      "sha256": "1d4078766284ad22bcf8167592e64ff3ad41478afd37d9135ddc88b2281fba1c"
+    },
+    {
+      "path": "config/compatibility.candidate.json",
+      "sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b"
+    },
+    {
+      "path": "src/bridge/native_scene.cpp",
+      "sha256": "23b000a4c636a6bbbfa67b03e24f91af789c980e7b1144635caeae0f05ae7553"
+    },
+    {
+      "path": "src/bridge/native_scene.h",
+      "sha256": "2486773607591ecd7d28321bf88204e6c0611bcd507a6b7140a05431c4ebe3fd"
+    },
+    {
+      "path": "src/network/protocol.h",
+      "sha256": "384d73a446cc175eefc712e6059e8f5e54d52dfd96d8cc4d7df146784c9f622f"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "d60f207b3f281db6351fba52d867dab97a3d0a3f14143e12e36e0d30f9c7d3bb"
+    },
+    {
+      "path": "docs/m08-content.md",
+      "sha256": "4e58d67170db785bd679f9380ad52b4b84ef5c584bb60aeb5cf12b15ac7d7b20"
+    },
+    {
+      "path": "tests/engine/M08.md",
+      "sha256": "40989f5adf8dd0deaa593f1ffd1110eb2991c97201e704373dba537c01ed4213"
+    }
+  ],
+  "private_log_hashes": [
+    {
+      "path": "local/m08-content/session-01/final-02/content-tests.log",
+      "sha256": "c4dd086f61461de776caddb33c37faf56cea139be2bfea3d38dc0faecf7047b7"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/editor.log",
+      "sha256": "ba7e523aff2ef81a2404e7063981b454eb8ee8fe582bf041c08a134e2bf85e89"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/graphics.log",
+      "sha256": "55663dfbdee8baee8ef4a740e19cad559a9634329dedf5274acbf9dcabbcc696"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/planet_records.log",
+      "sha256": "ebb1574bc30aa261ff2d1dd82fdaf680f09c7877ee9d70f31458c6900380cd9d"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/planets.log",
+      "sha256": "569593bb0885e039ae0c05c412e993e96651e52c750edff95fe05ece98593ab1"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/pollination.log",
+      "sha256": "dabe7fbd2fd6ad7c56707dd72c3e6e31f09dfa2f18db5f709df4996852ee1ea4"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/quarantine-reuse.log",
+      "sha256": "3a2b3f661da91a3b55d655f778d735874eba87a25802be9c927b5e57d0379388"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/quarantine.log",
+      "sha256": "3a2b3f661da91a3b55d655f778d735874eba87a25802be9c927b5e57d0379388"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/tooling-ctest.log",
+      "sha256": "89da2ac0b5772b61f57db1da6b84a2b790de7bf717d019d4ca9a89f42cb945c7"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/world-comparison.log",
+      "sha256": "6e24a6871cc605a1f564ea9d2c6beaef710882f4fe2ee026fe29431a8f948ef6"
+    },
+    {
+      "path": "local/m08-content/session-01/final-02/world.log",
+      "sha256": "9a6dd2521748310bc019d71b7b9ce3dc1a82339e26647635ea2cc762eb739523"
+    }
+  ],
+  "command_results": [
+    {
+      "name": "content-tests.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "50d7fd0a28405927ce3e65dd849dade8d81acb6d2843338a57c90317cb0e6bd3"
+    },
+    {
+      "name": "editor.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "7122f9bd1bf760f76e9431e5c1834b91ac8c7e4a126fab986597c054ec08ba2c"
+    },
+    {
+      "name": "graphics.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "da28b8e0899d6abc41024e11b4eb0011ab3a29f312f4c1e8a8955285121121e8"
+    },
+    {
+      "name": "planet_records.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "43fcd27aa6fac1cd87475d3f812db6246e84c2a4d40b2b7a180ef5dffd64e753"
+    },
+    {
+      "name": "planets.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "a00abc3005a60c5f04a1b8a6e7b1b8f8d5b6a0114a33d43e030faca18a7990e5"
+    },
+    {
+      "name": "pollination.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "d8af94acab171e1452d8e3ab5dbd5fd59b059475d90ead1d8e5066ce72d3c237"
+    },
+    {
+      "name": "quarantine-reuse.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "98db819911b359e2ff549b36d93131a26e9efe7fa50f85f3ebb75c2facb5456a"
+    },
+    {
+      "name": "quarantine.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "7c37a635931e4edde5b9503b9af90af2df8644e87ecc89f772f08c5de4baf35f"
+    },
+    {
+      "name": "tooling-ctest.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "34e9d4214fa01e9d6fbcf5732aaca2e9f0bec69b4245729d0b72ebbdf3a427a4"
+    },
+    {
+      "name": "world-comparison.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0,
+        20
+      ],
+      "private_record_sha256": "aa0976c463ee2358a5fc3acc7be57fa4454ad9feaa5f51b7f64385e2188b334f"
+    },
+    {
+      "name": "world.command.json",
+      "exit_code": 0,
+      "expected_exits": [
+        0
+      ],
+      "private_record_sha256": "cd610dbd4489a808374dd09dc79e8ab7d77cfa2675942852f6816f8d027e6362"
+    }
+  ],
+  "runtime_build": "NOT_RUN; no C++ source or launcher changes in this increment",
+  "remaining": [
+    "new original native creature fixture",
+    "complete dependency enumeration and approval",
+    "worker and clean second-client loading",
+    "native gameplay property validation",
+    "canonical terrain and relevant world projection",
+    "multiplayer readiness barriers",
+    "native editor begin/commit/cancel without global pause"
+  ]
+}

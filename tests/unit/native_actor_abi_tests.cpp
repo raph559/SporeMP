@@ -5,6 +5,8 @@
 #include <iterator>
 int native_award_abi_checks();
 int native_persistence_abi_checks();
+int native_pickup_abi_checks();
+int native_pool_abi_checks();
 
 namespace {
 // HOST fixtures only. Arithmetic is an argument checksum, not simulated combat.
@@ -208,6 +210,8 @@ int main() {
     }
     failures+=native_award_abi_checks();
     failures+=native_persistence_abi_checks();
+    failures+=native_pickup_abi_checks();
+    failures+=native_pool_abi_checks();
     extern int native_scene_abi_checks();
     if(native_scene_abi_checks()<0)++failures;
     return failures?1:0;

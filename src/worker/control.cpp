@@ -22,17 +22,19 @@ int wmain(int argc, wchar_t** argv) {
     uint64_t pid = 0;
     if (!generation_from_hex(argv[1], request.generation) || !number(argv[2], pid) || !pid || pid > UINT32_MAX) return 2;
     bool found = false;
-    for (uint32_t i = 0; i <= static_cast<uint32_t>(Op::replica); ++i) {
+    for (uint32_t i = 0; i <= static_cast<uint32_t>(Op::import_creation); ++i) {
         const auto op = static_cast<Op>(i); const std::string name = op_name(op);
         if (std::wstring(name.begin(), name.end()) == argv[3]) { request.op = op; found = true; break; }
     }
     if (!found) return 2;
-    const int expected = request.op == Op::replica ? 15 : request.op == Op::status ? 4 : request.op == Op::restore ? 11 :
-        request.op == Op::move ? 8 : request.op == Op::jump || request.op == Op::stop || request.op == Op::retire ? 7 :
+    const int expected = request.op == Op::replica ? 15 : request.op == Op::import_creation ? 13 : request.op == Op::network_action ? 11 : request.op == Op::status ? 4 : request.op == Op::restore ? 11 :
+        request.op == Op::move || request.op == Op::inspect_creation ? 8 : request.op == Op::jump || request.op == Op::stop || request.op == Op::retire ? 7 :
         request.op == Op::duel ? 6 : 5;
     if (argc != expected) return 2;
     if (argc >= 5 && !number(argv[4], request.epoch)) return 2;
     for (int i = 5; i < argc; ++i) if (!number(argv[i], request.values[i - 5])) return 2;
+    if (request.op == Op::inspect_creation && !valid_creation_inspection(request)) return 2;
+    if (request.op == Op::import_creation && !valid_creation_import(request)) return 2;
     std::unique_ptr<Pipe> channel;
     const auto started = GetTickCount64();
     do {

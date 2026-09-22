@@ -6,17 +6,66 @@ The launcher keeps the invite in memory for Rejoin and passes it on stdin.
 from __future__ import annotations
 
 from contextlib import contextmanager
+from contextlib import ExitStack
 import ctypes
 from ctypes import wintypes
 import ipaddress
+import hashlib
 import json
 import os
 from pathlib import Path
 import re
+import stat
 from urllib.parse import parse_qsl, urlsplit
 from uuid import uuid4
 
 MAX_INVITATION = 2048
+WORLD_FILES = (
+    ("world_satiria_sha256", "Games/Game0/Satiria.spo"),
+    ("world_planet_records_sha256", "Games/Game0/planetRecords.pkp"),
+    ("world_planet_records_temp_sha256", "Games/Game0/planetRecords.pkt"),
+    ("world_planet_scripts_sha256", "Games/Game0/PlanetScripts.pld"),
+    ("world_stars_sha256", "Games/Game0/stars.db"),
+    ("world_planets_sha256", "Planets.package"),
+)
+MAX_WORLD_FILE = 128 * 1024 * 1024
+MAX_WORLD_BUNDLE = 512 * 1024 * 1024
+
+
+def world_identity_fields(root, no_reparse):
+    """Read-only launch preflight; NativeHost independently rechecks actual bytes."""
+    root = no_reparse(Path(root))
+    result, opened, total = {}, [], 0
+    identity = lambda value: (value.st_dev, value.st_ino, value.st_size, value.st_mtime_ns)
+    with ExitStack() as stack:
+        for field, relative in WORLD_FILES:
+            try:
+                path = no_reparse(root / relative)
+                stream = stack.enter_context(path.open("rb"))
+                before = os.fstat(stream.fileno())
+                if not stat.S_ISREG(before.st_mode):
+                    raise ValueError("regular file required")
+                if before.st_size > MAX_WORLD_FILE or before.st_size > MAX_WORLD_BUNDLE - total:
+                    raise ValueError("size limit exceeded")
+                total += before.st_size
+                opened.append((field, relative, path, stream, before))
+            except (OSError, ValueError):
+                raise ValueError(f"The shared world file is missing, unsafe or unreadable: {relative}") from None
+        for field, relative, path, stream, before in opened:
+            digest, count = hashlib.sha256(), 0
+            while block := stream.read(min(1024 * 1024, MAX_WORLD_FILE + 1 - count)):
+                count += len(block)
+                if count > before.st_size:
+                    raise ValueError(f"The shared world file changed while checking it: {relative}")
+                digest.update(block)
+            if count != before.st_size:
+                raise ValueError(f"The shared world file changed while checking it: {relative}")
+            result[field] = digest.hexdigest()
+        for _, relative, path, stream, before in opened:
+            after, current = os.fstat(stream.fileno()), no_reparse(path).stat()
+            if identity(before) != identity(after) or identity(after) != identity(current) or before.st_ctime_ns != after.st_ctime_ns:
+                raise ValueError(f"The shared world file changed while checking it: {relative}")
+    return result
 
 
 def parse_invitation(value):
@@ -50,7 +99,7 @@ def parse_invitation(value):
         for name in ("cert", "token"):
             if not re.fullmatch(r"[A-Fa-f0-9]{64}", fields[name]) or fields[name] == "0" * 64:
                 raise ValueError(message)
-        return {"schema": 1, "host": host, "port": int(fields["port"]),
+        return {"schema": 2, "host": host, "port": int(fields["port"]),
                 "certificate_sha256": fields["cert"].lower(), "credential": fields["token"].lower()}
     except (ValueError, UnicodeError):
         # Never reflect malformed, potentially secret input into diagnostics.

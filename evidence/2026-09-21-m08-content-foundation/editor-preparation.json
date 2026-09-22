@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "evidence_classes": [
+    "HOST",
+    "FIXTURE",
+    "STATIC"
+  ],
+  "native_execution": "NOT_RUN",
+  "game_processes_launched": 0,
+  "desktop_input_sent": false,
+  "checked_utc": "2026-09-21T18:34:08.912154+00:00",
+  "private_base_revision": "a33567d77ebee48442365c5cc6f1af4b93eb7803",
+  "source_state": "DIRTY_M07_AND_M08",
+  "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "compatibility_candidate_sha256": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "focused_tests": 32,
+  "tooling_tests": 202,
+  "static_entries_decompiled": 4,
+  "baselines": [
+    {
+      "label": "before",
+      "files": 27,
+      "archives": 17,
+      "records": 4014,
+      "compressed_records": 1136,
+      "stored_bytes": 46924162,
+      "decoded_archive_bytes": 68966021,
+      "file_set_sha256": "b98a51e61f0954fa55babe104def66e86463f361bcc7bc315041aa38110b5b32"
+    },
+    {
+      "label": "after",
+      "files": 27,
+      "archives": 17,
+      "records": 4014,
+      "compressed_records": 1136,
+      "stored_bytes": 46925980,
+      "decoded_archive_bytes": 68966021,
+      "file_set_sha256": "1249f7d88cb731b2e2967f20a4c877d04c012a262fa324b227c82a4272a4b6ad"
+    }
+  ],
+  "preservation": [
+    {
+      "worker": "02",
+      "files": 27,
+      "backup_verified": true,
+      "source_trees_unchanged": true,
+      "manifest_sha256": "443e5ebcbfdf35058a50573c2166bfa276f99d9dd0d20b3a05abc5afeb1e6a06"
+    },
+    {
+      "worker": "03",
+      "files": 27,
+      "backup_verified": true,
+      "source_trees_unchanged": true,
+      "manifest_sha256": "13411fac1223a31f4e91a453eb59b9b8699951bc9041266bb63470e041dc0d19"
+    }
+  ],
+  "peer_changed_files": 3,
+  "peer_changed_archives": 2,
+  "peer_changed_records": 4,
+  "sources": [
+    {
+      "path": "tools/content/spore_content.py",
+      "sha256": "8ed83a6d6b6ace205d288b49911c4bc477419b02763f7fa5dc70dd609da04dbf"
+    },
+    {
+      "path": "tests/unit/test_spore_content.py",
+      "sha256": "27802a53bdea9d1e7864ae6ba173335127d84b9dedb45ec31ab656ee522ab661"
+    },
+    {
+      "path": "tools/native/invoke-static-audit.ps1",
+      "sha256": "46f2520d31de608e8a7b4f1984320cbc4313885c6ce9856cc97351f5aae8799d"
+    },
+    {
+      "path": "tools/native/ghidra/SporeM03Audit.java",
+      "sha256": "b2809b1726c1e2b5d9facda7681a22c579248ca42602c2b97890de308a87e221"
+    },
+    {
+      "path": "tools/native/ghidra/SporeSdkLabels.java",
+      "sha256": "c1018c2770092adfe42038f99d22c762d068bd87fe579edde2fb52bcd682b0e4"
+    },
+    {
+      "path": "tools/diagnostics/sporemp_diag.py",
+      "sha256": "a679736825e492921a7984dacc131e24ed4606b7ffb0b6352971badf419a5345"
+    },
+    {
+      "path": "docs/m08-content.md",
+      "sha256": "4ae996bfbd21fa202b74e8697902f9ae7770d8abdd38c6c0d8d3666a7092add3"
+    },
+    {
+      "path": "docs/m08-editor-audit.md",
+      "sha256": "c4a5d7ff76b679df912c2701bb1419690abe66b409a09dd3ae30d2802534e71a"
+    },
+    {
+      "path": "tests/engine/M08.md",
+      "sha256": "553d35cfc4a09ae2efb602d0c31c0ce46733a064a38163dfde703b6ee160b54e"
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "8843cee0cd8f140f0c5cd7b623770c206a1fd0d6045c06db799d648097f16e75"
+    },
+    {
+      "path": "MILESTONES.md",
+      "sha256": "ae8d963f3b883b1e84128b1726b92ca16749893cddfa131a9e119ea870474775"
+    },
+    {
+      "path": "docs/testing.md",
+      "sha256": "725e925e0fb2e695d93bc49fb0622b959e3d7f29f843e5ed47d3c49ca5dde810"
+    },
+    {
+      "path": "local/m08-content/session-02/verify-preparation.py",
+      "sha256": "df6582df93e5f5528782790d59da0a79fab8896c65e8b996eabc309980771bf1"
+    }
+  ],
+  "private_artifacts": [
+    {
+      "path": "local/m08-content/session-02/creations-baseline.command.json",
+      "sha256": "eb19b0815d63b893f1a6d282b971697ff6fe92df6e24eb1b54b72856509713a6"
+    },
+    {
+      "path": "local/m08-content/session-02/creations-baseline.log",
+      "sha256": "28cb414c9e9e10ce833d4e76e520039f54bc0c7b47c6d98765571173ca56bc3e"
+    },
+    {
+      "path": "local/m08-content/session-02/focused-01.command.json",
+      "sha256": "02324d547086ae8cb17a861b0590243cb185d499c626b4856ba24736f6b7c18c"
+    },
+    {
+      "path": "local/m08-content/session-02/focused-01.log",
+      "sha256": "6254352f6a368b8d712876149d7c1756025ecd3881b884653f1102ada7947586"
+    },
+    {
+      "path": "local/m08-content/session-02/peer-profile.command.json",
+      "sha256": "332a92c1c44a1c0902be00b666712082af41fae1bc07975a4ba6f87b37d8a986"
+    },
+    {
+      "path": "local/m08-content/session-02/peer-profile.log",
+      "sha256": "55cc772bfe5803b6891752d9ffc5672d3546e0ec15ddb1092001f925d45dfeb0"
+    },
+    {
+      "path": "local/m08-content/session-02/same-copy.command.json",
+      "sha256": "64505e0c9f41942f2f603359604a9645f128c692fee8a0aa54513f8dd085eeab"
+    },
+    {
+      "path": "local/m08-content/session-02/same-copy.log",
+      "sha256": "28cb414c9e9e10ce833d4e76e520039f54bc0c7b47c6d98765571173ca56bc3e"
+    },
+    {
+      "path": "local/m08-content/session-02/tooling-01.command.json",
+      "sha256": "f498270ea2a2d71b310df4d9174dc38561574777885e02c7414b53c696e07f49"
+    },
+    {
+      "path": "local/m08-content/session-02/tooling-01.log",
+      "sha256": "4d3c99aadef30e0399014b003502d22c415cf4207264d8199e3686cfb9a128b5"
+    },
+    {
+      "path": "local/m08-content/session-02/same-copy.json",
+      "sha256": "28e78904080dc5619bc41134c61b2cbf8855e8c34e570357da26f382f2eed5d8"
+    },
+    {
+      "path": "local/m08-content/session-02/peer-profile.json",
+      "sha256": "dbceac3558d0ccb0de3fa85aedb8a200adc81a834dbbb1673b049c3acdc8f273"
+    },
+    {
+      "path": "local/m08-content/session-02/creations-baseline.json",
+      "sha256": "922c31dd70abf715e30918a109a9e85270f5b46374da18975e1862d1d2ae313c"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/4BB500.asm.txt",
+      "sha256": "c532c80f968389f9c5fa36bfeeef96528a157ff5d0d30c39c4c9180cee0b4342"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/4BB500.c.txt",
+      "sha256": "69a21e1372f56ce05e4943ea1af5804c06e56dd7da7c9d5da6c51e11a22fceba"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/4BB500.window.txt",
+      "sha256": "8d22e3d112f1dbecb21fd956d830b1613a377f629f4757e9620f8d206b028a9f"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5A92C0.asm.txt",
+      "sha256": "774a615e209bbe5f5919d1a2e559744d03f8c50babfa73f44fbd2cc0312caa1a"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5A92C0.c.txt",
+      "sha256": "bf6e142c9cf63b5637267cf9f46d94f258032d75ac487397e541a75393d5c741"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5A92C0.window.txt",
+      "sha256": "31559a43e872fed654e4aa9b1e183b7f8916312cbb53d278855b0f808050690d"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5FBB90.asm.txt",
+      "sha256": "c7766b3a97622d29f0b195a3b6ff55f65604ab687301f7503517748a1629171d"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5FBB90.c.txt",
+      "sha256": "9cdab39c2514f7e255fa69ecded023dbeb72dfe3cb1bdedad1de58cb980707b4"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5FBB90.window.txt",
+      "sha256": "74cf0ed670fd401344265af7b5dcfda57ba18ee6afee3c570fcae270435db172"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5FC3C0.asm.txt",
+      "sha256": "6856e2a0bab065de37c0ac521ec590dea90fd79c3780790a9b8cf6f1d1a3cc80"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5FC3C0.c.txt",
+      "sha256": "e143ed4ee0dbe6592b07f4eba5e7f243d53e708e0034c7b7f3cd85a674cee145"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/5FC3C0.window.txt",
+      "sha256": "082156b41baae8e895fc20f925915f285fb6c674261db5c7cee51697989ca109"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01/index.txt",
+      "sha256": "1eddfcc7e1a16a1111c85cced8dac86c6572b66a669e63799f122ae5171a391b"
+    },
+    {
+      "path": "local/m03-static/m08-editor-01.json",
+      "sha256": "1887bc99572ff7c6478d5b5c47615332e9ade94ed21fd70eb214b4bfe7d1e640"
+    }
+  ],
+  "dependency_status": "UNKNOWN",
+  "readiness": false,
+  "next_native_step": "Original editor creation and closed-file comparison, then original peer import/load",
+  "native_prerequisite": "Current desktop availability and refreshed personal-save/isolation gates"
+}

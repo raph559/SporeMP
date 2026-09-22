@@ -2,6 +2,13 @@
 
 These are development builds. Multiplayer gameplay is still in development.
 
+## 0.1.10 - 2026-09-22
+
+### Clearer shared-world checks
+
+- Join checks the saved world and its companion world files before opening SPORE. Missing or different files are named so the mismatch can be identified.
+- Players and hosts need the same updated development build. The checks do not replace existing saves or download game assets.
+
 ## 0.1.9 — 2026-09-14
 
 ### Your invitation to a shared universe

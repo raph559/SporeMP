@@ -70,7 +70,7 @@ def fingerprints(rows, request):
 def checked_trace(path, pid, closed=False, expected_sha256=None):
     if not unsigned(pid, 32, nonzero=True): raise ValueError('Invalid native trace PID')
     path = service.diag.no_reparse(path)
-    if path.stat().st_size > 34 * 1024 * 1024: raise ValueError('Unexpected native trace size')
+    if path.stat().st_size > 66 * 1024 * 1024: raise ValueError('Unexpected native trace size')
     data = path.read_bytes()
     if expected_sha256 is not None and hashlib.sha256(data).hexdigest() != expected_sha256:
         raise ValueError('Native source trace changed after checkpoint sealing')

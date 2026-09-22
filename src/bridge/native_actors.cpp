@@ -1,8 +1,10 @@
 #include "native_actors.h"
 #include "actor_commands.h"
 #include "native_actor_abi.h"
+#include "native_pool_abi.h"
 #include "native_player_context.h"
 #include "native_award_context.h"
+#include "native_pickup.h"
 #include "native_replica.h"
 #include "native_scene.h"
 #include "native_network.h"
@@ -47,9 +49,25 @@ LARGE_INTEGER started{}, frequency{};
 std::array<char, 32768> buffer{};
 size_t used = 0;
 uint64_t sequence = 0, bytes_written = 0, native_call = 0, executing = 0;
+// Three-process M07 death/reconnect evidence exceeded the earlier 32 MiB
+// budget before the bounded 600-second run ended. Keep every existing sample
+// and a finite file limit, with the same explicit failure on exhaustion.
+constexpr uint64_t trace_limit_bytes = 64ull * 1024ull * 1024ull;
 uint64_t target_callbacks = 0, target_sampled_out = 0;
 uint64_t worker_ai_entries = 0;
 uint64_t ability_scope = 0, strike_scope = 0, animal_damage_scope = 0;
+uint64_t pickup_scope = 0;
+bool pickup_award_observed = false;
+struct PickupGrant { uint64_t epoch=0; uintptr_t corpse=0; uint32_t native_id=UINT32_MAX, owner=0; };
+std::array<PickupGrant, network::max_entities> pickup_grants{};
+struct PickupContext {
+    Animal* actor=nullptr;
+    uint64_t id=0;
+    uint32_t native_id=UINT32_MAX,corpse_native_id=UINT32_MAX;
+    uintptr_t corpse=0;
+    const void* state=nullptr;
+};
+PickupContext pickup_context{};
 ULONGLONG next_unbound_target_sample = 0;
 std::atomic<uint64_t> foreign{0};
 bool failed = false, attached = false, setup_pending = false, opponents_pending = false;
@@ -87,8 +105,8 @@ void record(const char* event, const char* format = "", ...) noexcept {
     if (output == INVALID_HANDLE_VALUE || GetCurrentThreadId() != engine_thread || failed) return;
     // Reserve one bounded terminal record so diagnostic exhaustion cannot look
     // like an unexplained native-progress regression or a healthy trace close.
-    if (bytes_written + used >= 32u * 1024u * 1024u - 4096 && strcmp(event,"trace_limit") != 0) {
-        record("trace_limit",",\"limit_bytes\":33554432,\"reason\":\"diagnostic_budget_exhausted\"");
+    if (bytes_written + used >= trace_limit_bytes - 4096 && strcmp(event,"trace_limit") != 0) {
+        record("trace_limit",",\"limit_bytes\":%llu,\"reason\":\"diagnostic_budget_exhausted\"",trace_limit_bytes);
         flush(); failed = true; return;
     }
     char extra[2048]{};
@@ -100,9 +118,9 @@ void record(const char* event, const char* format = "", ...) noexcept {
         "{\"schema_version\":1,\"evidence_class\":\"NATIVE_PROBE\",\"harness\":\"M03\",\"event\":\"%s\","
         "\"sequence\":%llu,\"pid\":%lu,\"thread_id\":%lu,\"qpc\":%lld,\"qpc_frequency\":%lld,"
         "\"epoch\":%llu,\"executing_command\":%llu,\"foreign_callbacks\":%llu,"
-        "\"ability_scope\":%llu,\"strike_scope\":%llu,\"animal_damage_scope\":%llu%s}\n",
+        "\"ability_scope\":%llu,\"strike_scope\":%llu,\"animal_damage_scope\":%llu,\"pickup_scope\":%llu%s}\n",
         event, ++sequence, GetCurrentProcessId(), engine_thread, now.QuadPart-started.QuadPart, frequency.QuadPart,
-        commands.epoch(), executing, foreign.load(), ability_scope, strike_scope, animal_damage_scope, extra);
+        commands.epoch(), executing, foreign.load(), ability_scope, strike_scope, animal_damage_scope, pickup_scope, extra);
     if (length < 0) { failed = true; return; }
     if (used + length > buffer.size()) flush();
     if (!failed) { memcpy(buffer.data()+used, line, length); used += length; }
@@ -222,21 +240,25 @@ void state(Animal* animal, const char* event) {
     // Sampled native values. Campaign mEnergy semantics are not assumed.
     record(event, ",\"actor\":%llu,\"owner\":%u,\"native_id\":%u,\"political_id\":%u,"
         "\"avatar\":%s,\"health\":%.9g,\"raw_max_health_field\":%.9g,\"hunger\":%.9g,\"energy\":%.9g,"
-        "\"dead\":%s,\"position\":[%.9g,%.9g,%.9g],\"target\":%llu,\"ability_target\":%llu,"
+        "\"dead\":%s,\"has_been_eaten\":%s,\"food_value\":%.9g,\"position\":[%.9g,%.9g,%.9g],\"target\":%llu,\"ability_target\":%llu,"
         "\"last_attacker\":%llu,\"last_attacker_political\":%u,\"default_attack\":%d,"
         "\"active_bits\":[%u,%u,%u],\"recharge_bits\":[%u,%u,%u],\"inventory_count\":%u,"
         "\"species\":[%u,%u,%u],\"flags\":%d,\"intention\":%d,\"npc_ticks\":%llu,\"avatar_ticks\":%llu",
         binding.id, binding.owner, animal->mID, animal->mPoliticalID,
         Manager::Get()->GetAvatar() == animal ? "true":"false", double(animal->mHealthPoints), double(animal->mMaxHealthPoints),
-        double(animal->mHunger), double(animal->mEnergy), animal->mbDead ? "true":"false", double(p.x),double(p.y),double(p.z),
+        double(animal->mHunger), double(animal->mEnergy), animal->mbDead ? "true":"false", animal->mbHasBeenEaten ? "true":"false",
+        double(animal->mFoodValue), double(p.x),double(p.y),double(p.z),
         combat_id(animal->GetTarget()), combat_id(animal->mpCombatantTarget), combat_id(animal->mpLastAttacker.get()),
         animal->mLastAttacker, animal->mDefaultAttackAbilityIndex,
         active[0],active[1],active[2],recharge[0],recharge[1],recharge[2],static_cast<unsigned>(animal->mItemInventory.size()),
         animal->mSpeciesKey.instanceID,animal->mSpeciesKey.typeID,animal->mSpeciesKey.groupID,animal->mGeneralFlags,animal->mIntentionTowardsTarget,
         detail ? detail->npc_ticks : 0, detail ? detail->avatar_ticks : 0);
 }
-ActorBinding bind(Animal* animal, uint32_t owner) {
-    if (!animal || animal->mbDead || animal->mbIsDestroyed) return {};
+ActorBinding bind(Animal* animal, uint32_t owner, bool corpse_target=false) {
+    // A freshly selected corpse may never have been a bridge combat target.
+    // Only a validated ownerless pickup target can acquire a dead binding;
+    // controlled actors still require the normal living admission.
+    if (!animal || (animal->mbDead && (!corpse_target || owner)) || animal->mbIsDestroyed) return {};
     auto binding = commands.bind(key(animal), owner);
     if (!binding.live) return {};
     if (!track(binding.id)) for (auto& slot : tracked) if (!commands.find(slot.id).live) { slot = {binding.id}; break; }
@@ -382,6 +404,7 @@ void opponents() {
 }
 
 using DestroyFn=void(__thiscall*)(Manager*,Noun*);
+using PoolReturnFn=NativePoolAbi<void,Noun>::Return;
 using LandFn=void(__thiscall*)(Creature*);
 using AiFn=void(__thiscall*)(Animal*,float);
 using DamageFn=ActorAbi::Damage;
@@ -397,6 +420,7 @@ using SelectAbilityFn=ActorAbi::SelectAbility;
 // This function APPLIES native effects. It is not a read-only eligibility query.
 using StrikeFn=ActorAbi::Strike;
 DestroyFn destroy_original=nullptr;
+PoolReturnFn pool_return_original=nullptr;
 LandFn land_original=nullptr;
 AiFn npc_original=nullptr, avatar_original=nullptr;
 DamageFn damage_original=nullptr;
@@ -651,14 +675,53 @@ void __fastcall target_hook(Animal* self,void*,Combatant* target,bool flag,int i
             actor.id,combat_id(target),target?target->ToGameData()->mID:UINT32_MAX,caller,intention);
     if(call) record("native_target_return",",\"call\":%llu,\"actor\":%llu,\"attack_index\":%u",call,actor.id,self->mCurrentAttackIdx);
 }
-void __fastcall destroy_hook(Manager* self,void*,Noun* noun) {
-    if(on_thread() && noun) {
+void retire_native_incarnation(Noun* noun,const char* reason) {
+        // Native IDs and allocation addresses can both be reused. Retire the
+        // observed beneficiary before destruction so a later corpse cannot
+        // inherit an earlier incarnation's first-feed result.
+        for(auto& grant:pickup_grants)if(grant.epoch==commands.epoch() && grant.native_id==noun->mID) {
+            record("native_pickup_grant_retired",",\"corpse_native_id\":%u,\"owner\":%u,\"reason\":\"%s\"",grant.native_id,grant.owner,reason);
+            grant={};
+        }
         native_scene_invalidated(noun->mID);
         auto binding=commands.invalidate(key(noun));
         native_replica_invalidated(binding.id);
-        if(binding.live) record("invalidated",",\"actor\":%llu,\"native_id\":%u",binding.id,noun->mID);
-    }
+        if(binding.live) record("invalidated",",\"actor\":%llu,\"native_id\":%u,\"reason\":\"%s\"",binding.id,noun->mID,reason);
+}
+void __fastcall destroy_hook(Manager* self,void*,Noun* noun) {
+    if(on_thread() && noun) retire_native_incarnation(noun,"destroy");
     destroy_original(self,noun); // No dereference after the native destroy.
+}
+Animal* current_pool_animal(Noun* candidate,uint32_t expected=UINT32_MAX) {
+    auto manager=Manager::Get();
+    if(!candidate || !manager || Simulator::GetGameModeID()!=kGameCreature)return nullptr;
+    for(auto& noun:manager->mNouns)if(&noun==candidate) {
+        if(noun.mbIsDestroyed || noun.field_20 || noun.GetNounID()!=Animal::NOUN_ID ||
+            (expected!=UINT32_MAX && noun.mID!=expected))return nullptr;
+        auto animal=object_cast<Animal>(&noun);
+        if(!animal || *reinterpret_cast<const uintptr_t*>(animal)!=executable_base+0x106a080 ||
+            reinterpret_cast<uintptr_t>(&animal->field_E54)-key(animal)!=0xe54)return nullptr;
+        return animal;
+    }
+    return nullptr;
+}
+bool __fastcall pool_return_hook(void* self,void*,Noun* noun) {
+    // ACCEC0 retains its noun in the original pool, increments Creature+E54,
+    // and clears the animal's herd. It does not call DestroyInstance. Resolve
+    // again after return: no saved pointer alone permits a native dereference.
+    auto before=on_thread()?current_pool_animal(noun):nullptr;
+    const auto native_id=before?before->mID:UINT32_MAX;
+    const auto counter=before?static_cast<uint32_t>(before->field_E54):0;
+    const bool result=pool_return_original(self,noun);
+    if(result && before)if(auto after=current_pool_animal(noun,native_id)) {
+        const auto next=static_cast<uint32_t>(after->field_E54);
+        if(next!=counter) {
+            record("native_pool_return_observed",",\"native_id\":%u,\"counter_before\":%u,\"counter_after\":%u,\"enabled\":%s,\"herd_present\":%s",
+                native_id,counter,next,after->mbEnabled?"true":"false",after->mHerd?"true":"false");
+            retire_native_incarnation(after,"native_pool_return");
+        }
+    }
+    return result;
 }
 void __fastcall land_hook(Creature* self,void*) {
     native_replica_allows(replica::Mutation::presentation);
@@ -742,17 +805,137 @@ void __fastcall energy_hook(Creature* self,void*,float amount) {
 void __cdecl dna_hook(float amount) {
     if(!native_replica_allows(replica::Mutation::reward)) return;
     auto caller=caller_rva(_ReturnAddress());
-    if(dispatch_native_owned_award(amount,dna_original,caller))return;
+    if(dispatch_native_owned_award(amount,dna_original,caller)) {
+        if(pickup_scope && native_pickup_award_scope_granted())pickup_award_observed=true;
+        return;
+    }
     const bool record_it=on_thread() && Simulator::GetGameModeID()==kGameCreature;
     auto avatar=record_it && Manager::Get() ? Manager::Get()->GetAvatar() : nullptr;
     const auto avatar_id=avatar?identity(avatar).id:0;
     const auto call=record_it?++native_call:0;
     if(record_it) record("native_global_dna_enter",",\"call\":%llu,\"amount\":%.9g,\"avatar\":%llu,\"before\":%.9g,\"caller_rva\":%u",call,double(amount),avatar_id,double(Simulator::cCreatureGameData::GetEvolutionPoints()),caller);
+    const auto before=record_it?Simulator::cCreatureGameData::GetEvolutionPoints():0;
     dna_original(amount);
-    if(record_it) record("native_global_dna_return",",\"call\":%llu,\"avatar\":%llu,\"after\":%.9g",call,avatar_id,double(Simulator::cCreatureGameData::GetEvolutionPoints()));
+    const auto after=record_it?Simulator::cCreatureGameData::GetEvolutionPoints():0;
+    // Original first feeding legitimately awards zero DNA in this fixture.
+    // Observe its returned call without inventing a positive bonus; actual
+    // resource benefit additionally requires original food/nutrition evidence.
+    if(pickup_scope && caller==native_pickup_reward_caller_rva && record_it &&
+       std::isfinite(amount) && amount>=0 && std::isfinite(before) && std::isfinite(after) &&
+       (amount==0 ? after==before : after>=before && after<=before+amount))pickup_award_observed=true;
+    if(record_it) record("native_global_dna_return",",\"call\":%llu,\"avatar\":%llu,\"after\":%.9g",call,avatar_id,double(after));
+}
+Animal* current_pickup_animal(uint32_t native_id, uintptr_t expected=0) {
+    if(native_id==UINT32_MAX || !Manager::Get() || Simulator::GetGameModeID()!=kGameCreature)return nullptr;
+    Animal* result=nullptr;
+    for(auto& noun:Manager::Get()->mNouns)if(noun.mID==native_id) {
+        if(result || noun.mbIsDestroyed || noun.field_20 || noun.GetNounID()!=Animal::NOUN_ID)return nullptr;
+        result=object_cast<Animal>(&noun);
+        if(!result || result->mbMarkedForDeletion || (expected && key(result)!=expected))return nullptr;
+    }
+    return result;
+}
+bool pickup_scope_snapshot(NativePickupSnapshot& state, ActorBinding& binding) {
+    if(!pickup_scope || !on_thread() || native_replica_is_client() || !pickup_context.id)return false;
+    binding=commands.find(pickup_context.id);
+    if(!binding.live || binding.epoch!=commands.epoch() || (binding.owner!=1&&binding.owner!=2) ||
+       resolve(binding.id)!=pickup_context.actor)return false;
+    return native_pickup_snapshot(pickup_context.actor,pickup_context.native_id,pickup_context.state,state) &&
+        state.corpse_native_id==pickup_context.corpse_native_id &&
+        current_pickup_animal(state.corpse_native_id,pickup_context.corpse);
+}
+bool pickup_first_feed_owner() {
+    NativePickupSnapshot state;ActorBinding binding;
+    const bool qualified=pickup_scope_snapshot(state,binding) && binding.owner==2 && !state.eaten &&
+        state.claimed_by_actor && native_awards_ready(binding.id,binding.epoch) && native_pickup_award_scope_ready();
+    if(qualified)record("native_pickup_owner_classified",",\"actor\":%llu,\"owner\":2,\"corpse_native_id\":%u",binding.id,state.corpse_native_id);
+    return qualified;
+}
+bool pickup_honor_owned_claim() {
+    NativePickupSnapshot state;ActorBinding binding;
+    if(!pickup_scope_snapshot(state,binding) || !state.claimant_present || state.claimed_by_actor)return false;
+    auto claimant=current_pickup_animal(state.claimant_native_id);
+    if(!claimant || claimant->mbDead || !claimant->mbEnabled ||
+       !std::isfinite(claimant->mHealthPoints) || claimant->mHealthPoints<=0)return false;
+    const auto other=claimant?identity(claimant):ActorBinding{};
+    if(!other.live || other.epoch!=commands.epoch() || (other.owner!=1&&other.owner!=2) ||
+       other.id==binding.id || resolve(other.id)!=claimant)return false;
+    record("native_pickup_existing_claim_honored",",\"actor\":%llu,\"owner\":%u,\"claimant_actor\":%llu,\"claimant_owner\":%u,\"corpse_native_id\":%u",
+        binding.id,binding.owner,other.id,other.owner,state.corpse_native_id);
+    return true;
+}
+void pickup_sample(const char* name,const ActorBinding& binding,const NativePickupSnapshot& state) {
+    record(name,",\"actor\":%llu,\"owner\":%u,\"actor_native_id\":%u,\"corpse_native_id\":%u,\"phase\":%u,"
+        "\"claimant_native_id\":%u,\"claimant_present\":%s,\"claimed_by_actor\":%s,\"fed_on\":%s,"
+        "\"food\":%.9g,\"hunger\":%.9g,\"health\":%.9g,\"avatar_bit\":%s,\"first_feed_state\":%s",
+        binding.id,binding.owner,state.actor_native_id,state.corpse_native_id,state.phase,state.claimant_native_id,
+        state.claimant_present?"true":"false",state.claimed_by_actor?"true":"false",state.eaten?"true":"false",
+        double(state.food),double(state.hunger),double(state.health),state.avatar_classified?"true":"false",state.first_feed?"true":"false");
+}
+class PickupCallbackScope {
+    PickupContext previous_context;
+    uint64_t previous_scope;
+    bool previous_award;
+    NativePickupOwnerScope unowned;
+public:
+    PickupCallbackScope():previous_context(pickup_context),previous_scope(pickup_scope),
+        previous_award(pickup_award_observed),unowned(nullptr,0,0,nullptr) {
+        pickup_context={};pickup_scope=0;pickup_award_observed=false;
+    }
+    ~PickupCallbackScope() {
+        pickup_context=previous_context;pickup_scope=previous_scope;pickup_award_observed=previous_award;
+    }
+    PickupCallbackScope(const PickupCallbackScope&)=delete;
+    PickupCallbackScope& operator=(const PickupCallbackScope&)=delete;
+};
+bool pickup_tick_dispatch(NativePickupTick original,Animal* actor,double clock,uint32_t flags,
+    uintptr_t parameter,void* state,void* activation,float delta) {
+    if(!native_replica_allows(replica::Mutation::pickup))return false;
+    if(!on_thread())return original(actor,clock,flags,parameter,state,activation,delta);
+    // Even an untracked or unqualified nested original tick must not inherit
+    // the outer actor's interior-branch predicates or reward/grant observation.
+    // Every engine-thread return path restores both contexts through RAII.
+    PickupCallbackScope callback_scope;
+    const auto binding=identity(actor);
+    if(!binding.live || (binding.owner!=1&&binding.owner!=2) || resolve(binding.id)!=actor)
+        return original(actor,clock,flags,parameter,state,activation,delta);
+    NativePickupSnapshot before;
+    if(!native_pickup_snapshot(actor,actor->mID,state,before))
+        return original(actor,clock,flags,parameter,state,activation,delta);
+    auto corpse=current_pickup_animal(before.corpse_native_id);
+    if(!corpse)return original(actor,clock,flags,parameter,state,activation,delta);
+    // Only this original callback gets an owner identity. Individual audited
+    // reward/action calls enter their own short StageScope; AI never does.
+    pickup_context={actor,binding.id,actor->mID,before.corpse_native_id,key(corpse),state};pickup_scope=++native_call;
+    pickup_award_observed=false;
+    pickup_sample("native_pickup_tick_enter",binding,before);
+    bool result=false;
+    {
+        NativePickupOwnerScope owner(actor,binding.owner,binding.id,corpse);
+        result=original(actor,clock,flags,parameter,state,activation,delta);
+    }
+    NativePickupSnapshot after;
+    const bool observed=resolve(binding.id)==actor && native_pickup_snapshot(actor,before.actor_native_id,state,after);
+    if(observed) {
+        pickup_sample("native_pickup_tick_return_state",binding,after);
+        if(!before.eaten && after.eaten && before.corpse_native_id==after.corpse_native_id && pickup_award_observed) {
+            auto current=current_pickup_animal(after.corpse_native_id,key(corpse));
+            PickupGrant* grant=nullptr;
+            for(auto& entry:pickup_grants)if(entry.epoch==commands.epoch() && entry.native_id==after.corpse_native_id && entry.corpse==key(corpse)) {grant=&entry;break;}
+            if(!grant)for(auto& entry:pickup_grants)if(!entry.epoch) {grant=&entry;break;}
+            if(current && grant) {
+                *grant={commands.epoch(),key(corpse),after.corpse_native_id,binding.owner};
+                record("native_pickup_first_feed_observed",",\"actor\":%llu,\"owner\":%u,\"corpse_native_id\":%u,\"food_before\":%.9g,\"food_after\":%.9g,\"remaining_food_is_separate\":true",
+                    binding.id,binding.owner,after.corpse_native_id,double(before.food),double(after.food));
+            } else record("native_pickup_observation_rejected",",\"reason\":\"corpse_lifetime_or_capacity\"");
+        }
+    }
+    record("native_pickup_tick_return",",\"actor\":%llu,\"owner\":%u,\"result\":%s,\"state_observed\":%s,\"original_reward_return_observed\":%s",binding.id,binding.owner,result?"true":"false",observed?"true":"false",pickup_award_observed?"true":"false");
+    return result;
 }
 const NativeHook hooks[]={
     {reinterpret_cast<void**>(&destroy_original),reinterpret_cast<void*>(destroy_hook)},
+    {reinterpret_cast<void**>(&pool_return_original),reinterpret_cast<void*>(pool_return_hook)},
     {reinterpret_cast<void**>(&land_original),reinterpret_cast<void*>(land_hook)},
     {reinterpret_cast<void**>(&npc_original),reinterpret_cast<void*>(npc_hook)},
     {reinterpret_cast<void**>(&avatar_original),reinterpret_cast<void*>(avatar_hook)},
@@ -774,7 +957,8 @@ const NativeHook hooks[]={
     native_award_owned_binding(),native_award_amount_binding(),
     native_award_player_binding(),native_award_avatar_binding(),
     native_award_display_binding(),native_award_action_binding(),
-    native_award_update_binding(),native_award_goal_binding()
+    native_award_update_binding(),native_award_goal_binding(),
+    native_pickup_tick_binding(),native_pickup_first_feed_binding(),native_pickup_claim_binding()
 };
 
 void cancel_intention(Tracked& detail,const char* reason) {
@@ -795,7 +979,7 @@ void dispatch_intentions() {
         if(now>=detail.expires) {cancel_intention(detail,"expired");continue;}
         if(commands.authorize(command)!=ActorDecision::accepted) {cancel_intention(detail,"authority_or_target_invalid");continue;}
         auto actor=resolve(command.actor);auto target=resolve(command.target);
-        if(!actor || !target || actor->mbDead || target->mbDead || !target->field_E84) {
+        if(!actor || !target || actor->mbDead || actor->mHealthPoints<=0 || target->mbDead || target->mHealthPoints<=0 || !target->field_E84) {
             cancel_intention(detail,"actor_or_target_unavailable");continue;
         }
         int index=actor->mDefaultAttackAbilityIndex;
@@ -834,12 +1018,12 @@ void dispatch_intentions() {
 void execute(ActorCommand command) {
     auto decision=commands.authorize(command);
     auto animal=decision==ActorDecision::accepted ? resolve(command.actor) : nullptr;
-    if(!animal || animal->mbDead) {
-        record("command_rejected",",\"command\":%llu,\"actor\":%llu,\"reason\":\"%s\"",command.sequence,command.actor,animal?"dead":actor_decision(decision));return;
+    if(!animal || animal->mbDead || animal->mHealthPoints<=0) {
+        record("command_rejected",",\"command\":%llu,\"actor\":%llu,\"reason\":\"%s\"",command.sequence,command.actor,animal?"dead_or_zero_health":actor_decision(decision));return;
     }
-    bool targeted=command.verb==ActorVerb::attack || command.verb==ActorVerb::approach || command.verb==ActorVerb::engage;
+    bool targeted=command.verb==ActorVerb::attack || command.verb==ActorVerb::approach || command.verb==ActorVerb::engage || command.verb==ActorVerb::pickup;
     auto target=targeted ? resolve(command.target) : nullptr;
-    if(targeted && (!target || target->mbDead || !target->field_E84)) {record("command_rejected",",\"command\":%llu,\"reason\":\"target_unavailable\"",command.sequence);return;}
+    if(targeted && (!target || !target->field_E84 || (command.verb==ActorVerb::pickup ? !target->mbDead||target->mFoodValue<=0 : target->mbDead||target->mHealthPoints<=0))) {record("command_rejected",",\"command\":%llu,\"reason\":\"target_unavailable\"",command.sequence);return;}
     executing=command.sequence;
     if(auto detail=track(command.actor))cancel_intention(*detail,"superseded_by_command");
     sample();
@@ -867,6 +1051,9 @@ void execute(ActorCommand command) {
             animal=resolve(command.actor); target=resolve(command.target);
             if(animal && target && !animal->mbDead && !target->mbDead) animal->PlayAbility(index);
         } else record("unsupported_ability",",\"actor\":%llu",command.actor);
+    } else if(command.verb==ActorVerb::pickup) {
+        const bool ordered=native_pickup_order(animal,animal->mID,target,target->mID);
+        record("native_pickup_order_return",",\"actor\":%llu,\"owner\":%u,\"target\":%llu,\"ordered\":%s,\"accepted_is_queued\":true",command.actor,command.owner,command.target,ordered?"true":"false");
     } else if(command.verb==ActorVerb::stop) {
         set_creature_target(animal,nullptr);
     } else if(command.verb==ActorVerb::retire) {
@@ -930,7 +1117,7 @@ public:
             native_replica_scene_exit();
             for(auto& detail:tracked)cancel_intention(detail,"scene_exit");
             retire_native_player_context("scene_exit");players_pending=0;rewards_pending=false;
-            record("scene_exit");commands.scene_exit();setup_pending=opponents_pending=false;npc_source=npc_target=0;duel_owner=0;flush();
+            record("scene_exit");commands.scene_exit();pickup_grants={};setup_pending=opponents_pending=false;npc_source=npc_target=0;duel_owner=0;flush();
         } else if(id==App::kMsgAppUpdate && Simulator::GetGameModeID()==kGameCreature) {
             if(setup_pending) {setup_pending=false;setup();}
             if(players_pending) {
@@ -976,6 +1163,9 @@ bool verify_context_bindings() {
     // pre-injection file guard; it is not runtime gameplay qualification.
     struct Code { uint32_t rva; std::array<unsigned char,16> bytes; };
     const Code code[]={
+        {0x6ccec0,{0x83,0xec,0x78,0x53,0x8b,0x9c,0x24,0x80,0x00,0x00,0x00,0x56,0x8b,0xf1,0x85,0xdb}},
+        {0x6cd0d5,{0xff,0x86,0x54,0x0e,0x00,0x00,0x8b,0x55,0x00,0x8b,0x42,0x20,0x8b,0xcd,0xff,0xd0}},
+        {0x6cd13e,{0x8b,0xce,0xff,0xd2,0x5f,0x5d,0x5e,0xb0,0x01,0x5b,0x83,0xc4,0x78,0xc2,0x04,0x00}},
         {0x819800,{0x53,0x55,0x56,0x57,0x8b,0xf9,0x83,0xcd,0xff,0x80,0x7c,0x24,0x18,0x00,0x8d,0x9f}},
         {0x802b40,{0x8b,0x44,0x24,0x0c,0x83,0xec,0x20,0x53,0x55,0x57,0x8b,0x7c,0x24,0x30,0x8b,0xe9}},
         {0x8075e0,{0x83,0xec,0x6c,0x53,0x8b,0xd9,0xe8,0x45,0x0c,0xce,0xff,0x83,0xf8,0x02,0x0f,0x84}},
@@ -1007,13 +1197,13 @@ bool verify_context_bindings() {
             record("context_vtable_rejected",",\"slot_rva\":%u",entry.slot);return false;
         }
     }
-    record("context_bindings_checked",",\"code_prefixes\":12,\"virtual_slots\":3");
+    record("context_bindings_checked",",\"code_prefixes\":%u,\"virtual_slots\":3",unsigned(_countof(code)));
     return true;
 }
 bool checkpoint_idle() {
     if (commands.pending_count() || executing || setup_pending || opponents_pending ||
         players_pending || rewards_pending || duel_owner || npc_source || npc_target ||
-        ability_scope || strike_scope || animal_damage_scope) return false;
+        ability_scope || strike_scope || animal_damage_scope || pickup_scope) return false;
     for (const auto& detail : tracked) if (commands.find(detail.id).live &&
         (detail.intention.sequence || detail.jump_command)) return false;
     // Reward context requires this separate player. Also count native players
@@ -1215,6 +1405,75 @@ bool native_actor_owner_native_id(uint32_t owner, uint32_t& native_id) {
     native_id = actor->mID;
     return true;
 }
+bool native_actor_network_prepare_rewards() {
+    if(!on_thread() || native_replica_is_client() || Simulator::GetGameModeID()!=kGameCreature)return false;
+    const auto id=owned(2);
+    auto actor=resolve(id);
+    if(!actor || actor->mbDead)return false;
+    if(native_awards_ready(id,commands.epoch()))return true;
+    if(!native_second_player(commands.epoch()) && !create_native_player_context(commands.epoch()))return false;
+    actor=resolve(id);
+    if(!actor || actor->mbDead)return false;
+    const bool ready=enable_native_awards(actor,id,commands.epoch());
+    record("network_reward_context",",\"owner\":2,\"actor\":%llu,\"ready\":%s",id,ready?"true":"false");
+    return ready;
+}
+bool native_actor_owner_dna(uint32_t owner,float& dna,bool* current_native) {
+    if(current_native)*current_native=false;
+    if(!on_thread() || Simulator::GetGameModeID()!=kGameCreature || (owner!=1 && owner!=2))return false;
+    auto actor=resolve(owned(owner));
+    if(!actor)return false;
+    if(owner==2)return native_awards_read_dna(owned(2),commands.epoch(),dna,actor->mbDead,current_native);
+    if(actor!=Manager::Get()->GetAvatar())return false;
+    const float value=Simulator::cCreatureGameData::GetEvolutionPoints();
+    if(!std::isfinite(value) || value<0)return false;
+    dna=value;if(current_native)*current_native=true;return true;
+}
+worker::Result native_actor_network_command(uint64_t epoch,uint32_t owner,
+    uint32_t actor_native_id,uint32_t target_native_id,ActorVerb verb,int direction,uint64_t request) {
+    using Result=worker::Result;
+    if(!on_thread() || native_replica_is_client() || Simulator::GetGameModeID()!=kGameCreature)return Result::unavailable;
+    if(epoch!=commands.epoch())return Result::stale;
+    if(!request || (owner!=1 && owner!=2) || actor_native_id==UINT32_MAX)return Result::invalid;
+    const bool targeted=verb==ActorVerb::attack || verb==ActorVerb::approach || verb==ActorVerb::engage || verb==ActorVerb::pickup;
+    if(!targeted && verb!=ActorVerb::move && verb!=ActorVerb::jump && verb!=ActorVerb::stop)return Result::invalid;
+    if(verb==ActorVerb::move && (direction<0 || direction>3))return Result::invalid;
+    if((targeted && target_native_id==UINT32_MAX) || (!targeted && target_native_id!=UINT32_MAX))return Result::invalid;
+    const auto actor_id=owned(owner);
+    auto actor=resolve(actor_id);
+    if(!actor || actor->mbDead || actor->mHealthPoints<=0 || actor->mID!=actor_native_id)return Result::invalid;
+    ActorCommand command;command.actor=actor_id;command.owner=owner;command.verb=verb;command.direction=direction;
+    if(targeted) {
+        Animal* target=nullptr;
+        // A global/native mapping from a previous frame is insufficient. Resolve
+        // one current noun and register its process-local lifetime afresh.
+        for(auto& noun:Manager::Get()->mNouns)if(noun.mID==target_native_id) {
+            if(target || noun.mbIsDestroyed || noun.field_20 || noun.GetNounID()!=Animal::NOUN_ID)return Result::invalid;
+            target=object_cast<Animal>(&noun);
+        }
+        if(!target || target==actor || (verb==ActorVerb::pickup ? !target->mbDead||target->mFoodValue<=0 : target->mbDead||target->mHealthPoints<=0) || target->mbMarkedForDeletion ||
+           !target->field_E84 || !target->mpSpeciesProfile || !target->mHerd)return Result::invalid;
+        auto target_binding=identity(target);
+        // M07's shared-NPC fixture does not enable PvP or player-owned targets.
+        if(target_binding.live && target_binding.owner)return Result::invalid;
+        if(!target_binding.live)target_binding=bind(target,0,verb==ActorVerb::pickup);
+        if(!target_binding.live)return Result::busy;
+        command.target=target_binding.id;
+    }
+    const auto decision=commands.enqueue(command);
+    record("network_actor_command_queued",",\"request\":%llu,\"command\":%llu,\"actor\":%llu,\"actor_native_id\":%u,"
+        "\"owner\":%u,\"verb\":\"%s\",\"target\":%llu,\"target_native_id\":%u,\"decision\":\"%s\"",
+        request,command.sequence,command.actor,actor_native_id,owner,actor_verb(verb),command.target,target_native_id,actor_decision(decision));
+    return decision==ActorDecision::accepted?Result::accepted:decision==ActorDecision::full?Result::busy:Result::invalid;
+}
+uint32_t native_actor_pickup_owner(uint32_t corpse_native_id) {
+    if(!on_thread() || native_replica_is_client())return 0;
+    for(const auto& grant:pickup_grants)if(grant.epoch==commands.epoch() && grant.native_id==corpse_native_id) {
+        auto corpse=current_pickup_animal(corpse_native_id,grant.corpse);
+        if(corpse && corpse->mbHasBeenEaten)return grant.owner;
+    }
+    return 0;
+}
 bool native_actor_apply_vitals(uint64_t local_id, const replica::Vitals& value) {
     replica::Vitals before;
     if(!native_replica_is_client() || !native_replica_allows(replica::Mutation::apply_state) ||
@@ -1399,12 +1658,14 @@ void initialize_native_actors(const wchar_t* directory) {
     executable_end=executable_base+pe->OptionalHeader.SizeOfImage;
     record("trace_start",",\"executable_sha256\":\"%s\",\"sdk_commit\":\"%s\",\"bridge_version\":\"%s\",\"developer_mutations_enabled\":true",candidate_exe_sha256,sdk_revision,bridge_version);
     if(!verify_context_bindings() || !prepare_native_player_context(executable_base,executable_end,engine_thread,player_event,on_thread) ||
-       !prepare_native_awards(executable_base,executable_end,engine_thread,player_event,on_thread)) {
+       !prepare_native_awards(executable_base,executable_end,engine_thread,player_event,on_thread) ||
+       !prepare_native_pickup(executable_base,executable_end,engine_thread,player_event,on_thread,pickup_tick_dispatch,pickup_first_feed_owner,pickup_honor_owned_claim)) {
         flush();CloseHandle(output);output=INVALID_HANDLE_VALUE;return;
     }
     messages=App::IMessageManager::Get();cheats=App::ICheatManager::Get();
     if(!messages || !cheats || cheats->GetCheat("sporemp_actors")) {record("initialization_failed");flush();CloseHandle(output);output=INVALID_HANDLE_VALUE;return;}
     destroy_original=reinterpret_cast<DestroyFn>(GetAddress(Simulator::cGameNounManager,DestroyInstance));
+    pool_return_original=reinterpret_cast<PoolReturnFn>(executable_base+0x6ccec0);
     land_original=reinterpret_cast<LandFn>(GetAddress(Simulator::cCreatureAnimal,OnJumpLand));
     npc_original=reinterpret_cast<AiFn>(GetAddress(Simulator::cCreatureAnimal,NPCTickAI));
     avatar_original=reinterpret_cast<AiFn>(GetAddress(Simulator::cCreatureAnimal,AvatarTickAI));

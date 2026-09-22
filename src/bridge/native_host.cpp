@@ -279,11 +279,18 @@ int wmain(int argc,wchar_t** argv) {
             PWSTR roaming=nullptr;
             check(SUCCEEDED(SHGetKnownFolderPath(FOLDERID_RoamingAppData,0,nullptr,&roaming)), "Resolve current-account shared scene");
             const auto fixture=safe_path(fs::path(roaming)/L"Spore/Games/Game0/Satiria.spo");
+            const auto world_root=safe_path(fs::path(roaming)/L"Spore");
             CoTaskMemFree(roaming);
             sporemp::Sha256 fixture_hash{};
             if(!sporemp::sha256_file(fixture.c_str(),fixture_hash) ||
                !sporemp::network::parse_hex(fixture_hash.data(),expected.fixture))
                 throw std::runtime_error("The shared Satiria Creature scene is missing from this account.");
+            std::string world_error;
+            if(!sporemp::network::read_world_identity(world_root.wstring(),expected.world,world_error))
+                throw std::runtime_error(world_error);
+            for(size_t index=0;index<sporemp::network::world_file_count;++index)
+                if(config.identity.world[index]!=expected.world[index])
+                    throw std::runtime_error(std::string("canonical_world_mismatch:")+sporemp::network::world_files[index].path);
             if (!sporemp::network::parse_hex(payload_files[2].sha, expected.build) ||
                 !sporemp::network::parse_hex(network_executable_sha256, expected.executable) ||
                 !sporemp::network::parse_hex(network_content_sha256, expected.content) || !(config.identity == expected))
@@ -291,6 +298,7 @@ int wmain(int argc,wchar_t** argv) {
             if (config.role != (authority_probe ? sporemp::network::Role::authority : sporemp::network::Role::player))
                 throw std::runtime_error("Multiplayer role/configuration mismatch.");
             event("network_config_validated", ",\"role\":\"" + std::string(authority_probe ? "authority" : "player") + "\"");
+            event("canonical_world_prelaunch_validated", ",\"bundle_version\":1,\"files\":6,\"runtime_terrain_qualified\":false");
         }
         if(mode==L"--probe") {event("guard_passed",",\"launched_processes\":0");return 0;}
         sporemp::worker::reject_process_in_profile(L"SporeApp.exe");
@@ -317,7 +325,14 @@ int wmain(int argc,wchar_t** argv) {
         STARTUPINFOW si{};si.cb=sizeof(si);
         std::wstring desktop_path;
         if (worker) {
-            supervisor = std::make_unique<sporemp::worker::Supervisor>(generation,run,event);
+            // The network role/configuration has already passed guarded identity
+            // validation. Replicas suppress original AI by design; their
+            // readiness uses live app progress and an applied network baseline.
+            const auto progress_role = mode == L"--network-replica"
+                ? sporemp::worker::ProgressRole::network_replica
+                : sporemp::worker::ProgressRole::native_simulation;
+            supervisor = std::make_unique<sporemp::worker::Supervisor>(generation,run,event,
+                [] { return GetTickCount64(); },progress_role);
             if (std::wstring(argv[8]) == L"private") {
                 worker_desktop=CreateDesktopW(desktop_name.c_str(),nullptr,nullptr,0,DESKTOP_CREATEWINDOW|DESKTOP_READOBJECTS|DESKTOP_WRITEOBJECTS|DESKTOP_ENUMERATE,nullptr);
                 check(worker_desktop!=nullptr,"Create private rendered worker desktop");

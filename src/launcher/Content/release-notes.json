@@ -1,5 +1,21 @@
 [
   {
+    "version": "0.1.10",
+    "date": "2026-09-22",
+    "title": "Clearer shared-world checks",
+    "summary": "Check shared-world files before joining.",
+    "changes": [
+      {
+        "category": "IMPROVED",
+        "text": "Join now checks the saved world and its companion world files before opening SPORE. A missing or different file is named so you can identify the mismatch."
+      },
+      {
+        "category": "DEVELOPMENT",
+        "text": "Players and hosts need the same updated development build. Existing worlds are checked without replacing saves or downloading game assets."
+      }
+    ]
+  },
+  {
     "version": "0.1.9",
     "date": "2026-09-14",
     "title": "Your invitation to a shared universe",

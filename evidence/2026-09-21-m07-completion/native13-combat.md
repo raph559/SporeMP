@@ -1,0 +1,44 @@
+# Native13: contested native food observed; fresh reconnect failed
+
+This reviewed **NATIVE / NETWORK-REAL** run used bridge **0.0.41**, wire schema 4, the pinned original SPORE executable and three isolated game processes. It observed the bounded G04 contested-food outcome: both authenticated clients' original pickup orders returned before first feeding, one owner received actual native nutrition, and both clients read back the authority's food and beneficiary state at exact source revisions. **G05 failed:** fresh B never applied its baseline or reached Connected. **Full M07 remains NOT_VERIFIED.** The staged G02 attempt also remained inconclusive because the NPC died before an original response to A was observed.
+
+The companion [reviewed scalar summary](native13-summary.json) records hashes, exact event sequences, process closure, source identities and visual limits. Private raw logs, recordings, process identities, paths and save inventories remain under ignored `local/m07-completion-2026-09-21/`.
+
+## What this run establishes
+
+The staged combat driver submitted B engage, B stop/movement, then A engage through authenticated client IPC and the real coordinator. Original NPC79 received six one-point damage callbacks from B, reaching zero health. It damaged B five times by 0.5 health. A's engage command reached original dispatch, but this trace contains no corresponding A damage callback or NPC response to A before death. The staged driver therefore retained `INCONCLUSIVE: NPC died before target-switch qualification`, after 20.516 seconds. Original combat reward sequence **15934** credited **B: 0 → 7 DNA** and matching goal progress; A retained zero DNA.
+
+The two pickup requests were submitted while the original victory tutorial paused native progression. The operator then acknowledged the original tutorial UI while recording. No artificial simulation pause was introduced. Original order returns **18182** for A and **18204** for B both reported `ordered: true`, approximately **14.018 ms** apart and before first feeding. Queue acceptance alone was not used as proof of native execution.
+
+Original first feeding occurred once, in scope **3365**. The exact first-feed DNA entry/return at **21062/21063**, caller RVA **0x9713B2**, returned its configured **amount 0**, leaving A's DNA **0 → 0**. Sequence **21065** recorded the first-feed transition and owner A. This is evidence of the original returned call and ownership, not a positive DNA bonus.
+
+Positive resource consumption was independently verified from the original callback. The first nutrition callback, scope **3368**, changed food **100 → 99.7600021**, hunger **0 → 0.24000001**, and A's health **5.58521175 → 5.61321163**. Both callback sides identified A as the native claimant. The closed authority trace contains **630** qualified callback pairs, all for A, including **481** positive nutrition transfers. It contains exactly one first-feed flag transition and one returned call from the first-feed caller. B had no corresponding qualified feeding callback or food/nutrition transfer; the bounded source samples also showed no B nutrition gain. The controlled native DNA getters preserved **A: 0 / B: 7** after feeding.
+
+The strict pickup evaluator completed after **33.39 seconds** of its 40-second deadline, with all original endpoints still Connected and no missing criteria. Food was preserved exactly, including the original terminal negative value; it was not rounded or clamped to manufacture convergence:
+
+| Replica | Source tick | Authority sequence | Client sequence | Fed flag | Food | Beneficiary |
+|---|---:|---:|---:|---:|---:|---:|
+| A | 73607937 | 24393 | 6733 | 1 | -33.2448006 | A |
+| Original B | 73607796 | 24380 | 6531 | 1 | -33.2448006 | A |
+
+Each row pairs actual authority and replica native readbacks at the **same source revision within that row**. A and B's revisions differ; simultaneous equality of their latest periodic snapshots is not claimed. This bounded G04 result does not establish general pickup support, B as a successful feeding winner, positive first-feed DNA, persistence, reconnect or network-impairment acceptance.
+
+## Consumed incarnation and failed fresh baseline
+
+The consumed resource was global entity **12884901967, generation 7**. Original pool-return sequence **24571** advanced native NPC79's pool counter **0 → 1** with spatial participation disabled and no herd. Its food beneficiary was retired at **24572** and an authoritative despawn published at **24574**. The coordinator received the generation-7 despawn, and A performed original replica removal at **6814**. This was actual original retirement, not deletion inferred from a missing periodic sample.
+
+The original engine later reused native ID79 for **generation 38**, with species **109087434**, herd **1745**, and pool cycle **1**. Its first capture census was **29069**, followed by the first periodic sample at **29113**. **59** periodic source samples over approximately **58.66 seconds** consistently reported `dead: true`, health zero, and combatant state zero, before the next original pool return **1 → 2** at **35136**. That distinct incarnation must not be confused with a resurrected generation-7 food resource.
+
+Both client factory/scalar paths reached matching native state for generation 38, including age, alpha, scale and health context. The .41 presentation helper then rejected the original combination of `dead: true` and combatant state zero as `life_state_mismatch`: A at **9351**, and fresh B during baseline at **197**. A subsequently reported native spawn failure. Fresh B rejected its baseline and **never reached Connected**. The source generation and pool evidence exclude an old-generation alias as the cause of this observed failure. The helper's additional requirement that dead imply combatant state 2 was stricter than the original engine state.
+
+The independent G05 archive evaluator consequently returned **`g05_trace_observed: false`**. It verified old B's clean closure, unchanged authority/A generations and matching log prefixes, original consumption retirement and the coordinator/A despawn. It did not treat fresh B's initial local world or zero DNA as an applied multiplayer baseline. A later implementation change is not used to regrade this .41 run.
+
+## Visual evidence and closure
+
+Recordings used Windows Graphics Capture bound to each exact game process; all four recorders exited zero without wall timeout. Independently reviewed original-B frames at **95 and 120 seconds** show actual Creature gameplay with two blue actors and the flattened green corpse, B's DNA **7**, health **8**, and full hunger. The operator reviewed authority and A at **150 seconds**: authority showed A with zero DNA, full health/hunger at another location; A's old camera view showed the corpse absent while its controlled avatar was offscreen. Fresh B's **45-second** frame showed its initial local world and zero DNA. These frames do **not** establish complete three-view parity or a successful fresh baseline. Frame hashes and recording/request/completion hashes are retained in the summary; audio and native frame timing were not measured.
+
+The run had a **300-second overall bound**, with watchdog shutdown requested after **270 seconds**, at **10:00:03.261 UTC**, against the current authority, A and fresh-B generations. All accepted that request. A later manual stop at **10:00:19.781 UTC** found all three already unavailable; those control errors are retained and are not presented as the cause of shutdown. Original B had closed earlier for the fresh join.
+
+Independent closed-file checks validated **four** complete actor traces: authority **36,714** records, A **10,898**, original B **8,634**, and fresh B **1,185**. Every sequence is contiguous, QPC is monotonic, callback thread identity is consistent, foreign callback count is zero, and each trace ends with healthy `trace_stop` and detach status zero. Each game and worker exited zero, each bridge disposed, and the pickup archive prefixes match the final corresponding trace. No trace-limit event occurred; known scene/baseline failures remain visible in the summary rather than being hidden by clean process exits.
+
+The final protected-file checks retained all **29 personal files**, all **16 disposable Games files per worker**, and the empty Creations trees unchanged; no recognized worker remained. Exact commands and private identities are retained in the archived operation reports. Reproduction of this closed review is `python local/m07-completion-2026-09-21/analyze-native13.py` (exit 0). The next native acceptance case must establish a successful fresh baseline after the qualified presentation guard correction; same-fight NPC responses to both owners and the remaining M07 gates remain separate requirements.

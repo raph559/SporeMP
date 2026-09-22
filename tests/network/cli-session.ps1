@@ -9,7 +9,9 @@ if (Test-Path -LiteralPath $outputPath) { throw 'Output must be a fresh director
 $null = New-Item -ItemType Directory -Path $outputPath
 $serverConfig = Join-Path $outputPath 'server.conf'
 $privatePath = Join-Path $outputPath 'private-session'
-$identityLines = @('schema=1','host=127.0.0.1','port=0',('build_sha256=' + ('11' * 32)),('executable_sha256=' + ('22' * 32)),('content_sha256=' + ('33' * 32)),('fixture_sha256=' + ('44' * 32)))
+$identityLines = @('schema=2','host=127.0.0.1','port=0',('build_sha256=' + ('11' * 32)),('executable_sha256=' + ('22' * 32)),('content_sha256=' + ('33' * 32)),('fixture_sha256=' + ('44' * 32)))
+# HOST digest fixtures, never a native world/terrain acceptance claim.
+foreach($field in @('world_satiria_sha256','world_planet_records_sha256','world_planet_records_temp_sha256','world_planet_scripts_sha256','world_stars_sha256','world_planets_sha256')) {$identityLines += ($field+'='+('44'*32))}
 [IO.File]::WriteAllText($serverConfig, ($identityLines -join "`n") + "`n", [Text.UTF8Encoding]::new($false))
 function Start-TestProcess([string[]]$Arguments) {
     $info = [Diagnostics.ProcessStartInfo]::new()
@@ -70,6 +72,22 @@ try {
     if ($badResult.exit_code -ne 20 -or $badResult.result.error -ne 'incompatible_build_executable_or_content') { throw 'Actual CLI mismatch rejection failed.' }
     $report.mismatch = $badResult
     $report.checks += 'A changed native build digest was explicitly rejected over TLS with exit 20.'
+    $worldConfig = Join-Path $privatePath 'mismatched-world.conf'
+    $worldText = [IO.File]::ReadAllText($one).Replace(('world_planet_records_sha256=' + ('44' * 32)), ('world_planet_records_sha256=' + ('66' * 32)))
+    [IO.File]::WriteAllText($worldConfig,$worldText,[Text.UTF8Encoding]::new($false))
+    $worldArguments = @('--client-probe','--config',$worldConfig)
+    $report.commands += ,(@($binary) + $worldArguments)
+    $worldResult = Complete-Probe (Start-TestProcess $worldArguments)
+    if ($worldResult.exit_code -ne 20 -or $worldResult.result.error -ne 'canonical_world_mismatch:Games/Game0/planetRecords.pkp') { throw 'Actual world mismatch did not retain its exact file identity.' }
+    $report.world_mismatch = $worldResult
+    $report.checks += 'Changed world data with unchanged scene/build/installed content was refused over TLS with the precise planetRecords.pkp path.'
+    $legacyConfig = Join-Path $privatePath 'legacy-config.conf'
+    [IO.File]::WriteAllText($legacyConfig,[IO.File]::ReadAllText($one).Replace('schema=2','schema=1'),[Text.UTF8Encoding]::new($false))
+    $legacyArguments = @('--client-probe','--config',$legacyConfig)
+    $report.commands += ,(@($binary) + $legacyArguments)
+    $legacyResult = Complete-Probe (Start-TestProcess $legacyArguments)
+    if ($legacyResult.exit_code -ne 20 -or $legacyResult.result.error -ne 'unsupported_config_schema_or_role') { throw 'Legacy configuration was accepted without an explicit upgrade.' }
+    $report.legacy_config = $legacyResult
     foreach ($invite in @('player-1.invite','player-2.invite')) {
         if (-not [IO.File]::ReadAllText((Join-Path $privatePath $invite)).StartsWith('sporemp://join?host=127.0.0.1&port=')) { throw 'Private invitation file missing.' }
     }

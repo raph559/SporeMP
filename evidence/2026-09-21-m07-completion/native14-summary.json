@@ -1,0 +1,487 @@
+{
+  "schema_version": 1,
+  "evidence_class": [
+    "NATIVE",
+    "NETWORK-REAL",
+    "VISUAL_INSPECTION"
+  ],
+  "run": "native14",
+  "bridge_version": "0.0.42",
+  "wire_schema": 4,
+  "full_m07": "NOT_VERIFIED",
+  "original_executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "workers": {
+    "01": {
+      "game_pid": 37612,
+      "actor_events": 50398,
+      "trace_bytes": 34663570,
+      "trace_sha256": "d3f9f6e4c997cafc5935f2fb06eb28eebb3677cce29e3988522499a6c9b4355a",
+      "archive_hash_matches": true,
+      "closed": true,
+      "errors": 0,
+      "game_exit": 0,
+      "worker_exit": 0,
+      "avatar_a_periodic_samples": 229,
+      "avatar_a_corpse_samples": 41,
+      "avatar_a_revived_samples": 20,
+      "avatar_a_corpse_animation_counts": null,
+      "avatar_a_revived_animation_counts": null,
+      "exact_source_tick_sample_matches": null,
+      "exact_source_tick_mismatches": null,
+      "life_events": [],
+      "new_corpse_68_gen38_periodic_samples": 59,
+      "new_corpse_68_gen38_animation_counts": null,
+      "last_avatar_a_sample": {
+        "event": "scene_native_authority_sample",
+        "sequence": 50284,
+        "qpc": 2619458218,
+        "qpc_frequency": 10000000,
+        "source_tick": 74472906,
+        "remote_entity": 12884902120,
+        "entity_generation": 30,
+        "native_id": 232,
+        "owner": 1,
+        "health": 5,
+        "hunger": 100,
+        "dead": false,
+        "source_age": 0,
+        "source_alpha": 0,
+        "source_combatant_state": 0,
+        "source_scale": 0.600000024,
+        "native_animation_observed": false,
+        "native_animation": 0,
+        "health_context": {
+          "native_max": 5,
+          "native_base_max": 10,
+          "age": 0,
+          "combatant_state": 0,
+          "native_scale": 0.600000024
+        }
+      }
+    },
+    "02": {
+      "game_pid": 3412,
+      "actor_events": 13646,
+      "trace_bytes": 14370742,
+      "trace_sha256": "80a0aee7fd6c7ec44c09e63299ce5dfa421da5cd01dd5b5aa24621f208ab3b4c",
+      "archive_hash_matches": true,
+      "closed": true,
+      "errors": 0,
+      "game_exit": 0,
+      "worker_exit": 0,
+      "avatar_a_periodic_samples": 232,
+      "avatar_a_corpse_samples": 41,
+      "avatar_a_revived_samples": 20,
+      "avatar_a_corpse_animation_counts": {
+        "92304198": 41
+      },
+      "avatar_a_revived_animation_counts": {
+        "38280677": 20
+      },
+      "exact_source_tick_sample_matches": 25,
+      "exact_source_tick_mismatches": [],
+      "life_events": [
+        {
+          "event": "scene_native_life_state_applied",
+          "sequence": 10027,
+          "qpc": 1991531316,
+          "qpc_frequency": 10000000,
+          "source_tick": 74411562,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 232,
+          "owner": 1,
+          "health": 0,
+          "hunger": 0,
+          "dead": true,
+          "source_age": 1,
+          "source_alpha": 0,
+          "source_combatant_state": 2,
+          "source_scale": 1,
+          "native_animation_observed": true,
+          "native_animation": 38280683,
+          "health_context": {
+            "native_max": 10,
+            "native_base_max": 10,
+            "age": 1,
+            "combatant_state": 2,
+            "native_scale": 1
+          }
+        },
+        {
+          "event": "native_life_presentation",
+          "sequence": 10029,
+          "qpc": 1991539597,
+          "qpc_frequency": 10000000,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 232,
+          "dead": true,
+          "animation": 92304198,
+          "observed_animation": 92304198,
+          "started": true
+        },
+        {
+          "event": "scene_native_life_state_applied",
+          "sequence": 12428,
+          "qpc": 2408466694,
+          "qpc_frequency": 10000000,
+          "source_tick": 74453250,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 232,
+          "owner": 1,
+          "health": 5,
+          "hunger": 100,
+          "dead": false,
+          "source_age": 0,
+          "source_alpha": 0,
+          "source_combatant_state": 0,
+          "source_scale": 0.100000001,
+          "native_animation_observed": true,
+          "native_animation": 92304198,
+          "health_context": {
+            "native_max": 5,
+            "native_base_max": 10,
+            "age": 0,
+            "combatant_state": 0,
+            "native_scale": 0.100000001
+          }
+        },
+        {
+          "event": "native_life_presentation",
+          "sequence": 12430,
+          "qpc": 2408473736,
+          "qpc_frequency": 10000000,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 232,
+          "dead": false,
+          "animation": 38280677,
+          "observed_animation": 38280677,
+          "started": true
+        }
+      ],
+      "new_corpse_68_gen38_periodic_samples": 60,
+      "new_corpse_68_gen38_animation_counts": {
+        "92304198": 60
+      },
+      "last_avatar_a_sample": {
+        "event": "scene_native_replica_sample",
+        "sequence": 13585,
+        "qpc": 2603777948,
+        "qpc_frequency": 10000000,
+        "source_tick": 74472781,
+        "remote_entity": 12884902120,
+        "entity_generation": 30,
+        "native_id": 232,
+        "owner": 1,
+        "health": 5,
+        "hunger": 100,
+        "dead": false,
+        "source_age": 0,
+        "source_alpha": 0,
+        "source_combatant_state": 0,
+        "source_scale": 0.600000024,
+        "native_animation_observed": true,
+        "native_animation": 38280677,
+        "health_context": {
+          "native_max": 5,
+          "native_base_max": 10,
+          "age": 0,
+          "combatant_state": 0,
+          "native_scale": 0.600000024
+        }
+      }
+    },
+    "03": {
+      "game_pid": 22252,
+      "actor_events": 13618,
+      "trace_bytes": 14342637,
+      "trace_sha256": "93b2caf0fddc7dde17bb9342991998dbc89cb5d234daf18b40c017babc637aeb",
+      "archive_hash_matches": true,
+      "closed": true,
+      "errors": 0,
+      "game_exit": 0,
+      "worker_exit": 0,
+      "avatar_a_periodic_samples": 231,
+      "avatar_a_corpse_samples": 42,
+      "avatar_a_revived_samples": 20,
+      "avatar_a_corpse_animation_counts": {
+        "92304198": 42
+      },
+      "avatar_a_revived_animation_counts": {
+        "38280677": 20
+      },
+      "exact_source_tick_sample_matches": 19,
+      "exact_source_tick_mismatches": [],
+      "life_events": [
+        {
+          "event": "scene_native_life_state_applied",
+          "sequence": 9972,
+          "qpc": 1972471579,
+          "qpc_frequency": 10000000,
+          "source_tick": 74411562,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 9601,
+          "owner": 1,
+          "health": 0,
+          "hunger": 0,
+          "dead": true,
+          "source_age": 1,
+          "source_alpha": 0,
+          "source_combatant_state": 2,
+          "source_scale": 1,
+          "native_animation_observed": true,
+          "native_animation": 38280683,
+          "health_context": {
+            "native_max": 10,
+            "native_base_max": 10,
+            "age": 1,
+            "combatant_state": 2,
+            "native_scale": 1
+          }
+        },
+        {
+          "event": "native_life_presentation",
+          "sequence": 9974,
+          "qpc": 1972480368,
+          "qpc_frequency": 10000000,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 9601,
+          "dead": true,
+          "animation": 92304198,
+          "observed_animation": 92304198,
+          "started": true
+        },
+        {
+          "event": "scene_native_life_state_applied",
+          "sequence": 12397,
+          "qpc": 2389344428,
+          "qpc_frequency": 10000000,
+          "source_tick": 74453250,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 9601,
+          "owner": 1,
+          "health": 5,
+          "hunger": 100,
+          "dead": false,
+          "source_age": 0,
+          "source_alpha": 0,
+          "source_combatant_state": 0,
+          "source_scale": 0.100000001,
+          "native_animation_observed": true,
+          "native_animation": 92304198,
+          "health_context": {
+            "native_max": 5,
+            "native_base_max": 10,
+            "age": 0,
+            "combatant_state": 0,
+            "native_scale": 0.100000001
+          }
+        },
+        {
+          "event": "native_life_presentation",
+          "sequence": 12399,
+          "qpc": 2389352800,
+          "qpc_frequency": 10000000,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 9601,
+          "dead": false,
+          "animation": 38280677,
+          "observed_animation": 38280677,
+          "started": true
+        }
+      ],
+      "new_corpse_68_gen38_periodic_samples": 60,
+      "new_corpse_68_gen38_animation_counts": {
+        "92304198": 60
+      },
+      "last_avatar_a_sample": {
+        "event": "scene_native_replica_sample",
+        "sequence": 13560,
+        "qpc": 2585913369,
+        "qpc_frequency": 10000000,
+        "source_tick": 74472906,
+        "remote_entity": 12884902120,
+        "entity_generation": 30,
+        "native_id": 9601,
+        "owner": 1,
+        "health": 5,
+        "hunger": 100,
+        "dead": false,
+        "source_age": 0,
+        "source_alpha": 0,
+        "source_combatant_state": 0,
+        "source_scale": 0.600000024,
+        "native_animation_observed": true,
+        "native_animation": 38280677,
+        "health_context": {
+          "native_max": 5,
+          "native_base_max": 10,
+          "age": 0,
+          "combatant_state": 0,
+          "native_scale": 0.600000024
+        }
+      }
+    }
+  },
+  "limits": {
+    "fresh_join": "NOT_RUN",
+    "post_respawn_actions": "NOT_ESTABLISHED; only status commands precede watchdog closure",
+    "combat": "INCONCLUSIVE; preposition gate failed, later owned actor unavailable",
+    "client_b_avatar_a_visual": "NOT_IDENTIFIED in inspected camera views",
+    "baby_adult_asset_parity": "NOT_VERIFIED"
+  },
+  "original_artifact_hashes": {
+    "01/worker-status.json": "341fec8e384ff5f60c5911b0b2a7a664f7136780b6a04c318386f5bc729b5f75",
+    "01/network-status.json": "bc6b0be4545172cb9e151454200a4c48f5a20556e75e7a1a2e933be869fa3a40",
+    "01/native-host.jsonl": "3055e390abbd7e25bc395448c1d543a8c167550ac0d202df851f2085aba81b35",
+    "02/worker-status.json": "2b492589c8f5c4aca1f3e2553be55991cd5191021ae79f91f89178e26ed6e14a",
+    "02/network-status.json": "76e250332af09f0ff0c4d7b09f7911b11b1ed5090814bfb0e2810712dae68067",
+    "02/native-host.jsonl": "6ca6655f9e3bcbd835f00782ed2ca838974c45d8a9fa0f5bfa121d609b9a489c",
+    "03/worker-status.json": "f78e8e5f665c9c977800ba99dbcca212fcccfadb361990f0a131c03cf7f0d1a0",
+    "03/network-status.json": "da54b5b0559c6924e377c5c33c5a3999ba4d259dec6a5addb69846b59b6243d9",
+    "03/native-host.jsonl": "f461f2af06bcc9629fd11f4ae7b3c946e9908d44d6f9ffb7232997dccdd3ab8a",
+    "source_payload_manifest": "2c59e4ce64d3fd6d3c65d1326c8b11c7677432643e6442a5eea96aa691e50c45",
+    "closed_archive_manifest": "080e9378e6a6dab1223a253c45aec4e430227cf9dbf90abd0ff6d49805f29645",
+    "after_respawn_action_manifest": "bdc2b86f33366cc4ac8cec88541ae1784d80a58671f61a55007f0d37d45d219a",
+    "watchdog": "58c9bc3c3944ca7037fcba07801aa04dca60ccda91d630fe0bbd1f7ed7353d3d",
+    "save_check": "873920a974eb613ef6642e5b617c6a49eaa5d905b8c921c0ad8d477e89cf9269",
+    "personal_before": "de906a28ae13974243f2496bc3db67c3a955897cadedfd341c135d3c6dd0b85c",
+    "personal_after": "794c5198d53607cfdbb89f5102ddfd64494279f5599d69e377a12f0e79e40b34"
+  },
+  "commands": {
+    "analyzer": "python local/m07-completion-2026-09-21/summarize-native14-lifecycle.py",
+    "analyzer_exit": 0,
+    "frame_extraction": "ffmpeg -hide_banner -loglevel error -ss <seconds> -i <private capture.mkv> -frames:v 1 -n <private reviewed-lifecycle-seconds.png>",
+    "frame_extraction_exits": 0
+  },
+  "source_hashes": {
+    "src/bridge/native_life_presentation.cpp": "5c18e99194e71affee6b229af9550fe9b7f27337d9c03d6b59a3069ee35753c7",
+    "src/bridge/native_life_presentation.h": "0b8768faaf139da3171363e529407e67711379e7d7035f0c38e7aeb2a15983b0",
+    "src/bridge/native_scene.cpp": "23b000a4c636a6bbbfa67b03e24f91af789c980e7b1144635caeae0f05ae7553",
+    "build/win32/Release/SporeMP.Bridge.dll": "1031848e63b3a18802da540e31729603132a6da42be50ebd693cfb4cc4cb0dc9",
+    "build/win32/Release/SporeMP.NativeHost.exe": "a55ea45b295f745853353bb0ec9723d86496000cacb185027495234bfc40fd9d"
+  },
+  "visual_review": {
+    "01": {
+      "game_pid": 37612,
+      "request_utc": "2026-09-21T10:08:26.7717773Z",
+      "recorder_exit": 0,
+      "capture_sha256": "637e0769b8163caca2894828c3399430ff9762b07c3342610317112535552473",
+      "frame_hashes": {
+        "reviewed-lifecycle-180.png": "f2a9ba9e7ab04acab4a1b5898685813f070cd3295c0888483b1a46d904b7f9c0",
+        "reviewed-lifecycle-205.png": "71f301696db506df64cec183b790243e03ce32f2564d066b9da3d17183962e0c",
+        "reviewed-lifecycle-215.png": "2a6a92ce77b4cdf35476b38153dc470d2a90a929e917e2e268984089dd888ac3",
+        "reviewed-lifecycle-220.png": "a32373a280f8f8990d21c173f0fbcf54cd797620368b7aecff374d4017360d0c",
+        "reviewed-lifecycle-223.png": "d1e49716c03c94a1af7768bfa02b761d4254ee4ea2d37b982bbfe0c99b1000f9",
+        "reviewed-lifecycle-225.png": "ab2f235a90fc2f2e911902a7df771c79159b4dc22a636c3050d805134abaac1b",
+        "reviewed-lifecycle-238.png": "660690d61a3b2a8e0ec2fc3500d63f29b51db5a62ed6589ec0cf4815e814a06b"
+      },
+      "frame_seconds_inspected": [
+        180,
+        205,
+        215,
+        220,
+        223,
+        225,
+        238
+      ]
+    },
+    "02": {
+      "game_pid": 3412,
+      "request_utc": "2026-09-21T10:08:26.7717810Z",
+      "recorder_exit": 0,
+      "capture_sha256": "e19125ed6f91a9dbe0b85c2111b7162f2d7e294d2fd4b2b5f80d1c6fc54ad9b3",
+      "frame_hashes": {
+        "reviewed-lifecycle-180.png": "ab4cebe678532748f77877815a344233465b6f8a86c3f3fad46133ca33982470",
+        "reviewed-lifecycle-205.png": "2d30a7368beb64a322be4f75be3075d9e190e176c87d0d16df830b29927e74ba",
+        "reviewed-lifecycle-225.png": "811908c783aa94ac96efc51958ba4af0e8e9e0afcfdb1ecb1a69148dfeb0acb7",
+        "reviewed-lifecycle-238.png": "3603a9f47694a7b718c9c6fc391e84a4ee5ed0e5c631a1f9ffa9d94b5af7aa95"
+      },
+      "frame_seconds_inspected": [
+        180,
+        205,
+        225,
+        238
+      ]
+    },
+    "03": {
+      "game_pid": 22252,
+      "request_utc": "2026-09-21T10:08:26.7890835Z",
+      "recorder_exit": 0,
+      "capture_sha256": "a833bedcac91aae4daaefa177f8d3356696129d23191b3e646737b869d511460",
+      "frame_hashes": {
+        "reviewed-lifecycle-180.png": "183a3e100638cf5418fc2ddc9817f8a90e52ec6c350b24d1527e58bc30c706e7",
+        "reviewed-lifecycle-205.png": "4de70bf0438c24e55e8b3c2c9858dac9d09b9ee4a69e8ac9d275af75d05ade69",
+        "reviewed-lifecycle-225.png": "9fbcc781920c896e0b2076302e7661f71cc8192a36c15fbabc814f93705e43be",
+        "reviewed-lifecycle-238.png": "ec1fa7b0d292331cebaace98128cd65c9b8bc180cdcab1149b70f9105de2e824"
+      },
+      "frame_seconds_inspected": [
+        180,
+        205,
+        225,
+        238
+      ]
+    },
+    "observations": {
+      "01": "180 death cinematic;205/215/220 starvation confirmation;223 egg;225 hatch/young creature;238 ordinary HUD with HP5.",
+      "02": "180/205 avatar on side with HUD HP0;225/238 nest view and HUD HP5. Revived avatar/model identity not unambiguous.",
+      "03": "180/205/225/238 living B and nestmates; remote A not reliably identified."
+    }
+  },
+  "preservation": {
+    "personal_files": 29,
+    "personal_unchanged": true,
+    "worker_trees": [
+      {
+        "worker": "01",
+        "tree": "Games",
+        "files": 16,
+        "unchanged": true,
+        "differences": []
+      },
+      {
+        "worker": "01",
+        "tree": "Creations",
+        "files": 0,
+        "unchanged": true,
+        "differences": []
+      },
+      {
+        "worker": "02",
+        "tree": "Games",
+        "files": 16,
+        "unchanged": true,
+        "differences": []
+      },
+      {
+        "worker": "02",
+        "tree": "Creations",
+        "files": 0,
+        "unchanged": true,
+        "differences": []
+      },
+      {
+        "worker": "03",
+        "tree": "Games",
+        "files": 16,
+        "unchanged": true,
+        "differences": []
+      },
+      {
+        "worker": "03",
+        "tree": "Creations",
+        "files": 0,
+        "unchanged": true,
+        "differences": []
+      }
+    ]
+  }
+}

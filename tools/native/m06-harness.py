@@ -21,7 +21,7 @@ import worker_manager as workers
 
 EXE = "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37"
 SDK = "cbf9206b9a823f0911cd9be0217104a49d72380b"
-MAX_TRACE = 34 * 1024 * 1024
+MAX_TRACE = 66 * 1024 * 1024
 MAX_COORDINATOR = 256 * 1024 * 1024
 OWNERS = {"01": 0, "02": 1, "03": 2}
 
@@ -214,7 +214,7 @@ def action(item, authority, operation, direction, version, commands, timeout, th
             evidence["network_intention"] = intents[0]
             remote = [row for row in current_rows(authority, version) if row["sequence"] > evidence["authority_before_sequence"]]
             received = [row for row in remote if row.get("event") == "network_native_intention" and row.get("request") == request and row.get("player") == owner]
-            queued = [row for row in remote if row.get("event") == "worker_command_queued" and row.get("request") == request and row.get("owner") == owner and row.get("verb") == operation]
+            queued = [row for row in remote if row.get("event") in ("worker_command_queued", "network_actor_command_queued") and row.get("request") == request and row.get("owner") == owner and row.get("verb") == operation]
             if len(received) > 1 or len(queued) > 1: raise ValueError("Ambiguous authority action correlation")
             if received and received[0].get("queued") is not True: raise ValueError("Authority rejected the forwarded intention")
             if received and queued:

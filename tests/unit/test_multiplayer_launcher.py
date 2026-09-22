@@ -1,5 +1,7 @@
 """HOST/FIXTURE launcher authentication, secret lifetime and native readiness gates."""
 import importlib.util
+import hashlib
+import re
 import json
 from pathlib import Path
 import subprocess
@@ -34,6 +36,10 @@ class MultiplayerLauncherTests(unittest.TestCase):
             path = self.root / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(content)
+        for _, relative in sessions.WORLD_FILES[1:]:
+            path = self.root / "fixture-appdata/Spore" / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b"HOST generated world fixture, never loaded")
         patch.object(service, "prepare", return_value=({"native": {"available": True}, "installation": {"root": str(self.root)}}, 22)).start()
         patch.object(service, "stage_player_payload", return_value=self.root).start()
         patch.object(service.display, "resolve", return_value={"arguments": []}).start()
@@ -43,6 +49,7 @@ class MultiplayerLauncherTests(unittest.TestCase):
         config = sessions.parse_invitation(INVITE)
         self.assertEqual(config["host"], "127.0.0.1")
         self.assertEqual(config["port"], 27060)
+        self.assertEqual(config["schema"], 2)
         self.assertEqual(config["credential"], "b" * 64)
         for invalid in (INVITE + "&token=" + "b" * 64, INVITE + "#fragment", INVITE.replace("27060", "65536"),
                         INVITE.replace("127.0.0.1", "host%0Arole=authority"), INVITE.replace("127.0.0.1", "-bad.host"),
@@ -100,6 +107,38 @@ class MultiplayerLauncherTests(unittest.TestCase):
         connect.assert_not_called()
         game.assert_not_called()
         self.assertFalse(fixture.exists())
+
+    def test_missing_world_component_stops_before_network_or_game(self):
+        self.fixture()
+        for _, relative in sessions.WORLD_FILES[1:]:
+            with self.subTest(path=relative):
+                path = self.root / "fixture-appdata/Spore" / relative
+                original = path.read_bytes()
+                path.unlink()
+                with patch.object(service.subprocess, "run") as connect, patch.object(service.subprocess, "Popen") as game:
+                    result, code = service.native_join(self.root, INVITE)
+                self.assertEqual(code, 32)
+                self.assertIn(relative, result["error"])
+                connect.assert_not_called()
+                game.assert_not_called()
+                self.assertFalse(path.exists())
+                path.write_bytes(original)
+
+    def test_world_fields_match_native_schema_and_actual_file_bytes(self):
+        self.fixture()
+        declaration = (SERVICE.parents[2] / "src/network/world_identity.h").read_text()
+        native_fields = tuple(re.findall(r'\{"(world_[a-z_]+sha256)", "([^"]+)"\}', declaration))
+        self.assertEqual(native_fields, sessions.WORLD_FILES)
+        root = self.root / "fixture-appdata/Spore"
+        fields = sessions.world_identity_fields(root, service.diag.no_reparse)
+        self.assertEqual(len(fields), 6)
+        for name, relative in sessions.WORLD_FILES:
+            self.assertEqual(fields[name], hashlib.sha256((root / relative).read_bytes()).hexdigest())
+        target = root / sessions.WORLD_FILES[3][1]
+        original = target.read_bytes()
+        target.write_bytes(bytes([original[0] ^ 1]) + original[1:])
+        changed = sessions.world_identity_fields(root, service.diag.no_reparse)
+        self.assertEqual([name for name in fields if changed[name] != fields[name]], [sessions.WORLD_FILES[3][0]])
 
     def test_probe_timeout_remains_bounded_and_prevents_game(self):
         self.fixture()

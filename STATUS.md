@@ -1,6 +1,6 @@
 # Project status
 
-Updated: 2026-09-21. **Partial/experimental: authenticated shared Creature movement is implemented; the full multiplayer campaign is unfinished.**
+Updated: 2026-09-22. **Partial/experimental: the recorded shared Creature encounter is verified; the full multiplayer campaign is unfinished.**
 
 | Milestone | Status | Evidence boundary |
 |---|---|---|
@@ -11,25 +11,186 @@ Updated: 2026-09-21. **Partial/experimental: authenticated shared Creature movem
 | M04 | VERIFIED | Original unattended actions, actual player/launcher closure independence, two OS-profile workers with overlapping original saves and observed isolation, retained crash containment, clean shutdown, and sealed checkpoint recovery with existing A/B identity adoption. Qualified for the recorded rendered Creature fixture and stated desktop/stall limits. |
 | M05 | VERIFIED | Bridge 0.0.29 closes the four original acceptance clauses for the recorded living Creature fixture: native result without a second reward, challenged local mutation denial, disconnect/publication fences and retained Off behavior. Actual active-bite cleanup, foreign-species UI and usable saved-world load denial are recorded. Full scene/ability/campaign coverage is not claimed. |
 | M06 | VERIFIED | Authenticated original worker/two-client scene, distinct controlled actors, native movement/jumps, fresh reconnect baselines, protocol rejection tests and inspected footage. Actual WPF Join/Rejoin preserves one player identity; closed saves and temporary ACL restoration pass. Qualification is the recorded living Creature fixture. |
-| M07 | TODO | Dependencies M03/M05/M06 satisfied. Next: complete shared native encounter, including the observed death/respawn gap. |
-| M08–M19 | BLOCKED | Unfinished encounter, content, persistence and stage dependencies; full required scope retained. |
+| M07 | VERIFIED | Native18 qualifies the normal shared encounter; native27/.45 completes combat, contested original feeding, result-preserving reconnect, late-resource and wrong-owner rejection with legitimate continuation under actual packet delay/loss. Native28 completes the declared original fresh-session reset, native movement and jump/landing under the same filter. Inspected views, closed traces, process/filter cleanup and protected-file checks pass. Qualification is bounded to the pinned Creature fixture. |
+| M08 | VERIFIED | Native01–11 qualify the pinned Creature content/editor foundation: original save/import and exact 23-rigblock/47-capability agreement; nine native part roots; pre-import missing-part refusal; canonical terrain mapping and actual-profile mismatch denial; concurrent editing/cancel and two immutable native-validated publications. Developer/local-approval boundary; no campaign avatar replacement or restart durability. |
+| M09 | TODO | Dependencies M04/M07/M08 verified within their recorded scopes. Next: durable native checkpoints, content versions, reconnects and interrupted-transaction recovery. |
+| M10–M19 | BLOCKED | Unfinished persistence, location and stage dependencies; full required scope retained. |
 | M20 | TODO | Optional native Galactic Adventures multiplayer. |
 
 M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No further native game launch or repeated M01 test followed the confirmation.
 
+## M08 completion — 2026-09-22
+
+M08 is **VERIFIED for the recorded native Creature content/editor foundation**.
+The reviewed source export preserves this checkout's independent Detours 4 SDK
+migration. The native evidence below is tied to its named frozen development
+payloads; native gameplay with the rebuilt public SDK is **NOT RUN**.
+Original authority and receiver import two fresh native-produced creations over
+TLS, derive matching 23 rigblocks/47 capability entries and map distinct local
+resource keys to immutable global versions. Nine part roots resolve through the
+original resource managers. An absent part is refused before receiver PNG import;
+a changed persisted terrain record is rejected before game creation with its
+exact filename. The actual canonical terrain property maps into PlanetScripts.
+
+A changed original editor draft is cancelled while the other player moves and
+jumps; the saved source archive stays byte-identical. Owner-authorized commit
+waits for native authority validation and every live participant's readiness,
+publishes once, rejects a duplicate, and preserves the version on later cancel.
+Original received model/test-drive views and continuing shared gameplay were
+inspected. Ten .49/.50 processes close cleanly; 29 personal files and six world
+files stay unchanged per run. The final .50 Release build and **14/14 CTest targets**
+pass, including 244 tooling tests, 190 registry checks and 937 content/TLS checks.
+
+[Acceptance and commands](evidence/2026-09-22-m08-completion/SESSION.md),
+[verification](evidence/2026-09-22-m08-completion/verification.json),
+[transaction contract](docs/m08-content-transactions.md),
+[all gates](tests/engine/M08.md).
+
+The negative missing-part authority is an explicitly labeled HOST fixture; the
+receiver lookup/refusal is native. Successful publications use the real original
+authority. Earlier starvation, notification-order and closed-pipe attempts are
+retained as failures. The final terrain mismatch check changes a backed-up
+isolated profile, refuses startup, then restores and verifies every profile file.
+
+Qualification uses a pinned installed-content profile and fixed canonical world,
+locally approved creations and developer editor controls. It does not claim
+arbitrary mod/planet support, a player-facing sharing UI, campaign species
+replacement or durable registry recovery. The full global five-stage plan stays
+unchanged. **Next smallest step: M09 durable native checkpoint/content-version
+commit and recovery, starting with interrupted commit and coordinator restart.**
+
+## Earlier M08 creation increment — historical boundary
+
+Four authorized original-game runs in isolated profiles now establish the saved
+creation representation and a real clean-profile PNG import. The original save
+uses BEM in EditorSaves; the imported creation uses CRT in Pollination and receives
+a different local key. Both native loader inspections return exactly matching
+**23 rigblocks and 47 capability entries**, with correct owned release. Original
+editor/test-drive views were inspected. Cancelling an orange draft preserves the
+saved cyan creation; the source EditorSaves and PNG remain byte-identical.
+
+The existing native Satiria load also emits its home generated-terrain key, but its
+complete relationship to persisted terrain resources remains unqualified. This is
+not a completed dependency/readiness barrier or multiplayer editor transaction.
+**At this earlier boundary M08 remained IN_PROGRESS.** All four games/supervisors close cleanly, all traces
+have healthy footers, and the 29 personal files plus six guarded world files stay
+unchanged. The updated Python driver passes **19 focused/223 tooling tests**;
+native artifacts retain the prior .46 build and 12/12 HOST test identity.
+[Native session](evidence/2026-09-22-m08-native-creation/SESSION.md),
+[acceptance map](tests/engine/M08.md).
+
+## M08 content and world admission — before native runs, 2026-09-22
+
+Bridge/NativeHost **0.0.46** and launcher **0.1.10** add actual-profile prelaunch
+world-file hashing and six declared identities to the coordinator handshake.
+Different companion world files now receive a precise refusal before Welcome or
+a scene baseline. Wire schema is **5 / 600 bytes** and configuration schema is
+**2**; regenerate older private session configs. C++ and Python readers agree on
+all six identities in the two closed prepared baselines, with all source hashes
+unchanged; current workers 01/02/03 also have matching bundles.
+
+The isolated developer `inspect_creation` command calls the pinned original
+creature loader, copies bounded rigblock/capability scalars and releases its owned
+result. It rejects loading, replicas, stale requests and malformed keys. Its
+single-request driver checks exact process/trace provenance and preserves unknown
+outcomes without retrying. A post-load observation additionally records the home
+planet's generated-terrain key. A passive observer records original editor
+request/accept/cancel messages without treating them as committed transactions.
+At this pre-native build boundary these additions were **IMPLEMENTED_NOT_RUN**;
+neither a copied native value nor matching prelaunch files establish complete
+terrain, dependency or gameplay qualification.
+
+The final .46 Release build passes. All **12 HOST/FIXTURE CTest targets** pass in
+**26.93 seconds**, including **2,963 network assertions**, **280 worker assertions**,
+**18 native-shaped content ABI checks**, **26 editor decoder checks** and
+**219 Python tooling tests**. No original
+game was started. Fresh verified backups protect the two prepared worker profiles
+and 29 personal files. Native editor creation/import and all M08 native acceptance
+gates were **NOT RUN** at that boundary. The subsequent native results are recorded above.
+[World guard](docs/m08-world-identity.md), [native inspection](docs/m08-native-content-probe.md),
+[complete gate map](tests/engine/M08.md), [current session](evidence/2026-09-22-m08-admission-inspection/SESSION.md).
+
+## M08 offline content foundation — 2026-09-21
+
+The second increment adds bounded whole-copy comparison, including opaque creation
+files and per-archive resource differences, and a static audit of four native editor/import
+entries. Current checks pass **32 focused tests and 202 tooling tests**. Two disposable
+profiles have verified closed backups; each has 27 data files and 17 archives containing
+4,014 active records. Their creation folders are empty. Native editor creation and peer
+import/load are **NOT RUN**, pending current desktop availability and refreshed personal-save
+gates. No game was started. [Current session](evidence/2026-09-21-m08-content-foundation/editor-preparation.md),
+[native investigation](docs/m08-editor-audit.md).
+
+**At this earlier boundary M08 was IN_PROGRESS.** The first reviewable increment adds bounded offline DBPF/DBBF and RefPack inspection, decoded native resource identities, exact archive comparison, and a private immutable candidate quarantine. All **23 focused HOST/FIXTURE tests** pass with Python 3.11; the existing `tooling_unit` CTest target passes **193 tests** with Python 3.14. The full suite exposed a Windows handle/path `ctime` discrepancy; the corrected check preserves file identity, size, modification-time and same-handle change detection. The initial failure remains recorded.
+
+Six closed historical native-produced archives were inspected without starting SPORE: **2,950 active records, including 108 compressed records**. One generated-model record was privately quarantined and reused with identical identity; all six source archive hashes stayed unchanged. The sampled EditorSaves is empty and Pollination contains catalog summaries, not a new `.crt` fixture. This is HOST file evidence, not native creation/import acceptance. Complete dependency enumeration, authoritative native gameplay validation, canonical terrain synchronization, multiplayer readiness and editor begin/commit/cancel remain unimplemented. The next native experiment is one original editor save and clean second-profile load with exact before/after resource inventories. [Implementation](docs/m08-content.md), [acceptance map](tests/engine/M08.md), [session](evidence/2026-09-21-m08-content-foundation/SESSION.md).
+
 ## Source repository publication — 2026-09-21
+
+The 2026-09-22 reviewed export brings the M07/M08 source and acceptance reports
+into this public checkout while preserving its independent license and Detours 4
+SDK work. The current public Release build and **15/15 HOST/FIXTURE CTest targets**
+pass. [Export review and qualification boundary](evidence/2026-09-22-m08-publication/SESSION.md).
 
 Public evidence is now curated: concise acceptance/report exports stay in Git, complete historical traces and operational records are archived privately, and reusable analyzers/generators live under `tools/native/`. An allowlist and CI size/type guard prevent accidental raw-evidence publication. Public history is filtered without changing the private M07 checkout or milestone acceptance. See the [evidence index](evidence/README.md) and [cleanup report](evidence/2026-09-21-evidence-cleanup/SESSION.md).
 
-Original project code now uses **GPL-3.0-or-later**, with third-party terms and artwork scope retained separately. The supported SDK/bridge build replaces Detours 3 with pinned MIT Detours 4.0.1. Release compilation and **10/10 HOST/FIXTURE CTest targets** pass; Debug SDK/base compilation and its SDK-wrapper test pass. Compiler/link input checks exclude the old dependency, and targeted/incremental builds reject stale SDK artifacts. Native gameplay with this rebuilt SDK is **NOT RUN**; earlier milestone evidence remains tied to its historical payload. This public change does not incorporate or overwrite private M07 work. See [licensing](docs/licensing.md), [migration details](docs/detours4-migration.md) and [validation](evidence/2026-09-21-detours4-license/SESSION.md).
+Original project code now uses **GPL-3.0-or-later**, with third-party terms and artwork scope retained separately. The supported SDK/bridge build replaces Detours 3 with pinned MIT Detours 4.0.1. Release compilation and **10/10 HOST/FIXTURE CTest targets** pass; Debug SDK/base compilation and its SDK-wrapper test pass. Compiler/link input checks exclude the old dependency, and targeted/incremental builds reject stale SDK artifacts. Native gameplay with this rebuilt SDK is **NOT RUN**; earlier milestone evidence remains tied to its historical payload. That historical dependency migration preceded the separately reviewed M07/M08 source export. See [licensing](docs/licensing.md), [migration details](docs/detours4-migration.md) and [validation](evidence/2026-09-21-detours4-license/SESSION.md).
 
-The mod source and reviewed development evidence are hosted at https://github.com/raph559/SporeMP. The initial private publication retained the original local history; public preparation redacts personal identifiers across that history and omits historical desktop captures. Private originals remain archived separately. `origin` points to the public repository and local `main` tracks `origin/main`. A fresh incremental Release build and all 9 HOST/FIXTURE CTest targets passed before the initial publication; no new native gameplay acceptance is claimed. Public contributor guidance, issue/PR templates and Windows Python plus website CI checks are included. The current code still has the M07 and later limitations above. See `docs/repository.md`, `docs/public-evidence.md` and `evidence/2026-09-21-repository-publication/SESSION.md`.
+The mod source and reviewed development evidence are hosted at https://github.com/raph559/SporeMP. The initial private publication retained the original local history; public preparation redacts personal identifiers across that history and omits historical desktop captures. Private originals remain archived separately. `origin` points to the public repository and local `main` tracks `origin/main`. A fresh incremental Release build and all 9 HOST/FIXTURE CTest targets passed before the initial publication; no new native gameplay acceptance is claimed. Public contributor guidance, issue/PR templates and Windows Python plus website CI checks are included. This initial publication predates the M07/M08 completion now recorded above. See `docs/repository.md`, `docs/public-evidence.md` and `evidence/2026-09-21-repository-publication/SESSION.md`.
 
 ## Public presentation website — 2026-09-21
 
-The independent presentation website is published at https://raph559.github.io/sporemp-site/ with English by default and a complete French translation under `/fr/`. It contains a project overview, three dated development articles, selected launcher changes and a future-work roadmap. The EN / FR selector preserves article identity. Publication is automatic from the separate public website repository; only reviewed website sources and the original launcher illustration are included. The user-supplied Spore MP Leetchi fundraiser is configured for both languages. This website does not change native milestone status or announce a public multiplayer release. See `docs/website.md` and `evidence/2026-09-21-website/SESSION.md`.
+The independent presentation website is published at https://raph559.github.io/sporemp-site/ with English by default and a complete French translation under `/fr/`. It contains a project overview, five dated development articles, selected launcher changes and a future-work roadmap. The EN / FR selector preserves article identity. Publication is automatic from the separate public website repository; only reviewed website sources and the original launcher illustration are included. The user-supplied Spore MP Leetchi fundraiser is configured for both languages. This website does not change native milestone status or announce a public multiplayer release. See `docs/website.md` and `evidence/2026-09-21-website/SESSION.md`.
 
 The public website repository now uses English for documentation, default content, workflow labels, metadata and new URL paths. French translations live under `locales/fr/`; compatibility mappings preserve previously published French article paths and section fragments. Follow-up evidence: `evidence/2026-09-21-website/ENGLISH-REPOSITORY.md`.
+
+## M07 shared encounter verified — 2026-09-21
+
+**M07 is VERIFIED for the recorded original Creature fixture.** Native18 supplies the normal shared encounter and original retaliation against A. Native27/.45 supplies the complementary shared encounter with retaliation against B and completes contested feeding, fresh B reconnect with its original7-DNA result preserved, refusal of a late consumed-resource request, a real wrong-owner rejection and subsequent legitimate B jump/landing under actual25 ±5ms packet delay and1% sampled loss. Native28 then executes the declared original fresh-session scene reset under the same live filter, adopts new native baselines and completes B movement of at least1native unit plus jump/landing. The [acceptance decision](evidence/2026-09-21-m07-completion/acceptance.md) evaluates every G01–G09 gate and retains all failed attempts.
+
+Original-process initial, corpse and post-reconnect views were inspected. All owned games, supervisors, coordinators and recorders close; the packet filter is removed. The29 protected personal files and six disposable save trees remain unchanged. The .45 Release build and10/10 HOST/FIXTURE CTest targets pass; the subsequent Python observation correction passes41 focused tests. Full stage/campaign coverage, arbitrary life/model transitions, restart durability, Internet usability and headless operation remain outside this fixture qualification. **M08 followed this historical milestone; it is now complete within its recorded scope, with M09 next.** Changes remain in the private development checkout; this completion does not publish or release multiplayer.
+
+### Earlier M07 stopping points and investigations
+
+**Earlier stopping point, before the explicit resume:** Native20/.45 passes shared combat under actual packet impairment: A hits the common NPC once, B five times, the NPC hits B four times, and B receives the original 7 DNA. Its preserved pickup archive passes the unchanged strict evaluator, including exact food/beneficiary revisions on both clients and original consumed-corpse retirement. The live pickup check initially reads a shorter authority prefix than B's trace; reviewing that diagnostic mismatch consumes the reconnect margin. Fresh B is closed in the menu by the unchanged deadline before its baseline. The run observes 66,079 captured packets and 665 actual sampled drops, with 50 matching dropped-data retransmissions, balanced reinjections, no helper errors and verified filter cleanup. This is substantive impaired combat/pickup evidence, not a completed impaired reconnect or full M07.
+
+The harness now reads client traces before the authority trace and continues any failed final convergence check only to its original deadline; it never retries gameplay intentions or weakens exact revision matching. All 41 focused HOST tests pass. A single final automated attempt, native21, stops before gameplay because the actual visual-review marker arrives at authority age87.385s, after the frozen80s reset-jump admission guard. This orchestration failure is preserved; no further native retry or final reset is launched following the user's usage/time concern. The remaining native gates are the impaired result-preserving reconnect, consumed-resource late request and wrong-owner challenge with legitimate continuation, and the selected final fresh-session reset. Production remains .45; its build and all10 CTest targets passed before the final Python-only correction.
+
+Native18/.44 records three real hits from each owner against the same NPC, original retaliation against A, and one 7-DNA kill award to B. Both original feeding orders precede the first-feed call; A receives 481 positive nutrition transfers while the original feeding DNA amount is zero. Exact client source revisions, original pool return, both removals and unchanged owner balances qualify consumed-corpse retirement. Fresh B applies baseline 3, retains 7 DNA and one controlled actor, and overlaps the connected authority/A for 14.203 seconds before clean shutdown. The original pickup parser's false result and late-archive reconnect failure remain preserved alongside the separate corrected evaluations. The stricter same-fight target-switch driver remains inconclusive; the explicitly declared paired shared trials still require both owners to damage the same NPC in each trial and original retaliation against B in the next trial.
+
+The .44 supervisor distinguishes original simulation readiness from authenticated replica projection readiness; native18 records healthy app/projection progress while replica AI is deliberately suppressed. The full Release build and 10/10 HOST/FIXTURE targets pass. Native19 starts under the declared 25 ± 5 ms packet delay and 1% sampled-loss profile but closes before gameplay: a slow initial capture is immediately followed by three equal-tick updates, which the coordinator correctly rejects. All processes close cleanly, the packet filter is removed, and protected files remain unchanged. The next change fixes the publication schedule without relaxing receiver fences. This failed short run has no actual dropped packets and does not qualify impairment acceptance.
+
+The `.42` corpse-presentation correction passes the Release build and **10/10 HOST/FIXTURE targets** (13.25 seconds). Native14 actually projects the previously rejected dead=true/health0/combatant0 combination on both clients, retaining corpse animation in 60/60 later samples each. Original A death and revival also reach both clients with matching life/context samples and clean exits. Fresh Join and an accepted post-revival action are not run in that attempt; exact baby-model presentation remains limited by the recorded views. [Native14 lifecycle evidence](evidence/2026-09-21-m07-completion/native14-lifecycle.md).
+
+Native15 starts its fight after A has already lost health to hunger. A damages the NPC three times, then dies before B reaches attack range. Original simulation pauses during the death prompt; B's bounded approach expires during that pause and does not restart after revival. No B hit, pickup or reconnect is claimed. The separate replica `simulation_stalled` status is a supervisor diagnostic defect: client AI is deliberately suppressed while app updates and scene projection continue. A role-specific readiness correction and an earlier, bounded combat kickoff are the next increment. All native15 original processes close cleanly, with all 29 protected personal files and six disposable trees unchanged.
+
+Native11/.39 genuinely exercises the qualified inactive-herd factory fallback, but publication stops during the native interval with health zero and dead flag still false. Native12/.40 projects that interval and the later corpse correctly on both clients. Two original feeding orders overlap and A consumes food, but the loaded original first-feed DNA amount is zero; .40 wrongly requires a positive DNA increase to retain beneficiary metadata. Later, an unrelated initialized NPC returned to SPORE's retained pool stops publication. [Native11](evidence/2026-09-21-m07-completion/native11-combat.md), [native12](evidence/2026-09-21-m07-completion/native12-combat.md).
+
+Bridge .41 distinguishes an observed original reward call from an actual positive balance increase, preserving zero DNA while requiring separate positive native food/nutrition evidence. It also tracks the pinned original pool-cycle counter, retires scene/queued-command/beneficiary identities on the original pool return, and excludes only the qualified inactive pool signature. The Release build and all **10/10 HOST/FIXTURE targets pass** (13.37 seconds; 2,662 network assertions, 163 Python tests). [Pickup qualification](docs/m07-native-pickup.md), [pool lifetime qualification](docs/m07-native-pool.md).
+
+Native13's contested-food check passes: one first-feed call with zero DNA, 481 positive original nutrition callbacks, no losing-owner nutrition transfer, and exact source-tick food/beneficiary agreement on both clients. The original pool returns and consumed corpse removal continue without an authority error. The staged fight itself fails its target-switch gate: B's original AI resumes attacking after Stop and kills the NPC before A arrives. Later, native slot79 is reused with a new generation/species and native dead=true, health0, combatant state0. The client's stricter corpse-animation guard rejects that real combination; client A stops projecting it and fresh B fails its baseline. This preserves **G04's bounded pass and G05's failure**, not full M07 acceptance. The 270-second watchdog closes the correct original/fresh generations; all game, worker and recorder exits are clean and protected files remain unchanged.
+
+Completion work continues in [the current session](evidence/2026-09-21-m07-completion/SESSION.md). Native07/.36 exits the scene before combat; native08/.36 loses a client to a status-publication failure before combat. Native09/.37 repeats actual shared damage and isolates the missing-template condition to a present inactive herd with a matching profile candidate. Its full herd census completes; profile ownership and native creation still require qualification. The .37 supervisor publication correction passes actual Windows contention fixtures and the affected 3/3 HOST suite. All three attempts preserve protected save trees. No complete M07 encounter or packet-impaired acceptance is claimed.
+
+Native10/.38 records B's five hits and A's one hit on NPC79, three original NPC hits against B, and one original 7-DNA reward to B. Both clients apply the corpse animation once and retain it in all 72/220 subsequent counted corpse samples. Inspected exact-process recordings show the corpse and the corresponding player balances. A real wrong-owner request is rejected; B subsequently completes an original jump and landing. All processes close cleanly with protected saves unchanged. The source manifest's inherited 150-second bound was exceeded; the 180-second recording and approximately 305-second native trace discrepancy remains explicit. The existing-herd fallback was not exercised: an ASLR-sensitive guard disabled it while living templates supplied the new creatures. [Reviewed native10 report](evidence/2026-09-21-m07-completion/native10-combat.md).
+
+Bridge .39 corrects those loaded-address guards and adds the original corpse-eating order/callback, scoped first-feeding reward observation, and schema 4 flag/food/beneficiary projection. Native claim and consumption remain original SPORE behavior. Optional EatMeat property globals remain outside general progression qualification. [Pickup binding and evidence boundary](docs/m07-native-pickup.md). New native execution is still required for these changed bindings.
+
+The initial Bridge/NativeHost **0.0.31**, wire schema **2**, increment integrates the existing qualified M03 movement/attack/approach/engage paths with authenticated client intentions. The coordinator replaces untrusted client actor fields with authoritative state, checks the target's generation, rejects dead actors/targets and retains the NPC-only target policy. The authority initializes the existing B player/reward context and exports its observed DNA rather than a fabricated zero. This phase had HOST coverage only; the subsequent native attempts and current .35 state are recorded below.
+
+The retained M06 trace proves that owner A dies and revives on the same native noun. The scene adapter now retains that noun's identity and projects explicit health/dead scalars rather than requesting destruction of the client's own avatar. Pinned executable set/clear instructions and the SDK field layout are checked. This does not execute native death/revive handlers or qualify death animation/UI, real owned-actor destruction or B respawn progression. Post-respawn Join required the further native context correction verified in native04 below. See [life-state analysis](docs/m07-life-state.md).
+
+The .31 reviewed Release build and all **9 HOST/FIXTURE CTest targets pass** (12.16 seconds; 2,564 network assertions and 132 Python tests). These include dead-actor refusal, target-generation fencing, corpse late-join state, same-identity revival without balance addition, request-correlated refusal, native-evidence parser checks and bounded TLS proxy cleanup. The failed Python 3.14 proxy shutdown attempt and its correction remain in [the implementation report](evidence/2026-09-21-m07-encounter/SESSION.md). Full M07 acceptance is retained in [the native protocol](tests/engine/M07.md) and [encounter design](docs/m07-encounter.md).
+
+After explicit desktop authorization, three bounded original-game attempts ran in the previously verified distinct profiles. Native01 preserves owner A's dead noun and a fresh client adopts the dead baseline; that authority later exhausts the old 32 MiB trace budget. Native02/.32 raises the trace budget to 64 MiB without reducing sampling and observes original same-noun revival, then both clients reject NPC97's health10 against local maximum5. Native03/.33 diagnostics show the authority's NPC97 becoming adult (age1/max10) while clients retain age0/max5. Both clients also retain the wrong age for the revived player and the wrong Combatant state at death. These are retained failures, not complete respawn or presentation acceptance. All .32/.33 original games exit cleanly; all 29 personal files and six disposable Games/Creations trees remain unchanged.
+
+Bridge/NativeHost **0.0.34**, wire schema **3** (400 bytes), carries observed age, alpha status, Combatant state and native scale. The existing maximum-health check runs with that replicated context, preserving the local avatar flag. Original scale calculation contains randomness, so replicas use the authority's observed scale through the pinned original setter. Native04 closes the diagnosed scalar/scale lifecycle failure: original death and same-noun revival reach both clients; a fresh B applies the 33-entity post-respawn baseline before Connected and completes native move/jump. Exact matching source-tick comparisons total 722/622/121 across the two original clients and fresh B, with no differences in the reviewed life/context fields. All four original games close cleanly and protected saves remain unchanged. Full baby/adult model-resource regeneration and death/game-over presentation remain unqualified.
+
+Native05 then records both authenticated players damaging the same original NPC79: four A hits and two B hits reduce native health6 to0; one original lethal award changes A's DNA0 to7. The NPC retaliates against A; targeting B is not observed. Client A follows the health/death scalars and reward, but its recorded dead target remains visibly upright; B stops applying updates on `Native entity spawn failed`, before the terminal outcome. Full three-machine encounter agreement therefore fails. [Closed combat and visual evidence](evidence/2026-09-21-m07-encounter/native05-combat.md).
+
+Bridge **0.0.35** adds diagnostic-only spawn-result details. Native06 reproduces `missing_template` on both clients for newly active entity `12884901957`, generation34, species108668588, native69/herd1772. The full existing selector returns no eligible living native template and the factory is never called. The supplementary 4096-noun census is explicitly truncated; it is not exhaustive absence evidence. The next bounded investigation is an exact local herd/profile census and a qualified native creation path independent of an already living same-species animal. Existing model/death presentation, original NPC response to either owner, contested pickup, reward-preserving reconnect after combat, a real unauthorized client challenge and configured latency/loss remain open. A delay-only relay cannot qualify packet-loss testing. All final .35 BUILD/HOST tests pass (9/9, 12.44 seconds, 2,595 network assertions, 132 Python tests); all native06 games/workers close with exit0 and protected trees remain unchanged. [Verified .34 lifecycle boundary](evidence/2026-09-21-m07-encounter/native04-lifecycle.md).
+
+[Exact native06 spawn failure and next experiment](evidence/2026-09-21-m07-encounter/native06-spawn-blocker.md), [final source/payload and result manifest](evidence/2026-09-21-m07-encounter/native-verification.json), [complete M07 session record](evidence/2026-09-21-m07-encounter/SESSION.md). All test games, workers, coordinators and recorders are closed. The changes remain uncommitted on the private development branch; no publication was performed by this increment.
 
 ## M06 native networking acceptance
 
@@ -49,13 +210,13 @@ Retained .24 evidence supplies **3,826** matching avatar/DNA samples through **9
 
 Actual WGC footage shows original camera changes, ground movement, jumps/landings and selection UI. A separate .23 Off run has zero replica events and shows native starvation, death and normal nest respawn. Descriptive 60-second D3D9 samples have median/p99 **16.30250/17.53424 ms Off** and **16.26585/17.44923 ms Replica**, with no interval above 33.333 ms. Different actions/cameras and uncontrolled NPC timing prevent a general overhead claim. These timing samples predate .24 selection. Target-process audio capture is intact; listening feedback is pending.
 
-**M05 is VERIFIED for this fixture; M06 completion is recorded above and M07 is next.** This qualification does not admit charge/spit/projectile effects, full inventories/consumption, death/respawn snapshots or the complete campaign. The charge-impact cut is implemented but has no actual charge callback in the current fixture. Charm/no-attack timer probes are explicitly temporary field fixtures. Perceptual listening remains NOT RUN. Those capabilities require native evidence before their corresponding M07/M11–M15 feature acceptance; the full original plan is unchanged. The earlier working protocol's broader expansion checks are retained explicitly in the acceptance decision, not marked passed.
+**M05 is VERIFIED for this fixture. M06–M08 completion is recorded above; the following limits describe this historical M05 boundary.** This qualification does not admit charge/spit/projectile effects, full inventories/consumption, death/respawn snapshots or the complete campaign. The charge-impact cut is implemented but has no actual charge callback in the current fixture. Charm/no-attack timer probes are explicitly temporary field fixtures. Perceptual listening remains NOT RUN. Those capabilities require native evidence before their corresponding M07/M11–M15 feature acceptance; the full original plan is unchanged. The earlier working protocol's broader expansion checks are retained explicitly in the acceptance decision, not marked passed.
 
 The .29 Release build passes with zero warnings, followed by the affected replica HOST target. The full .28 CTest suite passes **8/8** in **6.05 seconds**. Replica fixtures contain **313 policy, 25 Win32/Detours ABI and 9 interior-branch checks**; retained actor/award/persistence ABI coverage is **34** checks. Five focused Python tests also pass. No HOST fixture executes SPORE. [Binding audit](docs/m05-mutation-audit.md), [design/coverage](docs/m05-replicas.md), [acceptance protocol](tests/engine/M05.md).
 
 ## Current player flow
 
-Launcher **0.1.9** adds a private invitation, authenticated Join/Rejoin and live connection status on Home, backed by bridge/NativeHost **0.0.30** and the real coordinator. Normal Play uses the existing account/saves and clears experimental networking/replica roles. Join uses that account's matching installed content and existing Creature fixture; arbitrary save/content transfer remains M08. Disposable accounts and the staging/ACL helper are development acceptance infrastructure, not a player account-switching flow. The following M04 launcher evidence is historical and keeps its original payload qualification.
+Launcher **0.1.10**, with bridge/NativeHost **0.0.50**, checks the canonical saved world and its companion files before Join and names a mismatch. Private invitations, authenticated Join/Rejoin and connection status remain available. Normal Play uses the existing account/saves and clears experimental networking/replica roles. Experimental Join requires the matching prepared Creature fixture. M08 creation sharing currently uses developer controls and locally approved native creations; it is not a normal-player campaign/editor flow. Disposable accounts, staging and ACL helpers remain development acceptance infrastructure. The following M04 launcher evidence is historical and keeps its original payload qualification.
 
 Launcher **0.1.8** is built at `build/launcher/Release/SporeMP.exe`, with matching release notes/CHANGELOG and zero build warnings/errors. Worker Start returns while the detached authority remains alive; worker selection survives status polling, and Stop stays attached to the selected generation. Submitted Start/Stop operations survive frontend closure under a bounded deadline. Real 0.1.7 Start, idle-launcher closure and normal Play were exercised; final 0.1.8 selection and both original-worker Stops were exercised. Closing during an active Start is separately HOST-tested. Prepared workers currently require an elevated developer operator, distinct OS profiles and unminimized windows on the signed-in rendered desktop. Normal Play uses the existing account/saves. Bridge **0.0.14** original load/save and checkpoint-bound A/B adoption now have native acceptance. All test games, supervisors, launchers and trace recorders are stopped. Details: [M04 acceptance session](evidence/2026-09-13-m04-acceptance/SESSION.md).
 
@@ -80,6 +241,8 @@ Open build/launcher/Release/SporeMP.exe and select **Play SPORE**. The launcher 
 Evidence: [session](evidence/2026-09-08-m01-native/SESSION.md), [native lifecycles (archived)](docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m01-native/native-lifecycles.json"), [guard results (archived)](docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m01-native/guard-results.json"), [completion (archived)](docs/public-evidence.md#historical-artifacts "Original path: evidence/2026-09-08-m01-native/completion.json").
 
 ## Scope and next milestone
+
+M08 is complete within the pinned Creature content/editor foundation. **M09 is next:** persist native checkpoints and immutable content versions, then verify restart, reconnect and interrupted-transaction recovery. The following M02–M04 details retain their original qualification boundaries.
 
 Qualification applies to the recorded local GOG GA 3.1.0.29 Win32 executable/content configuration. Executable SHA-256: dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37. SDK: cbf9206b9a823f0911cd9be0217104a49d72380b. Injector source: 26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9. Other builds and official clean-content equivalence remain unqualified.
 

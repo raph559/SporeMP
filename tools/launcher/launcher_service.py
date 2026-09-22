@@ -285,7 +285,11 @@ def native_join(game_root, invitation, progress=None):
     fixture = diag.no_reparse(Path(folders["shell_folders"]["appdata"]) / "Spore/Games/Game0/Satiria.spo")
     if not fixture.is_file():
         return {"error": "This experimental server requires the Satiria Creature world in your existing SPORE saves. No save was replaced.", "launched_processes": 0}, 32
-    fixture_sha256 = diag.fingerprint(fixture)["sha256"]
+    try:
+        world_identity = multiplayer.world_identity_fields(fixture.parents[2], diag.no_reparse)
+    except (OSError, ValueError) as error:
+        return {"error": str(error), "launched_processes": 0}, 32
+    fixture_sha256 = world_identity["world_satiria_sha256"]
     selected_display = display.resolve(load_settings().get("display"))
     payload = stage_player_payload()
     candidate_path = diag.no_reparse(REPO / "config/compatibility.candidate.json")
@@ -293,6 +297,7 @@ def native_join(game_root, invitation, progress=None):
     config.update(role="player", build_sha256=diag.fingerprint(payload / "mLibs/SporeMP.Bridge.dll")["sha256"],
                   executable_sha256=candidate["executable"]["sha256"],
                   content_sha256=diag.fingerprint(candidate_path)["sha256"], fixture_sha256=fixture_sha256)
+    config.update(world_identity)
     run_name = "join-" + uuid4().hex[:16]
     run_root = diag.no_reparse(REPO / "local/launcher/native-runs" / run_name)
     run_root.mkdir(parents=True)

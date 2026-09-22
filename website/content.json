@@ -1,6 +1,31 @@
 {
   "news": [
     {
+      "slug": "creations-without-interrupting-play",
+      "date": "2026-09-22",
+      "category": "Development",
+      "title": "Create while the world keeps moving.",
+      "summary": "Native creation sharing, part checks and safe editor commits reach the next experimental milestone.",
+      "paragraphs": [
+        "A newly saved creature can now travel between the original SPORE games used in our tests. The dedicated game checks its native parts and abilities, and the receiving game loads the same creation under its own local identity.",
+        "Editing was tested while another player continued moving and jumping. Cancelling a changed draft preserved the saved creature. A finished creation became a shared version only after the required checks succeeded; unfinished drafts stayed unpublished.",
+        "The tests also refused a missing part before importing the creation and caught a changed terrain record before opening the game. The received model and its original test-drive movement were inspected in SPORE.",
+        "This completes M08 within the recorded Creature test setup. Sharing still uses development tools and locally approved creations; it is not available as a public campaign feature. The next milestone is preserving progress and recovering safely after server restarts."
+      ]
+    },
+    {
+      "slug": "shared-encounter-verified",
+      "date": "2026-09-21",
+      "category": "Multiplayer",
+      "title": "One encounter. Shared results.",
+      "summary": "Combat, feeding and reconnecting now agree across a recorded original-game Creature encounter.",
+      "paragraphs": [
+        "The shared Creature scene has moved beyond movement tests. Two original game clients and a dedicated original-game worker completed a bounded encounter with combat, contested feeding and consistent results.",
+        "The session was challenged with delayed and dropped network packets. Reconnecting preserved the recorded result, while stale or wrong-owner updates were rejected. A fresh-session reset also returned to native movement and jumping.",
+        "M07 is verified for this specific Creature setup. It does not yet cover the full Creature campaign, all five stages or a public Internet-ready release. Native content and editor transactions are the next foundation."
+      ]
+    },
+    {
       "slug": "first-shared-scene",
       "date": "2026-09-15",
       "category": "Multiplayer",
@@ -39,6 +64,17 @@
   ],
   "releases": [
     {
+      "version": "0.1.10",
+      "date": "2026-09-22",
+      "title": "Clearer shared-world checks",
+      "changes": [
+        "Check the saved world and companion files before opening SPORE to join.",
+        "Name a missing or different world file so the mismatch can be identified.",
+        "Keep existing saves in place while checking that players and hosts use matching development builds."
+      ],
+      "note": "Development version. Creation sharing remains a developer test path; no public multiplayer download yet."
+    },
+    {
       "version": "0.1.9",
       "date": "2026-09-14",
       "title": "An invitation to join",
@@ -74,14 +110,14 @@
   ],
   "roadmap": [
     {
-      "title": "A complete shared encounter",
+      "title": "Keep progress through restarts",
       "status": "Up next",
-      "description": "Fight the same creature, keep damage and rewards consistent, then handle death, respawning and reconnecting."
+      "description": "M09: preserve native checkpoints and creation versions, reconnect safely and recover interrupted changes after a server restart."
     },
     {
-      "title": "A universe that remembers",
+      "title": "Explore apart. Meet again.",
       "status": "Planned",
-      "description": "Share creations, preserve progress after a restart and let players explore separately before meeting again."
+      "description": "Connect separately simulated locations in one canonical universe, with safe transfers and shared consequences."
     },
     {
       "title": "From Cell to Space",

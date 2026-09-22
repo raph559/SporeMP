@@ -2,11 +2,122 @@
 
 Historical raw inputs are privately archived; normal builds and automated HOST tests do not need them. Current reusable analyzers live under `tools/native/`, accept explicit archive inputs and must not treat missing private records as a passing check. Publish only reports listed in `docs/public-evidence-files.txt`; run `python tools/check-public-evidence.py` after staging the intended changes. See the [evidence index](../evidence/README.md) and [archive policy](public-evidence.md#historical-artifacts).
 
+## Current public source verification — 2026-09-22
+
+The reviewed M07/M08 export builds with this checkout's preserved Detours 4 SDK
+migration. Release build exits0; **15/15 CTest targets pass in 35.40 seconds**,
+including 268 Python tests, 54 launcher assertions, 190 content-registry checks,
+937 content transport/TLS checks and 2,963 network checks. The extra SDK wrapper
+target explains the difference from the frozen native development build's 14
+targets. Run the normal Release build and full CTest commands below; neither starts
+SPORE. Original-game execution with the rebuilt public SDK is **NOT RUN**.
+[Public build identities and export review](../evidence/2026-09-22-m08-publication/SESSION.md).
+
 ## SDK Detours 4 build qualification — 2026-09-21
 
 The supported build replaces the SDK's old Detours 3 dependency with pinned MIT Detours 4.0.1. Run `pwsh -NoProfile -File tools/build/build.ps1 -Configuration Release -FetchDependencies` before building bridge/native-host targets; direct CMake builds reject missing or stale SDK provenance. The Release build and all **10/10 HOST/FIXTURE CTest targets pass**, including the actual SDK wrapper hook test and 122 Python tests. The Debug SDK/base build and its focused SDK wrapper test also pass. These are BUILD/HOST results, not original-game acceptance of the changed SDK DLL. Historical native results still refer to their recorded payloads. See [migration details](detours4-migration.md) and [the reviewed session](../evidence/2026-09-21-detours4-license/SESSION.md).
 
 The full acceptance text for M00–M20 is retained in `../MILESTONES.md`. Every milestone records its objective, dependencies, changed modules, commands, expected/observed outcomes, evidence, unresolved issues and next step. Current M01 observations and user acceptance are in ../evidence/2026-09-08-m01-native/SESSION.md. Do not repeat completed tests without a relevant change, failure or unresolved concern.
+
+## M08 completion — current verification
+
+Bridge/NativeHost **0.0.50**, launcher **0.1.10**, network schema **7**, config
+schema **2**. Final Release build exits0. Full CTest passes **14/14 in 32.77s**,
+including 244 Python tooling tests, 190 registry checks, 937 content transport/TLS
+checks and 2,963 existing network checks. Six executable/private-pipe/TLS smoke
+checks also pass. These checks launch no game:
+
+```powershell
+pwsh -NoProfile -File tools/build/build.ps1 -Configuration Release
+ctest --test-dir build/win32 -C Release --output-on-failure -V
+```
+
+Separately authorized native01–11 establish the bounded M08 foundation. The final
+.49/.50 increment seals ten healthy original-process traces with clean exits,
+matching original content and continued gameplay, precise dependency refusal,
+commit/cancel and canonical terrain evidence. Personal/world hashes pass. The
+actual-profile terrain mismatch is a HOST prelaunch refusal, not a new game run.
+[Acceptance, exact commands, failures and limitations](../evidence/2026-09-22-m08-completion/SESSION.md).
+The sections below are historical increments, not the current milestone status.
+
+## M08 native creation and inspection follow-up
+
+The authorized .46 native creation/import sequence now runs in two separate
+disposable profiles. Original loader calls copy matching **23 rigblocks/47
+capability entries**; original editor/test-drive views, changed-draft cancellation
+and a home terrain-key observation are recorded. Four clean process exits, healthy
+closed traces and unchanged personal/world files pass. This does not complete M08's
+dependency, terrain synchronization or multiplayer editor transaction gates.
+[Native session and commands](../evidence/2026-09-22-m08-native-creation/SESSION.md).
+
+The Python driver now admits a logical CRT backed by BEM only with a matching
+healthy closed native save witness. **19 focused tests** and **223 tooling tests**
+pass, exit 0; the affected CTest target takes **6.72 seconds**. Commands:
+
+```powershell
+python -m unittest discover -s tests/unit -p test_m08_content_probe.py -v
+ctest --test-dir build/win32 -C Release -R tooling_unit --output-on-failure -V
+```
+
+Native artifacts are unchanged from the prior complete .46 build and 12/12 suite.
+The fixture's BEM save and CRT import have different bytes/local keys; matching
+copied native scalars does not assert full byte or gameplay equivalence.
+
+## M08 admission and inspection increment — pre-native boundary
+
+Bridge/NativeHost **0.0.46** and launcher **0.1.10** use network schema **5** and
+session config schema **2**. The final integrated Release build passes; all **12/12
+HOST/FIXTURE targets** pass in **26.93 seconds**, including **219 tooling tests**.
+Network coverage is **2,963 assertions**; worker coverage is **280 assertions**;
+the content ABI fixture has **18 checks** and the passive editor decoder has
+**26 checks**. The earlier full suite passed 11/11 before adding that decoder target;
+the affected loading-guard/driver rerun passed 3/3. These
+commands never launch SPORE:
+
+```powershell
+pwsh -NoProfile -File tools/build/build.ps1 -Configuration Release
+ctest --test-dir build/win32 -C Release --output-on-failure -V
+ctest --test-dir build/win32 -C Release -R 'worker_host|native_content_abi_host|tooling_unit' --output-on-failure -V
+```
+
+The separate coordinator CLI test verifies exact changed-world-file and legacy
+config refusals. C++ and Python readers agree on the six files in each closed
+prepared profile. The native inspection driver has **15 focused HOST tests**;
+its actual original-game loader call is **NOT RUN**. Original editor creation,
+clean second-profile loading, native behavior, exact dependency readiness,
+generated-terrain correlation and editor transactions remain required.
+[Session and identities](../evidence/2026-09-22-m08-admission-inspection/SESSION.md),
+[world contract](m08-world-identity.md), [native probe](m08-native-content-probe.md).
+
+## M08 offline content foundation
+
+Current second-increment results: **32 focused content tests and 202 tooling tests**,
+both exit 0 using the same commands below. `compare-trees` adds exact closed-copy file
+and archive-resource differences, with bounded input and source/output protection.
+Whole disposable-profile baselines pass inspection; new editor/import gameplay is
+NOT RUN. The four-entry static audit is not native ABI acceptance.
+[Current session and reproduction](../evidence/2026-09-21-m08-content-foundation/editor-preparation.md).
+
+The first M08 increment changes Python tooling and documentation only. Run `python -m unittest discover -s tests/unit -p test_spore_content.py -v`, then `ctest --test-dir build/win32 -C Release -R tooling_unit --output-on-failure -V`. Final results are **23/23 focused tests** on Python 3.11.15 and **193/193 tooling tests** on the CTest-configured Python 3.14.3, both exit 0. The initial full-suite failure exposed different Windows `ctime` semantics in handle/path queries; compare `ctime` only across handle queries while preserving path identity/size/mtime checks. The regression is covered and the failed log retained.
+
+The offline inspector also read six closed original-game archives, decoded 108 compressed records, and verified private quarantine/reuse with unchanged source hashes. Those are HOST operations on historical native-produced bytes. No new C++ build, game launch, native import, editor transaction or M08 native acceptance is claimed. [Content contract and limits](m08-content.md), [M08 gate map](../tests/engine/M08.md), [exact session/results](../evidence/2026-09-21-m08-content-foundation/SESSION.md). The complete M00–M20 plan remains unchanged.
+
+## M07 build and native evidence
+
+The M07-qualified bridge/NativeHost version is **0.0.45**, with wire schema4. The Release build and **10/10 HOST/FIXTURE CTest targets** pass, exit0, in **23.82 seconds**, including 2,670 network assertions. The subsequent Python-only pickup observation correction passes41 focused HOST tests. These commands do not launch SPORE. Native results and the current acceptance decision are tracked separately in [the M07 protocol](../tests/engine/M07.md) and [completion session](../evidence/2026-09-21-m07-completion/SESSION.md). Native18 supplies the normal encounter/consumption/reconnect evidence; later runs retain their own exact artifact and helper hashes.
+
+The following .34/.35 results record the initial integration boundary, before the later native pickup, pool, presentation, supervisor-readiness and capture-cadence changes.
+
+Bridge/NativeHost 0.0.34 uses network wire schema 3 (400 bytes). The .31 foundation adds native attack/approach/engage routing, target-generation validation, authority B reward bootstrap and explicit native life-state scalars. After .31–.33 native lifecycle investigations, .34 adds observed age/alpha/Combatant context and native scale while retaining the effective-health limit. The current Release build and 9/9 CTest targets pass in 12.40 seconds, including 2,595 network assertions and 132 Python tests; these are BUILD/HOST/FIXTURE evidence only. Current implementation boundaries and every original native acceptance requirement are retained in [M07.md](../tests/engine/M07.md), [encounter design](m07-encounter.md), [native action audit](m07-native-encounter-audit.md) and [death-state analysis](m07-life-state.md).
+
+The historical **0.0.35** build adds diagnostic-only dynamic-spawn result/template/factory records, retaining schema 3 and all selection/rejection behavior. Its final Release build exits0 and all **9/9 CTest targets pass in 12.44 seconds**, with the same 2,595 network assertions and 132 Python tests. Native04/.34 verifies the bounded context/scale lifecycle and fresh Join; native05/.34 records shared damage and one original reward but fails complete client agreement; native06/.35 classifies the newly active species failure as `missing_template`. Full M07 was IN_PROGRESS at that boundary.
+
+```powershell
+cmake --build build/win32 --config Release --parallel 4
+ctest --test-dir build/win32 -C Release --output-on-failure -V
+```
+
+Neither command launches SPORE. Exact commands/exits, including the failed Python 3.14 proxy shutdown attempt and final correction, are recorded under ignored `local/m07-encounter-2026-09-21/`; the reviewed [initial session report](../evidence/2026-09-21-m07-encounter/SESSION.md) and [initial verification manifest](../evidence/2026-09-21-m07-encounter/verification.json) retain .31 results and identities. Historical .32–.34 build/test logs and frozen payloads are under ignored `local/m07-native-2026-09-21/`; subsequent completion artifacts remain under ignored `local/m07-completion-2026-09-21/`. Desktop authorization and refreshed save/profile checks permitted the original-game runs; [the reviewed lifecycle report](../evidence/2026-09-21-m07-encounter/native-lifecycle.md) retains the initial successes and failures. Every new native attempt still needs matching frozen payloads and inspected process-specific captures. Do not infer native gameplay acceptance from a successful build. The pickup binding's later native qualification is described in [the pickup document](m07-native-pickup.md). A delay-only TCP proxy cannot certify packet-loss testing; the separate [packet filter](m07-packet-impairment.md) records actual scoped capture, loss and reinjection decisions.
 
 ## M05 verified Creature fixture
 

@@ -1,0 +1,182 @@
+{
+  "evidence_class": "NATIVE_SETUP_FAILURE_AND_HOST_MEDIA_IO",
+  "bridge_version": "0.0.43",
+  "wire_schema": 4,
+  "full_m07": "NOT_VERIFIED",
+  "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "original_source_manifest_sha256": "73ca582314a33238adc94fd4771cf839cd05eaf3bec0955abe90e65691d8f0c0",
+  "payload_sha256": {
+    "build/injector/Release/ModAPI.DLLInjector.dll": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b",
+    "build/sdk/Release/SporeModAPI.dll": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d",
+    "build/win32/Release/SporeMP.Bridge.dll": "cc7b0818bbea7979e780e06bcc9e858b07cf1d0e9fa14e1b466402718843595e",
+    "build/win32/Release/SporeMP.Coordinator.exe": "bd5ae6396a1aa123cf5702392a9b8476ef80d8617872d3b578fa948ac63d1405",
+    "build/win32/Release/SporeMP.NativeHost.exe": "404eef55029aba7e9cc62f293dbb6c7dec0b68d3976ed9f5adde2d2d74bab4ff",
+    "build/win32/Release/SporeMP.WorkerControl.exe": "b7e5ea6c71e1c6bcf1c3cc4c4eb3c3e1a1f3e7a428a1733a362beab985885693"
+  },
+  "build_exit": 0,
+  "ctest": {
+    "tests": 10,
+    "failed": 0,
+    "exit_code": 0,
+    "real_seconds": 21.34
+  },
+  "start_order": [
+    "02",
+    "03",
+    "01"
+  ],
+  "first_started_utc": "2026-09-21T10:35:50.2817628Z",
+  "authority_started_utc": "2026-09-21T10:35:54.1742602Z",
+  "failure": {
+    "phase": "first live media frame extraction",
+    "error": "EBML header parsing failed",
+    "ffmpeg_exit": 3199971767,
+    "native_action_submitted": false,
+    "review_marker_created": false
+  },
+  "workers": {
+    "01": {
+      "game_pid": 4992,
+      "original_trace_sha256": "b1c87a10280ad79fe7e383ce355990333bb20b70d77c919308a5a3816183d451",
+      "bytes": 1163452,
+      "events": 1760,
+      "trace_stop": true,
+      "healthy": true,
+      "network_intentions": 0,
+      "command_begin": 0,
+      "network_errors": 0,
+      "trace_limits": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-21T10:36:34.912Z",
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-21T10:36:34.912Z",
+          "exit_code": 0,
+          "requested": true
+        }
+      ]
+    },
+    "02": {
+      "game_pid": 32808,
+      "original_trace_sha256": "4c2946daa4dff1a91d70434b02df909ad17d213ab36ba6324d23bea16f8be4c0",
+      "bytes": 574646,
+      "events": 855,
+      "trace_stop": true,
+      "healthy": true,
+      "network_intentions": 0,
+      "command_begin": 0,
+      "network_errors": 0,
+      "trace_limits": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-21T10:36:34.700Z",
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-21T10:36:34.700Z",
+          "exit_code": 0,
+          "requested": true
+        }
+      ]
+    },
+    "03": {
+      "game_pid": 30480,
+      "original_trace_sha256": "1348a83170573cc73ba1c919ac021c38fddd18e020d4d78c7dd4c58e6b16aa8a",
+      "bytes": 540816,
+      "events": 794,
+      "trace_stop": true,
+      "healthy": true,
+      "network_intentions": 0,
+      "command_begin": 0,
+      "network_errors": 0,
+      "trace_limits": 0,
+      "exits": [
+        {
+          "event": "game_exited",
+          "utc": "2026-09-21T10:36:34.612Z",
+          "exit_code": 0
+        },
+        {
+          "event": "worker_exited",
+          "utc": "2026-09-21T10:36:34.612Z",
+          "exit_code": 0,
+          "requested": true
+        }
+      ]
+    }
+  },
+  "capture_completions": {
+    "authority": {
+      "schema_version": 1,
+      "utc": "2026-09-21T10:36:34.8787940Z",
+      "recorder_pid": 35660,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "visual_acceptance": "NOT_VERIFIED: inspect previews throughout the clip, including transitions",
+      "native_frame_timing": "NOT_MEASURED"
+    },
+    "client-a": {
+      "schema_version": 1,
+      "utc": "2026-09-21T10:36:34.6824797Z",
+      "recorder_pid": 13772,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "visual_acceptance": "NOT_VERIFIED: inspect previews throughout the clip, including transitions",
+      "native_frame_timing": "NOT_MEASURED"
+    },
+    "client-b": {
+      "schema_version": 1,
+      "utc": "2026-09-21T10:36:34.5880451Z",
+      "recorder_pid": 4308,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "visual_acceptance": "NOT_VERIFIED: inspect previews throughout the clip, including transitions",
+      "native_frame_timing": "NOT_MEASURED"
+    }
+  },
+  "personal_files_unchanged": 29,
+  "fixture_trees_unchanged": 6,
+  "watchdog": {
+    "run": "native16",
+    "first_successful_start_utc": "2026-09-21T10:35:50.281762+00:00",
+    "shutdown_request_after_seconds": 390,
+    "maximum_target_seconds": 420,
+    "actions": [],
+    "outcome": "root_completed_before_deadline",
+    "utc": "2026-09-21T10:37:24.457021+00:00"
+  },
+  "capture_fix_host_only": {
+    "evidence_class": "HOST_SYNTHETIC_MEDIA_IO_ONLY",
+    "test_duration_seconds": 6,
+    "read_after_seconds": 2.3,
+    "default_live_bytes": 0,
+    "modified_live_bytes": 4478,
+    "modified_read_exit": 0,
+    "modified_png_created": true,
+    "writer_exits": [
+      0,
+      0
+    ],
+    "container_options": [
+      "-flush_packets",
+      "1",
+      "-cluster_time_limit",
+      "1000"
+    ],
+    "unchanged_encoded_stream_sha256": "e1bd2a6bd3bef9b13ad8d81cfbb75b825d6157ec935748a9f15c7a100e9b1062",
+    "encoded_streams_identical": true,
+    "original_host_report_sha256": "0205e456eb4d3573e54fe4011616dbac9eaec66a4caad4d1dbca944d78a60d7b"
+  },
+  "limits": [
+    "No combat, pickup, reconnect, death/respawn or transport-impairment gate exercised",
+    "No inspected gameplay acceptance claimed for the short setup recordings",
+    "HOST synthetic media proves early decode and unchanged encoded bytes, not original-game acceptance"
+  ]
+}

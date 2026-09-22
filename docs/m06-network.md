@@ -1,5 +1,7 @@
 # M06 Windows transport and session implementation
 
+M07 development update (2026-09-21): bridge 0.0.34 uses wire schema **3** and a **400-byte** frame. Target generation occupies bytes 368–375 and native life state (0 alive, 1 dead) bytes 376–379. Bytes 380, 381 and 382 carry native age (0/1), alpha status (0/1) and Combatant state (0/2); byte 383 remains zero. Bytes 384–387 carry the observed native scale as an IEEE-754 float; bytes 388–399 remain zero. Nonfinite, nonpositive or scale values above 1000 are unsupported. Prior lengths/schemas are rejected. Local configuration-file schema remains 1. Targeted intentions require an ID and generation for a living NPC; dead controlled actors cannot submit gameplay intentions. The coordinator forwards its authoritative actor fields rather than client-provided native IDs/vitals. The local avatar flag is never copied from the source. [M07 implementation and pending native acceptance](m07-encounter.md). Historical M06 evidence and packet table below remain tied to 0.0.30/schema 1; .31–.33 used schema 2/384 bytes.
+
 This is the engine-independent M06 transport/coordinator implementation. Its HOST tests execute real Windows TLS and TCP and separate coordinator/client probe processes. They do not run SPORE and do not establish native scene acceptance. The native integration and milestone decision are recorded separately in `evidence/2026-09-14-m06-network/SESSION.md`.
 
 ## Transport and authentication

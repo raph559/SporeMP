@@ -1,0 +1,790 @@
+{
+  "schema_version": 1,
+  "evidence_class": "REVIEWED_NATIVE_NETWORK_REAL_WITH_HOST_TRACE_REPLAY",
+  "run": "native18",
+  "bridge_version": "0.0.44",
+  "wire_schema": 4,
+  "full_m07": "NOT_VERIFIED",
+  "milestone_status": "IN_PROGRESS",
+  "privacy": "Reviewed scalar export; original hashes identify privately retained bytes. No raw trace, account, process, window, save or recording data is published.",
+  "executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "host_review": {
+    "os": "Microsoft Windows 11 Pro",
+    "os_version": "10.0.26200",
+    "cpu": "AMD Ryzen 7 9700X 8-Core Processor",
+    "physical_gpu": "NVIDIA GeForce RTX 4080 SUPER",
+    "ram_bytes": 33407430656,
+    "context": "Same desktop host inspected during this evidence review; original execution requires rendered isolated Windows profiles."
+  },
+  "original_source_manifest_sha256": "19bc329284670321c99292947226294ff3ccb0468dd53cfea2869ad2339cad63",
+  "payload_sha256": {
+    "ModAPI.DLLInjector.dll": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b",
+    "SporeModAPI.dll": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d",
+    "SporeMP.Bridge.dll": "3bc3a5bea1c65b383f730237bf85d2d92a94849134db4420ee896e0a596916d4",
+    "SporeMP.Coordinator.exe": "bd5ae6396a1aa123cf5702392a9b8476ef80d8617872d3b578fa948ac63d1405",
+    "SporeMP.NativeHost.exe": "87e72a6b9a6a8a07f328a912ab0ee88c57a32b909e08533c3bc7f333d040e073",
+    "SporeMP.WorkerControl.exe": "29aca02206542735b829ce6a59ddb49440615b429b75012c2352059ffb2f365c"
+  },
+  "build_and_host": {
+    "full_ctest_passed": 10,
+    "full_ctest_total": 10,
+    "full_ctest_seconds": 23.73,
+    "full_ctest_exit": 0,
+    "harness_tests_passed": 39,
+    "harness_tests_seconds": 0.031,
+    "root_repeat_seconds": 0.028,
+    "harness_tests_exit": 0,
+    "independent_terminal_negative_fixtures": 5,
+    "native_acceptance_is_separate": true
+  },
+  "live_readiness": {
+    "observed_utc": "2026-09-21T10:52:58.5486206Z",
+    "all_launch_identities_and_live_processes_checked": true,
+    "roles": [
+      {
+        "role": "authority",
+        "observed_utc": "2026-09-21T10:52:58.5406879Z",
+        "original_status_sha256": "0522462410c63a4555ec4d17c15c7222f64b86d489c1e2b6226c57786b2022e0",
+        "status_file_age_ms": 172.5612,
+        "state": "ready",
+        "epoch": 3,
+        "phase": 3,
+        "app_updates": 2440,
+        "native_ai_entries": 26860,
+        "heartbeat_age_ms": 203,
+        "app_progress_age_ms": 203,
+        "native_progress_age_ms": 203,
+        "progress_role": "native_simulation",
+        "projection_state": 0,
+        "projection_baseline": 0,
+        "projection_status_age_ms": 0
+      },
+      {
+        "role": "client_A",
+        "observed_utc": "2026-09-21T10:52:58.5464072Z",
+        "original_status_sha256": "5d18c5eb1cabc687ae01d62a43c74f3545d6316fb0963566f4c2d7c627c73f20",
+        "status_file_age_ms": 25.6616,
+        "state": "ready",
+        "epoch": 3,
+        "phase": 3,
+        "app_updates": 2347,
+        "native_ai_entries": 5179,
+        "heartbeat_age_ms": 47,
+        "app_progress_age_ms": 47,
+        "native_progress_age_ms": 13469,
+        "progress_role": "network_replica",
+        "projection_state": 2,
+        "projection_baseline": 1,
+        "projection_status_age_ms": 47
+      },
+      {
+        "role": "client_B",
+        "observed_utc": "2026-09-21T10:52:58.5476624Z",
+        "original_status_sha256": "81c306ef2e3ab2253b1dd619713f9f8d194f3f1e1f3d55396434afc177e6fdae",
+        "status_file_age_ms": 931.649,
+        "state": "ready",
+        "epoch": 3,
+        "phase": 3,
+        "app_updates": 2248,
+        "native_ai_entries": 3595,
+        "heartbeat_age_ms": 94,
+        "app_progress_age_ms": 94,
+        "native_progress_age_ms": 12406,
+        "progress_role": "network_replica",
+        "projection_state": 2,
+        "projection_baseline": 2,
+        "projection_status_age_ms": 94
+      }
+    ]
+  },
+  "combat": {
+    "target_entity": 12884901967,
+    "target_generation": 7,
+    "target_native_id": 79,
+    "owner_health_decreases": {
+      "1": [
+        {
+          "native_call": 2690,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 6,
+          "after_health": 5,
+          "health_decrease": 1,
+          "enter_sequence": 13188,
+          "return_sequence": 13193
+        },
+        {
+          "native_call": 2820,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 5,
+          "after_health": 4,
+          "health_decrease": 1,
+          "enter_sequence": 13709,
+          "return_sequence": 13714
+        },
+        {
+          "native_call": 2975,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 4,
+          "after_health": 3,
+          "health_decrease": 1,
+          "enter_sequence": 14364,
+          "return_sequence": 14369
+        }
+      ],
+      "2": [
+        {
+          "native_call": 3435,
+          "attacker_actor": 2,
+          "receiver_actor": 3,
+          "before_health": 3,
+          "after_health": 2,
+          "health_decrease": 1,
+          "enter_sequence": 16554,
+          "return_sequence": 16561
+        },
+        {
+          "native_call": 3558,
+          "attacker_actor": 2,
+          "receiver_actor": 3,
+          "before_health": 2,
+          "after_health": 1,
+          "health_decrease": 1,
+          "enter_sequence": 17136,
+          "return_sequence": 17143
+        },
+        {
+          "native_call": 3702,
+          "attacker_actor": 2,
+          "receiver_actor": 3,
+          "before_health": 1,
+          "after_health": 0,
+          "health_decrease": 1,
+          "enter_sequence": 17809,
+          "return_sequence": 17820
+        }
+      ]
+    },
+    "npc_retaliation_health_decreases_A": [
+      {
+        "native_call": 2761,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 6.39565468,
+        "after_health": 5.89565468,
+        "health_decrease": 0.5,
+        "enter_sequence": 13436,
+        "return_sequence": 13441
+      },
+      {
+        "native_call": 2926,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 5.80598783,
+        "after_health": 5.30598783,
+        "health_decrease": 0.5,
+        "enter_sequence": 14116,
+        "return_sequence": 14121
+      },
+      {
+        "native_call": 3063,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 5.22787285,
+        "after_health": 4.72787285,
+        "health_decrease": 0.5,
+        "enter_sequence": 14716,
+        "return_sequence": 14721
+      },
+      {
+        "native_call": 3169,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 4.64705753,
+        "after_health": 4.14705753,
+        "health_decrease": 0.5,
+        "enter_sequence": 15276,
+        "return_sequence": 15281
+      },
+      {
+        "native_call": 3401,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 3.96283388,
+        "after_health": 3.46283388,
+        "health_decrease": 0.5,
+        "enter_sequence": 16366,
+        "return_sequence": 16371
+      },
+      {
+        "native_call": 3526,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 3.37264252,
+        "after_health": 2.87264252,
+        "health_decrease": 0.5,
+        "enter_sequence": 17008,
+        "return_sequence": 17013
+      },
+      {
+        "native_call": 3648,
+        "attacker_actor": 3,
+        "receiver_actor": 1,
+        "before_health": 2.77985239,
+        "after_health": 2.27985239,
+        "health_decrease": 0.5,
+        "enter_sequence": 17581,
+        "return_sequence": 17586
+      }
+    ],
+    "npc_retaliation_health_decreases_B": [],
+    "strict_staged_result": "INCONCLUSIVE",
+    "strict_staged_error": "NPC died before target-switch qualification",
+    "strict_staged_elapsed_seconds": 24.312000000005355,
+    "same_dead_target_all_three": true,
+    "all_owned_alive": true,
+    "original_B_reward": {
+      "event": "native_owned_reward_applied",
+      "sequence": 17818,
+      "owner": 2,
+      "actor": 2,
+      "amount": 7,
+      "dna_before": 0,
+      "dna_after": 7,
+      "goal_before": 0,
+      "goal_after": 7,
+      "awards": 1
+    }
+  },
+  "pickup": {
+    "original_frozen_live_verdict": false,
+    "original_frozen_gaps": [
+      "Exact source-revision corpse flag/food/owner readbacks for both clients and controlled native DNA are missing",
+      "The selected corpse incarnation is absent from the current native scene on 01, 02, 03; consumption/removal cannot be treated as a projected corpse baseline",
+      "Baseline-to-final owner balances do not isolate the single original first-feed grant"
+    ],
+    "independent_terminal_verdict": true,
+    "independent_checks": {
+      "live_report_and_archives_preserved": true,
+      "two_native_orders_before_first_feed": true,
+      "exactly_one_original_first_feed_and_return": true,
+      "positive_claimed_food_nutrition_without_loser_transfer": true,
+      "untouched_dead_native_baseline_all_three": true,
+      "both_exact_source_revision_food_owner_readbacks": true,
+      "dna_readbacks_after_native_feed": true,
+      "finite_healthy_connected_pickup_observation": true,
+      "unique_unchanged_owned_entities": true,
+      "exact_original_owner_balance_delta": true,
+      "current_controlled_native_dna_matches": true,
+      "winning_feed_attributable_to_current_submitted_order": true,
+      "single_native_pool_retirement_then_despawn": true,
+      "depletion_observed_before_original_pool_return": true,
+      "both_native_removals_after_their_exact_projections": true,
+      "consumed_incarnation_absent_all_three": true,
+      "coordinator_received_consumed_incarnation_despawn": true
+    },
+    "production_replay": {
+      "bounded_contested_pickup_observed": true,
+      "native_pickup_evidence_ready": true,
+      "winner": 1,
+      "native_dna_zero_amount": true,
+      "positive_native_food_consumption_observed": true,
+      "single_owner_balance_delta_matches": true,
+      "pickup_projection_outcome": "retired_after_projection",
+      "corpse_currently_projected_on_all_three": false,
+      "observed_gaps": []
+    },
+    "positive_claimed_nutrition_transfers": 481,
+    "losing_owner_transfers": 0,
+    "orders": [
+      {
+        "sequence": 26427,
+        "actor": 1,
+        "owner": 1,
+        "ordered": true
+      },
+      {
+        "sequence": 26397,
+        "actor": 2,
+        "owner": 2,
+        "ordered": true
+      }
+    ],
+    "first_feed_transition": {
+      "scope": 4277,
+      "enter_sequence": 26638,
+      "readback_sequence": 26641,
+      "observed_sequence": 26642,
+      "return_sequence": 26643,
+      "food_before": 100,
+      "food_after": 100,
+      "hunger_before": 0,
+      "hunger_after": 0
+    },
+    "original_first_feed_dna": {
+      "enter_sequence": 26639,
+      "return_sequence": 26640,
+      "before": 0,
+      "amount": 0,
+      "after": 0
+    },
+    "first_positive_nutrition_transfer": {
+      "scope": 4280,
+      "actor": 1,
+      "owner": 1,
+      "enter_sequence": 26647,
+      "return_sequence": 26653,
+      "food_used": 0.23999790000000587,
+      "hunger_gain": 0.24000001,
+      "health_gain": 0.027999999999999803,
+      "claim_verified": true,
+      "fed_on_after": true
+    },
+    "exact_revision_pairs": {
+      "02": {
+        "source_tick": 77025890,
+        "source_sequence": 30027,
+        "client_sequence": 8515,
+        "source_event": "scene_native_pickup_state_published",
+        "client_event": "scene_native_replica_sample",
+        "fed_on": 1,
+        "food": -33.1247902,
+        "pickup_owner": 1,
+        "native_source_food": -33.1247902,
+        "native_client_food": -33.1247902
+      },
+      "03": {
+        "source_tick": 77025812,
+        "source_sequence": 30017,
+        "client_sequence": 8359,
+        "source_event": "scene_native_pickup_state_published",
+        "client_event": "scene_native_replica_sample",
+        "fed_on": 1,
+        "food": -33.1247902,
+        "pickup_owner": 1,
+        "native_source_food": -33.1247902,
+        "native_client_food": -33.1247902
+      }
+    },
+    "retirement": {
+      "entity": 12884901967,
+      "generation": 7,
+      "native_id": 79,
+      "source_pool_sequence": 30106,
+      "counter_before": 0,
+      "counter_after": 1,
+      "enabled": false,
+      "herd_present": false,
+      "grant_retirement_sequence": 30107,
+      "grant_owner": 1,
+      "source_despawn_sequence": 30111,
+      "client_A_removal_sequence": 8551,
+      "client_B_removal_sequence": 8404,
+      "coordinator_despawn": [
+        {
+          "time_ms": 77026468,
+          "connection": 3,
+          "event": 1,
+          "kind": 9,
+          "sequence": 77073,
+          "scene": 3,
+          "baseline": 1,
+          "player": 0,
+          "entity": 12884901967,
+          "generation": 7,
+          "tick": 77026468,
+          "outbound": false,
+          "request": 0,
+          "target": 0,
+          "target_generation": 0,
+          "verb": 3,
+          "life_state": 1,
+          "error": "none",
+          "detail": ""
+        }
+      ]
+    },
+    "fresh_current_published_owner_balances": {
+      "01": {
+        "1": {
+          "entity": 12884902120,
+          "generation": 30,
+          "dna": 0
+        },
+        "2": {
+          "entity": 12884911489,
+          "generation": 33,
+          "dna": 7
+        }
+      },
+      "02": {
+        "1": {
+          "entity": 12884902120,
+          "generation": 30,
+          "dna": 0
+        },
+        "2": {
+          "entity": 12884911489,
+          "generation": 33,
+          "dna": 7
+        }
+      },
+      "03": {
+        "1": {
+          "entity": 12884902120,
+          "generation": 30,
+          "dna": 0
+        },
+        "2": {
+          "entity": 12884911489,
+          "generation": 33,
+          "dna": 7
+        }
+      }
+    },
+    "current_native_dna_matches": {
+      "1": true,
+      "2": true
+    },
+    "observed_failures": []
+  },
+  "rejoin": {
+    "original_evaluator_verdict": false,
+    "original_missing_checks": [
+      "before_strict_pickup_passed",
+      "all_three_connected_in_after_archive"
+    ],
+    "independent_pre_cleanup_verdict": true,
+    "checks": {
+      "independent_g04_original_retirement_outcome": true,
+      "real_connected_interval_before_clean_shutdown": true,
+      "authority_and_a_unchanged": true,
+      "authority_and_a_prefixes_preserved": true,
+      "fresh_b_generation_and_process": true,
+      "old_b_actual_exit": true,
+      "fresh_baseline_applied_before_connected": true,
+      "higher_b_baseline": true,
+      "same_unique_owned_entities": true,
+      "b_controls_its_unique_native_actor": true,
+      "published_owner_balances_preserved": true,
+      "current_controlled_native_dna_preserved": true,
+      "no_repeated_original_first_feed": true,
+      "no_original_client_award_after_baseline": true,
+      "source_original_removal_and_grant_retirement": true,
+      "a_observed_authoritative_native_removal": true,
+      "fresh_b_removed_or_rebound_saved_npc_before_connected": true,
+      "consumed_incarnation_absent_all_three": true,
+      "no_native_saved_npc_resurrection": true,
+      "coordinator_received_real_despawn": true,
+      "no_intervening_native_or_network_failure": true
+    },
+    "old_B_baseline": 2,
+    "fresh_B_baseline": 3,
+    "fresh_B_apply_sequence": 211,
+    "fresh_B_connected_sequence": 212,
+    "fresh_B_cleanup_sequence": 1045,
+    "overlap_coordinator_clock_ms": 14203,
+    "owned_native_readbacks": {
+      "01": {
+        "1": {
+          "event": "scene_native_authority_sample",
+          "sequence": 51858,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 232,
+          "owner": 1,
+          "source_tick": 77240437,
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_food": 100,
+          "native_fed_on": 0,
+          "health": 10,
+          "dead": false,
+          "source_dna": 0,
+          "native_dna": 0,
+          "dna_native_observed": true
+        },
+        "2": {
+          "event": "scene_native_authority_sample",
+          "sequence": 51861,
+          "remote_entity": 12884911489,
+          "entity_generation": 33,
+          "native_id": 9601,
+          "owner": 2,
+          "source_tick": 77240437,
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_food": 100,
+          "native_fed_on": 0,
+          "health": 10,
+          "dead": false,
+          "source_dna": 7,
+          "native_dna": 7,
+          "dna_native_observed": true
+        }
+      },
+      "02": {
+        "1": {
+          "event": "scene_native_replica_sample",
+          "sequence": 20804,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 232,
+          "owner": 1,
+          "source_tick": 77240125,
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_food": 100,
+          "native_fed_on": 0,
+          "health": 10,
+          "dead": false,
+          "source_dna": 0,
+          "native_dna": 0,
+          "dna_native_observed": true
+        },
+        "2": {
+          "event": "scene_native_replica_sample",
+          "sequence": 20807,
+          "remote_entity": 12884911489,
+          "entity_generation": 33,
+          "native_id": 9601,
+          "owner": 2,
+          "source_tick": 77240187,
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_food": 100,
+          "native_fed_on": 0,
+          "health": 10,
+          "dead": false,
+          "source_dna": 7,
+          "native_dna": null,
+          "dna_native_observed": false
+        }
+      },
+      "03": {
+        "1": {
+          "event": "scene_native_replica_sample",
+          "sequence": 1038,
+          "remote_entity": 12884902120,
+          "entity_generation": 30,
+          "native_id": 9601,
+          "owner": 1,
+          "source_tick": 77240687,
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_food": 100,
+          "native_fed_on": 0,
+          "health": 10,
+          "dead": false,
+          "source_dna": 0,
+          "native_dna": null,
+          "dna_native_observed": false
+        },
+        "2": {
+          "event": "scene_native_replica_sample",
+          "sequence": 1041,
+          "remote_entity": 12884911489,
+          "entity_generation": 33,
+          "native_id": 232,
+          "owner": 2,
+          "source_tick": 77240687,
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_food": 100,
+          "native_fed_on": 0,
+          "health": 10,
+          "dead": false,
+          "source_dna": 7,
+          "native_dna": 7,
+          "dna_native_observed": true
+        }
+      }
+    },
+    "no_repeat_award_observed": true,
+    "later_distinct_native_reuse": {
+      "sequence": 34036,
+      "remote_entity": 12884901967,
+      "entity_generation": 38,
+      "native_id": 79,
+      "native_pool_cycle": 1,
+      "dead": true,
+      "health": 0,
+      "source_fed_on": 0,
+      "source_pickup_owner": 0,
+      "source_food": 100
+    }
+  },
+  "trace_validation": {
+    "authority": {
+      "original_sha256": "35099bef25c9624c5b131a1af0f224dc66323754a28481148c1632e38f3b41d6",
+      "manifest_hash_matches": true,
+      "events": 51963,
+      "contiguous_sequences": true,
+      "monotonic_qpc": true,
+      "foreign_callback_events": 0,
+      "healthy_trace_stop": true,
+      "failure_events": 0,
+      "game_exit_codes": [
+        0
+      ],
+      "worker_exit_codes": [
+        0
+      ]
+    },
+    "client_A": {
+      "original_sha256": "697456a72821ab4a89280a47aa47af0dd31f3115d81411475290aaa607077035",
+      "manifest_hash_matches": true,
+      "events": 20876,
+      "contiguous_sequences": true,
+      "monotonic_qpc": true,
+      "foreign_callback_events": 0,
+      "healthy_trace_stop": true,
+      "failure_events": 0,
+      "game_exit_codes": [
+        0
+      ],
+      "worker_exit_codes": [
+        0
+      ]
+    },
+    "old_client_B": {
+      "original_sha256": "76639673f141c6f3710261dcac140671fa6df1d1891879896c645b4c6e41b5ff",
+      "manifest_hash_matches": true,
+      "events": 17487,
+      "contiguous_sequences": true,
+      "monotonic_qpc": true,
+      "foreign_callback_events": 0,
+      "healthy_trace_stop": true,
+      "failure_events": 0,
+      "game_exit_codes": [
+        0
+      ],
+      "worker_exit_codes": [
+        0
+      ]
+    },
+    "fresh_client_B": {
+      "original_sha256": "329833181c6455cd6470de47f9da55295cd905c5f63541a05bea97ea2e662c04",
+      "manifest_hash_matches": true,
+      "events": 1091,
+      "contiguous_sequences": true,
+      "monotonic_qpc": true,
+      "foreign_callback_events": 0,
+      "healthy_trace_stop": true,
+      "failure_events": 0,
+      "game_exit_codes": [
+        0
+      ],
+      "worker_exit_codes": [
+        0
+      ]
+    }
+  },
+  "recordings": {
+    "authority": {
+      "original_recording_sha256": "0762efda3d51314f321410d323eb5c958c733644964183defe39faebf91b598a",
+      "original_request_sha256": "51f0dd50e127dd75c7bd5dc2bb3fb65d0426ab0ccdf685e2c909aa22000786d1",
+      "original_completion_sha256": "6e454fff0fc92b944b03f88515fe65a418da81b1012e25c4e59ef6be09916ed8",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "2867ca29442014da1e01fd584da80ba5959e624c43d842c3e491b0ce58946362",
+        "reviewed-105.png": "697c4ebb63eb45614da04ca05a216cc80e8ebdd1dde9e17e230554a8ae5ec31b"
+      }
+    },
+    "client_A": {
+      "original_recording_sha256": "92a58fa655829c59ca2c0485de2c24e51b3c24f78c8225eb67024090f878d73a",
+      "original_request_sha256": "e445dd58ec799e52715a32f4d70cdc0a9932da12cd6765be98a899bfbf2ac1e7",
+      "original_completion_sha256": "7eaefb11dcb717549d019d26f1fc655f2e098c0a21fa9c086cc6e391400531d8",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "e9d0b03e2cf1284a9661140cbf81bbcfc50c2cf22dd1203fc368b817adfb87fc",
+        "reviewed-105.png": "943627b10116ac978a5bf0d2e59b9a5d9322e222c1ee08b468e4e68c8b61759c"
+      }
+    },
+    "old_client_B": {
+      "original_recording_sha256": "5ec8427b5e9499958bc47ee9d759eadebae9c1ed37d4ef3251c949e0596d9e65",
+      "original_request_sha256": "27629eca3829d54be72560f9c42a5d2dfbbe0d82e4b3481d99703c6ba54751d1",
+      "original_completion_sha256": "f508dd78f41934e07949191b65afe5b2d67b1ad409dfe42555548beeac166bfe",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "first.png": "d6d4013ddb601ed9279a35253a42d0fbb962ec633163d918b76392193d53a7a2",
+        "reviewed-105.png": "3d6aef234453452c6fc70fa10cfcc5072073199cefeb3ad2030ad1f3edf13d94"
+      }
+    },
+    "fresh_client_B": {
+      "original_recording_sha256": "72e52ab97de7e6bf8c4e4853cf998ba239e2f922e141ec563563984a3b7a0a7d",
+      "original_request_sha256": "651d01a47c86276394397b42ea692d7a4a0f155488b37302e4d56ccb06bb558b",
+      "original_completion_sha256": "a81fb91414f23ac21d0bc4a012d57b49cb2eff785647967022080201858bec9f",
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frames": {
+        "post-connected.png": "3fd6f46b388355772e76ffcb8d286a66814cfba5069f509d1b3127b5e11e02ad"
+      }
+    }
+  },
+  "closure": {
+    "all_games_and_supervisors_observed_closed": true,
+    "all_four_capture_exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "personal_files_unchanged": 29,
+    "fixture_trees_unchanged": 6,
+    "watchdog_shutdown_utc": "2026-09-21T10:58:35.854407+00:00"
+  },
+  "original_artifact_sha256": {
+    "original_pickup_report": "122402cde7b33b60ba4e284692af1c74c6502822ea1cb46b86549b8b3beae63f",
+    "original_strict_staged_report": "ae7b53a1b4b4895eda51b2e97527141a025151ee8abb08fe06e07e45ab07191d",
+    "independent_combat_observation": "212d1ef6684282100bbf74d25aa3ee72f12718479b4f9f9ff49011ec5d5201e4",
+    "original_g05_report": "48f2ef7b5b0292b51319273a4aaaa5c9e26eaf2d5abb78808827520fa6f9fb65",
+    "independent_terminal_rejoin_report": "7159c41717bc81c84c787a93839d00d9591a8b72a3e731486a97ed8dd2919af3",
+    "independent_terminal_evaluator": "130263ad1d0939de536de5ede3c8afb942bc2bebaba75bb09c715384c715c967",
+    "live_readiness_observation": "41ca6bf582da1bbeb38b85b08caaf93c989fa57cacae7b715c8380592c28e9a9",
+    "closed_orchestration_summary": "b5291286565fc5982f544e50cb04d6633c777a1ca403ab70ab5c7bb8c2d75389",
+    "original_harness": "6c7176e1850f1779d3f5463808e836a2ed4c379b0b2eacb56abdce9d995b5614",
+    "corrected_harness": "34d21d6690385f6cc52082ab34dda140fbddb929e11b83471f9bee2e61bfe185",
+    "corrected_harness_tests": "c9058f2854b71df72b02e9d223ecb4186977d2cc7080afec6a9dc60795e5350d",
+    "closed_archive_report": "52e21442036c6c4d99251975aeee8ad6cba9b64bebe9bc35a60c84e33c855e2a",
+    "old_B_archive_report": "88732358cc166e6447205811b5b5c603455a222aa6000e2774ed0bfaa19962a9",
+    "rejoin_archive_report": "fbff4b4ec4e770a3a1e609a9f23503bcbb1ba001ef366735de57ccf8fcf9c240",
+    "watchdog_report": "da14da2f2b2468f191ce7c3adbe32fdf72233574c9707a47fb792fb35462889e",
+    "personal_after_report": "0fed958463698635b284a33b321ab231598393129024f05dcd5575fc2eefdc9c",
+    "fixture_save_check": "4ee2b08f1c5e912a22552cde473d80a9f96be8bdc2bd111c8154524288ced5dd"
+  },
+  "reviewed_commands": {
+    "host_tests": "python -m unittest discover -s tests/unit -p test_m07_harness.py",
+    "independent_evaluation_normalized_paths": "python evaluate-m07-terminal-rejoin.py --before PICKUP_REPORT --after REJOIN_ARCHIVE_REPORT --old-b-closed OLD_B_ARCHIVE_REPORT --output NEW_REPORT",
+    "independent_evaluation_exit": 0,
+    "production_replay": "Import frozen tools/native/m07-harness.py and call summarize_pickup on the original complete before/after trace prefixes, original markers/target, and the original completion/prefix/connection flags.",
+    "production_replay_exit": 0
+  },
+  "limits": [
+    "Strict same-NPC target-switch attempt remains INCONCLUSIVE: retaliation against A only.",
+    "No configured latency/loss repetition, unauthorized-action test, crash durability, or broader progression acceptance in native18.",
+    "Fresh Join follows the consumed NPC outcome; this is not a new player death/respawn action test.",
+    "Visual review covers seven selected stills, not every animation frame, audio quality or native frame timing.",
+    "Current terminal pickup parser deliberately refuses ambiguous ID reuse or destroy-hook entry without completed destruction proof; later distinct generation 38 belongs to separate original lifecycle evidence."
+  ],
+  "visual_review": {
+    "reviewer": "root operator; already inspected original frames",
+    "initial_views": "All three in original Creature world; HUD health9/9/10, DNA0.",
+    "authority_105_seconds": "Original victory dialog; operator dismissed its original green confirmation.",
+    "client_A_105_seconds": "Blue creatures next to the flat green corpse; HUD health3, DNA0.",
+    "client_B_105_seconds": "Flat green corpse; HUD health10, DNA7.",
+    "fresh_B_19_seconds": "Blue controlled creature in foreground; health10, full hunger, DNA7."
+  }
+}

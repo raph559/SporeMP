@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-21T00:36:48.930989+00:00",
+  "evidence_class": "REVIEWED_M07_BUILD_HOST_AND_BOUNDED_NATIVE_RESULTS",
+  "milestone_status": "IN_PROGRESS",
+  "full_m07": "NOT_VERIFIED",
+  "bridge_version": "0.0.35",
+  "wire_schema": 3,
+  "wire_packet_bytes": 400,
+  "native_trace_limit_bytes": 67108864,
+  "original_executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+  "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+  "injector_commit": "26adca9a2578b5bb32ba2eac90d96bd9ac7d48a9",
+  "source_and_payload_sha256": {
+    "CMakeLists.txt": "cfd59de620c5d02d7cac7f7f910a29288160951426fae9340c80b8066f8680dd",
+    "build/injector/Release/ModAPI.DLLInjector.dll": "122b3a07df6746f29d89c2e47ead55ab5f8bb97dc5c378cdb376e9f34034056b",
+    "build/sdk/Release/SporeModAPI.dll": "49e075a660808e79e73a3a5e61051b97dcf62f1763772432c7d58e97935c0c6d",
+    "build/win32/Release/SporeMP.Bridge.dll": "ab63053474c3128639ffe795f0a56016536ddac2d2799604c1ec8af5db91bd7f",
+    "build/win32/Release/SporeMP.Coordinator.exe": "d68911d944aa6dc1dc6f06ceb68b23630c1ac7d0aa3b9892684ae5b112358e28",
+    "build/win32/Release/SporeMP.NativeHost.exe": "9fd235ce8454f80bc8f57cebf09da45c8cd07bf8f3ddc2f7a401170414d96961",
+    "build/win32/Release/SporeMP.WorkerControl.exe": "4c9950d8545d7f3ac8282f6f71813b4808f1c597c5281d60fc94aeaad7209906",
+    "config/compatibility.candidate.json": "06e58e2c169ff380e1fcea2ec519ef2b65653f87f82999ac644d004fdfdf6b3b",
+    "config/dependencies.lock.json": "1d4078766284ad22bcf8167592e64ff3ad41478afd37d9135ddc88b2281fba1c",
+    "src/bridge/actor_commands.cpp": "7186e77a0615525d673fc27da62f40951a1af958f57662cdbf061e49eac1ff19",
+    "src/bridge/actor_commands.h": "d04fe708a2a8c71df76f47107522f765b37954803b472dc349dd2294923deb03",
+    "src/bridge/build_identity.h.in": "57b122750faf6c8d6cf4d762ad2bfb47a6f2e62e142e44d8af2ab9c4cce8b6d7",
+    "src/bridge/detour_transaction.cpp": "682094d8dcb8a6072e97d8aa409f1c63fc7778e4d27fe81f1592d511394cb770",
+    "src/bridge/detour_transaction.h": "7fe5a4f5d482cc8221d5cb16909748cac672ac36dc6eb1fa1dda17b70d934f6d",
+    "src/bridge/diagnostics.cpp": "d96a2fffb2efc986f42f068dbcf38c118c87a7127afb64a4cfc3160ddb49c43a",
+    "src/bridge/diagnostics.h": "6b04d575e2d0e4ed9c5661803670009d17bde8d3a7c16bca9695d67d4eca87ae",
+    "src/bridge/dllmain.cpp": "71f0a0b7c149f8017b8125de11883b2f208f589e6289c488be386ab06176a985",
+    "src/bridge/native_actor_abi.h": "dbc601b3ea310a10e9e413a5f54e9ada3c0a4e5ff37349e12f2adb673b149a87",
+    "src/bridge/native_actors.cpp": "1c81d01895eca0c213b27376bcf7c0492141c7d414bae7e371a35d34150ce8b9",
+    "src/bridge/native_actors.h": "bcc1870afd213853f1406bb53580657176f48baea94bbd26a1a3db8590980c4a",
+    "src/bridge/native_award_abi.h": "907d5045d3a0bb880ec4c9ee68ca9d65d1a6b8e7bbc67eefa918956a5ba68e2e",
+    "src/bridge/native_award_context.cpp": "7afcdb3531e55c71ca6cd2276fdc2acb96ab11453a2af522e220176046fc3aec",
+    "src/bridge/native_award_context.h": "fcb8824f1daabd4c568986d9935235de21e9174deda9e768492581218ddf2afd",
+    "src/bridge/native_award_prefixes.inc": "f8e5f0b3e183b144a18da4457d2429fddb4e3871c98816a30bdacd7683cd1356",
+    "src/bridge/native_branch.h": "b4a61150ee0cc3eb89f3e96c548e6270b4f843c90fa20f7fe26dba5e03b4228b",
+    "src/bridge/native_display.h": "b13921631e6339367ab249aad33a7256dba4e078f7bce082c4008e4aa84d1460",
+    "src/bridge/native_host.cpp": "3aeac4ade171db98d725328c56d950350ca3770ef80d1c2ed918ed63e995c135",
+    "src/bridge/native_network.cpp": "70c40b85b1074684d92f9a83ac9a125307d2b4abbdb0aecd9c2a66d76131e0f0",
+    "src/bridge/native_network.h": "fd06ef14bc8281ef0119bb28a4d7621a58104de7d341e1edc224e8c2d03a3a39",
+    "src/bridge/native_observation.cpp": "fd8a8633e703a5d7fa09f616158bc83da74ecf7dbbf1c7fd69f02c28b3b8830a",
+    "src/bridge/native_observation.h": "4616527c5c5d6ae5d61bd52505657d0637ec3de5ee139fad67c2c809adae7225",
+    "src/bridge/native_persistence.cpp": "22c55d82fedb89ad744cd74f625ce05ab383d56f14c42eb523fb5a183c7817d4",
+    "src/bridge/native_persistence.h": "1098a9f7055fc709c349516531123444d5e3686c53654196d450db852bd1b7fa",
+    "src/bridge/native_persistence_abi.h": "2f6e6b0a21dce46e43188bfddd6dafe7a456f4e25174195b0ca19115c5364024",
+    "src/bridge/native_player_context.cpp": "8b0aaa507ee1e9ece14a0d3ee9102c3dc41d0f055749259fa0024f43a804c34e",
+    "src/bridge/native_player_context.h": "0046f2ea83ca5a841ebeebf6ce71ca3db351eae02a4f10ec311f4eb9756ca75c",
+    "src/bridge/native_replica.cpp": "1de93574f6338f95d74b2b639ef4fde7710944a4c4e407607e9ee491046604e2",
+    "src/bridge/native_replica.h": "1258870932562fec27fdc5f4b545fc74cfe0fe100dc51e83918d699e922ca9c9",
+    "src/bridge/native_replica_abi.h": "08a7d9d6b4911873bdabe71acd320c5555f4e897d9195944102b5387b2b7a552",
+    "src/bridge/native_scene.cpp": "87f49dd8afe8858c166d70b481be76b8f750bb4a7ad669c83d5e760e51873421",
+    "src/bridge/native_scene.h": "97e4370fc7328eda2d15e0050cc6fda2ecea3704d97983814e2e0dd7cf3c047a",
+    "src/bridge/native_worker.cpp": "7910421b5a6ff0668bd8f7a707d1994191bea0fc7b4b54c541d4b1dcfbe3dfe3",
+    "src/bridge/native_worker.h": "eb5e5a45f2f9c9830760a2b80282c431fb89f4183bc0a6b52a617be3b315c255",
+    "src/bridge/observation.cpp": "506b142d1d6f7b6c029a01dac11495ac3909c1e066e5207026ef31a3414f1d48",
+    "src/bridge/observation.h": "0dd7ba60f05f4711746fe003ef2ba2bc66b4ca088a01f9c8a1517a8abcb48f63",
+    "src/bridge/replica_policy.cpp": "a232c193abb559034355e6b5a64a5d0718657bebef53648dbb4b0baaba2c82fb",
+    "src/bridge/replica_policy.h": "bbfaa167678774d36812cd3d59108d195ea5f859bd813d29b7a0e1bd5da9ae46",
+    "src/bridge/trace_extract.cpp": "cc18f39ebc3bdf580f1a469d7dd8915052b842c9b2f56a20a88f0bceafc669e4",
+    "src/network/CMakeLists.txt": "63288a853bc7aaa3c1af08aa345c0ea6665fb05deba04a76dda0a311ec9cb5a5",
+    "src/network/channel.cpp": "0a7ec3e2585d2c048f9e27a9488d4f75b4614d7c9eeb09d508f334cfb076c3fc",
+    "src/network/channel.h": "a6f3ee44aaf2502488b9badfee400b779bff8b9758b6ff896c6ce435c530df8a",
+    "src/network/coordinator.cpp": "51d1795b182ba8cebaa13e6a9b125b5f0de94940bda948d1b8d292fe9bbf9f6a",
+    "src/network/coordinator.h": "33aa04b3417f3bec356c68c308b71e5107923b84d5af94dcb9aa245fe44b171f",
+    "src/network/main.cpp": "bedf878f617775ecee986f0d5e4a37e311515dd22c2ce3b1a02a6c84c3af1f95",
+    "src/network/peer.cpp": "9915969607e61409c946aea5c9537746b7964ee7afd7a3794348d1a2f98792b6",
+    "src/network/peer.h": "e412c39c131ddd4c957603cbb5849fa24ea540abf532bfe61dccc0501380ea16",
+    "src/network/protocol.cpp": "f4feec70a293d48d81359a14982ebe69164f65c7203a68e7cc5e36df23d14e12",
+    "src/network/protocol.h": "7dbb9e408d3ad2bac760bcb0eed4bfccefb9bd165638e8ead205203538e0400c",
+    "src/network/session.cpp": "0343b399349b302a3d29d9d50adf451d5739fcf3947f4cc7189c64f696d6247d",
+    "src/network/session.h": "4e49e2565634af19857ed9521db0117b5d44e9a1fc99cea052fda4fcdfcdb81d",
+    "src/network/tls.cpp": "3917fac20666a43f7e787c4387292131eab6c3c41fc492981d929ad6b601fd0e",
+    "src/network/tls.h": "b019cae663d20f3a84931ada6751bf113b91927b3c880340cc7a660428a12349",
+    "src/worker/control.cpp": "f8c35cd1970ec2ce7c9292dcea61236de90b2a538d017372b127c968a84f5ba3",
+    "src/worker/pipe.cpp": "f0bc24d3034b0e17b162c3348067c8283ab65c495393d1bf9f91f622344e2b3a",
+    "src/worker/pipe.h": "10bff47c96a8a9bfb8eb8d444da3d33fc2fbb5a5e4b7a4861dc2c4261e564d6e",
+    "src/worker/process_guard.cpp": "6118cad0aa6dc7ee80b8db1b281e3a080a8ee375ef3166df56efe1d3682e759b",
+    "src/worker/process_guard.h": "c94334ad03c0356d1cbae2c2c1ea13c48e0214e55d9158645df957acf41519b2",
+    "src/worker/protocol.cpp": "a3ad77cfe563d791ab24a4b99b025fc16bee15f4d4336e78456c99cca1527c7a",
+    "src/worker/protocol.h": "9e93cc5894dc2fa9f47f3bf12c836c22a56e9d5de45c00f2bfb2f6f2e51dd80f",
+    "src/worker/supervisor.cpp": "5cd8a65d95891d6ad6914d0db9d58926f178a3421ca1c8789f3c27391a06e5df",
+    "src/worker/supervisor.h": "1b97210797f413f7d934dbf6608dcdfa5bd261d4cc7112f4b1435d65a3a15842",
+    "tests/unit/encounter_network_tests.cpp": "c890bb41649c75e0cdd3b316221ce8f7766ccec6dbdc049100841ead62c15a6c",
+    "tests/unit/network_tests.cpp": "2d418d77f15975505577ee6d2e344848eeaaf2620e810e1839d8b3f8b49ab60f",
+    "tests/unit/test_m07_delay_proxy.py": "7b861124a0a5ca033b24889128527d4e4417dd7db9384ef4087faddbf664eb61",
+    "tests/unit/test_m07_harness.py": "54b213bb794a4d7086c5d8f0f7058c9c9a439900ed5bf6f4ae56d25133c8626a",
+    "tools/native/analyze-actor-context.py": "811aa1474b167ed4f946d6aa79320b1d7f95061f7fba6714080c04a66281376c",
+    "tools/native/m06-harness.py": "b73ddb1caf3555174561a52aea9cc4641a1127ae14ab223841340b4912920278",
+    "tools/native/m06-launcher-evidence.py": "dc8a9444bfff7ffb0a2cabcd2432dea898e9deed40143eca2a53b58434081339",
+    "tools/native/m07-delay-proxy.py": "d392ff8f84300ec437458672e17165f3d5ef7a956cc3fdd70d4fff00cd39d345",
+    "tools/native/m07-harness.py": "7846d70732ae1d51ed2733eff0a7fd399620a5e07d7cb201a135890d6bacc335",
+    "tools/native/replica-probe.py": "2c0b6847ce3ef0c0b115e5c9ee5405047265eb8e8657d976f7881b008ec6c9e6",
+    "tools/native/test-worker-actions.py": "3ee0f6da7b370c6237b9095fe33e9375e915de40ec85b13baddfc15c263ff73b",
+    "tools/native/worker-checkpoint.py": "1e44777b7f0818e1b3e282e5eb50424e2bac400058e4eb8bcd99e3a88277cdd9"
+  },
+  "build": {
+    "command": "cmake --build build/win32 --config Release --parallel 4",
+    "exit_code": 0,
+    "utc": "2026-09-21T00:27:11.8680337Z"
+  },
+  "ctest": {
+    "command": "ctest --test-dir build/win32 -C Release --output-on-failure -V",
+    "exit_code": 0,
+    "utc": "2026-09-21T00:27:40.4519910Z"
+  },
+  "host_results": {
+    "ctest_passed": 9,
+    "ctest_total": 9,
+    "ctest_seconds": 12.44,
+    "network_assertions": 2595,
+    "python_tests": 132,
+    "launches_spore": false
+  },
+  "native_results": {
+    "native01": {
+      "version": "0.0.31",
+      "retained_death_and_fresh_dead_join": true,
+      "authority_trace_limit_failure_exit": 35
+    },
+    "native02": {
+      "version": "0.0.32",
+      "original_same_noun_revival": true,
+      "complete_connected_respawn": false,
+      "failure": "NPC97 maximum-health mismatch"
+    },
+    "native03": {
+      "version": "0.0.33",
+      "diagnosis": "NPC97 source age1/max10 vs replica age0/max5; owner death Combatant state and revival age also differ"
+    },
+    "native04": {
+      "version": "0.0.34",
+      "bounded_lifecycle_and_fresh_join_pass": true,
+      "exact_source_tick_matches": [
+        722,
+        622,
+        121
+      ],
+      "differences": 0,
+      "fresh_baseline_entities": 33,
+      "fresh_baseline_sequence": 3,
+      "native_move_and_jump_after_join": true,
+      "full_death_or_baby_model_presentation": "NOT_VERIFIED"
+    },
+    "native05": {
+      "version": "0.0.34",
+      "both_players_damage_same_npc": true,
+      "a_hits": 4,
+      "b_hits": 2,
+      "npc_health_before": 6,
+      "npc_health_after": 0,
+      "native_award_calls": 1,
+      "award_owner": 1,
+      "award_dna": 7,
+      "npc_response_to_b": "NOT_OBSERVED",
+      "three_machine_outcome_agreement": false,
+      "failure": "client B generic spawn failure; exact cause unclassified in this run"
+    },
+    "native06": {
+      "version": "0.0.35",
+      "diagnostic_only": true,
+      "failure": "missing_template on both clients before factory",
+      "entity": 12884901957,
+      "generation": 34,
+      "source_native_id": 69,
+      "species_instance": 108668588,
+      "herd_native_id": 1772,
+      "supplementary_census_limit": 4096,
+      "supplementary_census_truncated": true
+    }
+  },
+  "final_cleanup": {
+    "all_native_test_processes_closed": true,
+    "personal_file_count": 29,
+    "personal_files_unchanged": true,
+    "disposable_tree_checks": 6,
+    "disposable_trees_unchanged": true,
+    "peer_acl_grants_added": false
+  },
+  "private_artifact_identities": {
+    "native02-source-payloads.json": {
+      "sha256": "f441c4f8e5c99735db14a14769b7b82ff72f7b4891207b431987589eeebd1d7b",
+      "bytes": 10909,
+      "provenance": "private original; metadata only exported"
+    },
+    "native03-source-payloads.json": {
+      "sha256": "fd9584b508416a304771ebd8b206afb693f6d1277f38fe5e0a075f18673be8a2",
+      "bytes": 10945,
+      "provenance": "private original; metadata only exported"
+    },
+    "native04-source-payloads.json": {
+      "sha256": "dc4d083a439f62126116f28a4696c2f42b0bd8cea9bd37aca203c25ae39c555d",
+      "bytes": 10926,
+      "provenance": "private original; metadata only exported"
+    },
+    "native05-source-payloads.json": {
+      "sha256": "ef80eaabadb9dabc4e357e3f958ec01ec0e058d1cdac19c289f36987eb5397d1",
+      "bytes": 10959,
+      "provenance": "private original; metadata only exported"
+    },
+    "native06-source-payloads.json": {
+      "sha256": "beb7362514f28998569825450f1ce49a566d89d4973c7b4534d9890fa77107f7",
+      "bytes": 10924,
+      "provenance": "private original; metadata only exported"
+    },
+    "native01-death-prefix-analysis.json": {
+      "sha256": "acbd62f575e18c84351e96a2ade5692dd56b9b8312d3fed0c96e0007667f0afd",
+      "bytes": 18374,
+      "provenance": "private original; metadata only exported"
+    },
+    "native01-final-life-analysis.json": {
+      "sha256": "7962308aa56311570fe4de2b67741e5c385956f16fb54ab7434d0688429ae91e",
+      "bytes": 31777,
+      "provenance": "private original; metadata only exported"
+    },
+    "native02-analysis.json": {
+      "sha256": "6ef053c92942409baee70029a6eee5b60128b704e188d4cab90ebc73b583e8bd",
+      "bytes": 100030,
+      "provenance": "private original; metadata only exported"
+    },
+    "native03-final-health-context-analysis.json": {
+      "sha256": "f6d299a2f1083ed78355da61619808db54c88d41bdd8ce76c72caa629863283f",
+      "bytes": 68029,
+      "provenance": "private original; metadata only exported"
+    },
+    "native04-final-life-context-analysis.json": {
+      "sha256": "0481466685af255dfb20bf748dd91b8339c285fd8dc886b896c6255b03551349",
+      "bytes": 138754,
+      "provenance": "private original; metadata only exported"
+    },
+    "native05-analysis.json": {
+      "sha256": "030382d4252d853eadcde5711c3406ef37af8a68f9f3536d6d2afa334019ef06",
+      "bytes": 50740,
+      "provenance": "private original; metadata only exported"
+    },
+    "native04-closed-context-review.json": {
+      "sha256": "50638d0383483b119da17cc6d1cbb6235842d6fbef3aab5143410c3bfc436449",
+      "bytes": 98474,
+      "provenance": "private original; metadata only exported"
+    },
+    "build035-final.command.json": {
+      "sha256": "919cbb02a1e26c99e110172ab91541b59fe5f02b7d48b0992e652e56e387693e",
+      "bytes": 139,
+      "provenance": "private original; metadata only exported"
+    },
+    "build035-final.log": {
+      "sha256": "2d6ec15bddd14ecb3b1a96dc8b1a32f320d36dd5c0fbfd5254ba11eb9ae2adf4",
+      "bytes": 3031,
+      "provenance": "private original; metadata only exported"
+    },
+    "ctest035-final.command.json": {
+      "sha256": "5ed66cc837947e0edd247b8e3f6a51f79ff97327838962f1322c92310f7dca55",
+      "bytes": 146,
+      "provenance": "private original; metadata only exported"
+    },
+    "ctest035-final.log": {
+      "sha256": "2e42c29c61f022b57e26ee2474625c44c93e711e7bc512b54bd9ff00fb60a657",
+      "bytes": 38439,
+      "provenance": "private original; metadata only exported"
+    },
+    "native06-save-check.json": {
+      "sha256": "bbb09bd9d403ade67e6ba93e7ee53a6f4b63943c2e6feb22eb738f05a153ff53",
+      "bytes": 1119,
+      "provenance": "private original; metadata only exported"
+    },
+    "native06-personal-after.json": {
+      "sha256": "27d386d85ba0f402acbe14c581cc7c14121984f704d05b0f09e5875b4660fd68",
+      "bytes": 272,
+      "provenance": "private original; metadata only exported"
+    },
+    "final-process-check.json": {
+      "sha256": "152b43f576fc5092db380ab1ab0d42ec7ffaade0f167cca91846ec2cc65e709e",
+      "bytes": 155,
+      "provenance": "private original; metadata only exported"
+    },
+    "native06-closed-spawn-review.json": {
+      "sha256": "890e1891ba351fb7ac07918990e89b0b0b5fdcef0f0079ee162be1acb59203b6",
+      "bytes": 33521,
+      "provenance": "private original; metadata only exported"
+    }
+  },
+  "unverified_gates": [
+    "new-species creation independent of a living template",
+    "death/corpse and baby/adult model presentation",
+    "same NPC response to both owners",
+    "contested native pickup",
+    "post-combat reconnect preserving terminal reward",
+    "configured latency and packet loss",
+    "real unauthorized client challenge"
+  ],
+  "qualification": "Recorded pinned Creature fixture only. Private original hashes do not make raw logs, captures, saves or account inventories public.",
+  "reviewed_public_report_sha256": {
+    "native-lifecycle.md": "516db0efe7aca69d1a50f0b84eb3921ef707342138566022fe6d720d5d677b14",
+    "native04-lifecycle.md": "aeb08d91f65ce5dac4fa9f77dccd73529ccaa235bfcd80d3fd9c3454f0eb5ecd",
+    "native05-combat.md": "fc0c151bef105ed574ea152d864237830ae6010690b57eebef0c9c40f4d3dfea",
+    "native06-spawn-blocker.md": "30967e1ab9da1fa54bbc691f58e78b7fa81e496fb8ea16ac4bbc4916026cbbbe"
+  }
+}

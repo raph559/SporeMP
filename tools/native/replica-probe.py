@@ -21,7 +21,7 @@ import launcher_service as service
 EXE = 'dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37'
 SDK = 'cbf9206b9a823f0911cd9be0217104a49d72380b'
 VERSION = '0.0.29'
-MAX_TRACE = 34 * 1024 * 1024
+MAX_TRACE = 66 * 1024 * 1024
 
 
 def uint(value, bits=64, nonzero=False):

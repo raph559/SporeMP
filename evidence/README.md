@@ -12,11 +12,14 @@ This folder contains concise, reviewed development reports. It preserves actual 
 | M04 | [Worker and checkpoint acceptance](2026-09-13-m04-acceptance/SESSION.md), [completion](2026-09-13-m04-completion/SESSION.md) | Rendered workers, measured isolation and exact saved identity recovery in the recorded fixture. |
 | M05 | [Replica acceptance](2026-09-14-m05-ability/acceptance.md), [session](2026-09-14-m05-ability/SESSION.md) | Recorded living Creature fixture and authority/replica guards, with explicit scene and presentation limits. |
 | M06 | [Network acceptance](2026-09-14-m06-network/acceptance.md), [session](2026-09-14-m06-network/SESSION.md) | Two original-game clients and one worker; living actors, movement, jumps and reconnect. Death/respawn limitations remain recorded. |
+| M07 | [Shared encounter acceptance](2026-09-21-m07-completion/acceptance.md), [session](2026-09-21-m07-completion/SESSION.md) | Pinned original Creature encounter, contested feeding, result-preserving reconnect and fresh-session reset under actual packet impairment. |
+| M08 | [Native content and editor acceptance](2026-09-22-m08-completion/SESSION.md), [verification](2026-09-22-m08-completion/verification.json) | Native creation transfer and properties, exact dependency refusal, canonical saved-world checks, commit/cancel and concurrent original gameplay. Locally approved creations and developer controls; M09 durability remains next. |
 
 The complete M00-M20 plan is in [MILESTONES.md](../MILESTONES.md). A milestone status is not a claim that all stages or configurations are supported. Earlier native evidence remains bound to its recorded payload; the Detours 4 SDK build below has separate, incomplete native qualification.
 
 ## Repository and tooling changes
 
+- [M07/M08 reviewed export](2026-09-22-m08-publication/SESSION.md): current public Release build, 15/15 HOST/FIXTURE targets, source/privacy review and updated English/French website; native results retain their frozen development payload qualification.
 - [Detours 4 migration and GPL licensing](2026-09-21-detours4-license/SESSION.md): BUILD/HOST/FIXTURE validation, with original-game execution explicitly NOT RUN.
 - [Evidence cleanup](2026-09-21-evidence-cleanup/SESSION.md): private preservation, public curation, source-tool relocation and publication checks.
 - [Public export](2026-09-21-public-export/SESSION.md): historical privacy preparation.

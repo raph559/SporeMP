@@ -1,6 +1,7 @@
 #include "coordinator.h"
 #include "tls.h"
 #include "channel.h"
+#include "../../src/bridge/native_scene_cadence.h"
 #include <chrono>
 #include <cstring>
 #include <iostream>
@@ -9,11 +10,13 @@
 #include <thread>
 
 using namespace sporemp::network;
+int encounter_network_tests();
+int world_identity_tests();
 namespace {
 int assertions=0;
 void check(bool pass,const char* message){++assertions;if(!pass)throw std::runtime_error(message);}
 Digest digest(uint8_t v){Digest d{};d.fill(v);return d;}
-SessionConfig settings(){SessionConfig c;c.identity={digest(1),digest(2),digest(3),digest(4)};c.authority=digest(10);c.player1=digest(11);c.player2=digest(12);c.epoch=42;return c;}
+SessionConfig settings(){SessionConfig c;c.identity={digest(1),digest(2),digest(3),digest(4)};for(auto& value:c.identity.world)value=digest(4);c.authority=digest(10);c.player1=digest(11);c.player2=digest(12);c.epoch=42;return c;}
 Entity entity(uint64_t id,uint64_t owner){Entity e;e.id=id;e.generation=1;e.owner=owner;e.tick=1;e.native_id=uint32_t(id);e.herd_native_id=8;e.species_instance=9;e.species_type=10;e.species_group=11;e.archetype=12;e.x=1;e.y=2;e.z=3;e.health=100;e.energy=50;e.hunger=30;e.dna=8.75f;return e;}
 void codec_tests(){
     Packet p;p.kind=Kind::entity;p.sequence=123;p.session=42;p.scene=4;p.baseline=5;p.player=2;p.identity=settings().identity;p.credential=digest(99);p.entity=entity(19,2);p.entity.vx=4;p.entity.vy=5;p.entity.vz=6;p.request=991;
@@ -32,6 +35,29 @@ struct Fixture {
 uint64_t baseline_id(const std::vector<Dispatch>& v,uint64_t c){for(const auto& d:v)if(d.connection==c&&d.packet.kind==Kind::scene_begin)return d.packet.baseline;return 0;}
 bool rejected(const std::vector<Dispatch>& v,Error e){return !v.empty()&&v.back().packet.kind==Kind::reject&&v.back().packet.error==e;}
 bool action_refused(const std::vector<Dispatch>& v,Error e){return v.size()==1&&v[0].packet.kind==Kind::action_result&&v[0].packet.error==e&&!v[0].close;}
+void capture_cadence_tests(){
+    // Native19's first capture began at 77931437 and sampled its final entities
+    // at 77931500. The former start-based deadline was already expired, allowing
+    // a second capture inside the same ~15 ms native clock quantum.
+    constexpr uint64_t began=77931437,completed=77931500;
+    check(completed>=began+50,"slow_first_capture_exposes_expired_start_deadline");
+    const auto next=sporemp::next_native_scene_capture(completed);
+    check(completed<next&&completed+49<next&&completed+50==next,"capture_waits_full_interval_after_completion");
+    check(sporemp::next_native_scene_capture(completed+200)==completed+250,"later_slow_capture_does_not_catch_up_in_a_burst");
+    Fixture f;f.join(1,Role::authority);f.join(2,Role::player,1);
+    Packet p;p.scene=1;p.baseline=1;p.kind=Kind::scene_begin;p.count=2;f.send(1,p);
+    p.kind=Kind::entity;p.entity=entity(101,1);p.entity.tick=completed;f.send(1,p);
+    p.entity=entity(102,2);p.entity.tick=completed;f.send(1,p);
+    p.kind=Kind::scene_end;f.send(1,p);
+    p.kind=Kind::motion;
+    check(rejected(f.send(1,p),Error::stale),"same_native_sample_tick_remains_rejected");
+    // A fixture reading at the first coarse clock tick after the new deadline.
+    // Production never synthesizes or increments this native sample timestamp.
+    p.entity.tick=77931562;
+    check(p.entity.tick>=next,"next_native_clock_sample_follows_completion_deadline");
+    const auto update=f.send(1,p);
+    check(update.size()==1&&update[0].packet.kind==Kind::motion&&update[0].packet.entity.tick==p.entity.tick,"scheduled_new_native_sample_is_accepted_without_tick_rewrite");
+}
 void session_tests(){
     Fixture f;check(f.join(1,Role::authority).front().packet.player==0,"authority_authenticated");check(f.join(2,Role::player,1).front().packet.player==1,"first_player_identity");check(f.join(3,Role::player,2).front().packet.player==2,"second_player_identity");auto b=f.baseline();uint64_t b1=baseline_id(b,2),b2=baseline_id(b,3);check(b.size()==8&&b1&&b2&&b1!=b2&&f.session.entity_count()==2,"full_independent_baselines");
     Packet action;action.kind=Kind::action;action.scene=1;action.baseline=b1;action.entity=entity(101,1);action.verb=Verb::jump;action.player=999;check(action_refused(f.send(2,action),Error::not_ready),"action_waits_baseline_ack");Packet ack;ack.kind=Kind::baseline_ack;ack.scene=1;ack.baseline=b1;check(f.send(2,ack).empty(),"baseline_ack");auto routed=f.send(2,action);check(routed.size()==1&&routed[0].connection==1&&routed[0].packet.player==1&&routed[0].packet.baseline==1&&routed[0].packet.request!=0,"authenticated_owner_routing");action.entity.id=102;check(rejected(f.send(2,action),Error::ownership),"wrong_actor_denied");action.entity.id=101;action.baseline=b1+99;check(action_refused(f.send(2,action),Error::stale),"wrong_baseline_denied");
@@ -39,6 +65,12 @@ void session_tests(){
     Packet update;update.kind=Kind::despawn;update.scene=1;update.baseline=1;update.entity=entity(101,1);update.entity.tick=2;check(f.send(1,update).size()==2&&f.session.entity_count()==1,"reliable_despawn");update.kind=Kind::motion;update.entity.tick=3;check(rejected(f.send(1,update),Error::stale)&&f.session.entity_count()==1,"motion_cannot_resurrect");update.kind=Kind::entity;check(rejected(f.send(1,update),Error::stale),"old_generation_spawn_denied");update.entity.generation=2;check(f.send(1,update).size()==2&&f.session.entity_count()==2,"new_generation_spawn");update.kind=Kind::motion;update.entity.owner=2;update.entity.tick=4;check(rejected(f.send(1,update),Error::stale),"motion_cannot_change_owner");update.entity.owner=1;update.entity.tick=2;check(rejected(f.send(1,update),Error::stale),"out_of_order_motion_denied");update.entity.tick=4;update.entity.native_id=999;check(rejected(f.send(1,update),Error::ownership),"motion_cannot_replace_fingerprint");
     auto second=f.baseline(2,2);check(f.session.scene()==2&&baseline_id(second,4)>fresh,"new_scene_new_baseline");update.scene=1;check(rejected(f.send(1,update),Error::stale),"old_scene_motion_denied");auto lost=f.session.disconnect(1);check(lost.size()==2&&lost[0].packet.error==Error::authority_lost,"authority_disconnect_fences_clients");
     Fixture bad;check(bad.session.connect(1),"bad_connect");Packet hello;hello.kind=Kind::hello;hello.identity=bad.config.identity;hello.credential=digest(77);check(rejected(bad.send(1,hello),Error::authentication),"wrong_invite_rejected");hello.credential=bad.config.player1;hello.identity.content=digest(99);check(rejected(bad.send(1,hello),Error::incompatible),"content_mismatch_rejected");hello.identity=bad.config.identity;hello.identity.fixture=digest(98);check(rejected(bad.send(1,hello),Error::incompatible),"fixture_mismatch_rejected");hello.identity=bad.config.identity;auto accepted=bad.send(1,hello);check(accepted.front().packet.player==1,"valid_after_bad_fixture_in_pure_policy");hello.sequence=1;hello.session=42;check(rejected(bad.session.receive(1,hello),Error::stale),"replay_rejected");
+    for(size_t index=0;index<world_file_count;++index) {
+        Fixture missing;check(missing.session.connect(1),"missing world fixture connects");
+        Packet incomplete;incomplete.kind=Kind::hello;incomplete.identity=missing.config.identity;incomplete.identity.world[index]={};incomplete.credential=missing.config.player1;
+        const auto denied=missing.send(1,incomplete);
+        check(denied.size()==1&&denied[0].close&&denied[0].packet.error==Error::world_mismatch&&denied[0].packet.world_index==index,"missing world digest cannot welcome or publish a baseline");
+    }
     Fixture empty;empty.join(1,Role::authority);empty.baseline();Packet exit;exit.kind=Kind::scene_begin;exit.scene=2;exit.baseline=2;empty.send(1,exit);exit.kind=Kind::scene_end;check(empty.send(1,exit).empty()&&empty.session.entity_count()==0,"empty_scene_exit");
     Fixture full;for(uint64_t c=1;c<=8;++c)check(full.session.connect(c),"bounded_connection_capacity");check(!full.session.connect(9),"ninth_connection_rejected");
     detail::Channel queue;Packet queued;for(size_t i=0;i<queue_capacity;++i)if(!queue.send(queued))throw std::runtime_error("queue_premature_limit");check(!queue.send(queued),"outgoing_queue_exhaustion_fails_closed");
@@ -57,7 +89,13 @@ bool await_packet(Peer& peer,Kind kind,Packet& packet,std::string& error,unsigne
 void require_packet(Peer& peer,Kind kind,Packet& p,const char* message){std::string error;bool got=await_packet(peer,kind,p,error);if(!got)std::cerr<<message<<": "<<error<<'\n';check(got,message);}
 void tls_tests(){
     CoordinatorConfig config;config.port=0;config.session=settings();Coordinator server;std::string error;bool started=server.start(config,error);if(!started)std::cerr<<"TLS server: "<<error<<'\n';check(started,"real_tls_listener");
-    std::atomic<bool> stop{false};std::thread pump([&]{CoordinatorEvent e;while(!stop){while(server.poll(e)){}std::this_thread::sleep_for(std::chrono::milliseconds(1));}});
+    std::atomic<bool> stop{false};std::atomic<unsigned> routed_actions{0},ownership_refusals{0};
+    std::thread pump([&]{CoordinatorEvent e;while(!stop){while(server.poll(e)){
+        if(e.outbound&&e.event.detail=="dispatch_queued"&&e.event.packet.request&&e.event.packet.player==1) {
+            if(e.event.packet.kind==Kind::action)++routed_actions;
+            if(e.event.packet.kind==Kind::reject&&e.event.packet.error==Error::ownership)++ownership_refusals;
+        }
+    }std::this_thread::sleep_for(std::chrono::milliseconds(1));}});
     try {
         auto aconfig=server.peer_config(Role::authority),pconfig=server.peer_config(Role::player,1),qconfig=server.peer_config(Role::player,2);
         check(pconfig.certificate_pin!=Digest{}&&pconfig.credential!=qconfig.credential&&pconfig.credential!=aconfig.credential,"tls_fresh_pin_distinct_credentials");
@@ -68,10 +106,18 @@ void tls_tests(){
         Peer wrong_pin;auto bad=pconfig;bad.certificate_pin[0]^=1;check(wrong_pin.start(bad,error),"bad_pin_start");check(!await_packet(wrong_pin,Kind::welcome,ap,error)&&error=="certificate_pin_or_validity_mismatch","real_wrong_pin_rejected");wrong_pin.stop();
         Peer wrong_secret;bad=pconfig;bad.credential[0]^=1;check(wrong_secret.start(bad,error),"bad_secret_start");require_packet(wrong_secret,Kind::reject,ap,"real_wrong_secret_rejected");check(ap.error==Error::authentication,"real_wrong_secret_reason");wrong_secret.stop();
         Peer mismatch;bad=pconfig;bad.identity.build[0]^=1;check(mismatch.start(bad,error),"bad_build_start");require_packet(mismatch,Kind::reject,ap,"real_wrong_build_rejected");check(ap.error==Error::incompatible,"real_wrong_build_reason");mismatch.stop();
+        for(size_t index=0;index<world_file_count;++index) {
+            Peer changed_world;bad=pconfig;bad.identity.world[index][0]^=1;
+            check(changed_world.start(bad,error),"changed world TLS peer start");
+            require_packet(changed_world,Kind::reject,ap,"actual world mismatch rejected over TLS");
+            check(ap.error==Error::world_mismatch&&ap.world_index==index&&error_detail(ap)==std::string("canonical_world_mismatch:")+world_files[index].path,"actual TLS rejection identifies exact changed world file");
+            changed_world.stop();
+        }
         auto raw_socket=detail::connect_socket(pconfig.host,pconfig.port,stop,error);check(raw_socket!=INVALID_SOCKET,"malformed_tls_socket");{detail::TlsStream raw(raw_socket);check(raw.handshake(false,nullptr,pconfig.certificate_pin,pconfig.host,stop,error),"malformed_real_tls_handshake");Packet h;h.kind=Kind::hello;h.sequence=1;h.identity=pconfig.identity;h.credential=pconfig.credential;Wire malformed=encode(h);malformed[4]=255;malformed[5]=255;check(raw.send(malformed.data(),malformed.size(),error),"oversized_message_sent_inside_tls");std::vector<uint8_t> bytes;bool open=true;auto end=std::chrono::steady_clock::now()+std::chrono::seconds(3);while(open&&std::chrono::steady_clock::now()<end){open=raw.receive(bytes,error);std::this_thread::sleep_for(std::chrono::milliseconds(2));}check(!open,"real_oversized_frame_connection_closed");}
+        check(routed_actions==1&&ownership_refusals==1,"real_tls_action_dispatch_and_owner_refusal_have_request_correlated_evidence");
         resumed.stop();p2.stop();authority.stop();
     }catch(...){stop=true;pump.join();server.stop();throw;}
     stop=true;pump.join();server.stop();
 }
 }
-int main(){try{codec_tests();session_tests();tls_tests();std::cout<<"PASS "<<assertions<<" HOST protocol/policy/real Windows Schannel TCP assertions; no SPORE process started.\n";return 0;}catch(const std::exception& e){std::cerr<<"FAIL after "<<assertions<<" assertions: "<<e.what()<<'\n';return 1;}}
+int main(){try{codec_tests();capture_cadence_tests();session_tests();assertions+=encounter_network_tests();assertions+=world_identity_tests();tls_tests();std::cout<<"PASS "<<assertions<<" HOST protocol/policy/real Windows Schannel TCP assertions; no SPORE process started.\n";return 0;}catch(const std::exception& e){std::cerr<<"FAIL after "<<assertions<<" assertions: "<<e.what()<<'\n';return 1;}}

@@ -1,6 +1,7 @@
 #include "native_persistence.h"
 #include "native_persistence_abi.h"
 #include "native_actors.h"
+#include "native_content.h"
 #include <Spore/Simulator/SubSystem/GamePersistenceManager.h>
 #include <Spore/Simulator/SubSystem/GameNounManager.h>
 #include <Spore/Simulator/SubSystem/GameModeManager.h>
@@ -62,6 +63,19 @@ bool fixture_scene(const worker::Message& status) {
 bool fixture_menu(const worker::Message& status) {
     return status.values[0]==static_cast<uint64_t>(worker::Phase::menu) &&
         status.values[5]==kGGEMode && Simulator::GetGameModeID()==kGGEMode;
+}
+void observe_loaded_world(uint64_t request, uint64_t epoch) {
+    // Reuse the home-planet lookup already exercised by fixture_scene. Copy
+    // scalar fields during this engine callback; retain no native reference.
+    auto home = Simulator::GetPlayerHomePlanet();
+    if (!readable(home, sizeof(Simulator::cPlanetRecord))) {
+        event("native_world_observation_unavailable", ",\"request\":%llu,\"observed_epoch\":%llu", request, epoch);
+        return;
+    }
+    const ResourceKey terrain = home->mGeneratedTerrainKey;
+    event("native_world_observed", ",\"request\":%llu,\"observed_epoch\":%llu,\"generated_terrain_instance\":%u,\"generated_terrain_type\":%u,\"generated_terrain_group\":%u,\"home_world\":%s,\"canonical_resource_validation\":false",
+        request, epoch, terrain.instanceID, terrain.typeID, terrain.groupID, home->mbHomeWorld ? "true" : "false");
+    inspect_native_terrain_records(terrain.instanceID, terrain.typeID, terrain.groupID, request);
 }
 void fail(const char* reason,uint64_t observed_epoch) {
     snapshot.state=State::failed;
@@ -190,6 +204,7 @@ void update_native_persistence(const worker::Message& status) {
     snapshot.state=State::loaded;
     event("native_load_complete",",\"request\":%llu,\"requested_epoch\":%llu,\"observed_epoch\":%llu,\"native_ai_before\":%llu,\"scene_native_ai_before\":%llu,\"native_ai_after\":%llu,\"elapsed_ms\":%llu,\"identities_restored\":false",
         snapshot.request,requested_epoch,status.epoch,requested_ai,load_scene_ai,status.values[2],GetTickCount64()-operation_started);
+    observe_loaded_world(snapshot.request, status.epoch);
 }
 void annotate_native_persistence(worker::Message& status) {
     if(!on_thread())return;

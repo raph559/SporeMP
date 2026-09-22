@@ -5,7 +5,7 @@
 
 namespace sporemp {
 // Local harness authority, not network authentication. No native addresses enter a command.
-enum class ActorVerb : uint32_t { move, jump, attack, stop, retire, approach, engage };
+enum class ActorVerb : uint32_t { move, jump, attack, stop, retire, approach, engage, pickup };
 struct ActorCommand {
     uint64_t sequence = 0, actor = 0, target = 0;
     uint32_t owner = 0;

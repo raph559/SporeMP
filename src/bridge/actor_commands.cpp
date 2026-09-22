@@ -33,7 +33,7 @@ ActorDecision ActorCommands::authorize(const ActorCommand& command) const noexce
     if (!actor.live) return ActorDecision::unknown_actor;
     if (actor.epoch != epoch_) return ActorDecision::stale_scene;
     if (!command.owner || actor.owner != command.owner) return ActorDecision::wrong_owner;
-    if (command.verb == ActorVerb::attack || command.verb == ActorVerb::approach || command.verb == ActorVerb::engage) {
+    if (command.verb == ActorVerb::attack || command.verb == ActorVerb::approach || command.verb == ActorVerb::engage || command.verb == ActorVerb::pickup) {
         auto target = find(command.target);
         if (!target.live || target.epoch != epoch_ || target.id == actor.id) return ActorDecision::invalid_target;
     }
@@ -73,6 +73,7 @@ const char* actor_verb(ActorVerb verb) noexcept {
     case ActorVerb::retire: return "retire";
     case ActorVerb::approach: return "approach";
     case ActorVerb::engage: return "engage";
+    case ActorVerb::pickup: return "pickup";
     }
     return "unknown";
 }

@@ -1,0 +1,696 @@
+{
+  "schema_version": 1,
+  "run": "native12",
+  "evidence_class": [
+    "NATIVE",
+    "NETWORK-REAL"
+  ],
+  "bridge_version": "0.0.40",
+  "wire_schema": 4,
+  "full_m07": "NOT_VERIFIED",
+  "native_terminal_projection": "OBSERVED_IN_BOUNDED_COMBAT",
+  "contested_pickup_gate": "INCOMPLETE",
+  "reconnect_after_pickup": "NOT_RUN",
+  "workers": {
+    "authority": {
+      "bytes": 20426498,
+      "sha256": "8b33ee11c133a3d726e1f001db19b97e8de61d3d120f9b7b114c277718c97b3e",
+      "actor_records": 30794,
+      "trace_duration_seconds": 218.7792493,
+      "contiguous_sequences": true,
+      "qpc_monotonic": true,
+      "foreign_callbacks": 0,
+      "healthy_trace_stop": true,
+      "detach_status": 0,
+      "game_exit_code": 0,
+      "worker_exit_code": 0,
+      "bridge_disposed": true,
+      "worker_state": "stopped",
+      "archived_prefixes_match": {
+        "combat_before": true,
+        "combat_after": true,
+        "pickup_before": true,
+        "pickup_after": true
+      },
+      "pending_death_samples": [],
+      "first_dead_sample": {
+        "sequence": 21621,
+        "source_tick": 72497390,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 0,
+        "dead": true,
+        "position": [
+          -404.786652,
+          182.587418,
+          250.686829
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100,
+        "native_animation": 0,
+        "native_animation_index": -1
+      },
+      "last_corpse_sample": {
+        "sequence": 26581,
+        "source_tick": 72543843,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 0,
+        "dead": true,
+        "position": [
+          -404.786652,
+          182.587418,
+          250.686829
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100,
+        "native_animation": 0,
+        "native_animation_index": -1
+      },
+      "life_presentations": [],
+      "intentional_target_samples_omitted": 13,
+      "trace_limit_events": 0,
+      "scene_projection_rejections": 0,
+      "native_life_rejections": 0,
+      "failures": [
+        {
+          "event": "scene_capture_rejected",
+          "sequence": 27003,
+          "reason": "herd_missing",
+          "native_id": 75
+        },
+        {
+          "event": "network_status",
+          "sequence": 27005,
+          "state": "error",
+          "detail": "Native scene capture failed: unsupported_entity"
+        }
+      ]
+    },
+    "client_a": {
+      "bytes": 11224576,
+      "sha256": "755ae5a0c7e93088eb99294ced63f60763f49f49672eea1ba6c90759f78f2ab7",
+      "actor_records": 10850,
+      "trace_duration_seconds": 216.6167834,
+      "contiguous_sequences": true,
+      "qpc_monotonic": true,
+      "foreign_callbacks": 0,
+      "healthy_trace_stop": true,
+      "detach_status": 0,
+      "game_exit_code": 0,
+      "worker_exit_code": 0,
+      "bridge_disposed": true,
+      "worker_state": "stopped",
+      "archived_prefixes_match": {
+        "combat_before": true,
+        "combat_after": true,
+        "pickup_before": true,
+        "pickup_after": true
+      },
+      "pending_death_samples": [
+        {
+          "sequence": 4546,
+          "source_tick": 72497062,
+          "remote_entity": 12884901967,
+          "entity_generation": 7,
+          "native_id": 79,
+          "health": 0,
+          "dead": false,
+          "position": [
+            -404.77594,
+            182.596161,
+            250.678909
+          ],
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_fed_on": 0,
+          "native_food": 100,
+          "native_animation": 75918763,
+          "native_animation_index": 260
+        }
+      ],
+      "first_dead_sample": {
+        "sequence": 4550,
+        "source_tick": 72497125,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 0,
+        "dead": true,
+        "position": [
+          -404.77594,
+          182.596161,
+          250.678909
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100,
+        "native_animation": 75918763,
+        "native_animation_index": 260
+      },
+      "last_corpse_sample": {
+        "sequence": 10770,
+        "source_tick": 72544671,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 0,
+        "dead": true,
+        "position": [
+          -404.786652,
+          182.587418,
+          250.686829
+        ],
+        "source_fed_on": 1,
+        "source_food": 88.0901108,
+        "source_pickup_owner": 0,
+        "native_fed_on": 1,
+        "native_food": 88.0901108,
+        "native_animation": 92304198,
+        "native_animation_index": 262
+      },
+      "life_presentations": [
+        {
+          "sequence": 4551,
+          "animation": 92304198,
+          "animation_index": 262,
+          "started": true,
+          "callback_cleared": true
+        }
+      ],
+      "intentional_target_samples_omitted": 0,
+      "trace_limit_events": 0,
+      "scene_projection_rejections": 0,
+      "native_life_rejections": 0,
+      "failures": []
+    },
+    "client_b": {
+      "bytes": 11170635,
+      "sha256": "86ee592a0425619676ffaea370b44995089af7b4593be23cbf7f3c1cbebbfed9",
+      "actor_records": 10812,
+      "trace_duration_seconds": 214.872949,
+      "contiguous_sequences": true,
+      "qpc_monotonic": true,
+      "foreign_callbacks": 0,
+      "healthy_trace_stop": true,
+      "detach_status": 0,
+      "game_exit_code": 0,
+      "worker_exit_code": 0,
+      "bridge_disposed": true,
+      "worker_state": "stopped",
+      "archived_prefixes_match": {
+        "combat_before": true,
+        "combat_after": true,
+        "pickup_before": true,
+        "pickup_after": true
+      },
+      "pending_death_samples": [
+        {
+          "sequence": 4465,
+          "source_tick": 72497062,
+          "remote_entity": 12884901967,
+          "entity_generation": 7,
+          "native_id": 79,
+          "health": 0,
+          "dead": false,
+          "position": [
+            -404.77594,
+            182.596161,
+            250.678909
+          ],
+          "source_fed_on": 0,
+          "source_food": 100,
+          "source_pickup_owner": 0,
+          "native_fed_on": 0,
+          "native_food": 100,
+          "native_animation": 75918763,
+          "native_animation_index": 260
+        }
+      ],
+      "first_dead_sample": {
+        "sequence": 4468,
+        "source_tick": 72497125,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 0,
+        "dead": true,
+        "position": [
+          -404.77594,
+          182.596161,
+          250.678909
+        ],
+        "source_fed_on": 0,
+        "source_food": 100,
+        "source_pickup_owner": 0,
+        "native_fed_on": 0,
+        "native_food": 100,
+        "native_animation": 75918763,
+        "native_animation_index": 260
+      },
+      "last_corpse_sample": {
+        "sequence": 10731,
+        "source_tick": 72544671,
+        "remote_entity": 12884901967,
+        "entity_generation": 7,
+        "native_id": 79,
+        "health": 0,
+        "dead": true,
+        "position": [
+          -404.786652,
+          182.587418,
+          250.686829
+        ],
+        "source_fed_on": 1,
+        "source_food": 88.0901108,
+        "source_pickup_owner": 0,
+        "native_fed_on": 1,
+        "native_food": 88.0901108,
+        "native_animation": 92304198,
+        "native_animation_index": 262
+      },
+      "life_presentations": [
+        {
+          "sequence": 4469,
+          "animation": 92304198,
+          "animation_index": 262,
+          "started": true,
+          "callback_cleared": true
+        }
+      ],
+      "intentional_target_samples_omitted": 0,
+      "trace_limit_events": 0,
+      "scene_projection_rejections": 0,
+      "native_life_rejections": 0,
+      "failures": []
+    }
+  },
+  "captures": {
+    "authority": {
+      "source": "Windows.Graphics.Capture via FFmpeg gfxcapture",
+      "maximum_seconds": 270,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frame_seconds": [
+        95,
+        150
+      ],
+      "reviewer": "Root operator inspected exact-process original game content",
+      "files": {
+        "request.json": {
+          "bytes": 1591,
+          "sha256": "9cf6b0e43a74dc6f92842f356da91d0429453dcc41c02db6dc5841d2545af65e"
+        },
+        "completion.json": {
+          "bytes": 285,
+          "sha256": "a5e1e2885b9c54654c0c5bd484f3a74ae24e397116bbb4e143ac8e59be0bf1b7"
+        },
+        "capture.mkv": {
+          "bytes": 95001062,
+          "sha256": "eb39777e2addce39cd3168e073c0aee99629f5bec930a490ce8a5481cb3d7da3"
+        },
+        "reviewed-95.png": {
+          "bytes": 610538,
+          "sha256": "000d1dd801f5df82b816f38964a47ad79a60586513bd498fc4ff01fd9acc3adc"
+        },
+        "reviewed-150.png": {
+          "bytes": 840847,
+          "sha256": "95ce133914a95f1a510c3852da0e4dd499d8b7470817c1a83cf59a64d23735ac"
+        }
+      },
+      "visual_acceptance": "INCOMPLETE: later clients retain corpse after source publication failure",
+      "audio_recorded": false
+    },
+    "client_a": {
+      "source": "Windows.Graphics.Capture via FFmpeg gfxcapture",
+      "maximum_seconds": 270,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frame_seconds": [
+        95,
+        150
+      ],
+      "reviewer": "Root operator inspected exact-process original game content",
+      "files": {
+        "request.json": {
+          "bytes": 1589,
+          "sha256": "9a7e2db2fbb14fd05772112250e2b46c6ca74ee9b6e3bb2d7fcb4846c2181aca"
+        },
+        "completion.json": {
+          "bytes": 285,
+          "sha256": "1b77201844533d66d99f5fb1d0aff1b46a9e6d159dce298226f09c7f95c8b77b"
+        },
+        "capture.mkv": {
+          "bytes": 112364194,
+          "sha256": "6255277f9c68ac529a302bb20210638f149b05e37959c40cf83cbc8a1f19ee50"
+        },
+        "reviewed-95.png": {
+          "bytes": 964185,
+          "sha256": "ebe6799bffd2cda01d6a21727a9d7ea7876df3949cc3f663b1558d5d5cf7b348"
+        },
+        "reviewed-150.png": {
+          "bytes": 831547,
+          "sha256": "3e45407a66f9a76f50237df6d10ee9767bec8e660f1b9298b549991b95bf9faf"
+        }
+      },
+      "visual_acceptance": "INCOMPLETE: later clients retain corpse after source publication failure",
+      "audio_recorded": false
+    },
+    "client_b": {
+      "source": "Windows.Graphics.Capture via FFmpeg gfxcapture",
+      "maximum_seconds": 270,
+      "exit_code": 0,
+      "wall_timeout": false,
+      "reviewed_frame_seconds": [
+        95,
+        150
+      ],
+      "reviewer": "Root operator inspected exact-process original game content",
+      "files": {
+        "request.json": {
+          "bytes": 1588,
+          "sha256": "1db9c9d4ccbbd981808d7a90d573b0bb4779327f1320a90dff41a00bff1606ed"
+        },
+        "completion.json": {
+          "bytes": 285,
+          "sha256": "16b40654792905204013af99031e249a8a94ad46fe120eb60e63b527bfefef88"
+        },
+        "capture.mkv": {
+          "bytes": 122426610,
+          "sha256": "038501979f6bc4f58b293381540e241b4a96a46c9e79ca3ff8f0d3eefaab73de"
+        },
+        "reviewed-95.png": {
+          "bytes": 921681,
+          "sha256": "ab2d752d272e3e6e8034db5da5c0b81cca796b9489116e5068975f58eafffbb7"
+        },
+        "reviewed-150.png": {
+          "bytes": 791918,
+          "sha256": "8ca5d5b572426c415164c72d1753c0dd867978b75091ee9962d193568160a3ff"
+        }
+      },
+      "visual_acceptance": "INCOMPLETE: later clients retain corpse after source publication failure",
+      "audio_recorded": false
+    }
+  },
+  "source": {
+    "original_executable_sha256": "dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37",
+    "sdk_commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+    "bridge_sha256": "c5a476e76b69c43768b5a7d479818d1989bbe831d876e48c30b7efdb9ce2057e",
+    "native_scene_source_sha256": "c70d7dad5768b4501c853d23b2a9e85f2bf03da91abd307df8784bbd5ebfe8d4",
+    "native_actors_source_sha256": "b7bfd54c27b40fb7d8231e29bae32da72a1dd422eb53de8c2454d6edbc82ff1f",
+    "frozen_pickup_harness_sha256": "f8656b8b360839633e346d85969fb842260df030c06b8ca4dd7c5f69804812b0"
+  },
+  "pickup": {
+    "frozen_operation_completed": false,
+    "frozen_bounded_contested_pickup_observed": false,
+    "frozen_error": "A native lifecycle, projection, pickup or network failure ended the observation; see retained events",
+    "requested_deadline_seconds": 40.0,
+    "both_original_orders_before_first_feed": true,
+    "order_returns": [
+      {
+        "sequence": 23454,
+        "executing_command": 4,
+        "actor": 1,
+        "owner": 1,
+        "target": 3,
+        "ordered": true
+      },
+      {
+        "sequence": 23474,
+        "executing_command": 5,
+        "actor": 2,
+        "owner": 2,
+        "target": 3,
+        "ordered": true
+      }
+    ],
+    "order_return_separation_seconds": 0.0151442,
+    "first_feed_transition": {
+      "scope": 4309,
+      "enter_sequence": 26626,
+      "state_return_sequence": 26629,
+      "actor": 1,
+      "owner": 1,
+      "claimant_native_id": 232,
+      "fed_on_before": false,
+      "fed_on_after": true
+    },
+    "original_first_feed_dna": {
+      "enter_sequence": 26627,
+      "return_sequence": 26628,
+      "caller_rva": 9900978,
+      "amount": 0,
+      "before": 7,
+      "after": 7
+    },
+    "first_positive_nutrition": {
+      "before": {
+        "sequence": 26634,
+        "pickup_scope": 4312,
+        "actor": 1,
+        "owner": 1,
+        "claimant_native_id": 232,
+        "food": 100,
+        "hunger": 0,
+        "health": 2.52796555
+      },
+      "after": {
+        "sequence": 26639,
+        "pickup_scope": 4312,
+        "actor": 1,
+        "owner": 1,
+        "claimant_native_id": 232,
+        "food": 99.7600021,
+        "hunger": 0.24000001,
+        "health": 2.55596566
+      }
+    },
+    "qualified_callback_count": 545,
+    "qualified_owner_b_callback_count": 0,
+    "positive_nutrition_callback_count": 477,
+    "positive_nutrition_callbacks_before_capture_failure": 53,
+    "second_first_feed_transition_or_call_observed": false,
+    "production_beneficiary_metadata": 0,
+    "production_first_feed_observed_events": 0,
+    "full_three_way_consumed_state_proof": false,
+    "last_original_food": -31.0097942,
+    "later_parser_not_used_to_regrade_frozen_run": true
+  },
+  "pool_failure": {
+    "previous_scene_sample": {
+      "sequence": 26577,
+      "source_tick": 72543843,
+      "remote_entity": 12884901963,
+      "entity_generation": 3,
+      "native_id": 75,
+      "health": 6,
+      "dead": false,
+      "position": [
+        -425.439636,
+        31.5606194,
+        267.040344
+      ],
+      "source_fed_on": 0,
+      "source_food": 100,
+      "source_pickup_owner": 0,
+      "native_fed_on": 0,
+      "native_food": 100,
+      "native_animation": 0,
+      "native_animation_index": -1,
+      "health_context": {
+        "observed": true,
+        "maximum_binding": true,
+        "base_binding": true,
+        "native_max": 6,
+        "native_base_max": 6,
+        "raw_max": 1,
+        "age": 1,
+        "flags": 0,
+        "combatant_state": 0,
+        "stage_brain": 0,
+        "species_health": 0,
+        "herd_health_override": 0,
+        "herd_native_id": 1776,
+        "same_avatar_species": false,
+        "species": [
+          106739729,
+          731352134,
+          1080189440
+        ],
+        "native_archetype_present": true,
+        "native_scale": 0.917234361
+      }
+    },
+    "capture_rejection": {
+      "sequence": 27003,
+      "reason": "herd_missing",
+      "native_id": 75,
+      "herd_present": false,
+      "spatial_enabled": false,
+      "model_present": false,
+      "model_world_present": false,
+      "animated_creature_present": true,
+      "species_profile_present": true,
+      "native_archetype_data_present": true,
+      "health": 6,
+      "position": [
+        0,
+        0,
+        0
+      ]
+    },
+    "network_error": {
+      "sequence": 27005,
+      "state": "error",
+      "detail": "Native scene capture failed: unsupported_entity"
+    },
+    "scope": "Unrelated initialized NPC75 detached/inactive native state; exact lifecycle interpretation and guarded handling require the next increment"
+  },
+  "combat": {
+    "both_owners_original_damage": true,
+    "bounded_encounter_observed": true,
+    "hits_by_owner": {
+      "1": [
+        {
+          "native_call": 3753,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 6,
+          "after_health": 5,
+          "health_decrease": 1,
+          "enter_sequence": 19255,
+          "return_sequence": 19260
+        },
+        {
+          "native_call": 3867,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 5,
+          "after_health": 4,
+          "health_decrease": 1,
+          "enter_sequence": 19734,
+          "return_sequence": 19739
+        },
+        {
+          "native_call": 4018,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 3,
+          "after_health": 2,
+          "health_decrease": 1,
+          "enter_sequence": 20380,
+          "return_sequence": 20385
+        },
+        {
+          "native_call": 4169,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 2,
+          "after_health": 1,
+          "health_decrease": 1,
+          "enter_sequence": 21006,
+          "return_sequence": 21011
+        },
+        {
+          "native_call": 4289,
+          "attacker_actor": 1,
+          "receiver_actor": 3,
+          "before_health": 1,
+          "after_health": 0,
+          "health_decrease": 1,
+          "enter_sequence": 21579,
+          "return_sequence": 21586
+        }
+      ],
+      "2": [
+        {
+          "native_call": 3935,
+          "attacker_actor": 2,
+          "receiver_actor": 3,
+          "before_health": 4,
+          "after_health": 3,
+          "health_decrease": 1,
+          "enter_sequence": 20005,
+          "return_sequence": 20012
+        }
+      ]
+    },
+    "npc_damaged_owner_a_only_in_this_fight": true,
+    "reward_owner": 1,
+    "reward_amount": 7,
+    "configured_b_lead_seconds": 0,
+    "observation_seconds": 25.0,
+    "initial_staged_attempt": {
+      "result": "INCONCLUSIVE",
+      "error": "Phase did not produce native evidence: B_in_native_range"
+    }
+  },
+  "protected_files": {
+    "personal_files_unchanged": 29,
+    "recognized_running_workers": 0,
+    "games_files_unchanged_per_worker": [
+      16,
+      16,
+      16
+    ],
+    "creations_files_per_worker": [
+      0,
+      0,
+      0
+    ]
+  },
+  "timing": {
+    "overall_bound_seconds": 300,
+    "capture_maximum_seconds": 270,
+    "stopped_early_on_capture_failure": true
+  },
+  "artifact_hashes": {
+    "native12-closed/report.json": {
+      "bytes": 31734,
+      "sha256": "e880186751e1c1cc63fc4ebe44176dfe3b9a0e6480ada8d148437013169b6150"
+    },
+    "native12-combat/report.json": {
+      "bytes": 57626,
+      "sha256": "4e94731d972c4faafba676f7d0fd12f44bdfe6b79b5611550aa0b0406a5dbe04"
+    },
+    "native12-pickup/report.json": {
+      "bytes": 64901,
+      "sha256": "b864b531704333cea88e12eb8d60b55c27b6b7e1f784d1b4b87c91390d2f1854"
+    },
+    "native12-staged-combat/report.json": {
+      "bytes": 26671,
+      "sha256": "b33341d772753419167a9fe889828ce0c2fddf56bfeb5956acdd79e1ab6fc90e"
+    },
+    "native12-source-payloads.json": {
+      "bytes": 12709,
+      "sha256": "47ebf9a20188e6a27da18de8985d2b2d35df3bd92436ea38f79ff0e83673e854"
+    },
+    "native12-stop.json": {
+      "bytes": 1653,
+      "sha256": "51069ef5d0299cdc32dbfa97d362b715475f9280e4ea77c128c508afed53d3d0"
+    },
+    "native12-save-check.json": {
+      "bytes": 1000,
+      "sha256": "cfa08f688abb93ce96d91395fe1476d0f33af355189b41bf775b7f5376055e5d"
+    },
+    "native12-personal-after.json": {
+      "bytes": 272,
+      "sha256": "534c6fc75a6a7f4fa9696c860217754dcf8a648b75306b7bbc80b3229bfd6095"
+    },
+    "analyze-native12.py": {
+      "bytes": 12770,
+      "sha256": "8d4c0c8a815620195bdcc5a7d1f910ecdd4c4a66b919307d47e417f1b1617870"
+    }
+  }
+}

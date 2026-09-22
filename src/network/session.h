@@ -1,5 +1,6 @@
 #pragma once
 #include "protocol.h"
+#include "content_control.h"
 #include <map>
 #include <chrono>
 #include <vector>
@@ -19,6 +20,7 @@ public:
 private:
     struct Connection { uint64_t player=0,sequence=0,out_sequence=0,baseline=0,last_request=0;bool authenticated=false,authority=false,ready=false;size_t actions=0;std::chrono::steady_clock::time_point action_window=std::chrono::steady_clock::now(); };
     SessionConfig config_;
+    ContentControl content_;
     std::map<uint64_t,Connection> connections_;
     std::map<uint64_t,Entity> entities_,staging_;
     std::map<uint64_t,uint64_t> tombstones_;

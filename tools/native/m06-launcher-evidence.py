@@ -16,7 +16,7 @@ import sys
 REPO = Path(__file__).resolve().parents[2]
 PINNED_EXE = 'dc04aee5a3debc3f1ad4c1a937460e99a29b9bd3bc285008be83615dd5e59a37'
 PINNED_SDK = 'cbf9206b9a823f0911cd9be0217104a49d72380b'
-MAX_BYTES = 64 * 1024 * 1024
+MAX_BYTES = 66 * 1024 * 1024
 
 
 def utc():
