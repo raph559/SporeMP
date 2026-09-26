@@ -1,5 +1,9 @@
 # Testing and evidence contract
 
+## M11 trace-tool increment — 2026-09-27
+
+Run `python -m unittest discover -s tests/unit -p test_creature_social.py -v`. The 5/5 HOST/FIXTURE tests cover malformed and mismatched traces, separate combat from the candidate social caller and retain unknown reward ownership. See the [gate map](../tests/engine/M11.md). These tests never launch SPORE; the later native development payload remains unexported.
+
 Historical raw inputs are privately archived; normal builds and automated HOST tests do not need them. Current reusable analyzers live under `tools/native/`, accept explicit archive inputs and must not treat missing private records as a passing check. Publish only reports listed in `docs/public-evidence-files.txt`; run `python tools/check-public-evidence.py` after staging the intended changes. See the [evidence index](../evidence/README.md) and [archive policy](public-evidence.md#historical-artifacts).
 
 ## Current public source verification — 2026-09-22

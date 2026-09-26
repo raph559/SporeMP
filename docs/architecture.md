@@ -1,6 +1,6 @@
 # Architecture — initial decisions
 
-Status: architectural contract, **not implemented multiplayer functionality**. M01 tooling and the M02 observation baseline are qualified for their recorded configuration. M02's 2026-09-09 native pair verifies the selected Creature action, scene and diagnostic paths; other stages and multiplayer capabilities remain unqualified. Required product scope is in `../GOAL.md`; all milestones remain in `../MILESTONES.md`.
+Status: architectural contract with **bounded native Creature foundations through M10**. Networking, scoped authority, checkpoints and location transfer are qualified only for their recorded configurations; the complete stage/campaign architecture remains unfinished. M11 begins normal Creature gameplay coverage. See [current evidence](../STATUS.md), [Creature coverage](m11-creature.md), [product scope](../GOAL.md) and the complete [milestone plan](../MILESTONES.md). The design below states required behavior, not a claim that every subsystem or stage is complete. Public source availability is qualified separately in [README.md](../README.md).
 
 ## Original engine owns gameplay
 

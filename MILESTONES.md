@@ -17,7 +17,7 @@ This table tracks the development milestones. **The code in this public clone re
 | M08 | Native content, terrain, and editor-commit foundation | VERIFIED |
 | M09 | Durable checkpoints, reconnects, and crash recovery | VERIFIED |
 | M10 | One universe across multiple native locations | VERIFIED |
-| M11 | Creature stage gameplay coverage | TODO |
+| M11 | Creature stage gameplay coverage | IN_PROGRESS |
 | M12 | Cell stage gameplay coverage | TODO |
 | M13 | Tribal stage gameplay coverage | BLOCKED |
 | M14 | Civilization stage gameplay coverage | BLOCKED |
@@ -30,7 +30,7 @@ This table tracks the development milestones. **The code in this public clone re
 
 M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07 completion: `evidence/2026-09-21-m07-completion/acceptance.md` (VERIFIED for the recorded shared Creature fixture). M08 completion: `evidence/2026-09-22-m08-completion/SESSION.md` (VERIFIED for the recorded Creature content/editor foundation). M09/M10 development acceptance is summarized in `evidence/2026-09-27-development-update/SESSION.md`; their source export is pending. M11–M20 remain unverified. No stage scope is deferred to optional M20.
 
-M03–M08 are verified for their recorded native Creature fixtures. M09/M10 are verified for their recorded development fixtures, with source export pending. M11/M12 are TODO; later stage and campaign dependencies remain unfinished. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
+M03–M08 are verified for their recorded native Creature fixtures. M09/M10 are verified for their recorded development fixtures, with source export pending. M11 is IN_PROGRESS with static research and trace tooling; M12 is TODO; later stage and campaign dependencies remain unfinished. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
 
 ## Required launcher amendment — 2026-09-08
 
@@ -210,6 +210,8 @@ Initially use explicit test travel commands if necessary; these are test harness
 **Acceptance:** players in two separately simulated locations share one canonical universe, can meet in the same scene, separate again, and reconnect without diverging histories. Killing either worker during every transfer step creates neither two authoritative avatars nor a lost persistent avatar. Two workers must not double-run the same global economy/diplomacy event. Prove shared consequences, not just shared planet names.
 
 ### M11 — Creature stage gameplay coverage
+
+**Current increment:** IN_PROGRESS, 2026-09-27; [contract](docs/m11-creature.md), [gate map](tests/engine/M11.md), [session](evidence/2026-09-27-m11-start/SESSION.md). New native gameplay is NOT RUN.
 
 **Dependencies:** M07–M10.
 

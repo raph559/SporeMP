@@ -1,6 +1,6 @@
 # Multiplayer policy — initial defaults
 
-These choices address multiplayer ownership and coexistence. They do not change native combat, production, resource formulas or progression requirements. Implementation is TODO beyond M01 diagnostics.
+These choices address multiplayer ownership and coexistence. They do not change native combat, production, resource formulas or progression requirements. Implementation is bounded by the recorded M03–M10 Creature foundations. Full stage policies remain unqualified; see STATUS.md and the M11 Creature contract. Public source availability is qualified separately in [README.md](../README.md).
 
 - Private invite-based universe; authenticated membership and operator roles. Initial PvP default: disabled, with an explicit server configuration to enable it and a tested enforcement path. This is a project policy default, not native engine behavior.
 - Separate persistent player, species and faction identities by default. Optional shared-faction play needs explicit permissions for unit control, resources, edits and progression consent; connection to a faction is not unrestricted ownership.

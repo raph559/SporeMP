@@ -17,11 +17,16 @@ The table records **development acceptance**. The public implementation remains 
 | M08 | VERIFIED | Native01–11 qualify the pinned Creature content/editor foundation: original save/import and exact 23-rigblock/47-capability agreement; nine native part roots; pre-import missing-part refusal; canonical terrain mapping and actual-profile mismatch denial; concurrent editing/cancel and two immutable native-validated publications. Developer/local-approval boundary; no campaign avatar replacement or restart durability. |
 | M09 | VERIFIED | Private development fixture: native checkpoint recovery, tested inventory/progression and creation ownership, interrupted saves and publication. Source export pending. |
 | M10 | VERIFIED | Private development fixture: separate locations, meeting/return, paired native Save/restart/reconnect and 36 recorded worker-fault cases. Source export pending. |
-| M11–M12 | TODO | Creature and Cell gameplay coverage remain unverified; foundation dependencies are satisfied in development. |
+| M11 | IN_PROGRESS | Creature coverage/static binding audit and strict trace reducer; 5/5 HOST/FIXTURE tests pass. New native gameplay is NOT RUN. |
+| M12 | TODO | Cell gameplay remains unverified; foundation dependencies are satisfied in development. |
 | M13–M19 | BLOCKED | Required stage/faction/campaign dependencies remain unfinished. |
 | M20 | TODO | Optional native Galactic Adventures multiplayer. |
 
 M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No further native game launch or repeated M01 test followed the confirmation.
+
+## M11 first increment — 2026-09-27
+
+The [session](evidence/2026-09-27-m11-start/SESSION.md), [contract](docs/m11-creature.md) and [gate map](tests/engine/M11.md) record the first source/static investigation and read-only tool. These research files are exported here; M09/M10 native code remains unpublished.
 
 ## Historical M08 completion — 2026-09-22
 

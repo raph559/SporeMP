@@ -23,6 +23,8 @@ The complete M00-M20 plan is in [MILESTONES.md](../MILESTONES.md). A milestone s
 
 ## Repository and tooling changes
 
+- [M11 first increment](2026-09-27-m11-start/SESSION.md): Creature coverage and static social-reward investigation, read-only trace reducer and HOST/FIXTURE checks; new native acceptance NOT RUN.
+
 - [M07/M08 reviewed export](2026-09-22-m08-publication/SESSION.md): current public Release build, 15/15 HOST/FIXTURE targets, source/privacy review and updated English/French website; native results retain their frozen development payload qualification.
 - [Detours 4 migration and GPL licensing](2026-09-21-detours4-license/SESSION.md): BUILD/HOST/FIXTURE validation, with original-game execution explicitly NOT RUN.
 - [Evidence cleanup](2026-09-21-evidence-cleanup/SESSION.md): private preservation, public curation, source-tool relocation and publication checks.

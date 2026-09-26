@@ -1,6 +1,6 @@
 # Authority matrix
 
-Status: required global design with **bounded native implementation in M03–M05**. M05 is VERIFIED for the recorded living Creature fixture under its [four original acceptance clauses](../evidence/2026-09-14-m05-ability/acceptance.md); whole-domain/global authority separation is not qualified. The planned global ownership lease identifies resource ID, worker ID, universe/session epoch and monotonically increasing generation. The coordinator must reject old generations before committing or forwarding outcomes. A lease does not establish that native background mutation has been suppressed; that requires traces in M04/M05/M10.
+Status: required global design with **bounded native foundations through M10**. The recorded Creature configuration now has authenticated session/scene authority, durable checkpoints, location leases and transfer recovery. Native global admission qualifies its recorded producer paths only. The full stage/domain rows below remain requirements; no generic all-stage authority is implied. See [STATUS.md](../STATUS.md), the [reviewed M10 development summary](../evidence/2026-09-27-development-update/SESSION.md) and the [M11 coverage contract](m11-creature.md). Historical M05 details remain below. Public source availability is qualified separately in [README.md](../README.md).
 
 | Mutable domain | Gameplay producer | Coordinator responsibility | Client/other-worker view | Required evidence |
 |---|---|---|---|---|

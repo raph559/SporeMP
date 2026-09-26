@@ -12,7 +12,7 @@ For the project presentation, development news and roadmap, visit the [SporeMP w
 
 ## Development progress and source availability
 
-The development checkout has verified M09 persistence and M10 location travel/recovery for its recorded original Creature fixtures. **M11 Creature gameplay coverage is next.** See the [reviewed development update](evidence/2026-09-27-development-update/SESSION.md) for results, payload identities and limitations.
+The development checkout has verified M09 persistence and M10 location travel/recovery for its recorded original Creature fixtures. **M11 has started with a coverage/binding audit and trace tooling; its new native tests are NOT RUN.** See the [Creature contract](docs/m11-creature.md). See the [reviewed development update](evidence/2026-09-27-development-update/SESSION.md) for results, payload identities and limitations.
 
 **This public source checkout is still the M08 export** (launcher 0.1.10, bridge/NativeHost 0.0.50). The later M09/M10 implementation and development launcher 0.1.13 have not been exported here. The website reports development progress; it is not a download or a claim that this clone includes those changes.
 
