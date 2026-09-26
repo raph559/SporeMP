@@ -10,7 +10,13 @@ The mod source and reviewed development history are hosted in the public [raph55
 
 For the project presentation, development news and roadmap, visit the [SporeMP website](https://raph559.github.io/sporemp-site/). Its independent public source repository is [raph559/sporemp-site](https://github.com/raph559/sporemp-site).
 
-## Current progress
+## Development progress and source availability
+
+The development checkout has verified M09 persistence and M10 location travel/recovery for its recorded original Creature fixtures. **M11 Creature gameplay coverage is next.** See the [reviewed development update](evidence/2026-09-27-development-update/SESSION.md) for results, payload identities and limitations.
+
+**This public source checkout is still the M08 export** (launcher 0.1.10, bridge/NativeHost 0.0.50). The later M09/M10 implementation and development launcher 0.1.13 have not been exported here. The website reports development progress; it is not a download or a claim that this clone includes those changes.
+
+## Exported implementation
 
 M00–M08 are **VERIFIED within their recorded acceptance boundaries**:
 
@@ -28,7 +34,7 @@ Current qualification covers the **recorded Creature fixtures** with a pinned ga
 
 The recorded M07/M08 native runs identify their frozen development payloads. This public checkout preserves its separate Detours 4 SDK migration; original-game execution with the rebuilt public SDK remains **NOT RUN**. Source export and HOST test results do not extend those native qualifications. See [SDK build boundaries](docs/detours4-migration.md).
 
-**Next: M09**, durable checkpoints, content versions, reconnects and recovery after server restarts. All-stage gameplay, arbitrary worlds/content, Internet hosting qualification and release packaging remain unfinished. Rendered workers require the recorded signed-in Windows desktop configuration; headless/service operation is not qualified.
+**Next source-publication step: review and export the completed M09/M10 implementation**, preserving this checkout's independent SDK migration and re-running its build and tests. All-stage gameplay, arbitrary worlds/content, Internet hosting qualification and release packaging remain unfinished. Rendered workers require the recorded signed-in Windows desktop configuration; headless/service operation is not qualified.
 
 See [STATUS.md](STATUS.md) for the current evidence and limitations, [GOAL.md](GOAL.md) for the product scope, and [MILESTONES.md](MILESTONES.md) for the complete M00–M20 acceptance plan. The complete user-adopted brief is preserved in [docs/implementation-brief.md](docs/implementation-brief.md). Native execution and HOST/FIXTURE tests are reported separately; a successful build or host test does not establish native gameplay acceptance.
 

@@ -2,6 +2,8 @@
 
 All original milestone work, dependencies, deliverables and acceptance text below are retained from the user-adopted brief. The explicitly dated launcher amendment extends them without changing the preserved source brief. This is the execution backlog, not achieved functionality. Status vocabulary: TODO, IN_PROGRESS, IMPLEMENTED_NOT_RUN, VERIFIED, BLOCKED. Native completion requires original-game evidence.
 
+This table tracks the development milestones. **The code in this public clone remains at the reviewed M08 export.** The [development update](evidence/2026-09-27-development-update/SESSION.md) distinguishes later native acceptance from published source availability.
+
 | ID | Objective | Status |
 |---|---|---|
 | M00 | Establish the project contract and actionable backlog | VERIFIED |
@@ -13,10 +15,10 @@ All original milestone work, dependencies, deliverables and acceptance text belo
 | M06 | Real network session and authoritative scene replication | VERIFIED |
 | M07 | First complete native shared encounter | VERIFIED |
 | M08 | Native content, terrain, and editor-commit foundation | VERIFIED |
-| M09 | Durable checkpoints, reconnects, and crash recovery | TODO |
-| M10 | One universe across multiple native locations | BLOCKED |
-| M11 | Creature stage gameplay coverage | BLOCKED |
-| M12 | Cell stage gameplay coverage | BLOCKED |
+| M09 | Durable checkpoints, reconnects, and crash recovery | VERIFIED |
+| M10 | One universe across multiple native locations | VERIFIED |
+| M11 | Creature stage gameplay coverage | TODO |
+| M12 | Cell stage gameplay coverage | TODO |
 | M13 | Tribal stage gameplay coverage | BLOCKED |
 | M14 | Civilization stage gameplay coverage | BLOCKED |
 | M15 | Space stage and persistent galaxy gameplay | BLOCKED |
@@ -26,9 +28,9 @@ All original milestone work, dependencies, deliverables and acceptance text belo
 | M19 | Release qualification and complete deliverables | BLOCKED |
 | M20 | Optional extension: Galactic Adventures multiplayer | TODO |
 
-M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07 completion: `evidence/2026-09-21-m07-completion/acceptance.md` (VERIFIED for the recorded shared Creature fixture). M08 completion: `evidence/2026-09-22-m08-completion/SESSION.md` (VERIFIED for the recorded Creature content/editor foundation). M09–M20 remain unverified. No stage scope is deferred to optional M20.
+M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07 completion: `evidence/2026-09-21-m07-completion/acceptance.md` (VERIFIED for the recorded shared Creature fixture). M08 completion: `evidence/2026-09-22-m08-completion/SESSION.md` (VERIFIED for the recorded Creature content/editor foundation). M09/M10 development acceptance is summarized in `evidence/2026-09-27-development-update/SESSION.md`; their source export is pending. M11–M20 remain unverified. No stage scope is deferred to optional M20.
 
-M03–M08 are verified for their recorded native Creature fixtures. M09 is TODO with its M04/M07/M08 dependencies satisfied; M10–M19 remain blocked on unfinished dependencies. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
+M03–M08 are verified for their recorded native Creature fixtures. M09/M10 are verified for their recorded development fixtures, with source export pending. M11/M12 are TODO; later stage and campaign dependencies remain unfinished. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
 
 ## Required launcher amendment — 2026-09-08
 

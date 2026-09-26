@@ -91,3 +91,4 @@ evidence/2026-09-22-m08-native-resource-import/verification.json
 evidence/README.md
 evidence/2026-09-22-m08-publication/SESSION.md
 evidence/2026-09-22-m08-publication/verification.json
+evidence/2026-09-27-development-update/SESSION.md

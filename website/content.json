@@ -1,6 +1,32 @@
 {
   "news": [
     {
+      "slug": "explore-apart-meet-again",
+      "date": "2026-09-26",
+      "category": "Multiplayer",
+      "title": "Explore apart. Meet again.",
+      "summary": "Two Creature locations now share tested travel, saving and recovery in one experimental world.",
+      "paragraphs": [
+        "Players in two separately simulated Creature locations can meet in the same original-game scene, move and jump together, then return home with their current state. Both locations belong to one shared saved world.",
+        "The recorded tests continue through original-game saves, server restart and reconnecting. Interrupted travel was exercised across 36 native worker-fault cases, checking recovery without losing or duplicating the persistent player. Shared background operations also require the correct authority before the original game can change them.",
+        "This completes M10 for the prepared Creature locations and pinned game build used in testing. Travel still uses development tools. This result does not qualify arbitrary planets, normal Space travel, every background system or a public multiplayer release.",
+        "Next is M11: extending these foundations across the normal Creature loop, including social actions, packs, nests, unlocks, mating and editor return. Cell follows in M12; the eventual campaign still progresses from Cell through Space."
+      ]
+    },
+    {
+      "slug": "a-shared-world-worth-returning-to",
+      "date": "2026-09-22",
+      "category": "Development",
+      "title": "A shared world worth returning to.",
+      "summary": "Saved players, creations and tested Creature progress survive server restarts and interrupted saves.",
+      "paragraphs": [
+        "After restarting the server and its original-game simulation, two fresh game clients returned as their existing players. The recorded checkpoint preserved their tested inventory, DNA progress and creation ownership without creating replacement avatars or granting rewards again.",
+        "Tests interrupted both original-game saving and the server's publication of a new checkpoint. Recovery selected a complete saved version, while unfinished saves could not replace it. Changes since the selected checkpoint can be rolled back.",
+        "M09 is verified for this prepared two-player Creature setup. Recovery remains an explicit protected development workflow, with a five-minute checkpoint budget for recovered authorities. Automatic hosting and compatibility with arbitrary campaign saves remain unfinished.",
+        "These persistence foundations support the next location milestone, where players can explore separately and meet again in one shared world."
+      ]
+    },
+    {
       "slug": "creations-without-interrupting-play",
       "date": "2026-09-22",
       "category": "Development",
@@ -64,6 +90,36 @@
   ],
   "releases": [
     {
+      "version": "0.1.13",
+      "date": "2026-09-27",
+      "title": "Explore apart. Meet again.",
+      "changes": [
+        "Refresh the launcher's offline notes with completed travel, save and recovery tests across two prepared Creature locations.",
+        "Explain that normal Creature gameplay coverage is next."
+      ],
+      "note": "Development notes update. Travel uses development tools; no new player travel controls or public download."
+    },
+    {
+      "version": "0.1.12",
+      "date": "2026-09-24",
+      "title": "Join the right Creature location",
+      "changes": [
+        "Recognize prepared location invitations.",
+        "Check the matching original Creature save before starting SPORE."
+      ],
+      "note": "Development version for prepared test worlds. M10 travel and recovery were completed in subsequent native tests."
+    },
+    {
+      "version": "0.1.11",
+      "date": "2026-09-22",
+      "title": "Resume your saved shared world",
+      "changes": [
+        "Confirm a restored shared world only after native recovery and a ready scene.",
+        "Keep protected backups in the host recovery workflow."
+      ],
+      "note": "Development version for the prepared experimental Creature world."
+    },
+    {
       "version": "0.1.10",
       "date": "2026-09-22",
       "title": "Clearer shared-world checks",
@@ -110,24 +166,24 @@
   ],
   "roadmap": [
     {
-      "title": "Keep progress through restarts",
+      "title": "Live the Creature stage together",
       "status": "Up next",
-      "description": "M09: preserve native checkpoints and creation versions, reconnect safely and recover interrupted changes after a server restart."
+      "description": "M11: cover the normal Creature loop, from social actions and packs to unlocks, mating, editor return and independent progress."
     },
     {
-      "title": "Explore apart. Meet again.",
+      "title": "Begin at the Cell stage",
       "status": "Planned",
-      "description": "Connect separately simulated locations in one canonical universe, with safe transfers and shared consequences."
+      "description": "M12: bring shared food, collisions, growth, abilities and saved progress to the original Cell simulation."
     },
     {
-      "title": "From Cell to Space",
+      "title": "From tribes to a shared galaxy",
       "status": "Planned",
-      "description": "Cover all five stages, their editors and transitions, with independent progression for each player."
+      "description": "M13–M17: complete Tribal, Civilization and Space, interactions between stages, native editors and the full Cell-to-Space campaign."
     },
     {
       "title": "Make it ready for players",
       "status": "Planned",
-      "description": "Simplify installation and Internet hosting, then test the complete campaign before a public release."
+      "description": "M18–M19: simplify installation and Internet hosting, measure capacity and test the complete campaign before a public release."
     }
   ]
 }

@@ -1,6 +1,8 @@
 # Project status
 
-Updated: 2026-09-22. **Partial/experimental: the recorded shared Creature encounter is verified; the full multiplayer campaign is unfinished.**
+Updated: 2026-09-27. **Partial/experimental: the recorded shared Creature encounter is verified; the full multiplayer campaign is unfinished.**
+
+The table records **development acceptance**. The public implementation remains the reviewed M08 export; M09/M10 code is not present in this checkout. See the [development update](evidence/2026-09-27-development-update/SESSION.md) for its evidence and publication boundary. Native execution of the separately rebuilt public SDK remains NOT RUN.
 
 | Milestone | Status | Evidence boundary |
 |---|---|---|
@@ -13,13 +15,15 @@ Updated: 2026-09-22. **Partial/experimental: the recorded shared Creature encoun
 | M06 | VERIFIED | Authenticated original worker/two-client scene, distinct controlled actors, native movement/jumps, fresh reconnect baselines, protocol rejection tests and inspected footage. Actual WPF Join/Rejoin preserves one player identity; closed saves and temporary ACL restoration pass. Qualification is the recorded living Creature fixture. |
 | M07 | VERIFIED | Native18 qualifies the normal shared encounter; native27/.45 completes combat, contested original feeding, result-preserving reconnect, late-resource and wrong-owner rejection with legitimate continuation under actual packet delay/loss. Native28 completes the declared original fresh-session reset, native movement and jump/landing under the same filter. Inspected views, closed traces, process/filter cleanup and protected-file checks pass. Qualification is bounded to the pinned Creature fixture. |
 | M08 | VERIFIED | Native01–11 qualify the pinned Creature content/editor foundation: original save/import and exact 23-rigblock/47-capability agreement; nine native part roots; pre-import missing-part refusal; canonical terrain mapping and actual-profile mismatch denial; concurrent editing/cancel and two immutable native-validated publications. Developer/local-approval boundary; no campaign avatar replacement or restart durability. |
-| M09 | TODO | Dependencies M04/M07/M08 verified within their recorded scopes. Next: durable native checkpoints, content versions, reconnects and interrupted-transaction recovery. |
-| M10–M19 | BLOCKED | Unfinished persistence, location and stage dependencies; full required scope retained. |
+| M09 | VERIFIED | Private development fixture: native checkpoint recovery, tested inventory/progression and creation ownership, interrupted saves and publication. Source export pending. |
+| M10 | VERIFIED | Private development fixture: separate locations, meeting/return, paired native Save/restart/reconnect and 36 recorded worker-fault cases. Source export pending. |
+| M11–M12 | TODO | Creature and Cell gameplay coverage remain unverified; foundation dependencies are satisfied in development. |
+| M13–M19 | BLOCKED | Required stage/faction/campaign dependencies remain unfinished. |
 | M20 | TODO | Optional native Galactic Adventures multiplayer. |
 
 M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No further native game launch or repeated M01 test followed the confirmation.
 
-## M08 completion — 2026-09-22
+## Historical M08 completion — 2026-09-22
 
 M08 is **VERIFIED for the recorded native Creature content/editor foundation**.
 The reviewed source export preserves this checkout's independent Detours 4 SDK

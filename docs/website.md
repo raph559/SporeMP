@@ -7,7 +7,7 @@ The public site is maintained in `website/` and deployed independently from the 
 - English is the default at the root. French is under `/fr/`.
 - EN / FR links preserve the current article and, with JavaScript enabled, the current section.
 
-The site is a static development journal and project presentation, not a multiplayer release. Current articles reflect verified, bounded M04–M08 evidence. M09 durable recovery is next; the full five-stage campaign remains unfinished. No game source, binaries, saves, invitations, logs or private evidence are uploaded to the website repository. The existing original AI-generated launcher illustration is reused with its provenance disclosed.
+The site is a static development journal and project presentation. Current articles reflect verified, bounded M04–M10 evidence; M11 normal Creature-stage gameplay is next, followed by Cell and the remaining campaign stages. The full five-stage campaign remains unfinished. No game source, binaries, saves, invitations, logs or private evidence are uploaded to the website repository. The existing original AI-generated launcher illustration is reused with its provenance disclosed.
 
 ## Content and publication
 
@@ -19,4 +19,4 @@ Run `node website/build.mjs`, then `node website/check.mjs`. The generated stati
 
 The local authenticated deployment helper and standalone website checkout are under ignored `local/`. The helper uses the existing GitHub credential manager without saving or printing tokens. It copies only an explicit list of website source files into the separate public repository.
 
-Website changes do not change launcher version 0.1.10 or the M00–M20 acceptance plan. Website verification is browser/static/HTTP evidence only; no native SPORE tests are implied.
+The website lists selected development releases through launcher 0.1.13. Website publication is independent of launcher builds and does not change native acceptance or the M00–M20 plan. Website verification is browser/static/HTTP evidence only; no native SPORE tests are implied. The public mod source export has its own recorded implementation boundary; development news does not imply that the corresponding code or a playable package has been published.

@@ -30,7 +30,7 @@
   "heroNote": "Mod indépendant · En développement · Windows",
   "illustration": "ILLUSTRATION DU PROJET",
   "strip": "Au fil du développement",
-  "stripText": "Rencontres partagées et créations natives testées à l’étape Créature.",
+  "stripText": "Lieux distincts, rencontres partagées et reprise après redémarrage testés à l’étape Créature.",
   "stripLink": "Voir l’avancée",
   "idea": "01 / L’idée",
   "projectTitle": "Votre espèce.<br>Notre univers.",
@@ -38,7 +38,7 @@
   "projectP1": "SporeMP est un projet de mod multijoueur pour le jeu original. Son ambition : parcourir ensemble les cinq étapes de l’évolution, de la Cellule à l’Espace, dans un univers qui continue de vivre après votre départ.",
   "projectP2": "Chacun pourra suivre sa propre évolution, explorer à son rythme et croiser les autres. Les créatures, les éditeurs et les mécaniques du SPORE original restent au cœur du projet.",
   "where": "Où en est-on ?",
-  "current": "Les rencontres partagées, la reconnexion et le transfert de créations natives approuvées sont validés dans les scènes Créature enregistrées. La récupération après un redémarrage du serveur est la prochaine étape. La campagne multijoueur complète reste en développement, sans date de sortie publique.",
+  "current": "Les rencontres partagées, les progrès sauvegardés, la reprise après redémarrage et les voyages entre deux lieux Créature sont validés dans la configuration de test enregistrée. La suite est de couvrir le déroulement normal de l’étape Créature. La campagne multijoueur complète reste en développement, sans date de sortie publique.",
   "stagesLabel": "Les cinq étapes visées par le projet",
   "stages": [
     "Cellule",

@@ -1,6 +1,32 @@
 {
   "news": [
     {
+      "slug": "explore-apart-meet-again",
+      "date": "2026-09-26",
+      "category": "Multijoueur",
+      "title": "Explorer chacun de son côté. Se retrouver.",
+      "summary": "Deux lieux de l’étape Créature partagent désormais des voyages, sauvegardes et reprises testés dans un même monde expérimental.",
+      "paragraphs": [
+        "Des joueurs dans deux lieux Créature simulés séparément peuvent se retrouver dans une même scène du jeu original, bouger et sauter ensemble, puis rentrer avec leur état actuel. Les deux lieux appartiennent à un même monde sauvegardé.",
+        "Les essais se poursuivent avec des sauvegardes du jeu original, un redémarrage du serveur et une reconnexion. Les voyages interrompus ont été éprouvés dans 36 cas de panne des processus de simulation, en vérifiant la reprise sans perte ni duplication du joueur persistant. Les opérations partagées en arrière-plan exigent aussi la bonne autorité avant que le jeu original puisse les modifier.",
+        "M10 est validé pour les lieux Créature préparés et la version du jeu utilisés dans ces tests. Les voyages passent encore par des outils de développement. Ce résultat ne valide pas des planètes arbitraires, les voyages normaux de l’étape Espace, tous les systèmes d’arrière-plan ou une version publique du multijoueur.",
+        "La suite est M11 : étendre ces fondations au déroulement normal de l’étape Créature, notamment les actions sociales, les meutes, les nids, les éléments à débloquer, l’accouplement et le retour de l’éditeur. La Cellule suit en M12 ; la campagne finale garde son ordre de la Cellule à l’Espace."
+      ]
+    },
+    {
+      "slug": "a-shared-world-worth-returning-to",
+      "date": "2026-09-22",
+      "category": "Développement",
+      "title": "Un monde partagé que l’on peut retrouver.",
+      "summary": "Les joueurs, créations et progrès Créature testés sont conservés après redémarrage du serveur et interruption des sauvegardes.",
+      "paragraphs": [
+        "Après redémarrage du serveur et de sa simulation dans le jeu original, deux nouveaux clients ont retrouvé leurs joueurs existants. La sauvegarde testée a conservé leur inventaire, leur progression ADN et la propriété de leurs créations, sans remplacer leurs avatars ni redonner les récompenses.",
+        "Les essais ont interrompu la sauvegarde du jeu original ainsi que la publication d’un nouveau point de reprise par le serveur. La récupération a sélectionné une version complète, sans laisser une sauvegarde inachevée la remplacer. Les changements postérieurs à ce point peuvent être perdus lors de la reprise.",
+        "M09 est validé pour cette configuration Créature préparée à deux joueurs. La récupération reste une procédure de développement explicite et protégée, avec un délai de cinq minutes avant qu’une autorité restaurée doive être sauvegardée de nouveau. L’hébergement automatique et les sauvegardes de campagne arbitraires restent à réaliser.",
+        "Ces fondations de persistance préparent le jalon suivant : explorer séparément puis se retrouver dans un même monde."
+      ]
+    },
+    {
       "slug": "creations-without-interrupting-play",
       "date": "2026-09-22",
       "category": "Développement",
@@ -64,6 +90,36 @@
   ],
   "releases": [
     {
+      "version": "0.1.13",
+      "date": "2026-09-27",
+      "title": "Explorer chacun de son côté. Se retrouver.",
+      "changes": [
+        "Actualiser le journal hors ligne du launcher avec les tests terminés de voyage, sauvegarde et reprise entre deux lieux Créature préparés.",
+        "Présenter la prochaine étape : couvrir le déroulement normal de la phase Créature."
+      ],
+      "note": "Mise à jour du journal de développement. Les voyages utilisent des outils de développement ; aucun nouveau bouton de voyage ni téléchargement public."
+    },
+    {
+      "version": "0.1.12",
+      "date": "2026-09-24",
+      "title": "Rejoindre le bon lieu Créature",
+      "changes": [
+        "Reconnaître les invitations vers un lieu préparé.",
+        "Vérifier la sauvegarde Créature correspondante avant de démarrer SPORE."
+      ],
+      "note": "Version de développement pour des mondes de test préparés. Les voyages et la reprise M10 ont été validés lors de tests ultérieurs dans le jeu original."
+    },
+    {
+      "version": "0.1.11",
+      "date": "2026-09-22",
+      "title": "Retrouver votre monde partagé",
+      "changes": [
+        "Confirmer la restauration du monde partagé après sa récupération dans le jeu original et la préparation de la scène.",
+        "Conserver des sauvegardes protégées dans la procédure de récupération de l’hôte."
+      ],
+      "note": "Version de développement pour le monde Créature expérimental préparé."
+    },
+    {
       "version": "0.1.10",
       "date": "2026-09-22",
       "title": "Des vérifications du monde plus claires",
@@ -110,24 +166,24 @@
   ],
   "roadmap": [
     {
-      "title": "Garder sa progression après un redémarrage",
+      "title": "Vivre ensemble l’étape Créature",
       "status": "Prochaine étape",
-      "description": "M09 : conserver les points de sauvegarde natifs et les versions des créations, se reconnecter et récupérer les modifications interrompues après un redémarrage du serveur."
+      "description": "M11 : couvrir le déroulement normal de la phase Créature, des actions sociales et meutes aux éléments à débloquer, à l’accouplement, au retour de l’éditeur et aux progrès indépendants."
     },
     {
-      "title": "Explorer séparément. Se retrouver.",
+      "title": "Commencer à l’étape Cellule",
       "status": "Prévu",
-      "description": "Relier des lieux simulés séparément dans un univers canonique commun, avec des transferts sûrs et des conséquences partagées."
+      "description": "M12 : partager la nourriture, les collisions, la croissance, les capacités et la progression sauvegardée dans la simulation Cellule originale."
     },
     {
-      "title": "De la Cellule à l’Espace",
+      "title": "Des tribus à une galaxie partagée",
       "status": "Prévu",
-      "description": "Couvrir les cinq étapes, leurs éditeurs et leurs transitions, avec une progression indépendante pour chaque joueur."
+      "description": "M13–M17 : compléter les phases Tribu, Civilisation et Espace, leurs interactions, les éditeurs natifs et la campagne entière de la Cellule à l’Espace."
     },
     {
       "title": "Préparer l’arrivée des joueurs",
       "status": "Prévu",
-      "description": "Simplifier l’installation et l’hébergement sur Internet, puis tester toute la campagne avant une sortie publique."
+      "description": "M18–M19 : simplifier l’installation et l’hébergement Internet, mesurer la capacité et tester la campagne complète avant une sortie publique."
     }
   ]
 }

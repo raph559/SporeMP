@@ -2,6 +2,10 @@
 
 This folder contains concise, reviewed development reports. It preserves actual successes, failed experiments, limitations and acceptance boundaries. It does not contain complete raw traces, build logs, account inventories, captures or saves. Those records remain privately archived; see [historical artifacts](../docs/public-evidence.md#historical-artifacts).
 
+## Latest development and publication boundary
+
+The [2026-09-27 development update](2026-09-27-development-update/SESSION.md) summarizes M09 persistence and M10 native location acceptance. Their implementation remains in the private development checkout; the public source is still the reviewed M08 export. The reports below retain their original payload and date boundaries.
+
 ## Milestone acceptance
 
 | Scope | Report | Qualification boundary |

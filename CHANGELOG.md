@@ -1,5 +1,7 @@
 # Changelog
 
+This file describes the launcher source published in this checkout. Later development releases through 0.1.13 and M09/M10 acceptance are summarized in the [development update](evidence/2026-09-27-development-update/SESSION.md); that later code is not included here.
+
 These are development builds. Multiplayer gameplay is still in development.
 
 ## 0.1.10 - 2026-09-22

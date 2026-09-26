@@ -34,7 +34,7 @@ export const copy = {
   "heroNote": "Independent mod · In development · Windows",
   "illustration": "PROJECT ARTWORK",
   "strip": "From the development journal",
-  "stripText": "Shared encounters and native creations tested in the Creature stage.",
+  "stripText": "Travel between Creature locations and recovery after restarts tested.",
   "stripLink": "See the progress",
   "idea": "01 / The idea",
   "projectTitle": "Your species.<br>Our universe.",
@@ -42,7 +42,7 @@ export const copy = {
   "projectP1": "SporeMP is a multiplayer mod project for the original game. The ambition: experience all five stages of evolution together, from Cell to Space, in a universe that keeps going after you leave.",
   "projectP2": "Everyone will be able to evolve independently, explore at their own pace and cross paths with others. The creatures, editors and mechanics of the original SPORE remain at the heart of the project.",
   "where": "Where are we now?",
-  "current": "Shared encounters, reconnection and approved native creation transfers are verified within recorded Creature test scenes. Durable recovery after server restarts is next. The full multiplayer campaign is still in development, with no public release date.",
+  "current": "Shared encounters, saved progress, recovery after restarts and travel between two Creature locations are verified within the recorded test setup. Normal Creature gameplay coverage is next. The full multiplayer campaign is still in development, with no public release date.",
   "stagesLabel": "The five stages the project aims to support",
   "stages": [
     "Cell",
