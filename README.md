@@ -12,9 +12,9 @@ For the project presentation, development news and roadmap, visit the [SporeMP w
 
 ## Development progress and source availability
 
-The development checkout has verified M09 persistence and M10 location travel/recovery for its recorded original Creature fixtures. **M11 has started with a coverage/binding audit and trace tooling; its new native tests are NOT RUN.** See the [Creature contract](docs/m11-creature.md). See the [reviewed development update](evidence/2026-09-27-development-update/SESSION.md) for results, payload identities and limitations.
+The development checkout has verified M09 persistence and M10 location travel/recovery for its recorded original Creature fixtures. **M11 remains IN_PROGRESS.** New native tests qualify bounded social rewards, owner-only First DNA guidance and saved progress in the prepared Creature world. Normal social controls, separate species and all twelve full Creature gates remain unfinished. See the [social progress report](evidence/2026-09-27-m11-social-progress/SESSION.md), [Creature contract](docs/m11-creature.md) and [M09/M10 development update](evidence/2026-09-27-development-update/SESSION.md).
 
-**This public source checkout is still the M08 export** (launcher 0.1.10, bridge/NativeHost 0.0.50). The later M09/M10 implementation and development launcher 0.1.13 have not been exported here. The website reports development progress; it is not a download or a claim that this clone includes those changes.
+**This public source checkout is still the M08 export** (launcher 0.1.10, bridge/NativeHost 0.0.50). The later M09/M10/M11 implementation and development launcher 0.1.14 have not been exported here. The website reports development progress; it is not a download or a claim that this clone includes those changes.
 
 ## Exported implementation
 

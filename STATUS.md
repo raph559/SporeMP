@@ -2,7 +2,7 @@
 
 Updated: 2026-09-27. **Partial/experimental: the recorded shared Creature encounter is verified; the full multiplayer campaign is unfinished.**
 
-The table records **development acceptance**. The public implementation remains the reviewed M08 export; M09/M10 code is not present in this checkout. See the [development update](evidence/2026-09-27-development-update/SESSION.md) for its evidence and publication boundary. Native execution of the separately rebuilt public SDK remains NOT RUN.
+The table records **development acceptance**. The public implementation remains the reviewed M08 export; M09/M10/M11 code is not present in this checkout. See the [development update](evidence/2026-09-27-development-update/SESSION.md) and [M11 social progress](evidence/2026-09-27-m11-social-progress/SESSION.md) for evidence and publication boundaries. Native execution of the separately rebuilt public SDK remains NOT RUN.
 
 | Milestone | Status | Evidence boundary |
 |---|---|---|
@@ -17,14 +17,18 @@ The table records **development acceptance**. The public implementation remains 
 | M08 | VERIFIED | Native01–11 qualify the pinned Creature content/editor foundation: original save/import and exact 23-rigblock/47-capability agreement; nine native part roots; pre-import missing-part refusal; canonical terrain mapping and actual-profile mismatch denial; concurrent editing/cancel and two immutable native-validated publications. Developer/local-approval boundary; no campaign avatar replacement or restart durability. |
 | M09 | VERIFIED | Private development fixture: native checkpoint recovery, tested inventory/progression and creation ownership, interrupted saves and publication. Source export pending. |
 | M10 | VERIFIED | Private development fixture: separate locations, meeting/return, paired native Save/restart/reconnect and 36 recorded worker-fault cases. Source export pending. |
-| M11 | IN_PROGRESS | Creature coverage/static binding audit and strict trace reducer; 5/5 HOST/FIXTURE tests pass. New native gameplay is NOT RUN. |
+| M11 | IN_PROGRESS | Private development .102–.106: bounded B social reward, owner-only First DNA guidance, delayed objective reward and original save/load recovery. Failed cross-owner objective attempts retained. Normal social controls, separate species and every full C01–C12 gate remain open. Source export pending. |
 | M12 | TODO | Cell gameplay remains unverified; foundation dependencies are satisfied in development. |
 | M13–M19 | BLOCKED | Required stage/faction/campaign dependencies remain unfinished. |
 | M20 | TODO | Optional native Galactic Adventures multiplayer. |
 
 M01 is complete under the user's recorded launcher correction. On 2026-09-08 the user confirmed “it works” and requested no further repeated tests. Completion uses existing evidence and that acceptance. No further native game launch or repeated M01 test followed the confirmation.
 
-## M11 first increment — 2026-09-27
+## M11 social progress — 2026-09-27
+
+The [reviewed report](evidence/2026-09-27-m11-social-progress/SESSION.md) records network First DNA guidance and a local correction for the later species-objective reward. Original save/load preserves A 35 / B 45 DNA without replaying either reward; unchanged unlock/status census and both actors' movement are checked. Qualification is limited to the pinned prepared world, shared species, empty pack and exclusive social exchange. It does not close the full [gate map](tests/engine/M11.md). Development launcher 0.1.14 and the bilingual website explain these limits. Public implementation versions remain unchanged.
+
+## M11 first increment — historical research
 
 The [session](evidence/2026-09-27-m11-start/SESSION.md), [contract](docs/m11-creature.md) and [gate map](tests/engine/M11.md) record the first source/static investigation and read-only tool. These research files are exported here; M09/M10 native code remains unpublished.
 

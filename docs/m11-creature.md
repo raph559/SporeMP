@@ -1,12 +1,17 @@
 # M11 Creature gameplay coverage
 
-Status: **IN_PROGRESS**, 2026-09-27. This increment audits existing coverage,
-identifies a candidate social reward path and adds a trace reducer. New M11
-native acceptance is **NOT RUN**. The [gate map](../tests/engine/M11.md) retains
-every mechanic. Cross-stage completion remains M17; correct outgoing transition
-eligibility and requests are still required here.
+Status: **IN_PROGRESS**, 2026-09-27. Private development builds .102–.106 now
+qualify bounded social rewards, owner-only First DNA guidance and original
+save/load recovery. The [reviewed report](../evidence/2026-09-27-m11-social-progress/SESSION.md)
+preserves failed attempts and the shared-species, empty-pack, exclusive-action
+limits. All full [C01–C12 gates](../tests/engine/M11.md) remain open. Cross-stage
+completion remains M17; correct outgoing eligibility is required here.
 
-## Existing implementation and concrete gaps
+This public source remains M08 (.50). The sections below describe the initial
+audit and exported research tool; the later native implementation and expanded
+19-test reducer are not included in this checkout.
+
+## Public M08 implementation and initial gaps
 
 - `native_network.cpp::input_window` translates W/A/S/D and Space. Normal target
   selection, the native ability bar, social actions and mating/editor controls

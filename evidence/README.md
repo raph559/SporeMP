@@ -4,6 +4,8 @@ This folder contains concise, reviewed development reports. It preserves actual 
 
 ## Latest development and publication boundary
 
+The [M11 social progress report](2026-09-27-m11-social-progress/SESSION.md) records bounded original social rewards, First DNA guidance and save/load recovery, including failed cross-owner objective attempts. M11 is unfinished and its native implementation remains unpublished.
+
 The [2026-09-27 development update](2026-09-27-development-update/SESSION.md) summarizes M09 persistence and M10 native location acceptance. Their implementation remains in the private development checkout; the public source is still the reviewed M08 export. The reports below retain their original payload and date boundaries.
 
 ## Milestone acceptance
