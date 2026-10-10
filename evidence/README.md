@@ -4,9 +4,11 @@ This folder contains concise, reviewed development reports. It preserves actual 
 
 ## Latest development and publication boundary
 
-The [M11 social progress report](2026-09-27-m11-social-progress/SESSION.md) records bounded original social rewards, First DNA guidance and save/load recovery, including failed cross-owner objective attempts. M11 is unfinished and its native implementation remains unpublished.
+The [2026-10-11 source export](2026-10-11-source-export/SESSION.md) brings the development source through bridge 0.0.256 into this repository: the M09, M10 and M11 implementation and the native trial runner. Its native results were recorded with the development build; original-game execution with the SDK built by this checkout is NOT RUN.
 
-The [2026-09-27 development update](2026-09-27-development-update/SESSION.md) summarizes M09 persistence and M10 native location acceptance. Their implementation remains in the private development checkout; the public source is still the reviewed M08 export. The reports below retain their original payload and date boundaries.
+M11 has 3 of 12 gates closed, each without a person in the loop: [C01 controls](2026-10-07-m11-c01-controls/INTERFACE.md), [C03 combat](2026-10-08-m11-c03-combat/SESSION.md) and [C02 eating](2026-10-10-m11-c02-eating/SESSION.md). The `RECORD-trialNNN.md` files beside them are the trial runner's own records of the runs they cite; frames, traces and saves stay in the private archive.
+
+The earlier [M11 social progress report](2026-09-27-m11-social-progress/SESSION.md) and [2026-09-27 development update](2026-09-27-development-update/SESSION.md) keep their original payload and date boundaries.
 
 ## Milestone acceptance
 
@@ -20,11 +22,17 @@ The [2026-09-27 development update](2026-09-27-development-update/SESSION.md) su
 | M06 | [Network acceptance](2026-09-14-m06-network/acceptance.md), [session](2026-09-14-m06-network/SESSION.md) | Two original-game clients and one worker; living actors, movement, jumps and reconnect. Death/respawn limitations remain recorded. |
 | M07 | [Shared encounter acceptance](2026-09-21-m07-completion/acceptance.md), [session](2026-09-21-m07-completion/SESSION.md) | Pinned original Creature encounter, contested feeding, result-preserving reconnect and fresh-session reset under actual packet impairment. |
 | M08 | [Native content and editor acceptance](2026-09-22-m08-completion/SESSION.md), [verification](2026-09-22-m08-completion/verification.json) | Native creation transfer and properties, exact dependency refusal, canonical saved-world checks, commit/cancel and concurrent original gameplay. Locally approved creations and developer controls; M09 durability remains next. |
+| M09 | [Persistence acceptance](2026-09-22-m09-persistence/acceptance.md) | Checkpoint recovery of both original players, tested inventory/progression and creation ownership; explicit protected recovery workflow, not unattended hosting. |
+| M10 | [Native recovery report](2026-09-26-m10-native-state/NATIVE-RECOVERY-086.md), [paired save and return](2026-09-26-m10-native-state/LIVE-TRANSFER-06.md) | Separate Creature locations, meeting, return, paired Save/restart/reconnect and the recorded worker-fault cases. |
+| M11 (3/12 gates) | [C01 controls](2026-10-07-m11-c01-controls/INTERFACE.md), [C03 combat](2026-10-08-m11-c03-combat/SESSION.md), [C02 eating](2026-10-10-m11-c02-eating/SESSION.md) | Pinned Creature fixtures; in-process scripted input, UI readback and frames inspected by the assistant. Nine gates remain open. |
 
 The complete M00-M20 plan is in [MILESTONES.md](../MILESTONES.md). A milestone status is not a claim that all stages or configurations are supported. Earlier native evidence remains bound to its recorded payload; the Detours 4 SDK build below has separate, incomplete native qualification.
 
 ## Repository and tooling changes
 
+- [M09 to M11 reviewed export](2026-10-11-source-export/SESSION.md): public Release build and HOST/FIXTURE results of this checkout, privacy review and what stays private; native execution of the public SDK build NOT RUN.
+- [Native trial runner](2026-10-07-native-trial-runner/SESSION.md): one command restores the fixture, runs a scenario in three original-game processes and writes the record and verdict.
+- [Website rebuild](2026-09-27-website-rebuild/SESSION.md): the source of the current presentation site.
 - [M11 first increment](2026-09-27-m11-start/SESSION.md): Creature coverage and static social-reward investigation, read-only trace reducer and HOST/FIXTURE checks; new native acceptance NOT RUN.
 
 - [M07/M08 reviewed export](2026-09-22-m08-publication/SESSION.md): current public Release build, 15/15 HOST/FIXTURE targets, source/privacy review and updated English/French website; native results retain their frozen development payload qualification.

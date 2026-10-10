@@ -2,9 +2,9 @@
 
 SporeMP is an experimental multiplayer mod for original SPORE. Its goal is to connect all five campaign stages—Cell, Creature, Tribal, Civilization and Space—in one persistent shared universe, while preserving the original game's gameplay, AI, combat, economy, editors and progression.
 
-**Partial/experimental: a shared Creature encounter and native creation/editor transactions are verified within recorded original-game fixtures. The full multiplayer campaign is unfinished; this repository is not a public multiplayer release.**
+**Partial/experimental: a shared Creature encounter, native creation/editor transactions, checkpoint recovery and location travel are verified within recorded original-game fixtures; normal Creature gameplay is in progress. The full multiplayer campaign is unfinished; this repository is not a public multiplayer release.**
 
-This repository contains the C++ bridge, coordinator and worker tools, Windows desktop launcher, build tooling, tests and development documentation. Instrumented original SPORE processes execute native gameplay; the coordinator handles identity, transport, ownership and supervision. The project does not replace the game with a separate simulation.
+This repository contains the C++ bridge, coordinator and worker tools, Windows desktop launcher, build tooling, tests and development documentation. Instrumented original SPORE processes execute native gameplay; the coordinator handles identity, transport, ownership, supervision and persistence metadata. The project does not replace the game with a separate simulation.
 
 The mod source and reviewed development history are hosted in the public [raph559/SporeMP repository](https://github.com/raph559/SporeMP). See [CONTRIBUTING.md](CONTRIBUTING.md) for reports and contributions, [repository workflow](docs/repository.md) for development, and the [evidence index](evidence/README.md) for concise acceptance records. Full traces and operational records are retained privately under the [public evidence policy](docs/public-evidence.md); they are not required for a normal source checkout.
 
@@ -12,13 +12,13 @@ For the project presentation, development news and roadmap, visit the [SporeMP w
 
 ## Development progress and source availability
 
-The development checkout has verified M09 persistence and M10 location travel/recovery for its recorded original Creature fixtures. **M11 remains IN_PROGRESS.** New native tests qualify bounded social rewards, owner-only First DNA guidance and saved progress in the prepared Creature world. Normal social controls, separate species and all twelve full Creature gates remain unfinished. See the [social progress report](evidence/2026-09-27-m11-social-progress/SESSION.md), [Creature contract](docs/m11-creature.md) and [M09/M10 development update](evidence/2026-09-27-development-update/SESSION.md).
+M00–M10 are verified for their recorded original Creature fixtures. **M11, normal Creature gameplay, is IN_PROGRESS with 3 of its 12 gates closed**: controls (C01), combat (C03) and eating (C02). Each is closed by a scripted scenario that passes after a fresh restore, with no person in the loop: key and mouse input is delivered inside each player's own game process, state is read back from the original interface, and recorded frames are inspected by the assistant. The other nine gates, among them social actions, packs and nests, separate species, mating and death, remain open. See the [gate map](tests/engine/M11.md), the [eating gate report](evidence/2026-10-10-m11-c02-eating/SESSION.md) and [STATUS.md](STATUS.md).
 
-**This public source checkout is still the M08 export** (launcher 0.1.10, bridge/NativeHost 0.0.50). The later M09/M10/M11 implementation and development launcher 0.1.14 have not been exported here. The website reports development progress; it is not a download or a claim that this clone includes those changes.
+**This public checkout holds the development source through bridge/NativeHost 0.0.256 (2026-10-10)**: the M09, M10 and M11 implementation, the native trial runner and its scenarios, exported on 2026-10-11. It is a source publication; no compiled package is distributed, and the website is not a download. See the [export review](evidence/2026-10-11-source-export/SESSION.md).
 
 ## Exported implementation
 
-M00–M08 are **VERIFIED within their recorded acceptance boundaries**:
+M00–M10 are **VERIFIED within their recorded acceptance boundaries**:
 
 | Milestones | Recorded result |
 |---|---|
@@ -29,12 +29,16 @@ M00–M08 are **VERIFIED within their recorded acceptance boundaries**:
 | M06 | One original-game worker and two original-game clients, authenticated scene sharing, distinct controlled actors, movement/jumps and fresh reconnect baselines. Actual launcher Join/Rejoin preserves player identity. |
 | M07 | Shared native combat/feeding and results, reconnect and fresh-session reset under actual packet impairment, with owner/stale-result rejection. |
 | M08 | Native creation transfer, matching original model/part/capability data, missing-part preflight, canonical terrain checks and immutable editor commit/cancel while another player continues. |
+| M09 | Durable native checkpoints recover both original players, exact tested inventory/progression and creation ownership; actual save/publication crash tests preserve the selected revision and reject duplicate rewards. |
+| M10 | Separate original Creature locations, meeting, current-state return, paired native saves and restart/reconnect; authenticated global admission and 36 recorded native worker-fault cases. |
 
 Current qualification covers the **recorded Creature fixtures** with a pinned game/content profile and canonical saved-world bundle. M08 content intake uses locally approved native creations and developer transaction controls; it does not add a public creation-sharing flow or replace campaign avatars. [M08 acceptance and retained limitations](evidence/2026-09-22-m08-completion/SESSION.md).
 
-The recorded M07/M08 native runs identify their frozen development payloads. This public checkout preserves its separate Detours 4 SDK migration; original-game execution with the rebuilt public SDK remains **NOT RUN**. Source export and HOST test results do not extend those native qualifications. See [SDK build boundaries](docs/detours4-migration.md).
+M09 uses an explicit protected stop/save/seal/commit/restart workflow with a five-minute budget for recovered authorities. It does not yet provide unattended checkpoint rotation. [M09 acceptance and recovery limits](evidence/2026-09-22-m09-persistence/acceptance.md).
 
-**Next source-publication step: review and export the completed M09/M10 implementation**, preserving this checkout's independent SDK migration and re-running its build and tests. All-stage gameplay, arbitrary worlds/content, Internet hosting qualification and release packaging remain unfinished. Rendered workers require the recorded signed-in Windows desktop configuration; headless/service operation is not qualified.
+The recorded native runs, M07 through M11, were made with the development build, whose SDK DLL is the upstream build. This public checkout builds the SDK with MIT Detours 4 instead; original-game execution with that rebuilt SDK remains **NOT RUN**. Source export and HOST test results do not extend the native qualifications. See [SDK build boundaries](docs/detours4-migration.md).
+
+**Next: M11 gate C06, separate species**, then the remaining Creature gates, Cell and the later stages. All-stage gameplay, arbitrary worlds/content, Internet hosting qualification and release packaging remain unfinished. Rendered workers require the recorded signed-in Windows desktop configuration; headless/service operation is not qualified.
 
 See [STATUS.md](STATUS.md) for the current evidence and limitations, [GOAL.md](GOAL.md) for the product scope, and [MILESTONES.md](MILESTONES.md) for the complete M00–M20 acceptance plan. The complete user-adopted brief is preserved in [docs/implementation-brief.md](docs/implementation-brief.md). Native execution and HOST/FIXTURE tests are reported separately; a successful build or host test does not establish native gameplay acceptance.
 
@@ -44,7 +48,7 @@ The launcher's **What's new** section shows the latest changes and complete rele
 
 After building, open `build/launcher/Release/SporeMP.exe` and select **Play SPORE**. It detects the installed game, checks compatibility automatically and launches under your normal Windows account with existing saves. No separate profile or backup setup is required. Details stay in Settings.
 
-Launcher **0.1.10** checks the canonical saved world and companion files before Join and identifies mismatches. Private invitations, authenticated **Join/Rejoin** and connection status remain available; the current bridge/NativeHost is **0.0.50**. These experimental multiplayer controls require the matching prepared Creature fixture described in [docs/m06-network.md](docs/m06-network.md). They do not make arbitrary saves or installations multiplayer-ready. Separate worker accounts and native test preparation are developer infrastructure, not normal Play prerequisites.
+Launcher **0.1.14** carries the development notes through the first M11 social experiments. It keeps the prepared-location invitation checks of 0.1.12 and reports a restored shared world only after native recovery and an applied baseline. Private invitations, authenticated **Join/Rejoin** and connection status remain available; the current bridge/NativeHost is **0.0.256**. These experimental multiplayer controls require the matching prepared Creature fixture described in [docs/m06-network.md](docs/m06-network.md). Travel uses developer tools; arbitrary saves and installations are not multiplayer-ready. Separate worker accounts and native test preparation are developer infrastructure, not normal Play prerequisites.
 
 ## Build and test
 

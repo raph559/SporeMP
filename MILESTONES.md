@@ -28,9 +28,98 @@ This table tracks the development milestones. **The code in this public clone re
 | M19 | Release qualification and complete deliverables | BLOCKED |
 | M20 | Optional extension: Galactic Adventures multiplayer | TODO |
 
-M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07 completion: `evidence/2026-09-21-m07-completion/acceptance.md` (VERIFIED for the recorded shared Creature fixture). M08 completion: `evidence/2026-09-22-m08-completion/SESSION.md` (VERIFIED for the recorded Creature content/editor foundation). M09/M10 development acceptance is summarized in `evidence/2026-09-27-development-update/SESSION.md`; their source export is pending. M11–M20 remain unverified. No stage scope is deferred to optional M20.
+M00/M01 session detail: `evidence/2026-09-08-m00-m01/SESSION.md`. M02 observation increment: `evidence/2026-09-08-m02-observation/SESSION.md` (BUILD/HOST/FIXTURE only; native tests NOT RUN). M02 native completion: `evidence/2026-09-09-m02-completion/SESSION.md`. M03 implementation: `evidence/2026-09-09-m03-actors/SESSION.md`. M04 supervision implementation: `evidence/2026-09-12-m04-workers/SESSION.md`; current-desktop native actions, concurrency and checkpoint boundary: `evidence/2026-09-13-m04-native/SESSION.md` (historical increment); M04 completion: `evidence/2026-09-13-m04-acceptance/SESSION.md` (VERIFIED for the recorded fixture). M05 initial vitals projection: `evidence/2026-09-13-m05-replicas/SESSION.md`; native reward replay and mutation guards: `evidence/2026-09-13-m05-completion/SESSION.md` (historical increment); M05 completion: `evidence/2026-09-14-m05-ability/acceptance.md` (VERIFIED for the recorded living Creature fixture). M06 completion: `evidence/2026-09-14-m06-network/acceptance.md` (VERIFIED for the recorded living Creature fixture). M07 completion: `evidence/2026-09-21-m07-completion/acceptance.md` (VERIFIED for the recorded shared Creature fixture). M08 completion: `evidence/2026-09-22-m08-completion/SESSION.md` (VERIFIED for the recorded Creature content/editor foundation). M09 completion: `evidence/2026-09-22-m09-persistence/acceptance.md` (VERIFIED for the recorded Creature checkpoint foundation). M10 completion: `evidence/2026-09-26-m10-native-state/NATIVE-RECOVERY-086.md` (VERIFIED for the recorded native Creature location foundation). M11–M20 remain unverified. No stage scope is deferred to optional M20.
 
-M03–M08 are verified for their recorded native Creature fixtures. M09/M10 are verified for their recorded development fixtures, with source export pending. M11 is IN_PROGRESS with bounded development social rewards, owner-only First DNA guidance and native save/load recovery; all full Creature gates remain open; M12 is TODO; later stage and campaign dependencies remain unfinished. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
+M03–M09 are verified for their recorded native Creature foundations. M10 is VERIFIED within its recorded native boundaries. M11 is IN_PROGRESS with bounded social rewards/persistence, one normal-control social exchange, A's starvation/revival and pending-death reconnect, and preservation of B's native progress after combat death in 0.0.106–0.0.114. Later .118-0.0.126 increments add normal social cancellation; original B hunger/starvation; normal B Bite with its native reward; and exact fresh-load progression/corpse state with both clients controllable. Later .129-.139 increments qualify normal B corpse-click feeding/save/restore, both players camera-relative movement and releases, normal A Bite/reward/Save, and A melee-death owner presentation/original revival with B continuation. Fresh reload of A's trial71 combat reward and Save after trial72 melee revival remain unqualified. Trials118-119/.167 subsequently qualify two B melee respawns in one authority process, Save and fresh restoration. Remaining death causes/species, broader distinct-species relationships, independent objectives and every full C01-C12 acceptance gate remain open. M12 is TODO with foundation dependencies satisfied; M13–M19 retain unfinished stage/faction dependencies. Every original work/deliverable/acceptance clause remains intact. Full Creature progression remains M11. Current M03 evidence: `evidence/2026-09-12-m03-awards/SESSION.md`; M04: `evidence/2026-09-13-m04-acceptance/SESSION.md`; M05: `evidence/2026-09-14-m05-ability/acceptance.md`; M06: `evidence/2026-09-14-m06-network/acceptance.md`; M07: `evidence/2026-09-21-m07-completion/acceptance.md`.
+
+M11 follow-up through .181: trials146/147 qualify a subsequent original A kill
+and Save/fresh shared-scene restoration of A14/B7 DNA and 679 exact player/
+inventory rows. A's normal jump lands; original collections remain distinct.
+B's objective panel still mirrors A's hunt. Complete primary history retention
+is unqualified: the extension-write diagnostic and reload census differ.
+Both runs close cleanly and restore their profiles. No complete gate closes.
+
+Retained M11 follow-up through .180: trials143/145 add normal A corpse feeding and
+original Save/fresh shared-scene restoration of both owners' 7 DNA/progression,
+A's recovered health and all 679 player/inventory rows. No reward is replayed.
+A's normal jump lands and B diagnostically steers/releases after reload.
+Trial144's exhausted-corpse validation failure is retained and corrected.
+Broader diets, foreign B feeding, A live new-history delivery and physical
+held input remain unfinished. All twelve complete M11 gates remain OPEN.
+
+Retained M11 follow-up through .179: trial141 adds A's native first kill, 7 DNA and
+completed owner First DNA while distinct-species B moves and preserves its
+7 DNA/history. A's authority history grows 2 to 3; its new client history and
+new-result Save/reload remain unfinished. Six clean exits and restored profiles
+pass. Diagnostic inputs do not qualify full normal play or later progression.
+All twelve complete M11 gates remain OPEN.
+
+M11 follow-up through .178: trial137 qualifies repeated diagnostic steering
+and native release for A and distinct-species B, with correct visible owner
+views, retained DNA, six clean exits and restored profiles. Physical held-key
+acceptance remains NOT RUN; no native movement correction is claimed. Trial136
+retains a display interruption, A projection failure and forced B exit35.
+All twelve complete M11 gates remain OPEN.
+
+Retained M11 follow-up through .177: trials130/134 qualify explicit original Save and
+fresh authority/two-client restoration of the pinned distinct-species first-kill
+result. All 679 player/inventory rows match; B retains 7 DNA and its private
+relationship/history. Both clients adopt their saved actors and show their own
+Sporepedia collection. A's normal jump lands and B moves diagnostically after
+reload. Trials131–133 retain their failed client baselines. Broader campaign
+progression, sustained ordinary B movement, coordinator publication/crash tests
+for this format and all twelve complete M11 gates remain OPEN.
+
+Retained .176 result: trial129 qualifies B's original first-kill history
+in its own Sporepedia Creature Game collection, with A's collection unchanged
+and correct reopening. After corpse retirement, A's normal jump lands and B
+moves through a diagnostic command; both remain alive through clean closure.
+The separate evolution timeline, foreign Save and full independent progression
+remain open. All twelve complete M11 acceptance gates remain OPEN.
+
+Retained .174–.175 result: trial127 qualifies one original foreign B
+kill from a diagnostic intention, 7 DNA/goal/combat progress, private authority
+history (category 8, event 5, relationship 1) and owner First DNA completion,
+with A's progression/relationship/history unchanged. Its later corpse-pool
+retirement incorrectly fences commands. Trial128/.175 verifies completed
+corpse retirement with both owners' results preserved and no failure fence.
+A later dies through original saved starvation while B remains alive.
+Post-retirement controls are NOT RUN: automatic closure under the 210-second
+run limit preceded the attempted input. The brief normal B W pulse in127 reached
+WalkTo/StopMovement without material displacement. Client history UI, foreign
+Save, sustained ordinary B movement and broader independent progression remain
+unqualified. Each run closes with six zero process exits and all three profiles
+restored; all twelve complete gates remain OPEN. The earlier .173/trial126
+preflight refusals remain retained evidence.
+
+Retained .172 result: trial125 adds B's correct original avatar portrait
+at initial and fresh connection, diagnostic movement after reconnect and a
+normal input that retains the original zero-capability jump refusal. A's
+normal jump lands during the gap and it remains alive through clean closure.
+History contents, normal B keyboard movement, complete UI, independent
+foreign gameplay/progression and persistence remain unqualified.
+
+Retained .171 foundation: trials123-124 add distinct-species original
+client avatars, diagnostic B movement and a fresh-process reconnect that
+preserves its entity, species and moved position. The portrait/history
+still showed A; normal B movement, controls after reconnect, independent
+foreign gameplay/progression and persistence were unqualified in those runs. No Save
+was requested in these foreign trials. Every complete C01-C12 gate stays open.
+
+Retained follow-up through .167: trials88-89 qualify B's original part card, live
+owner inventory, owner tutorial and exact fresh restoration. Trials94-95 add
+B's original home/nest replication, Save and fresh restoration. Trial98 adds
+B's original starvation handler, owner confirmation, revival and Save with
+peer continuation, but left B as a hatchling. Trials112-113 now qualify the
+owner-controlled original lesson, adult growth, normal jumps, Save and fresh
+restoration of B's adult state and the recorded player/inventory census.
+Learned-ability bits and complete native Stage state are outside that census.
+Trials115-116 add one original melee respawn from a restored populated herd,
+preserving its two members, Save and exact fresh restoration. Combat setup is
+diagnostic; owner confirmation and jump controls are normal. Trials118-119
+then qualify two complete cycles in one authority process, Save and fresh
+restoration. Remaining causes/species and all twelve C01-C12 gates stay open; see
+`docs/m11-work-audit.md` for the current implementation and native boundary.
 
 ## Required launcher amendment — 2026-09-08
 
@@ -189,6 +278,8 @@ This is the first meaningful multiplayer integration slice, not the final produc
 
 ### M09 — Durable checkpoints, reconnects, and crash recovery
 
+**Current increment (2026-09-22): VERIFIED for the pinned two-player original Creature checkpoint foundation.** Both native players, existing actors, tested inventory/progression and creation ownership survive coordinator/worker restart and both clients' reconnection. Actual native-save and coordinator-publication interruption tests preserve durable acknowledgments; resubmission gives no duplicate reward; a fixed five-minute recovered-authority budget is enforced. Explicit stop/save/seal/commit/restart is required; arbitrary campaign compatibility and unattended hosting remain later work. [Acceptance](evidence/2026-09-22-m09-persistence/acceptance.md), [gate map](tests/engine/M09.md). Every original clause below remains unchanged.
+
 **Dependencies:** M04, M07, M08.
 
 **Work:** Implement safe native checkpoints plus coordinator manifests and ID mappings. Define accepted/applied/durable acknowledgment semantics and rollback windows. Add backups, schema migration boundaries, consistent checkpoint barriers, and restore validation. Protect critical progression/inventory changes from duplicate application. Test abrupt termination at every boundary between a native action, event capture, database write, save artifact, and durable acknowledgment.
@@ -199,7 +290,153 @@ This is the first meaningful multiplayer integration slice, not the final produc
 
 ### M10 — One universe across multiple native locations
 
+**Completion (2026-09-26, bridge 0.0.86): VERIFIED for the recorded native
+Creature location foundation.** The [acceptance report](evidence/2026-09-26-m10-native-state/NATIVE-RECOVERY-086.md)
+combines original meeting/return, paired Save and canonical publication across
+restart, native global admission and consequence adoption,35 .86 original-worker
+fault cases plus the earlier .83 source3 case, and a fresh .86 native player
+reconnect with authoritative jump/landing. All owned test processes are closed
+and disposable/personal profile checks pass. Full campaign and later stage
+requirements remain intact. The following increments retain historical context.
+
+**Earlier increment (2026-09-26): IN_PROGRESS.** Recursive native save decoding
+narrows the earlier shared-record conflicts. A closed historical world with
+both separately saved location files reloads in original SPORE with matching
+player censuses and home/surface state. A three-object player/avatar slice and
+original stage record import into a different original location with fresh native
+IDs and exact source progression. Original Save and a fresh-process reload preserve
+both native players, all 732 census rows and the imported stage without creating
+replacement actors or replaying rewards. Original movement/jump/landing work
+after reload. A separate source pause/export/resume run measures 40.125 seconds
+of stable native AI counter, primary actor, player state and noun membership,
+followed by resumed native AI. Coordinator HOST checks cover durable exact
+replacement retries, generation overflow, revoked sessions and live prepare/cancel.
+These do not complete
+live travel, safe publication, transfer-phase worker interruption or once-only
+global consequences. See `evidence/2026-09-26-m10-native-state/`.
+
+The combined .80 native run subsequently passes source authenticated pause,
+selected export, coordinator-pinned artifact approval and original destination
+import. Destination receipt revalidation detects an actor-flag change before
+commit, leaving durable phase 4/revision 8 and ownership unchanged. The .81
+settling prerequisite and recovery changes still require their original-game
+runs. See `evidence/2026-09-26-m10-native-state/LIVE-TRANSFER-03.md`.
+
+**Earlier increment (2026-09-24): IN_PROGRESS.** A selected 30-file original
+two-save Creature head now routes one Satiria and one Haagos original authority
+under one coordinator, with separate original player joins and a bounded
+durable higher-generation authority replacement. The current location plan
+derives each fixed home star/planet from the original `PlanetID` and each
+home area from the active terrain instance. An engine-thread guard admitted
+both matching home authorities and the Haagos player, then rejected a
+one-value-wrong area before network connection. The Release suite passed
+17/17; every original process exited and disposable/personal profiles were
+restored. Away-area and live transfer mapping, safe concurrent native Save
+publication, player meeting and separation, transfer-phase worker kills and
+once-only native global consequences are still required. See
+`evidence/2026-09-24-m10-one-primary-online/SESSION.md`.
+
+**Earlier coordinator increment (2026-09-23–24): IN_PROGRESS.** Bridge/Coordinator 0.0.70 adds
+one-coordinator HOST routing for canonical locations, independent TLS/scene
+sessions, persisted interest, shared content state and global event IDs. The
+Release build, all 17 CTest cases, copied-M09-state location-bootstrap CLI and
+two location-specific TLS player probes pass. Original SPORE saved and reloaded
+a second Creature world, Haagos, in a disposable profile; bridge 0.0.68
+observed a different native planet candidate and matching active terrain
+resource. Bridge 0.0.69 selected Haagos through the original load path. Two
+original workers simultaneously ran Satiria and Haagos from the same closed
+input; their native AI counters advanced and their guarded world files diverged.
+The current M09 checkpoint cannot safely become two per-location artifacts, and
+the original workers have not joined the 0.0.70 coordinator. Native transfer,
+shared consequences and split-brain acceptance are NOT RUN.
+The 2026-09-24 same-input original UI Save probes further establish the native
+artifact conflict: Satiria and Haagos each rewrite the same 41
+`planetRecords.pkp` keys and six `stars.db` keys to different decoded values.
+The original saves remain private, the disposable profiles were restored, and
+no unsafe native merge was attempted. A per-location artifact split requires
+verified native ownership of these records and one versioned global head.
+An opt-in original-game writer probe then captured all 41 conflicting
+planet-record keys during each Save and all six conflicting star-database keys
+in the Satiria Save. The planet writer is a native bulk copy from a temporary
+database; the star keys pass through native `COMSerializer::SaveClassObjects`.
+The subsequent bounded original Save traced all 41 conflicting planet keys
+into that temporary database through a pinned `cStarManager` call to
+`cResourceManager::WriteResource`; the same 59 keys were then copied to the
+final archive. Its source object mutations remain unqualified.
+A safe projection/reload path is also unverified. The coordinator now refuses
+location or worker leases with a
+checkpoint revision different from the selected global head, verified by
+HOST tests. This guards the current immutable artifact; it is not native
+per-location publication. The first pre-load
+hook trial crashed during native Load; post-load trials saved and exited
+cleanly, with disposable and personal profile checks passing.
+A serial original-game experiment loaded Haagos from Satiria's complete Save,
+saved Haagos, then loaded Satiria from the new complete world in a fresh
+process. Both inspected native Creature scenes passed and protected profiles
+were restored. This is a candidate exclusive whole-world head for the fixed
+saves, not a concurrent publication or transfer pass. The two independent
+live branches still require native ownership and projection before M10 can
+advance its remaining L04–L07 gates.
+Bridge/NativeHost 0.0.71 then restored one newly sealed native head in two
+original authority workers behind one coordinator. Satiria and Haagos each
+published a distinct Creature scene route; an original player process joined
+Haagos as player 2, then a fresh original process joined Satiria as player 1.
+Both inspected views and four closed healthy traces passed. A later trace
+audit found that **each authority published both owner avatars** from the
+shared M09 checkpoint. That run failed native location separation. A post-run
+coordinator HOST guard rejected an owner published outside its location lease.
+Subsequent original-game processes loaded the original one-avatar Satiria and
+Haagos saves from the same closed world. A developer-only primary binding
+counted exactly one native player/avatar in each and mapped the primary to
+owner 1 or owner 2. Both original jumps landed. A later simultaneous run
+exercised the actual scene capture adapter: Satiria published one owner-1
+candidate among 32 entities, Haagos one owner-2 candidate among 18, with no
+foreign owned avatar. At that point these were native capture prerequisites,
+without coordinator publication or joined player baselines.
+The corrected one-primary network path then selected a 30-file, two-save
+immutable original world and published both separately owned scenes through
+one coordinator. Fresh original player processes joined Satiria and Haagos
+in separate trials and applied location-specific baselines. A Satiria
+authority restart while Haagos and player 1 remained live recovered a fresh
+player baseline. A later trial stopped the old Satiria authority, atomically
+replaced its durable generation 5 lease with generation 6 and a fresh
+credential, then recovered player 1 on a new original-game scene baseline
+while Haagos remained live. The selected head was unchanged. The full native
+traces, exact-PID inspected Creature views and protected profile restoration
+passed. HOST real-TLS checks refused the old credential and recovered the
+new lease after coordinator restart. This is bounded native L02 separation
+and higher-generation authority replacement, not a post-Save shared history.
+An earlier Haagos
+player join failed closed on a missing native NPC herd template, and a paused
+authority now drops its coordinator lease instead of leaving a stale scene.
+The location keys in that earlier trial were HOST
+placeholders; away-area identity, robust native NPC admission, live transfer,
+per-location native artifact publication, worker-kill transfer and once-only
+global consequences remain open. The final Release CTest passes 17/17, and
+all disposable/personal profile checks pass.
+[0.0.70 coordinator evidence (archived)](docs/public-evidence.md#historical-artifacts),
+[contract](docs/m10-locations.md),
+[gate map](tests/engine/M10.md), [native continuation (archived)](docs/public-evidence.md#historical-artifacts),
+[selected-load run (archived)](docs/public-evidence.md#historical-artifacts),
+[native save ownership (archived)](docs/public-evidence.md#historical-artifacts),
+[native writer observation (archived)](docs/public-evidence.md#historical-artifacts),
+[sequential world head (archived)](docs/public-evidence.md#historical-artifacts).
+[Live original-game location routing (archived)](docs/public-evidence.md#historical-artifacts).
+[Original primary-avatar capture (archived)](docs/public-evidence.md#historical-artifacts).
+[Online one-primary locations (archived)](docs/public-evidence.md#historical-artifacts).
+
 **Dependencies:** M04, M08, M09.
+
+**Historical native continuation (2026-09-26, trials04–06): IN_PROGRESS at that point.** Reviewed
+[trial05 (archived)](docs/public-evidence.md#historical-artifacts) completes
+committed outward travel, visiting-player native movement/jump, current-state
+return, exact three-noun secondary cleanup and resumed separate authorities.
+Trial06 additionally completes original paired Save, atomic checkpoint14
+publication and exact retries across coordinator restart, fresh paired native
+reload, return and player reconnect; its closed analysis is in preparation.
+Native worker interruption recovery and native global producer admission remain
+open. Pass-through global hooks do not qualify producer exclusivity.
+All original acceptance clauses below remain required.
 
 **Work:** Add canonical universe/star/planet/location identifiers; worker scheduling; ownership leases and fencing; area activation/deactivation; and interest subscriptions. Establish who owns global native systems as well as local ones. Build a transfer state machine: prepare destination, validate content/checkpoint, quiesce and fence source authority, restore destination, commit ownership, and clean up. Persist each transfer step and support abort/recovery. Native outcomes from an old worker generation are rejected.
 
@@ -211,7 +448,128 @@ Initially use explicit test travel commands if necessary; these are test harness
 
 ### M11 — Creature stage gameplay coverage
 
-**Current increment:** IN_PROGRESS, 2026-09-27; [contract](docs/m11-creature.md), [gate map](tests/engine/M11.md), [social progress report](evidence/2026-09-27-m11-social-progress/SESSION.md). Development .102–.106 qualify bounded social rewards, owner-only First DNA guidance and original save/load recovery. The shared-species, exclusive-action fixture does not close any full C01–C12 gate; later code remains unpublished.
+Latest display increment: **0.0.183**, trials148/149. B's client shows its own
+original Hunt card (1/3) after a fresh distinct-species restore while A keeps
+2/3. It presents saved state through the original goal and card functions on
+the owner client only; no reward runs. Live relationship replication, B-only
+species cards and B's own goal lifecycle remain open. No full gate closes.
+
+Latest distinct-species persistence increment: **0.0.177**, trials130/134.
+Original native serializers preserve B's private relationship/history alongside
+its saved player and existing actors. All 679 player/inventory rows agree
+before/after Save and in three fresh processes; B retains 7 DNA and its first
+kill while A retains its own state. Both clients reconnect with the correct
+avatar, portrait and Sporepedia collection. A's normal jump lands and B moves
+diagnostically. This is explicit restoration of one living brain-0 fixture,
+not extended independent progression or crash-qualified publication. Failed
+client baselines131–133 remain failures. All twelve full gates remain OPEN.
+
+Latest death increment: **0.0.167**, trials118-119. Two original B melee deaths
+and normal owner confirmations complete in the same authority process. Both
+restarts preserve the original two-member herd and A's scoped state. One
+private hatch sequence is constructed and reused; original growth completes
+twice at age 1, scale 1.1 and health 12.5, with increasing cue serials and no
+repeated learned lesson. A jumps normally before the first death and during
+the second pending death; B and A both jump after the second growth.
+Original Save3 completes and strict sealing succeeds. All 684 loaded and
+before/after-save player/inventory rows exactly match sealed112. The closed
+run retains 68 matching frozen entries, 29 unchanged protected files per role
+and six zero process exits. Trial119 freshly restores this seal into three
+new generations: all 684 saved census rows, both adult identities and all
+123 nests per view match without death, hatch, lesson or reward replay.
+Both normal jumps land. Across 65 authority samples each, B stays at health
+12.5 and scale 1.1; A remains alive while its saved starvation continues
+(health about 7.497 to 4.241, hunger 0). The restore run retains 67 matching
+frozen entries, 29 unchanged protected files per role and six zero exits.
+Combat setup remains diagnostic; remaining death causes/species, full model/UI
+parity and full C10 remain open. Formal M11 completion remains **0/12**.
+
+Retained populated-herd restore increment: **0.0.167**, trials115-116. Original melee retaliation
+after diagnostic combat setup kills B. Its normal owner confirmation revives
+it from the restored populated herd without losing either member (2 to 2) or
+changing A's scoped state. Original hatch/growth returns B to adult form,
+normal peer and B jumps land, and Save3 is strictly sealed. Fresh restoration
+preserves all 684 player/inventory rows, both owner identities and all 123
+nests on each view; both normal jumps land without lifecycle/reward replay.
+A's saved starvation continues; B stays adult at health 12.5 and scale 1.1.
+This is the first B cycle in a fresh process. The attempted second setup
+selected a distant pooled baby and never reached another death. Trial118
+above subsequently qualifies two cycles in one process. Full C10 remains
+open; formal completion remains **0/12**.
+
+Retained first-lesson increment: **0.0.166**, trials112-113. B's normal Charge lesson
+input reaches the original authority sequence once; native growth completes
+at age 1, scale 1.1 and health 12.5 while A's scoped state remains unchanged.
+Both players land normal jumps, original Save1 completes, and a strict seal
+is freshly restored. Trial113 retains adult A/B, DNA 35/17 and all 684 recorded
+player/inventory rows, with both normal controls and no hatch/death/reward
+replay. Learned-ability bits and complete Stage state are outside the census.
+Trial111's earlier lesson/growth/Save result ended at the checkpoint deadline
+with authority exit 35 and supplied no strict seal. The bounded populated-herd
+extension in115-116 did not qualify same-process context reuse; trial118
+above adds that bounded result. Remaining causes/species and full C10 remain
+unqualified. All twelve full M11 gates remain OPEN.
+
+Latest nest increment: **0.0.156**, trials94-95. The authority creates B's
+original home through CreateNest, preserves A and both players' progression,
+and publishes its original herd/species/model identity to both clients.
+Both players jump, original Save completes, and a fresh three-process load
+restores nest16485 for B's herd12558 without creating another nest. Both clients
+admit all123 nests and both post-reload jumps land. All684 saved player/inventory
+records match. Static nest updates are suppressed when unchanged; both clients
+remain connected for103 seconds through clean closure. The first creation and
+first reload samples differ slightly in nest position; the timing and cause of
+that movement are not established. Clients match the restored authority; exact
+creation-pose preservation is not claimed. Full C05 packs,
+recruitment/dismissal, complete C10 lifecycle coverage and all twelve full M11 gates remain OPEN.
+See the [native report (archived)](docs/public-evidence.md#historical-artifacts).
+
+Latest part increment: **0.0.150**, trials88-89. B's normal fossil click grants
+one original Manglerfish part and now updates B's actual local inventory and
+original new-part card. A's complete player/inventory state is unchanged and
+A receives no B part notification. The original owner tutorial completes while
+A continues playing; B then resumes and both normal jumps land. Original Save
+completes. A fresh three-process load restores all684 saved player/inventory
+records exactly and projects each owner's312 inventory rows: A57/B1 unlocked
+parts and DNA35/17, with no replayed reward, part card or first-part tutorial.
+The extra two-client control check after this reload is NOT COMPLETED before
+automatic closure; post-collection controls are qualified separately in88.
+BUILD and the two affected HOST tests pass. Distinct-species attribution,
+concurrent independent unlocks, editor integration and every full C01-C12 gate
+remain open. Trials85-87 retain the earlier tutorial failure and correction.
+
+Earlier trials79/81 exposed an invisible restored B avatar. Trial82/.146 fixes
+initial placement only; .147 trial84 qualifies bounded visible model following
+and both jumps. Its sampled B model offset stays below0.366 units; exact
+model/source equality is not claimed. The preceding full CTest run (.146)
+passed19/19 and was not repeated for these focused changes. See the [remaining-work audit](docs/m11-work-audit.md).
+
+Earlier bounded increment, **0.0.120–0.0.121**: original B hunger, exact
+saved-hunger restoration, native starvation damage/death and retained B45/A35
+with A jumping afterward (trials46–49). .118 trial44 adds normal social
+cancellation and re-entry; .117 trials41/43 preserve original control and
+exact682-row save/load. At that point nest replication/persistence and B
+respawn were still unqualified; the later bounded results appear above.
+Separate species and every full C01–C12 gate remain open. The acceptance below is intact.
+
+**Earlier increment:** IN_PROGRESS, 2026-09-27. [Contract](docs/m11-creature.md),
+[gate map](tests/engine/M11.md) and [session](evidence/2026-09-27-m11-start/SESSION.md).
+Bridge 0.0.106 records original B social rewards, B-only First DNA presentation
+while A plays, and local native persistence. A delayed species-objective leak
+is reproduced and corrected: B receives 10+25 while A stays at 35; a fresh load
+restores B at 45 without replay and matches all 682 player/inventory rows.
+Trial29/.110 adds a bounded original mouse/keyboard greeting/Sing exchange,
+the colored native social meter and A jumping during B's reward. The objective
+panel remains stale. The same-species, empty-pack and exclusive encounter
+limits remain. Trials32/34/.113 qualify bounded A starvation, owner confirmation,
+original revival/fade and pending-death reconnect with clean exits while B plays.
+The earlier black-view and deadline failures remain recorded. Trial36/.114
+preserves B's original reward context after NPC combat death while A jumps;
+B's respawn was not implemented in that increment. Distinct-species relationships, independent objectives, complete
+death/respawn coverage and all full C01–C12 gates remain open.
+BUILD/HOST/FIXTURE results are recorded separately from native outcomes.
+[Native investigation (archived)](docs/public-evidence.md#historical-artifacts).
+All acceptance below remains required.
 
 **Dependencies:** M07–M10.
 

@@ -51,7 +51,9 @@ Invoke-Checked 'cmake' @('--build', $detoursBuild, '--config', $Configuration, '
 $sdkDetours = @("/p:ForceImportAfterCppTargets=$(Join-Path $PSScriptRoot 'sdk-detours4.targets')", "/p:SporeMPDetoursSource=$(Join-Path $loaderRoot 'ModAPI.DLLInjector\Detours\src')", "/p:SporeMPDetoursLibrary=$(Join-Path $detoursBuild "$Configuration\sporemp_detours.lib")")
 $sdkOutput = Join-Path $repoRoot "build\sdk\$Configuration"
 New-Item -ItemType Directory -Path $sdkOutput -Force | Out-Null
-$sdkProject = Join-Path $sdkRoot 'Spore ModAPI\Spore ModAPI.vcxproj'
+$sdkBuildRoot = & python (Join-Path $PSScriptRoot 'prepare-sdk-source.py') $repoRoot
+if ($LASTEXITCODE -ne 0 -or -not $sdkBuildRoot -or @($sdkBuildRoot).Count -ne 1) { throw 'Pinned SDK build-source verification failed.' }
+$sdkProject = Join-Path $sdkBuildRoot 'Spore ModAPI\Spore ModAPI.vcxproj'
 Invoke-Checked $msbuild (@($sdkProject, '/t:Build', '/m:2', '/v:minimal', '/nologo', "/p:Configuration=$Configuration DLL", '/p:Platform=Win32', "/p:PlatformToolset=$($lock.modapi.toolset)", "/p:VCToolsVersion=$($lock.modapi.msvc_tools_version)", "/p:WindowsTargetPlatformVersion=$($lock.modapi.windows_sdk)", "/p:SDK_BUILD_VER=$($lock.modapi.sdk_build_ver)", "/p:EXECUTABLE_TYPE=$($lock.modapi.executable_type)", "/p:OutDir=$sdkOutput\", "/p:IntDir=$sdkOutput\obj-detours4\", '/p:CL_MPCount=4', "/bl:$sdkOutput\sdk-build.binlog", '/fl', "/flp:logfile=$sdkOutput\sdk-build.log;verbosity=normal") + $sdkDetours)
 $baseOutput = Join-Path $repoRoot "build\sdk-base\$Configuration"
 New-Item -ItemType Directory -Path $baseOutput -Force | Out-Null

@@ -16,6 +16,13 @@
   "modapi": {
     "repository": "https://github.com/Spore-Community/Spore-ModAPI.git",
     "commit": "cbf9206b9a823f0911cd9be0217104a49d72380b",
+    "source_patch": {
+      "path": "tools/build/patches/modapi-model-load-lifetime.patch",
+      "sha256": "7ca2bce9880f1f6a8423f4bb28c73e5c4cf8ea10a4700cf9cf1e3edbb4479b44",
+      "target": "Spore ModAPI/SourceCode/DLL/TextureOverride.cpp",
+      "before_sha256": "84e9e003084fad4a18a1082367c88b97b84ccc066eb6c3acbbf5487f87ed3e8d",
+      "after_sha256": "836ef21615db1f20f584a773242a491e9dc34571b7560eecfdd5bc2c8c21718f"
+    },
     "architecture": "Win32",
     "toolset": "v143",
     "msvc_tools_version": "14.44.35207",

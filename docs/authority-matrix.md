@@ -1,6 +1,6 @@
 # Authority matrix
 
-Status: required global design with **bounded native foundations through M10**. The recorded Creature configuration now has authenticated session/scene authority, durable checkpoints, location leases and transfer recovery. Native global admission qualifies its recorded producer paths only. The full stage/domain rows below remain requirements; no generic all-stage authority is implied. See [STATUS.md](../STATUS.md), the [reviewed M10 development summary](../evidence/2026-09-27-development-update/SESSION.md) and the [M11 coverage contract](m11-creature.md). Historical M05 details remain below. Public source availability is qualified separately in [README.md](../README.md).
+Status: required global design with **bounded native foundations through M10**. The recorded Creature configuration now has authenticated session/scene authority, durable checkpoints, location leases and transfer recovery. Native global admission qualifies its recorded producer paths only. The full stage/domain rows below remain requirements; no generic all-stage authority is implied. See [STATUS.md](../STATUS.md), the [M10 gate map](../tests/engine/M10.md) and the [M11 coverage contract](m11-creature.md). Historical M05 details remain below.
 
 | Mutable domain | Gameplay producer | Coordinator responsibility | Client/other-worker view | Required evidence |
 |---|---|---|---|---|

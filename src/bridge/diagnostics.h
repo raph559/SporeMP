@@ -18,10 +18,10 @@ struct RuntimeIdentity {
 
 class DiagnosticSession {
 public:
-    bool initialize(const wchar_t* executable, const wchar_t* directory,
-                    RuntimeIdentity runtime) noexcept;
+    bool initialize(const wchar_t* executable, const wchar_t* directory, RuntimeIdentity runtime) noexcept;
     void dispose() noexcept;
     bool native_path(unsigned int id, const wchar_t* value) noexcept;
+
 private:
     HANDLE log_ = INVALID_HANDLE_VALUE;
     DWORD engine_thread_ = 0;
@@ -29,4 +29,4 @@ private:
     RuntimeIdentity runtime_{};
     bool event(const char* name) noexcept;
 };
-}
+} // namespace sporemp

@@ -1,24 +1,60 @@
 import { readFile, readdir, stat } from 'node:fs/promises';
-import path from 'node:path';
+import { dirname, join, resolve, extname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
-const root = path.join(path.dirname(fileURLToPath(import.meta.url)), 'dist');
-async function walk(dir) { const result=[]; for(const e of await readdir(dir,{withFileTypes:true})){const p=path.join(dir,e.name); if(e.isDirectory())result.push(...await walk(p));else result.push(p);}return result; }
-const files=await walk(root); let references=0;
-for(const file of files.filter(p=>p.endsWith('.html'))){
-  const html=await readFile(file,'utf8');
-  if((html.match(/<h1[ >]/g)||[]).length!==1)throw new Error('Expected one h1: '+file);
-  const language = path.relative(root,file).startsWith('fr'+path.sep) ? 'fr' : 'en';
-  if(!html.includes('<html lang="'+language+'"'))throw new Error('Wrong document language: '+file);
-  if(!html.includes('hreflang="x-default"'))throw new Error('Missing default language metadata: '+file);
-  for(const match of html.matchAll(/(?:href|src)="([^"]*)"/g)){
-    const value=match[1]; if(!value)throw new Error('Empty URL: '+file);
-    if(/^(https:|data:)/.test(value))continue;
-    const [resource,anchor]=value.split('#'); const url=resource.split('?')[0]; let target=path.resolve(path.dirname(file),url||path.basename(file));
-    if(!target.startsWith(root+path.sep)&&target!==root)throw new Error('Outside output: '+target);
-    if((await stat(target)).isDirectory())target=path.join(target,'index.html');
-    const content=await readFile(target);
-    if(anchor&&!content.toString().includes('id="'+anchor+'"'))throw new Error('Missing anchor '+value+' in '+file);
-    references++;
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), 'dist');
+const config = JSON.parse(await readFile(join(dirname(root), 'site.config.json'), 'utf8'));
+const failures = [];
+const files = [];
+async function walk(folder) {
+  for (const entry of await readdir(folder, { withFileTypes: true })) {
+    const path = join(folder, entry.name);
+    if (entry.isDirectory()) await walk(path); else files.push(path);
   }
 }
-console.log(`Validated ${files.length} public files, ${references} local references, page headings, language and anchors.`);
+await walk(root);
+const htmlFiles = files.filter(file => extname(file) === '.html');
+let checkedLinks = 0;
+for (const file of htmlFiles) {
+  const html = await readFile(file, 'utf8');
+  const label = relative(root, file);
+  if (!html.startsWith('<!doctype html>')) failures.push(`${label}: missing doctype`);
+  if (!/<html lang="(en|fr)"/.test(html)) failures.push(`${label}: missing language`);
+  if (!html.includes('name="viewport"')) failures.push(`${label}: missing viewport`);
+  if (!html.includes('http-equiv="refresh"')) {
+    if ((html.match(/<h1[> ]/g) || []).length !== 1) failures.push(`${label}: expected exactly one h1`);
+    if (!html.includes('id="main-content"')) failures.push(`${label}: missing main landmark`);
+    if (!html.includes('rel="canonical"')) failures.push(`${label}: missing canonical`);
+    if (!html.includes('hreflang="fr"') || !html.includes('hreflang="en"')) failures.push(`${label}: missing language alternates`);
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    if (ids.length !== new Set(ids).size) failures.push(`${label}: duplicate IDs`);
+  }
+  for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    const siteAbsolute = match[1].startsWith(config.siteUrl);
+    const href = siteAbsolute ? match[1].slice(config.siteUrl.length) : match[1];
+    if (!siteAbsolute && /^(https?:|mailto:|data:)/.test(href)) continue;
+    checkedLinks++;
+    const [path, fragment] = href.split('#');
+    let target = siteAbsolute ? resolve(root, path.split('?')[0] || '.') : path ? resolve(dirname(file), path.split('?')[0]) : file;
+    if (!target.startsWith(root + '/') && !target.startsWith(root + '\\') && target !== root) {
+      failures.push(`${label}: path escapes output: ${href}`); continue;
+    }
+    try {
+      if ((await stat(target)).isDirectory()) target = join(target, 'index.html');
+      await stat(target);
+      if (fragment && extname(target) === '.html') {
+        const targetHtml = await readFile(target, 'utf8');
+        if (!targetHtml.includes(`id="${fragment}"`)) failures.push(`${label}: missing anchor ${href}`);
+      }
+    } catch { failures.push(`${label}: missing resource ${href}`); }
+  }
+}
+for (const file of files.filter(file => extname(file) === '.css')) {
+  const css = await readFile(file, 'utf8');
+  for (const match of css.matchAll(/url\(['"]?([^)'"\s]+)['"]?\)/g)) {
+    try { await stat(resolve(dirname(file), match[1])); }
+    catch { failures.push(`Missing CSS resource: ${match[1]}`); }
+  }
+}
+if (failures.length) { console.error(failures.join('\n')); process.exit(1); }
+console.log(`PASS: ${htmlFiles.length} HTML pages; ${checkedLinks} local links, anchors and assets; language pairs, headings, landmarks and font URLs.`);

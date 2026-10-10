@@ -4,7 +4,10 @@ param([Parameter(Mandatory)][ValidateSet('01','02','03')][string]$WorkerId,
       [Parameter(Mandatory)][ValidateSet('private','current')][string]$Desktop,
       [ValidateSet('Authority','Replica')][string]$M05Role,
       [string]$M06SessionConfig,
-      [ValidatePattern('^[a-f0-9]{64}$')][string[]]$M08ApprovedContent)
+      [ValidatePattern('^[a-f0-9]{64}$')][string[]]$M08ApprovedContent,
+      [switch]$M10SaveProbe,
+      [ValidatePattern('^-?[0-9]{1,6},-?[0-9]{1,6}$')][string]$WindowPosition,
+      [switch]$NoSound)
 $ErrorActionPreference='Stop'
 $repoRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $stateRoot=Join-Path $repoRoot "local/worker-accounts/$WorkerId"
@@ -93,6 +96,10 @@ if($M06SessionConfig){
 }
 $workerArguments=@($hostMode,$state.game_root,$payload,$run,$state.sid,$state.personal_root,$Generation,$Desktop)
 if($M06SessionConfig){$workerArguments+=@($sessionTarget)}
+if($M10SaveProbe){$workerArguments+='--m10-save-probe'}
+# Developer worker presentation: the bridge places the window; the original game starts without audio.
+if($WindowPosition){$workerArguments+=@('--window-position',$WindowPosition)}
+if($NoSound){$workerArguments+='--no-sound'}
 $workerArguments+=@('--display-mode','windowed','--resolution','1280x720')
 $process=Start-DetachedWorkerSupervisor -Executable (Join-Path $payload 'SporeMP.NativeHost.exe') `
     -WorkingDirectory $payload -Arguments $workerArguments -Credential $workerCredential -RunDirectory $run

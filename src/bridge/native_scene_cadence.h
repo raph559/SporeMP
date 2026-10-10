@@ -8,4 +8,4 @@ namespace sporemp {
 constexpr std::uint64_t next_native_scene_capture(std::uint64_t completed_ms) noexcept {
     return completed_ms + 50;
 }
-}
+} // namespace sporemp

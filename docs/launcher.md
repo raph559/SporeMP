@@ -4,6 +4,40 @@ The normal player flow is **open SporeMP → Play SPORE**. Automatic discovery a
 
 The main view pairs the original space illustration with one prominent Play button, a separate readiness strip and the latest release. A permanent sidebar switches between Home, What's new and Settings. Installation selection, paths, errors and local report export stay in Settings. Multiplayer is explicitly still in development.
 
+## Current development notes — 0.1.14
+
+What's new records bounded original-game social rewards, owner-only First DNA
+presentation while the peer plays, and persistence of the earned progress and
+tutorial completion. It also covers the corrected delayed species-objective
+reward. These prepared-world tests still use developer controls and a shared
+species. M11 remains in progress. This release refreshes bundled notes;
+historical release notes retain the state at each release date.
+
+## Prepared-location invitations — 0.1.12
+
+Join recognizes a prepared location invitation and checks its matching original
+Creature save before opening SPORE. The current location/recovery evidence is
+in the [M10 gate map](../tests/engine/M10.md). These checks require the recorded
+prepared world; they do not provide general planet selection or arbitrary-save
+admission. M06 retains the original visual Join/Rejoin qualification; later
+HOST results are not a new end-to-end WPF gameplay qualification.
+
+## Rejoin recovery status — 0.1.11
+
+Rejoin shows that the saved shared world has been restored only after the
+authenticated coordinator supplies a committed checkpoint revision, the original
+game restores its native checkpoint extension and a current baseline is applied.
+Queued commands or copied artifacts cannot establish recovery readiness. Normal
+Play continues under the player's normal account with existing saves.
+
+The new backend predicate and actual child-progress transport into the WPF model
+pass HOST tests; the underlying recovery status is verified in both original
+clients. The new WPF recovery text was not visually exercised in this native run;
+M06 retains the actual Join/Rejoin UI qualification. Protected host recovery
+commands keep their backup locations and journals under ignored local evidence.
+[M09 acceptance](../evidence/2026-09-22-m09-persistence/acceptance.md),
+[checkpoint workflow](m09-persistence.md).
+
 ## Worker controls — 0.1.8
 
 Settings > Isolated workers lists prepared developer workers and provides Start/Stop through the real C++ supervisor. Start launches a rendered original-game window on the current desktop under that worker's standard Windows account. Initial menu, native progress, paused/stalled, crash, clean stop and forced stop have distinct status text. Stop remains pinned to the selected worker generation, unreadable peer metadata does not hide healthy workers, and mutation timeouts are reported without automatic retries.

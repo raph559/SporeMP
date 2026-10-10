@@ -71,7 +71,8 @@ if action == 'native_join':
     assert all('&token=' not in arg for arg in sys.argv)
     with pathlib.Path('join-count.txt').open('a') as log: log.write('join\n')
     pathlib.Path('join-entered.txt').write_text('entered')
-    print(json.dumps({'kind':'sporemp-launcher-progress','phase':'connected','message':'Connected fixture'}), flush=True)
+    phase = 'recovered' if pathlib.Path('recovered-fixture.txt').exists() else 'connected'
+    print(json.dumps({'kind':'sporemp-launcher-progress','phase':phase,'message':'Connected fixture'}), flush=True)
     time.sleep(.6)
     print(json.dumps({'schema_version':1,'kind':'sporemp-launcher-operation','native_tests':'NOT_RUN','operation':action,'exit_code':0,'report_path':'fixture.json','result':{'authenticated':True,'connected_baseline_observed':True}}), flush=True)
     sys.exit(0)
@@ -127,7 +128,12 @@ else:
         Check(multiplayer.IsConnected && multiplayer.ButtonLabel == "Connected", "connected native-state progress updates the session model");
         await joining;
         Check(!multiplayer.IsActive && !multiplayer.IsConnected && multiplayer.ButtonLabel == "Rejoin server", "closed session enables Rejoin with the same in-memory identity");
-        await multiplayer.JoinAsync(special);
+        await File.WriteAllTextAsync(Path.Combine(temporary, "recovered-fixture.txt"), "restored");
+        var rejoining = multiplayer.JoinAsync(special);
+        connectionDeadline.Restart();
+        while (!multiplayer.IsConnected && !rejoining.IsCompleted && connectionDeadline.Elapsed < TimeSpan.FromSeconds(5)) await Task.Delay(20);
+        Check(multiplayer.IsConnected && multiplayer.ButtonLabel == "Connected" && multiplayer.Detail.Contains("saved shared world has been restored"), "recovered backend progress connects Rejoin and displays the saved-world result");
+        await rejoining;
         Check(File.ReadAllLines(Path.Combine(temporary, "join-count.txt")).Length == 2, "two explicit joins execute once each through real stdin child transport");
         multiplayer.Invitation = invite.Replace("127.0.0.1", "localhost");
         Check(multiplayer.ButtonLabel == "Join server", "changing server invitation cannot claim the prior rejoin identity");

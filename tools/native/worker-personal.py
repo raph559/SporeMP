@@ -22,6 +22,29 @@ def verify(report):
     return {'personal_sources_unchanged': True, 'backup_directory': str(backup),
             'file_count': sum(len(x['snapshot']['files']) for x in manifest['sources'])}
 
+def reference_report(shared, games, ensure_backup):
+    """The backup report a starting worker's personal files are checked against.
+
+    The first worker of a set takes a closed backup and shares its report; a worker that starts while
+    another worker's game runs uses that shared report. A worker game can also start while the backup is
+    being taken, which the backup refuses (trial251: the third worker of a set, with the first two
+    supervisors up and their games not yet); the shared report from this set is then the reference.
+    An unrecognized game makes `games` itself raise, and a refusal with no worker game running stands.
+    """
+    if games():
+        return json.loads(shared.read_text())
+    try:
+        report = ensure_backup()
+    except ValueError:
+        if not games() or not shared.exists():
+            raise
+        return json.loads(shared.read_text())
+    temporary = shared.with_name(uuid4().hex + '.tmp')
+    temporary.write_text(json.dumps(report), encoding='utf-8')
+    os.replace(temporary, shared)
+    return report
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('before', 'after'))
@@ -31,14 +54,8 @@ def main():
     shared = service.diag.no_reparse(REPO / 'local/worker-accounts/personal-backup.json')
     games = checked_games()
     if args.action == 'before':
-        if not games:
-            report = service.ensure_backup()
-            temporary = shared.with_name(uuid4().hex + '.tmp')
-            service.diag.write_json(temporary, report)
-            os.replace(temporary, shared)
-        else:
-            report = json.loads(shared.read_text())
-        result = verify(report)
+        result = verify(reference_report(shared, checked_games, service.ensure_backup))
+        games = checked_games()
     else:
         if args.before is None: raise ValueError('The exact before report is required.')
         result = verify(json.loads(service.diag.no_reparse(args.before).read_text()))

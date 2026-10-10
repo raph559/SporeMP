@@ -1,6 +1,6 @@
 # Architecture — initial decisions
 
-Status: architectural contract with **bounded native Creature foundations through M10**. Networking, scoped authority, checkpoints and location transfer are qualified only for their recorded configurations; the complete stage/campaign architecture remains unfinished. M11 begins normal Creature gameplay coverage. See [current evidence](../STATUS.md), [Creature coverage](m11-creature.md), [product scope](../GOAL.md) and the complete [milestone plan](../MILESTONES.md). The design below states required behavior, not a claim that every subsystem or stage is complete. Public source availability is qualified separately in [README.md](../README.md).
+Status: architectural contract with **bounded native Creature foundations through M10**. Networking, scoped authority, checkpoints and location transfer are qualified only for their recorded configurations; the complete stage/campaign architecture remains unfinished. M11 begins normal Creature gameplay coverage. See [current evidence](../STATUS.md), [Creature coverage](m11-creature.md), [product scope](../GOAL.md) and the complete [milestone plan](../MILESTONES.md). The design below states required behavior, not a claim that every subsystem or stage is complete.
 
 ## Original engine owns gameplay
 

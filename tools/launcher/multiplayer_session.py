@@ -79,9 +79,13 @@ def parse_invitation(value):
         url = urlsplit(value)
         if url.scheme != "sporemp" or url.netloc != "join" or url.path not in ("", "/") or url.fragment:
             raise ValueError(message)
-        pairs = parse_qsl(url.query, keep_blank_values=True, strict_parsing=True, max_num_fields=4)
+        pairs = parse_qsl(url.query, keep_blank_values=True, strict_parsing=True, max_num_fields=11)
         fields = dict(pairs)
-        if len(pairs) != 4 or set(fields) != {"host", "port", "cert", "token"}:
+        base = {"host", "port", "cert", "token"}
+        location = {"galaxy", "star", "planet", "area", "native_load_slot"}
+        names = set(fields)
+        if len(pairs) != len(fields) or names not in (base, base | location,
+                                                     base | location | {"primary_owner", "haagos_sha256"}):
             raise ValueError(message)
         host = fields["host"]
         if len(host) > 253 or not host or any(ord(char) <= 32 or ord(char) > 126 for char in host):
@@ -99,8 +103,27 @@ def parse_invitation(value):
         for name in ("cert", "token"):
             if not re.fullmatch(r"[A-Fa-f0-9]{64}", fields[name]) or fields[name] == "0" * 64:
                 raise ValueError(message)
-        return {"schema": 2, "host": host, "port": int(fields["port"]),
-                "certificate_sha256": fields["cert"].lower(), "credential": fields["token"].lower()}
+        result = {"schema": 2, "host": host, "port": int(fields["port"]),
+                  "certificate_sha256": fields["cert"].lower(), "credential": fields["token"].lower()}
+        if location <= names:
+            for name in ("galaxy", "star", "planet", "area"):
+                value = fields[name]
+                if not re.fullmatch(r"[0-9]{1,20}", value) or not 0 < int(value) < 2 ** 64:
+                    raise ValueError(message)
+                result["location_" + name] = int(value)
+            slot = fields["native_load_slot"]
+            if slot not in ("0", "1"):
+                raise ValueError(message)
+            result.update(schema=3, worker_generation=0, native_load_slot=int(slot))
+            if "primary_owner" in fields:
+                owner = fields["primary_owner"]
+                if owner not in ("1", "2"):
+                    raise ValueError(message)
+                secondary = fields["haagos_sha256"]
+                if not re.fullmatch(r"[A-Fa-f0-9]{64}", secondary) or secondary == "0" * 64:
+                    raise ValueError(message)
+                result.update(schema=4, primary_owner=int(owner), world_haagos_sha256=secondary.lower())
+        return result
     except (ValueError, UnicodeError):
         # Never reflect malformed, potentially secret input into diagnostics.
         raise ValueError(message) from None
@@ -176,3 +199,17 @@ def connection_state(path):
         return state
     except (OSError, ValueError, KeyError, TypeError):
         return None
+
+
+def recovered_connection(path):
+    """Report recovery only after authenticated checkpoint + native baseline."""
+    if connection_state(path) != 'connected': return False
+    try:
+        with path.open('rb') as stream: raw = stream.read(4097)
+        if len(raw) > 4096: return False
+        value = json.loads(raw)
+        return (value.get('state') == 'connected' and value.get('checkpoint_recovered') is True and
+                type(value.get('checkpoint_revision')) is int and 0 < value['checkpoint_revision'] < 2 ** 64 and
+                type(value.get('player_id')) is int and value['player_id'] in (1, 2) and type(value.get('baseline_sequence')) is int and 0 < value['baseline_sequence'] < 2 ** 64)
+    except (OSError, ValueError, KeyError, TypeError):
+        return False

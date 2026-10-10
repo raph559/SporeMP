@@ -21,3 +21,6 @@ __pycache__/
 *.pem
 *.pfx
 *.p12
+# Runtime state written by host transfer/location runs; contains local credentials.
+/transfer-host/
+/location-host/

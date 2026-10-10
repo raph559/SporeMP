@@ -89,11 +89,11 @@ public sealed class MultiplayerSessionModel(LauncherClient client) : INotifyProp
             var progress = new Progress<LauncherProgress>(value =>
             {
                 if (!IsActive) return;
-                if (value.Phase == "connected")
+                if (value.Phase == "connected" || value.Phase == "recovered")
                 {
                     IsConnected = true; joinedInvitation = captured;
                     Status = "Connected to " + ServerLabel;
-                    Detail = "Your shared scene is ready in SPORE.";
+                    Detail = value.Phase == "recovered" ? "Your saved shared world has been restored. You are ready to continue in SPORE." : "Your shared scene is ready in SPORE.";
                 }
                 else if (value.Phase == "disconnected")
                 {

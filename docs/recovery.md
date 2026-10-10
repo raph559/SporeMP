@@ -1,6 +1,6 @@
 # Save protection, rollback and recovery
 
-M01 provides quiescent **file backups**, verified by SHA-256. It does not provide a native checkpoint manager or crash-atomic universe persistence. M09 owns those requirements.
+M01 provides quiescent **file backups**, verified by SHA-256. M09 adds a verified native checkpoint manager and atomic coordinator publication for the pinned two-player Creature fixture; the two evidence boundaries remain distinct.
 
 ## Before native testing
 
@@ -25,6 +25,19 @@ For developer setup rollback: first stop its game/host, verify the account SID a
 
 Personal-save restoration remains an optional future recovery operation: retain the live/damaged state, verify a complete backup, restore to a separate target first and validate before replacement. No automatic restore or native checkpoint manager is provided by M01.
 
-## Future persistent universe contract
+## M09 native checkpoint recovery
 
-M09 must coordinate safe native checkpoint boundaries, completed artifacts, ID/content/ownership metadata and atomic manifest publication, with the last good checkpoint retained. Test kills between native effect, captured event, database transaction, artifact write and durable acknowledgment. Do not replay arbitrary inputs to a non-deterministic engine or treat an event journal as a complete save. M10 adds a recoverable prepare/fence/restore/commit transfer protocol; stale source workers lose commit permission.
+The [M09 persistence contract](m09-persistence.md) documents production seal,
+atomic commit/export, protected disposable-profile restore and undo commands.
+Both original players, their tested inventory/progression, existing actor IDs
+and creation ownership survive the qualified restart/crash matrix. A recovered
+authority has a fixed five-minute checkpoint budget; explicit
+stop/save/seal/commit/restart is required before it expires to retain new work.
+The new manager does not write personal profiles or automatically rotate saves.
+Keep its restoration journal and protected backups together. The original
+Windows-account CNG key is also required; a state directory is not a portable
+machine/account identity backup. [Native acceptance](../evidence/2026-09-22-m09-persistence/acceptance.md).
+
+## Persistent universe requirements
+
+M09 coordinates the recorded safe native checkpoint boundaries, completed artifacts, ID/content/ownership metadata and atomic manifest publication, with the last good checkpoint retained. Test kills between native effect, captured event, database transaction, artifact write and durable acknowledgment. Do not replay arbitrary inputs to a non-deterministic engine or treat an event journal as a complete save. M10 adds a recoverable prepare/fence/restore/commit transfer protocol; stale source workers lose commit permission.

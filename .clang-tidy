@@ -1,0 +1,46 @@
+# Run through tools/build/lint.ps1. Checks are the ones the code is held to; add one when the code is clean of it.
+# Left out on purpose: readability-simplify-boolean-expr (a negated range is how this code refuses NaN, and a
+# long refusal followed by `return true` reads better than its negation), bugprone-exception-escape (it reports
+# the implicit members of every struct that holds a container).
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-exception-escape,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  -bugprone-implicit-widening-of-multiplication-result,
+  performance-*,
+  -performance-enum-size,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-use-emplace,
+  modernize-use-equals-default,
+  modernize-use-equals-delete,
+  modernize-use-bool-literals,
+  modernize-loop-convert,
+  modernize-redundant-void-arg,
+  modernize-deprecated-headers,
+  modernize-make-unique,
+  modernize-use-using,
+  readability-braces-around-statements,
+  readability-container-size-empty,
+  readability-delete-null-pointer,
+  readability-duplicate-include,
+  readability-else-after-return,
+  readability-inconsistent-declaration-parameter-name,
+  readability-misleading-indentation,
+  readability-redundant-control-flow,
+  readability-redundant-declaration,
+  readability-redundant-smartptr-get,
+  readability-redundant-string-cstr,
+  readability-static-definition-in-anonymous-namespace,
+  readability-uniqueptr-delete-release,
+  misc-unused-using-decls,
+  misc-redundant-expression,
+  misc-definitions-in-headers,
+  cppcoreguidelines-init-variables,
+  cppcoreguidelines-slicing,
+  cppcoreguidelines-virtual-class-destructor
+WarningsAsErrors: ''
+HeaderFilterRegex: '(src|tests)[/\\].*\.(h|inc)$'
+FormatStyle: file

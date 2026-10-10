@@ -1,47 +1,33 @@
-# SporeMP — project website
+# SporeMP website
 
-Live website: https://raph559.github.io/sporemp-site/
+A completely new, bilingual presentation and development journal, built as a small static site. The public destination is https://raph559.github.io/sporemp-site/.
 
-A bilingual static website, with English as the default and French available through the EN / FR selector. It has no npm dependencies, visitor accounts or trackers. This repository contains the website and its original illustration, without game files or private development data.
+## Build
 
-## Publish news and development updates
+Node.js 22 or later; no package installation or runtime service required. The build fetches Outfit and its license from a pinned official revision and verifies both SHA-256 values. Network access is required at build time; the generated website serves its own font files.
 
-Edit `content.json` for English content and `locales/fr/content.json` for its French translation, then commit both files to `main`. GitHub Actions builds the website and publishes it through GitHub Pages. Each article must use the same English slug in both languages. The build refuses to publish mismatched article sets.
-
-- `news`: add an article with a unique lowercase, hyphenated English `slug`, an ISO `YYYY-MM-DD` date, a category, a title, a summary and paragraphs. Articles are sorted newest first.
-- `releases`: add new versions at the beginning of the list, including their changes and limitations.
-- `roadmap`: update future goals and their status. Do not present planned work as available functionality.
-- `site.config.json`: stores the website URL and the shared `leetchiUrl`. Replace `null` with the exact HTTPS fundraiser URL to show the donation button in both languages. Until it is configured, the site displays a fundraiser-pending message.
-
-Current content reflects the recorded M09 persistence and M10 location foundations completed by September 26, 2026, with Creature gameplay coverage next. The listed launcher versions are development builds through 0.1.13. The site does not announce a public multiplayer download, and development news can be ahead of the reviewed public mod source export.
-
-## Repository language and translations
-
-English is the repository's working language: documentation, code comments, workflow labels, identifiers and new article paths must be written in English. French visitor-facing text belongs under `locales/fr/`.
-
-- `content.json`: default English articles, release notes and roadmap.
-- `i18n.mjs`: English interface copy and locale registration.
-- `locales/fr/content.json`: French content translations.
-- `locales/fr/ui.json`: French interface translations, including the native language name.
-- `legacy-routes.json`: compatibility redirects for already-published article URLs. Historical French URL strings are retained only so existing links keep working.
-- `legacy-anchors.json`: compatibility aliases for previously shared section links.
-
-English pages are published at the root and French pages under `/fr/`. Both use English article paths under `news/`. Language links preserve article identity and section anchors.
-
-## Local development
-
-With Node.js 22 or later:
-
-```sh
-node build.mjs
-node check.mjs
-python -m http.server 4173 --directory dist
+```powershell
+node website/build.mjs
+node website/check.mjs
 ```
 
-Open http://localhost:4173. `build.mjs` escapes content and generates HTML pages, metadata, redirects and a sitemap in `dist/`. Articles remain readable without JavaScript. `check.mjs` validates files, local references, language metadata and section anchors.
+From this directory, use `node build.mjs` and `node check.mjs`. Output goes to `dist/`. The separate website repository builds and publishes that folder through GitHub Pages.
 
-## Artwork
+## Edit
 
-`assets/universe.png` is the original SporeMP launcher illustration, created with Image Gen on September 8, 2026. It is neither a gameplay screenshot nor an asset extracted from SPORE. SHA-256: `5397f78275521e8bb8f7f4344c79e58bf6d16cdb36b0a1f66a3c5de6e625b184`.
+- `src/locales/en.mjs` and `src/locales/fr.mjs`: independently authored visitor copy, journal entries and selected development launcher notes. Keep article slugs aligned.
+- `src/render.mjs`: new static HTML templates and route-aware navigation.
+- `design.css`: new responsive visual system. Body text is 16px or larger; smaller type is reserved for secondary labels.
+- `interactions.js`: mobile navigation, keyboard-accessible stage tabs, section indicators, and language/bookmark continuity.
+- `assets/`: the two original illustrations, favicon, and provenance. The pinned Outfit font and license are fetched by the build and included only in generated output.
+- `site.config.json`: canonical URL and the user-supplied Leetchi fundraiser.
 
-SporeMP is an independent community project, unaffiliated with Electronic Arts or Maxis. SPORE belongs to its respective rights holders.
+English is at `/`; French is at `/fr/`. Journal archives are `/news/` and `/fr/news/`. Existing article URLs continue to work with freshly written articles; three historic French routes redirect to their counterparts. Existing section bookmarks are translated by the new script. The language switch preserves the current article or section, including the selected stage.
+
+CSS, JavaScript, image and font filenames include their content hashes. No old design, template, stylesheet, script or illustration is used by the new site. The artwork is illustrative and explicitly labelled as not gameplay. No private capture or game asset is distributed.
+
+## Verification
+
+`check.mjs` checks all generated local links, fragments, language routes, landmarks, headings, and asset/font paths. Inspect English/French home pages, archive and article pages in a browser on desktop and mobile. Check menu and Escape, stage selection and keyboard navigation, language continuity, disclosures, reduced motion, narrow screens, and enlarged text. A build does not establish visual quality or native gameplay acceptance.
+
+Only explicitly reviewed website files may be copied into the separate `raph559/sporemp-site` repository. Never push the parent development history there.

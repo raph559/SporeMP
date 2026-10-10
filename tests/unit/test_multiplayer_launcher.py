@@ -58,6 +58,20 @@ class MultiplayerLauncherTests(unittest.TestCase):
                 with self.assertRaises(ValueError) as error: sessions.parse_invitation(invalid)
                 self.assertNotIn("b" * 64, str(error.exception))
 
+    def test_one_primary_location_invite_keeps_owner_and_location_together(self):
+        location = INVITE + "&galaxy=1&star=22&planet=3788854&area=2222&native_load_slot=1&primary_owner=2&haagos_sha256=" + "c" * 64
+        config = sessions.parse_invitation(location)
+        self.assertEqual(config["schema"], 4)
+        self.assertEqual((config["location_planet"], config["native_load_slot"], config["primary_owner"]),
+                         (3788854, 1, 2))
+        self.assertEqual(config["worker_generation"], 0)
+        self.assertEqual(config["world_haagos_sha256"], "c" * 64)
+        for invalid in (location.replace("primary_owner=2", "primary_owner=1&primary_owner=2"),
+                        location.replace("primary_owner=2", "primary_owner=3"),
+                        location.replace("planet=3788854", "planet=0")):
+            with self.assertRaises(ValueError):
+                sessions.parse_invitation(invalid)
+
     def test_private_file_has_protected_owner_acl_and_is_removed_after_failure(self):
         path = None
         with self.assertRaisesRegex(RuntimeError, "fixture failure"):
@@ -189,6 +203,14 @@ class MultiplayerLauncherTests(unittest.TestCase):
             self.assertIsNone(sessions.connection_state(path))
         path.write_text("x" * 4097)
         self.assertIsNone(sessions.connection_state(path))
+
+    def test_recovery_requires_server_revision_and_applied_native_baseline(self):
+        path=self.root/'network-status.json'
+        valid={'state':'connected','player_id':2,'baseline_sequence':3,'checkpoint_revision':7,'checkpoint_recovered':True}
+        path.write_text(json.dumps(valid));self.assertTrue(sessions.recovered_connection(path))
+        for key,bad in [('state','connecting'),('checkpoint_revision',0),('checkpoint_revision',True),('checkpoint_recovered',False),('player_id',True),('baseline_sequence',0)]:
+            with self.subTest(field=key):
+                path.write_text(json.dumps({**valid,key:bad}));self.assertFalse(sessions.recovered_connection(path))
 
 
 if __name__ == "__main__": unittest.main()

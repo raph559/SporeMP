@@ -92,6 +92,18 @@ class WorkerCheckpointTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Duplicate or missing'):
             checkpoint.fingerprints(duplicate_owner, self.request)
 
+    def test_diagnostic_two_player_save_cannot_be_sealed_as_m04_checkpoint(self):
+        rows = copy.deepcopy(self.rows)
+        rows[3]['event'] = 'checkpoint_probe_snapshot'
+        with self.assertRaises(ValueError):
+            checkpoint.saved_fingerprints(rows)
+        # A prior valid checkpoint cannot authenticate the newer probe save.
+        older = copy.deepcopy(self.rows[1:5])
+        for row in older:
+            row['request'] = self.request - 1
+        with self.assertRaises(ValueError):
+            checkpoint.saved_fingerprints(rows[:1] + older + rows[1:])
+
     def test_fingerprint_native_ids_and_numeric_widths_are_strict(self):
         for field, invalid in (('native_id', 0), ('native_id', 0xffffffff), ('native_id', -1),
                                ('herd_native_id', 0), ('species_instance', 1 << 32),

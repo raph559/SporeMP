@@ -1,0 +1,21 @@
+diff --git a/Spore ModAPI/SourceCode/DLL/TextureOverride.cpp b/Spore ModAPI/SourceCode/DLL/TextureOverride.cpp
+--- a/Spore ModAPI/SourceCode/DLL/TextureOverride.cpp
++++ b/Spore ModAPI/SourceCode/DLL/TextureOverride.cpp
+@@ -198,12 +198,14 @@ bool ApplyOverride(Graphics::Model* pModel) {
+ 
+ member_detour(FinishBackgroundLoad__detour, Graphics::cModelWorld, void(Graphics::Model**)) {
+ 	void detoured(Graphics::Model** ppModel) {
+-		Graphics::Model* model = *ppModel;
++		// Native completion can release the job's last model reference.
++		// Retain it until the texture override has finished.
++		ModelPtr model = *ppModel;
+ 		
+ 		original_function(this, ppModel);
+ 
+-		if (!ApplyOverride(model)) {
+-			auto asset = static_cast<Graphics::cMWModelInternal*>(model);
++		if (!ApplyOverride(model.get())) {
++			auto asset = static_cast<Graphics::cMWModelInternal*>(model.get());
+ 			asset->mMeshLods[0] = nullptr;
+ 			asset->mMeshLods[1] = nullptr;
+ 			asset->mMeshLods[2] = nullptr;

@@ -26,7 +26,7 @@ OPS = {name: n for n, name in enumerate(("begin", "offer", "chunk", "seal", "fet
 ERRORS = ("none", "unknown_connection", "wrong_owner", "wrong_authority", "authority_unavailable", "stale_base",
     "transaction_exists", "unknown_transaction", "expired", "wrong_phase", "capacity", "invalid_size", "invalid_offset",
     "hash_mismatch", "invalid_png", "invalid_native_observation", "missing_part", "installed_profile_mismatch",
-    "world_mismatch", "properties_mismatch", "not_ready", "unchanged_content", "internal_hash", "stale_request", "malformed")
+    "world_mismatch", "properties_mismatch", "not_ready", "unchanged_content", "internal_hash", "stale_request", "malformed", "storage_failed")
 
 
 def require(value, message):

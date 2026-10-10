@@ -1,6 +1,8 @@
 #pragma once
+
 namespace sporemp {
-template<class Animal> struct NativeReplicaAbi {
+template <class Animal>
+struct NativeReplicaAbi {
     // Primary Animal vtable +88; original C02E10: ECX + one float, RET 4.
     using Hunger = void(__thiscall*)(Animal*, float);
     // D2E480: MOVSS [ESP+4] to the stage DNA scalar; C3 (cdecl).
@@ -28,8 +30,10 @@ template<class Animal> struct NativeReplicaAbi {
     // C2EE80: native relationship UI context, two uint32 output pointers, RET 8.
     using SocialResult = void(__thiscall*)(void*, unsigned*, unsigned*);
 };
-template<class Animal, class Vector, class Species, class Herd> struct NativeReplicaCreateAbi {
+
+template <class Animal, class Vector, class Species, class Herd>
+struct NativeReplicaCreateAbi {
     // C09B40: six stack words, caller pops 0x18, EAX pointer or null.
     using Create = Animal*(__cdecl*)(const Vector&, Species*, int, Herd*, bool, bool);
 };
-}
+} // namespace sporemp

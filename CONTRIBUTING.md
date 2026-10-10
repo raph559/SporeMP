@@ -6,7 +6,7 @@ SporeMP is experimental. Shared Creature movement and reconnects have been demon
 
 Use an issue to describe a reproducible bug or a concrete proposal. Check existing issues and the milestone plan first. For a large feature or a change to native gameplay ownership, discuss the approach before implementing it. Keep pull requests focused on one reviewable increment and explain the player-visible result.
 
-Write code, comments, documentation, issue reports and pull requests in English. Website translations belong in `website/locales/`; English remains the default. Preserve the original game's gameplay and keep engine dependencies inside `src/bridge`. Do not introduce a replacement simulation or assume an unverified SDK method, ABI, address, launch flag or headless mode.
+C++ follows [docs/cpp-style.md](docs/cpp-style.md): one enforced format, warnings as errors, and the rules for names, functions and the game boundary. Write code, comments, documentation, issue reports and pull requests in English. Website translations belong in `website/locales/`; English remains the default. Preserve the original game's gameplay and keep engine dependencies inside `src/bridge`. Do not introduce a replacement simulation or assume an unverified SDK method, ABI, address, launch flag or headless mode.
 
 ## Contribution licensing
 

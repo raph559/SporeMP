@@ -4,6 +4,36 @@ This file describes the launcher source published in this checkout. Later develo
 
 These are development builds. Multiplayer gameplay is still in development.
 
+## 0.1.14 - 2026-09-27
+
+### Social progress, saved for its owner
+
+- Updated What's new with bounded original-game tests for social rewards and the separate reward for completing a species objective.
+- The tested First DNA tutorial appears on its owner's client while the peer continues playing. Earned progress and tutorial completion survive an original save/load.
+- These prepared-world experiments use developer controls and a shared species. Normal social controls, separate species and the full M11 Creature milestone remain in development.
+
+## 0.1.13 - 2026-09-27
+
+### Explore apart. Meet again.
+
+- Updated What's new with the completed original-game tests for meeting across two prepared Creature locations, returning home, saving and reconnecting after a restart.
+- The recorded interrupted-travel tests recovered players without losing or duplicating them across the tested failure points.
+- Travel remains a development-tool workflow. Normal Creature gameplay coverage is the next milestone; this notes update adds no player travel controls.
+
+## 0.1.12 - 2026-09-24
+
+### Join the right Creature location
+
+- Join recognizes prepared location invitations and checks the matching original Creature save before starting SPORE.
+- Two prepared Creature locations passed original-game connection trials. Travel between them and shared-world saving remain in development.
+
+## 0.1.11 - 2026-09-22
+
+### Resume your saved shared world
+
+- Rejoin confirms when the server has restored the shared save and the native scene is ready in SPORE.
+- Recovery currently supports the prepared experimental Creature world. Host restore commands retain protected backups.
+
 ## 0.1.10 - 2026-09-22
 
 ### Clearer shared-world checks

@@ -159,3 +159,298 @@ Two failures have concrete reproductions. Bridge .15 attached the M05 Save detou
 The .17 native result is one application, health 7.62724638 → 10, energy 1000, hunger 25.6914024, DNA 0 → 0; duplicate `stale`, disconnected apply `invalid`, forbidden publication `unavailable`. Eight connected audits match, and 344 later actor samples preserve those vitals through 86.4512188 seconds. AI/hunger attempted-call denials each reach 147,808. All five original traces close healthily on their recorded engine thread with clean game/supervisor exit and matching loaded bridge/SDK hashes. The actual receiver scene and 10-HP HUD are inspected; the concurrent authority's splash-plus-HUD capture is explicitly not 3D gameplay evidence. Personal 29-file hashes and both sealed disposable Games trees are unchanged.
 
 Missing capability: suppress and project irreversible pickup/death/spawn/progression paths while retaining the presentation portions of the same update. Current native reproduction establishes stable vitals under AI/hunger suppression but does not exercise those unhooked paths or a nonzero DNA grant. Expected full H2 behavior is one native worker outcome with no client re-grant, full scene consistency, and usable original camera/movement/animation/audio. The next smallest experiment is a scoped observer of the terminal pickup grant/consume branch and its object lifetime, followed by a causally recorded native worker reward and a deliberate conflicting client action. Zero counters on unhooked domains must not be presented as a pass. Details: [M05 binding/coverage map](m05-replicas.md), [session](../evidence/2026-09-13-m05-replicas/SESSION.md), [remaining acceptance protocol](../tests/engine/M05.md).
+
+## R13 — Plant food: what a click on a fruit does (2026-10-08)
+
+Record and trial numbers in [SESSION.md](../evidence/2026-10-08-m11-c02-eating/SESSION.md). Static exports
+`m07-corpse-click` and `c02-fruit-01` of the pinned executable are STATIC readings; the rest is NATIVE observation.
+
+Plant food comes as three nouns: plants (kGamePlant), fruit groups (kFruitGroup) and fruits (kFruit); the fixture's
+world holds 5, 2161 and 148 of them. A fruit casts to a spatial object and is pickable. The SDK declares no class
+for a fruit; three of its words are read here, all from the original's own click handler.
+
+The handler D32FD0h classifies a click on a fruit as 23 (case 17h at D335A4h). It clears the avatar's creature
+target (virtual +84h with three zeros), then: if the fruit's word at +16Ch is zero it asks the fruit for its holder
+(B05800h, thiscall on the fruit: a lookup by the fruit's words at +158h and +15Ch, element +160h) and, if there is
+one, orders the creature to the holder through C032F0h with first word 20h and writes the fruit's word at +164h
+into the returned order at +10h; otherwise it orders the creature to the fruit itself. It clears the creature's
+byte at +B5Ch and calls D2F940h, which draws the local player's pointer feedback through the creature mode
+strategy. C032F0h forwards to C0C070h with the words 2788B9h, 40049000h, the priority at 147A540h (FLT_MAX),
+100000h and 0, as for a corpse, and for the word 20h makes no further call. The same order given on the authority
+for a player's creature made a herbivore walk to a fallen fruit and eat it (about 23 hunger and 1.875 health in ten
+seconds, the noun then gone) and a carnivore eat nothing.
+
+The original's removal of a noun (`DestroyInstance`) on a client's copy of an eaten fruit left both clients running
+and the fruit gone from view (trials 366, 368, 370). The original grows fruit anew at each load of a world.
+
+**Fruit nouns are re-placed.** With a census in every game (bridge 0.0.243): at the start the three games hold the
+same 148 fruits in the same places (trials 378 to 382). Within 90 to 130 seconds each game moves 36 to 50 of them,
+most by about 500 units, to places that differ from game to game (trial378: 15 fruits differed between the authority
+and player 1, 35 between the authority and player 2, by 2 to 500 units); the fruits no game moved stay identical
+(97 to 102 of 148, trials 379, 380). The clients' own originals do this; nothing of the bridge fences it.
+
+Where they come from and go to (trial382, each game's own census against its own avatar): every fruit a game moved
+lay 509 units from that game's avatar before, the same for all of them, which is one parked place and not a spot in
+the world, and 14 to 250 units from it after, half of them within 24 to 31 units; 25 of the 34 to 36 moved fruits
+were then on a holder. The fruits never moved lay 30 to 509 units away. So the original keeps fruit nouns parked
+and puts them on plants around the avatar of the game it runs in, and each game does so for its own avatar: the
+authority for player 1's creature, each client for its own.
+
+The routine, STATIC only (exports `c02-fruit-02`, `c02-fruit-03`): B3D540h returns one object kept at 167EB34h. Its
+B04B00h finds, by a key, one of the records between that object's +1E5F0h and +1E5F4h (66Ah words each) and
+returns one of three lists in it by a type word (29C388Ah, 3A8BE428h, 6D60A1CCh): the holders a fruit's words at
++15Ch, +158h and +160h name. B0B330h, a method of that object reached only through the table entry at 145C800h,
+walks holders and their fruit slots (38h bytes each, count from B05850h), takes fruit nouns from a list that ends
+at the object's +1B8E14h, and for each one it places sets the noun's position and orientation, its words at
++158h, +15Ch, +160h and +164h (type, key, holder, slot), its bytes at +A3h and +A4h to 1, +A9h to 1, +ABh to 0
+and its word at +16Ch to 0, under a least squared distance read from 13EBC4Ch. Not yet known from this reading:
+what calls the method, which point the distance is measured from, and how holders are chosen.
+
+NATIVE, bridge 0.0.247, trial404 (a pass-through observer on B0B330h, thiscall with two stack words, entry and
+`RET 8` pinned by their bytes): every game calls it each frame, 35 to 40 times a second, with two equal words of 20
+to 30 that follow the frame time. In each game its seventh call, as the scene came up, took the fruits on holders
+from 0 to 25 in one run; no run in the next 30 seconds changed that number. So this is the routine that stocks,
+and it stocks in every game on its own.
+
+NATIVE, bridge 0.0.248, trial405 (the observer also compares every fruit's place and holder words before and after
+each run, 400 rows a game; a two-minute soak with both players walking): the rows were used up within twelve
+seconds of the scene coming up. In that time 47 to 59 runs in each game moved fruit, 29 to 40 of the moves from the
+planet's centre, where unplaced fruit nouns lie, and nearly all onto a holder; a placed fruit lay 7 to 264 units
+from that game's avatar, half of them within 26 to 30. The same 31 fruits were moved again and again, about
+thirteen times each. Of the 31 fruits both the authority and a client had moved, 10 ended in the same place for
+player 1's client and 3 for player 2's. So every change of a fruit's place seen so far is this routine's, and its
+result depends on the game it runs in. Not yet known: what it reads to choose holders, and whether the later
+re-placing is the same code path as the first stocking.
+
+**An eaten fruit leaves in one of two ways.** In the fresh fixture the original removed the noun (count 148 to
+147). After a restore it re-placed the noun 200 units away at the moment of the meal and the count stayed 157
+(trial383: hunger 63.4 to 88.3 in one step at 1.7 s after the order); the client's copy stayed where it was and
+turned not pickable and not tangible.
+
+**One run in twelve the creature stood by its fruit.** Trial379: ordered as in the other runs, it walked to 0.93
+units of the fruit, the same distance as in trial378 where it ate, and stayed in the approach behaviour
+(3539070226) for 25 seconds without the eating behaviour (47731427). Unknown cause.
+
+### Fruit as a shared entity (2026-10-10)
+
+Record and trial numbers in [SESSION.md](../evidence/2026-10-10-m11-c02-eating/SESSION.md). All NATIVE observation
+unless marked.
+
+**The stocking block is not the only part of B0B330h that moves fruit.** Bridge 0.0.249 kept a client out of the
+block alone, by holding the guard word at +1B8E0Ch at one for the length of the call (STATIC: `CMP` at B0B3F2h,
+pinned by its bytes). Trial409, a three-minute soak: the client's observer still recorded 86 moves and 85 of the 148
+fruits ended where the authority did not hold them. From 0.0.250 a client does not run the routine at all.
+
+**What a client needs to show a fruit as the authority holds it**: its place and turn through the spatial object's
+own setters, its model key (the original gives a fruit another model with the place it puts it: trial410, where
+the coordinator refused the change as one of identity), its state word at +16Ch, the four flag bytes, and its
+model in or out of the model world with the call at C3FA10h the routine makes after showing one (STATIC B0B7CBh).
+With these applied the three games held every fruit at rest in the same place and state (trials 414, 417, 426,
+430), fruit the authority moved included.
+
+**State 4 is a fruit no click picks.** Trial424: a fallen fruit in state 4, not pickable by its own flag, took
+sixteen clicks from four sides and none picked it. States seen: 0 on a holder, 1 and 2 off it and pickable, 4 not
+pickable, 6 put away at the planet's centre.
+
+**The fruit on plants is dealt out anew as the authority's avatar walks.** Trial424: with player 1 walking, one
+fruit number lay at three plants more than ten units apart within thirty seconds, and came back to an earlier
+place between two censuses ten seconds apart. Two fruit numbers can lie at one place (trials 419, 422). With the
+players at rest the fruit rests: 145 of 148 unmoved between two censuses in trial430.
+
+**A client's own game can still move a fruit.** With the routine not run, player 2's client in trial422 held one
+fruit of 157 three units below where the authority held it, mostly straight down, and moved it again by 0.04 units
+later; the authority's and player 1's did not move. It lay at the same place as another fruit, 62 units from both
+players. What moves it is not known. From 0.0.253 the client applies an unchanged sample again every half second;
+in trial426 it put two fruits back, 1.1 and 0.3 units, once each.
+
+**The diet decides what an order to a fruit gives.** The order runs the same two behaviours for either diet,
+approach (3539070226) then eating (47731427). The herbivore's eating of a fallen fruit ends after 0.4 seconds with
+the fruit gone and its hunger up (trial416). The carnivore's ends after half a second in a third behaviour,
+857724215, held for seven seconds, with its hunger unchanged; the fruit is taken from its place all the same, its
+noun removed (trial419) or dealt out elsewhere, 150 and 40 units away (trials 434, 449). The authority's row for a
+fruit that left names such a fruit only when its noun went, the rule of 0.0.246 asking for a fed orderer otherwise.
+
+**A fruit on this fixture's plants feeds neither.** Ordered through its holder as the original's handler orders
+it, the herbivore ran the eating behaviour for four seconds, three times, and the carnivore for two seconds before
+its seven of the third behaviour; the fruit stayed (trials 416, 429, 432, 436). Whether the original lets any
+creature this small reach those plants is not established.
+
+**Two orders on one fruit half a second apart: the first creature to reach it takes it.** Both creatures three to
+five units from a fallen fruit, the herbivore's order 0.4 to 0.5 seconds before the carnivore's. Where the
+herbivore reached it first it ate it and the carnivore was fed nothing (trials 430, 452). Where the carnivore, the
+nearer, reached it first, its eating took the fruit from its place, no one was fed, and the herbivore's approach
+ended in the same instant (trials 449, 453).
+
+**A fruit can be pushed.** Two creatures walking up to a fallen fruit moved it two units, and a minute later it
+was in state 4 (trial439).
+
+**A corpse has one claimant.** Trials 433, 435 and 448: two carnivore players ordered to one corpse 0.4 to 0.5
+seconds apart. The original's pickup tick gave the corpse to the first (its claimant word names that creature),
+which ate for four to seven seconds: 100 food to about 11, hunger 15 to 99 or 36 to 99, health 4 to 10. The
+second's order entered the tick once, found the claim and ended; its creature stood. Ordered again after the first
+meal it ate what was left and more, 11 food to -32, hunger 11 to 48 (trial448). The bridge's M07 rule is what keeps
+the authority's own avatar from taking a living player's claim over (`native_pickup_existing_claim_honored`).
+
+## R12 — Recharge and its drawing; what an attack costs; fossils after a restore (2026-10-08)
+
+Record and trial numbers in [SESSION.md](../evidence/2026-10-08-m11-c03-combat/SESSION.md). Static exports
+`m05-outcomes-01` and `c03-recharge-01` of the pinned executable are STATIC readings; the rest is NATIVE observation.
+
+**Recharge.** When an ability ends, C19900h clears its in-use bit (cCreatureBase +BECh), sets its recharging bit
+(+BF8h), zeroes the float at +4 of its entry in `mAbilityStates` (+C28h, 10h bytes each) and calls `ConsumeEnergy`
+with the ability's value at +104h, except for the abilities of types 27h/50h and Dh/52h. Each frame C15470h adds
+`dt` over the ability's value at +9Ch to that float for every recharging ability and clears the bit at 1. The ability
+bar draws a yellow wipe over a grey icon from those two values: with the bit and a zeroed float set on a client's
+copy of its own creature, and C15470h allowed for that one creature, the client's bar draws the same wipe as the
+authority's, frame for frame (trial350; before, trial303, the client drew none). Charge recharges in 10 s, Bite in
+1.6 s.
+
+**Cost.** `ConsumeEnergy` was called once per ability with amount 0 for Bite, Charge and Jump, of both players and
+of wild creatures; energy stayed 1000 in every game (trials 345, 350, 351). No ability with another cost exists in
+the fixtures.
+
+**Two attackers.** The pack alpha attacked by both players kept biting the first one; each player's blows took 1
+health; the last blow's owner is the creature's `last_attacker` and receives the DNA (trial345). Under repeated
+bites from a species, the bitten player's relationship entry for it changed its first word from 0 to 2 (trial342).
+
+**A click on the other player's creature** of another species opens the original's "You've met a new species"
+cinematic on the clicking client, which takes every later click until confirmed (trial344, frame inspected).
+
+**Fossils after a restore.** A save made 200 s into a session, with the avatar 50 units from where the session
+began, holds 13 bone fossils on the authority after restore, six of them created during that session. Both clients,
+loading the same save, hold no noun for one of the old ones, 144.7 units from the avatar (trials 346 to 348,
+`noun_absent`); the authority still held it at 145.9 units before the save. Unknown: which original routine drops
+it on a client before the shared scene is applied.
+
+## R11 — The original camera on a switched avatar; attack by click; Charge's distance (2026-10-07)
+
+Measured through scripted input in each player's own process and the original's own interface; record and trial numbers in
+[INTERFACE.md](../evidence/2026-10-07-m11-c01-controls/INTERFACE.md).
+
+**Camera.** On a client whose avatar was switched by the original `SetAvatar` (the second player of the distinct-species
+fixture), the original creature camera turns by itself while that creature moves, with no key held: 77 degrees during a
+six-unit diagnostic move (trial279). It turns away from the creature's heading at a rate that grows with the angle between
+them (trial281: 7 degrees a second at 3 degrees apart, 83 at 34), which is the mirror image of a camera that settles behind
+its creature. It keeps the creature centred at a constant distance throughout. The first player's camera, and the second
+player's in the one-species fixture where each client plays the avatar it loaded, turn 0 to 7 degrees over fifteen seconds
+of walking in any direction. Since the bridge steers relative to the camera, a held key on the affected client walks a
+curve or a circle. Not the cause: the keys (it happens without any), the pointer (it happens with the process-local
+pointer on the creature), the time since joining (trial165 turned 24 seconds after, trials 168 and 169 did not), the model
+relocation added in 0.0.21x (trial165 predates it). Leaving and re-entering the active camera through the SDK's
+`ICamera::OnExit` and `OnEnter` after the switch (camera 0xB03AF999, entry RVA 0x926BB0, exit RVA 0x9203E0, bridge 0.0.223,
+reverted) reset the zoom from 10 to 25 units and left the turning as it was.
+
+Cause, from static exports `m11-creature-camera*` of the pinned executable and then measured: the creature camera (class
+table image+107A2F8h, Update D2AEC0h) keeps a free mode and a follow mode (+1ECh in use, +1F0h asked for); both clients
+report the free mode throughout (trials 295, 296), so the mode is not it. In the free mode function D22300h reads the
+avatar's last native locomotion request (cLocomotiveObject +1F4h, through C42350h) and, while the avatar has one, turns
+the camera's yaw toward the direction from the avatar to that request's destination: the original's help for a creature
+walking to a clicked place. A client's own avatar is moved by the authority's poses and normally has no request. The
+second player's avatar in the distinct-species fixture is a wild creature that the checkpoint restored while the original
+AI was walking it; the client then makes it the avatar, and its request stays (15 words in trials 297 and 298). The
+camera turned toward that fixed destination each time the creature moved, and camera-relative steering then walked the
+creature around it. From bridge 0.0.225 a client clears a native locomotion request on its own avatar with the pinned
+original `StopMovement`; one call empties it, and the camera then turns 0 degrees in every phase (trials 297, 298).
+The message identifiers by which the original's own movement keys ask the camera to follow (27C67EAh, 27C7119h) and to
+go free (19EDCF3h, 1C38E3Bh) are in the same exports; the bridge consumes those keys, so they are never sent.
+
+**Attack by click.** In the attack stance a left click on a creature is the original's order to attack it: the ability
+dispatch (image RVA 0x948ADB) fires with the default attack on the click itself (trials 263, 264). In another stance the
+click only selects.
+
+**Charge.** The original dispatched Charge by its key from 15.7 to 30.6 units between the creatures in nine uses and
+never in the tries from 1.5 to 14.8 units (trials 253 to 285). The key produces no dispatch at all when too close.
+
+**The ability bar.** Three groups of slots: social from window 0x1012010, attacks from 0x1012020, and a middle group from
+0x1012030 without number keys that holds Mating Call and Jump. A slot's number-key label is a child window of the slot.
+The bar's Jump went through the same dispatch as the others; left to the original on a client it jumped that client's
+copy of the creature only (trial274).
+
+## R10 — Unprompted walk of the second player's creature; intro stall (2026-10-07)
+
+NATIVE observation, trials 162, 163 and 165, authority trace. After restore the authority selects the original avatar
+behaviour root for B's creature (`native_social_tree_probe` mode 1, root RVA 0x1190800). About 0.3 s later the creature
+walks 7.4 units at desired speed 2.5 to the position another species' animal occupied at that moment, with no command
+from its owner and no target set. One `cLocomotiveObject::StopMovement` (virtual +ECh, the binding the key release
+already uses) ends it and it does not restart in the rest of that trial (more than 70 s). Unknown: which original routine issues the
+walk, and whether it can recur later. Product response and its scope: `native_unowned_movement`.
+
+NATIVE observation, trials 152 and 164: the last-launched game (authority) shows one frozen intro frame and never
+sends the startup-menu message, while AppUpdate keeps running. Correlates with the user being active on the PC at
+launch; cause unknown. Next experiment: record activation messages in that process during startup.
+
+STATIC, then NATIVE (trial166): `FUN_007e5ec0` (image+0x3E5EC0, called once per frame from 0x7E9E80) calls
+`GetForegroundWindow`; when the window belongs to another process it reads integer app property 0x4B into
+image+0x113FB30 and calls `SleepEx(value, TRUE)`. Replaced in workers by a counter for one trial: stored value 15 ms;
+5557 to 5632 frames in 91 to 94 s in all three games, 475 of the authority's with its own window in the foreground;
+the authority stalled on its intro regardless. So the background sleep is real but small and is not the cause; the
+replacement was removed. Other static facts from the same pass: `GetCursorPos` is called from three small accessors
+(0x8D32C0, 0x8D32F0, 0x8D3620); a keyboard hook procedure at 0x7E6010 reacts to Ctrl+Esc, Alt+Tab and Alt+Esc by
+calling `IAppSystem` virtual +0x60; `Canvas::IsActive` (0x847B40) compares `GetActiveWindow` with its window.
+
+NATIVE observation, bridge 0.0.196, trials 167 to 169: a normally starting worker window receives WM_SIZE,
+WM_SHOWWINDOW, WM_SIZE at creation and no activation message; a deactivation (WM_ACTIVATE 0, WM_ACTIVATEAPP 0,
+WM_KILLFOCUS) may follow seconds or a minute later without harm.
+
+STATIC and NATIVE, pointer (trials 171, 172): `GetCursorPos` is reached through two accessors (0x8D32C0 cdecl, called
+from eleven places, and 0x8D3620 through a table); a click posted as window messages alone is ignored by the
+original's picking, and is picked exactly once `GetCursorPos` in that process reports the same point. NATIVE
+(trials 174 to 178): held movement keys never turn the camera; movement is relative to it and it follows.
+`cSpatialObject::mLocalExtents` (2Ch before `mScale`) read for six creatures: z from 0 to between 0.94 and 1.63.
+
+NATIVE, intro stall resolved to its trigger (57 starts, bridge 0.0.196 to 0.0.201): a game told that it lost
+activation 3.7 s after its window opened stayed on the intro movie; games told so within 3.1 s, or not before the
+menu, did not. With the three messages withheld (WM_ACTIVATEAPP false, WM_ACTIVATE inactive, WM_KILLFOCUS; bridge
+0.0.202): 24 starts, no stall. Which original routine pauses is not identified.
+
+NATIVE, model drift (trials 207 to 214): on a client, a resting replica of another player's creature keeps its
+position while its drawn model (`AnimatedCreature` model transform) moves away at about 0.12 units per second under
+an original animation (index 261 seen). `cCreatureBase::Teleport`, already used at first presentation, brings the
+model back. NATIVE, nests (trial239): at a kill of one of its members the original changes the nest's model key
+(instance 756164235 to 4264143246) with native id, herd, species and archetype unchanged. NATIVE, first contact
+(trials 225 to 241): selecting a new species plays a cinematic, then the Stance tutorial, each waiting for its
+button; the ability-bar dispatch (D48AB0 from 0x948ADB) runs for the 1 key once the attack stance is chosen.
+NATIVE, display: with the console display off, windows are not composed and Windows Graphics Capture delivers one
+frame; a display-required execution state does not turn it on, a zero-distance `SendInput` pointer move does.
+
+## R09 — Startup window and audio, static pass (2026-10-07)
+
+Question: can an unattended worker open its window away from the primary display and start silent? Evidence class **STATIC_DECOMPILATION_NOT_NATIVE_EXECUTION** on the pinned executable (SHA-256 `dc04aee5…e59a37`), using `tools/native/invoke-static-audit.ps1 -ReuseDatabase` with run keys `window-audio-switches`, `window-placement` and `window-centering` (private exports under `local/m03-static/`) and a byte scan for calls to `FindSwitch` `0x92B570`. No game was launched. Decompiler names and types are inferred; nothing here is a verified binding.
+
+| Finding | Static evidence | Not established |
+|---|---|---|
+| The game has its own `noSound` switch | `0xA421F0` calls `FindSwitch(L"noSound")` at `0xA4220D`; when the switch is present it returns 0 before the audio start-up calls that follow | That the rest of the game runs normally without audio; that the launch host may pass it (its allowlist admits only `-w`, `-f`, `-r`) |
+| `nofocus` is read in the same function | When present it clears a byte at `this+0x29` | What that byte controls |
+| 76 switch lookups, 50-odd distinct names | Includes `automation`, `state`, `preload`, `noBackground`, `silent`, `noVSync`, `noMP`; no window-position, monitor or intro switch among the recovered names | Meaning of most of them; four call sites use a string the scan did not recover |
+| The window is created hidden at a default position | `CreateWindowExW` at `0x849CFD` receives `CW_USEDEFAULT` for x, y, width and height, followed by `ShowWindow(hwnd, 0)`. Matches trial152, where each window was first seen hidden at a cascade position | Whether a launch host's start-up position is honoured for it |
+| The game then centers the client area on the **primary** display | The canvas method around `0x848FB0` treats x = `0x7FFFFFFF` as "center": `SystemParametersInfoA(SPI_GETWORKAREA)` at `0x848FF2`, `GetSystemMetrics` for the screen size, `IntersectRect`, then `MoveWindow` through `0x848530`. Reproduces the observed 637,298 on a 2560x1440 display with a 48-pixel taskbar | Which start-up code passes the sentinel, and when relative to bridge load |
+| Any other x, y is applied as given | The other branch at `0x84908B` stores x, y into the desired client rectangle and calls the same `MoveWindow` path | — |
+| The pinned SDK declares this class | `App::Canvas` with `SetPosition(int, int)`, `SetVisible(bool)`, `GetWindow()`, `mRectDesiredClient` at `+0x3C` and `mWindow` at `+0x74`; SDK labels resolve `Canvas::SetVisible` to `0x847BA0` and `Canvas::GetMonitor` to `0x847C20` | Runtime ABI of those methods |
+
+Start-up order, from the same static pass (run keys `app-start-order`, `init-hook-order`):
+
+| Step in `cSporeApp::Init` `0xF47E90` | What happens | Mod hook point in the pinned SDK |
+|---|---|---|
+| app system `+0x10`, `+0x18`, `+0x14` | `PreInit`, `InitPlugins`, then `cAppSystem::Init` `0x7E6850` | `AddInitFunction` callbacks run right after `cAppSystem::Init` returns (the SDK's `sub_7E6C60_detour` is attached at `0x7E6850` on this executable) |
+| `Canvas::Get()`, `+0x30` | `SetCaption`; the hidden window already exists | — |
+| app system `+0x1C` | `cAppSystem::Configure` `0x7E7430`: `Canvas::SetVisible(false)`, read width/height/fullscreen from properties and the `-r`/`-w`/`-f` switches, set the display mode, `Canvas::SetVisible(true)` | — |
+| app system `+0x20` | `InitGraphics` | — |
+| return | — | `AddPostInitFunction` callbacks run only now, after the window has been centered and shown |
+
+The centering method is the canvas virtual at slot `+0x40`, `SetClientArea`, `0x848FB0`: its rectangle argument carries x, y, width, height, and x = `0x7FFFFFFF` requests centering. The slot table at `0x141CC10` also gives `SetPosition` `0x848200` and `SetVisible` `0x847BA0`.
+
+Consequences. Sound: one native switch, to be admitted by the launch host for worker launches and verified by one run. Window: no switch exists, and placement from outside the process cannot win, because centering and showing happen back to back inside `cAppSystem::Configure`. An `AddInitFunction` callback runs before that and after the window exists, so the bridge can decide the position in-process: replace a centering request to `Canvas::SetClientArea` with a configured position, and optionally show without activation. This needs one new opt-in detour and is **NOT RUN**: bridge load before `cAppSystem::Init`, the method's runtime ABI, and Direct3D device creation with the window on a non-primary display are all unverified.
+
+Runtime result, trial153 (2026-10-07, bridge 0.0.184, pinned executable and SDK): **the binding works in the recorded fixture.**
+
+| Binding | Value |
+|---|---|
+| Function | Original `App::Canvas::SetClientArea`, image+`0x448FB0`, reached through canvas virtual slot `+0x40`; entry bytes `8B 54 24 04 83 EC 30 56` checked before attaching |
+| ABI used | `void __thiscall(Canvas*, int x, int y, int width, int height, int flag)`, callee removes 20 bytes. The SDK header's single `tagRECT` argument does not match the `RET 0x14` |
+| Context | Attached from a `ModAPI::AddInitFunction` callback on the game's main thread, outside loader lock, only when the launch host set `SPOREMP_WINDOW_POSITION`; detached in the SDK dispose callback. Normal Play and Join never set it |
+| Runtime evidence | In all three processes the init callback ran before the window was shown; the hook saw exactly one call, a centering request with size 1280x720, and passed the configured origin instead. Each window's first visible rectangle was on the virtual display; Direct3D start-up, scene load and the scenario's 61 checks completed; all exits 0 |
+| Not established | Fullscreen, other resolutions, later resizes, other stages, a display that disappears while the game runs; that `noSound` leaves every later code path sound (one 70-second Creature run only); audible silence |
+
+Activation, trials 154-156 (bridge 0.0.185-0.0.187). The canvas keeps its window handle at `+0x74`; `Canvas::SetVisible` `0x847BA0` calls `ShowWindow(mWindow, visible)`, `Canvas::SetActive` `0x847B60` tail-calls `SetActiveWindow`, and the style path `0x8491B0` calls `SetWindowPos` without `SWP_NOACTIVATE` followed by `ShowWindow`. Replacing only the show (0.0.185) and then also the three explicit activation functions (0.0.186) left every game window foreground when it first appeared, with zero calls to those three functions before post-init. With `SetWindowPos` and `SetFocus` also covered (0.0.187) no game was foreground in trial156, but their start-up counters are 0 as well. **Unexplained**: either the activating call happens after post-init, or Windows grants the foreground to a newly started process depending on user activity. The user's mouse jumping to the centre of the primary display is consistent with the cursor routine at `0x8D3340` (`GetSystemMetrics`, `SetCursorPos`) running while the game is foreground; not confirmed. Next experiment: repeat with the end-of-session counters of 0.0.188 under known user activity.
+
+Resolution of the two user-visible effects (trial157 and the user's observations, 2026-10-07). The mouse jump coincides with the virtual display being added, before any game exists, and did not occur in trial156 when the display was already held: it is Windows reacting to the new display, not the cursor routine at `0x8D3340`. Foreground: in trial157 the first game's bridge reports `foreground_after = show_window` at its first hooked show/hide call, with zero suppressed activation calls at both the start-up and end-of-session reports. The window is therefore already foreground during the game's early start-up, before `cAppSystem::Init` returns and the init callback can attach; the hooks added in 0.0.185-0.0.187 do not prevent it. Trial156 was clean while the user was actively using another window, which is when Windows refuses the foreground to a new process. The user chose to leave both as they are. The activation hooks stay installed but are **not shown to have any effect**; removing them or attaching earlier is open.

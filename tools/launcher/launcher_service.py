@@ -328,6 +328,7 @@ def native_join(game_root, invitation, progress=None):
                               encoding="utf-8", errors="replace") as process:
             previous = None
             connected = False
+            recovered = False
             while True:
                 status = multiplayer.connection_state(run_root / "network-status.json")
                 if status and status != previous:
@@ -335,6 +336,9 @@ def native_join(game_root, invitation, progress=None):
                     connected = connected or status == "connected"
                     progress(status, {"connecting": "Connecting your shared scene…", "connected": "Connected to your shared scene",
                                       "disconnected": "Connection lost. Waiting for the server…", "error": "The connection needs attention."}[status])
+                if status == 'connected' and not recovered and multiplayer.recovered_connection(run_root / 'network-status.json'):
+                    recovered = True
+                    progress('recovered', 'Your saved shared world has been restored.')
                 try:
                     _, error_output = process.communicate(timeout=.25)
                     break
@@ -358,7 +362,7 @@ def native_join(game_root, invitation, progress=None):
     clean = exit_code == 0 and len(exited) == 1 and exited[0]["exit_code"] == 0 and [
         event["event"] for event in lifecycle if event.get("event") in ("initialize", "dispose")] == ["initialize", "dispose"]
     result = {"mode": "current-user", "profile_redirection": False, "multiplayer": True,
-              "authenticated": True, "connected_baseline_observed": connected, "run_name": run_name,
+              "authenticated": True, "connected_baseline_observed": connected, "checkpoint_recovered": recovered, "run_name": run_name,
               "evidence_directory": str(run_root), "launched_processes": len(started), "clean_lifecycle": clean,
               "native_host_exit": exit_code, "display": selected_display}
     if not clean or not connected:

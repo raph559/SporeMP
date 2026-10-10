@@ -6,7 +6,11 @@
 
 namespace sporemp {
 // Opaque addresses are lookup keys inside this process only. Never serialized or dereferenced here.
-struct ObservedEntity { uintptr_t key = 0; uint64_t id = 0; };
+struct ObservedEntity {
+    uintptr_t key = 0;
+    uint64_t id = 0;
+};
+
 class EntityTable {
 public:
     static constexpr size_t capacity = 8192;
@@ -16,19 +20,47 @@ public:
     void finish_destroy(uintptr_t key) noexcept;
     void clear() noexcept;
     bool live(ObservedEntity token) const noexcept;
+
 private:
-    enum class State { empty, live, destroying, retired };
-    struct Slot { uintptr_t key = 0; uint64_t id = 0; State state = State::empty; };
+    enum class State {
+        empty,
+        live,
+        destroying,
+        retired
+    };
+
+    struct Slot {
+        uintptr_t key = 0;
+        uint64_t id = 0;
+        State state = State::empty;
+    };
+
     std::array<Slot, capacity> slots_{};
     uint64_t next_id_ = 0; // Never reset by scene changes; reused addresses receive a fresh ID.
     size_t index(uintptr_t key) const noexcept;
 };
 
 enum class ObservationKind {
-    trace_start, trace_stop, hooks_ready, hooks_failed, scene_enter, scene_exit, stage_observed,
-    entity_created, entity_observed, entity_invalidated, avatar_assigned, avatar_state,
-    jump_enter, jump_return, jump_land, ai_summary, diagnostic_snapshot, overflow
+    trace_start,
+    trace_stop,
+    hooks_ready,
+    hooks_failed,
+    scene_enter,
+    scene_exit,
+    stage_observed,
+    entity_created,
+    entity_observed,
+    entity_invalidated,
+    avatar_assigned,
+    avatar_state,
+    jump_enter,
+    jump_return,
+    jump_land,
+    ai_summary,
+    diagnostic_snapshot,
+    overflow
 };
+
 struct Observation {
     ObservationKind kind = ObservationKind::diagnostic_snapshot;
     uint64_t entity = 0, action = 0, parent = 0;
@@ -49,13 +81,30 @@ public:
     void emit(Observation event) noexcept;
     void flush() noexcept;
     void close() noexcept;
-    uint64_t next_action() noexcept { return ++action_; }
-    uint64_t sequence() const noexcept { return sequence_; }
-    uint64_t epoch() const noexcept { return epoch_; }
-    void advance_epoch() noexcept { ++epoch_; }
-    bool healthy() const noexcept { return !failed_ && !overflowed_; }
+
+    uint64_t next_action() noexcept {
+        return ++action_;
+    }
+
+    uint64_t sequence() const noexcept {
+        return sequence_;
+    }
+
+    uint64_t epoch() const noexcept {
+        return epoch_;
+    }
+
+    void advance_epoch() noexcept {
+        ++epoch_;
+    }
+
+    bool healthy() const noexcept {
+        return !failed_ && !overflowed_;
+    }
+
     static const char* name(ObservationKind kind) noexcept;
     static bool engine_event(ObservationKind kind) noexcept;
+
 private:
     HANDLE file_ = INVALID_HANDLE_VALUE;
     DWORD engine_thread_ = 0;
@@ -66,4 +115,4 @@ private:
     size_t used_ = 0;
     bool failed_ = false, overflowed_ = false, host_fixture_ = false;
 };
-}
+} // namespace sporemp

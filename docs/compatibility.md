@@ -1,8 +1,32 @@
 # Compatibility and save protection
 
+## Reviewed SDK source patch — 2026-09-26
+
+The pinned upstream checkout remains
+`cbf9206b9a823f0911cd9be0217104a49d72380b`. The SDK build now applies the reviewed
+`tools/build/patches/modapi-model-load-lifetime.patch` to a verified private
+source copy. The patch extends an original model's reference lifetime across
+`FinishBackgroundLoad` and its texture override, using the pinned SDK
+`ModelPtr` and its existing original `Release` method. It changes no game
+binary or native method signature.
+
+| Identity | SHA-256 |
+|---|---|
+| Reviewed patch | `7ca2bce9880f1f6a8423f4bb28c73e5c4cf8ea10a4700cf9cf1e3edbb4479b44` |
+| `TextureOverride.cpp`, pinned source before patch | `84e9e003084fad4a18a1082367c88b97b84ccc066eb6c3acbbf5487f87ed3e8d` |
+| `TextureOverride.cpp`, reviewed source after patch | `836ef21615db1f20f584a773242a491e9dc34571b7560eecfdd5bc2c8c21718f` |
+| First patched Release `SporeModAPI.dll` build | `a7b287cc67d66a8e2bc25c6f6c35dbfc5c5ae15384fadff83bed7151231af6c7` |
+| First patched Release SDK PDB | `f0953abf293f978ccba0a916eb33e8f5182d7a699b1aeb41030e5fbf590107b9` |
+
+The BUILD/HOST checks in [testing.md](testing.md#reviewed-sdk-model-lifetime-patch--2026-09-26)
+establish source provenance and successful compilation. They do not establish
+native load compatibility. A rebuilt guarded host fingerprints the changed SDK;
+the original-game regression must use that matching payload. Historical native
+SDK qualifications below describe their recorded unpatched configurations.
+
 ## M04 developer worker increment — 2026-09-13
 
-Two real standard accounts, SporeMP-M04-01/02, have distinct OS profiles and hash-checked post-M03 Creature fixtures. Both pass open-only write/delete-denial probes against personal/game and peer profile/save/creation paths. The native host enforces one game per actual SID across sessions and rejects unqueryable process identity before injection. Only workers append the statically identified original `-multipleInstances` switch; no game binary is patched.
+Historical (accounts deleted 2026-09-30 at the user's request): two real standard accounts, SporeMP-M04-01/02, had distinct OS profiles and hash-checked post-M03 Creature fixtures. Both pass open-only write/delete-denial probes against personal/game and peer profile/save/creation paths. The native host enforces one game per actual SID across sessions and rejects unqueryable process identity before injection. Only workers append the statically identified original `-multipleInstances` switch; no game binary is patched.
 
 The original concurrent processes execute native IPC actions in distinct save/creation paths. Final 0.0.14 acceptance includes overlapping original save calls, successful own-profile checkpoint writes, clean exits and separately sealed backups. Concurrent ETW reports zero lost events and no resolved personal/peer-profile opens or mutations. Some file/registry correlations remain unresolved; shared NVIDIA driver writes occurred. Normal Play changed ten personal files with observed successful player mutations for every changed path; those changes were retained and backed up. The later concurrent worker phase leaves all 29 personal baseline files unchanged. These observations qualify the bounded paths exercised, not every shared Windows/configuration path. See [M04 acceptance](../evidence/2026-09-13-m04-acceptance/SESSION.md).
 

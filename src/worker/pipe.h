@@ -17,9 +17,19 @@ public:
     bool send(const Message& message);
     bool writable();
     void close();
-    bool failed() const noexcept { return failed_; }
-    DWORD error() const noexcept { return error_; }
-    HANDLE handle() const noexcept { return pipe_; }
+
+    bool failed() const noexcept {
+        return failed_;
+    }
+
+    DWORD error() const noexcept {
+        return error_;
+    }
+
+    HANDLE handle() const noexcept {
+        return pipe_;
+    }
+
 private:
     bool fail(DWORD error);
     bool complete(OVERLAPPED& operation, bool& pending, DWORD& transferred);
@@ -30,6 +40,7 @@ private:
     bool server_ = false, failed_ = false;
     DWORD error_ = 0;
 };
+
 std::wstring pipe_name(const Generation& generation, bool control);
 std::wstring current_sid();
-}
+} // namespace sporemp::worker

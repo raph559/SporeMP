@@ -1,5 +1,47 @@
 [
   {
+    "version": "0.1.14",
+    "date": "2026-09-27",
+    "title": "Social progress, saved for its owner",
+    "summary": "New original-game tests cover social rewards, personal guidance and saving.",
+    "changes": [
+      { "category": "DEVELOPMENT", "text": "In the prepared Creature world, tested social rewards now stay with the player who earns them, including the reward for completing a species objective." },
+      { "category": "DEVELOPMENT", "text": "The First DNA tutorial appears on its owner's client while the other player keeps playing. Earned progress and tutorial completion survive an original save and reload." },
+      { "category": "IMPROVED", "text": "What's new now covers these M11 experiments. Normal social controls, separate species and complete Creature gameplay remain in development." }
+    ]
+  },
+  {
+    "version": "0.1.13",
+    "date": "2026-09-27",
+    "title": "Explore apart. Meet again.",
+    "summary": "The development journal now covers shared-world travel and recovery tests.",
+    "changes": [
+      { "category": "DEVELOPMENT", "text": "Two prepared Creature locations passed original-game tests for meeting, returning home, saving the shared world and reconnecting after a restart." },
+      { "category": "DEVELOPMENT", "text": "Interrupted travel recovered the recorded players without losing or duplicating them across the tested failure points." },
+      { "category": "IMPROVED", "text": "What's new now reflects these completed tests. Travel still uses development tools; normal Creature gameplay coverage is the next milestone." }
+    ]
+  },
+  {
+    "version": "0.1.12",
+    "date": "2026-09-24",
+    "title": "Join the right Creature location",
+    "summary": "Prepared location invitations can select the matching shared Creature scene.",
+    "changes": [
+      { "category": "IMPROVED", "text": "Join recognizes a prepared location invitation and checks the matching original Creature save before opening SPORE." },
+      { "category": "DEVELOPMENT", "text": "Two prepared Creature locations passed original-game connection trials. Travel between them and shared-world saving are still in development." }
+    ]
+  },
+  {
+    "version": "0.1.11",
+    "date": "2026-09-22",
+    "title": "Resume your saved shared world",
+    "summary": "See when your shared save has recovered.",
+    "changes": [
+      { "category": "NEW", "text": "Rejoin confirms when the server has restored your shared save and your scene is ready in SPORE." },
+      { "category": "DEVELOPMENT", "text": "Recovery currently supports the prepared experimental Creature world. Hosts keep protected backups when restoring it." }
+    ]
+  },
+  {
     "version": "0.1.10",
     "date": "2026-09-22",
     "title": "Clearer shared-world checks",

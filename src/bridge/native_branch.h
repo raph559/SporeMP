@@ -10,6 +10,7 @@
 #error Native branch guards require the pinned MSVC Win32 build.
 #endif
 
+// clang-format off
 #define SPOREMP_NATIVE_BRANCH(NAME, ALLOW, ORIGINAL, DENIED) \
     __declspec(naked) void NAME() { \
         __asm { pushfd } \
@@ -38,3 +39,4 @@
         __asm { popfd } \
         __asm { jmp dword ptr [DENIED] } \
     }
+// clang-format on

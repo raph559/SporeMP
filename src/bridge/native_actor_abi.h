@@ -2,16 +2,17 @@
 #include <cstdint>
 
 namespace sporemp {
-template<class Listener, class Noun>
+template <class Listener, class Noun>
 struct NativePlayerAbi {
     // C77ED0: ECX is the +34 IMessageListener subobject; two stack words,
     // ret 8, bool in AL. C7C3C0: primary noun ECX, no stack arguments.
     using Message = bool(__thiscall*)(Listener*, uint32_t, void*);
     using RemoveOwner = void(__thiscall*)(Noun*);
 };
+
 // Win32 signatures shared by the engine observers and executable ABI fixtures.
 // Native arguments stay inside the bridge process. These are not wire types.
-template<class Creature, class Animal, class Combatant, class Vector>
+template <class Creature, class Animal, class Combatant, class Vector>
 struct NativeActorAbi {
     using SelectAbility = int(__thiscall*)(Creature*, int, bool, bool);
     using Strike = bool(__thiscall*)(Animal*, Combatant*, int, Vector*);
@@ -28,4 +29,4 @@ struct NativeActorAbi {
     // D7D9A4..D7D9AA: one cdecl word; D99930 returns cCreatureBase TYPE.
     using MemoryCreature = Creature*(__cdecl*)(void*);
 };
-}
+} // namespace sporemp
